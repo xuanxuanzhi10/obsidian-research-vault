@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+ <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0L10 3L0 6Z" fill="#70635a"/></marker><style>.t{font-family:Inter,'Noto Sans CJK SC',sans-serif;fill:#2d2926}.h{font-size:25px;font-weight:700}.b{font-size:18px}.s{font-size:14px;fill:#6d625b}.bx{stroke-width:2;rx:16}.ar{stroke:#70635a;stroke-width:3;fill:none;marker-end:url(#a)}</style></defs>
+ <rect width="1200" height="650" fill="#fbf8f2" rx="24"/><text x="55" y="55" class="t h">FlowPRO：把一次失败变成“同一局部状态下，哪个动作更好”</text>
+ <g class="t" text-anchor="middle"><rect x="70" y="135" width="195" height="105" fill="#e4ecfa" stroke="#6687bc" class="bx"/><text x="167" y="177" class="b">Policy rollout</text><text x="167" y="207" class="s">模型自行执行</text>
+ <rect x="355" y="135" width="195" height="105" fill="#f5e5e2" stroke="#b66b61" class="bx"/><text x="452" y="177" class="b">发现将要失败</text><text x="452" y="207" class="s">operator intervention</text>
+ <rect x="640" y="135" width="195" height="105" fill="#f7ead7" stroke="#c89452" class="bx"/><text x="737" y="177" class="b">Rollback</text><text x="737" y="207" class="s">回到错误前状态</text>
+ <rect x="925" y="135" width="205" height="105" fill="#dff1ed" stroke="#56947f" class="bx"/><text x="1027" y="177" class="b">Human correction</text><text x="1027" y="207" class="s">示范正确局部动作</text></g>
+ <path d="M265 187H345M550 187H630M835 187H915" class="ar"/>
+ <g class="t" text-anchor="middle"><rect x="215" y="340" width="310" height="115" fill="#fff" stroke="#d9d0c7" class="bx"/><text x="370" y="383" class="b">Rejected trajectory</text><text x="370" y="416" class="s">模型刚才的失败动作段</text><rect x="675" y="340" width="310" height="115" fill="#fff" stroke="#d9d0c7" class="bx"/><text x="830" y="383" class="b">Preferred trajectory</text><text x="830" y="416" class="s">人工纠正后的动作段</text></g>
+ <path d="M452 240L370 330M1027 240L830 330" class="ar"/>
+ <rect x="350" y="525" width="500" height="80" fill="#eee7f7" stroke="#8c73b0" class="bx"/><text x="600" y="558" text-anchor="middle" class="t b">RPRO：拉近 preferred，推远 rejected</text><text x="600" y="586" text-anchor="middle" class="t s">proximal anchor + SFT replay 防止遗忘</text><path d="M370 455L520 515M830 455L680 515" class="ar"/>
+</svg>

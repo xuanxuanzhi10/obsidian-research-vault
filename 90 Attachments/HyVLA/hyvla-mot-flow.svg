@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0L10 3L0 6Z" fill="#6e6259"/></marker><style>.t{font-family:Inter,'Noto Sans CJK SC',sans-serif;fill:#2d2926}.h{font-size:25px;font-weight:700}.b{font-size:18px}.s{font-size:14px;fill:#6d625b}.ar{stroke:#6e6259;stroke-width:3;marker-end:url(#a)}.bx{stroke-width:2;rx:15}</style></defs>
+  <rect width="1200" height="650" fill="#fbf8f2" rx="24"/><text x="55" y="55" class="t h">Mixture of Transformers：专用“耳朵与大脑”，共享一张会议桌</text>
+  <g class="t" text-anchor="middle">
+    <rect x="85" y="105" width="250" height="90" fill="#dff1ed" stroke="#52917d" class="bx"/><text x="210" y="140" class="b">Vision tower</text><text x="210" y="170" class="s">专属 QKV + FFN</text>
+    <rect x="475" y="105" width="250" height="90" fill="#e4ecfa" stroke="#6687bc" class="bx"/><text x="600" y="140" class="b">Language tower</text><text x="600" y="170" class="s">专属 QKV + FFN</text>
+    <rect x="865" y="105" width="250" height="90" fill="#eee7f7" stroke="#8c73b0" class="bx"/><text x="990" y="140" class="b">Action tower</text><text x="990" y="170" class="s">专属 QKV + FFN</text>
+    <rect x="180" y="280" width="840" height="105" fill="#faedcf" stroke="#c29548" class="bx"/><text x="600" y="322" class="h">Joint Attention</text><text x="600" y="356" class="b">各模态生成自己的 Q/K/V，再按掩码在同一注意力空间交换信息</text>
+    <rect x="85" y="480" width="250" height="85" fill="#dff1ed" stroke="#52917d" class="bx"/><text x="210" y="515" class="b">视觉更新</text><text x="210" y="544" class="s">保留视觉统计特性</text>
+    <rect x="475" y="480" width="250" height="85" fill="#e4ecfa" stroke="#6687bc" class="bx"/><text x="600" y="515" class="b">语言更新</text><text x="600" y="544" class="s">保留文本统计特性</text>
+    <rect x="865" y="480" width="250" height="85" fill="#eee7f7" stroke="#8c73b0" class="bx"/><text x="990" y="515" class="b">动作更新</text><text x="990" y="544" class="s">连续控制专门化</text>
+  </g>
+  <g class="ar"><path d="M210 195V270"/><path d="M600 195V270"/><path d="M990 195V270"/><path d="M210 385V470"/><path d="M600 385V470"/><path d="M990 385V470"/></g>
+  <text x="600" y="620" text-anchor="middle" class="t b">MoT ≠ MoE：这里按模态固定走不同参数，不是 router 动态选专家；共享注意力也不等于共享全部参数。</text>
+</svg>

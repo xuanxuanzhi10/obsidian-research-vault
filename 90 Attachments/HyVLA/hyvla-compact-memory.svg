@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0L10 3L0 6Z" fill="#6e6259"/></marker><style>.t{font-family:Inter,'Noto Sans CJK SC',sans-serif;fill:#2d2926}.h{font-size:25px;font-weight:700}.b{font-size:18px}.s{font-size:14px;fill:#6d625b}.ar{stroke:#6e6259;stroke-width:3;fill:none;marker-end:url(#a)}.bx{stroke-width:2;rx:15}</style></defs>
+  <rect width="1200" height="680" fill="#fbf8f2" rx="24"/><text x="55" y="55" class="t h">Compact Memory：先沿时间“同位置对话”，再在每帧内理解空间</text>
+  <g class="t" text-anchor="middle"><text x="135" y="110" class="b">K 帧 patch 网格</text><text x="455" y="110" class="b">Temporal attention</text><text x="760" y="110" class="b">Spatial attention</text><text x="1050" y="110" class="b">只输出当前帧</text></g>
+  <g transform="translate(55,145)">
+    <g fill="#dff1ed" stroke="#56947f"><rect x="0" y="0" width="120" height="120" rx="8"/><rect x="25" y="25" width="120" height="120" rx="8"/><rect x="50" y="50" width="120" height="120" rx="8"/></g>
+    <g fill="#fff" stroke="#7eb4a2"><circle cx="35" cy="35" r="10"/><circle cx="60" cy="60" r="10"/><circle cx="85" cy="85" r="10"/></g><text x="85" y="215" class="t s" text-anchor="middle">同一 patch 跨 K 帧</text>
+  </g>
+  <path d="M240 230H350" class="ar"/>
+  <g transform="translate(365,145)" class="t"><rect width="180" height="170" fill="#f7ead7" stroke="#c89452" class="bx"/><text x="90" y="55" class="b" text-anchor="middle">时间轴因果注意力</text><text x="90" y="91" class="s" text-anchor="middle">过去 → 当前</text><text x="90" y="122" class="s" text-anchor="middle">复用 ViT QKV / Wₒ</text><text x="90" y="150" class="s" text-anchor="middle">固定时间位置编码</text></g>
+  <path d="M560 230H655" class="ar"/>
+  <g transform="translate(670,145)" class="t"><rect width="180" height="170" fill="#e4ecfa" stroke="#6687bc" class="bx"/><text x="90" y="55" class="b" text-anchor="middle">帧内空间注意力</text><text x="90" y="91" class="s" text-anchor="middle">物体 ↔ 手 ↔ 场景</text><text x="90" y="122" class="s" text-anchor="middle">每帧独立进行</text><text x="90" y="150" class="s" text-anchor="middle">每 4 层插入一次</text></g>
+  <path d="M865 230H955" class="ar"/>
+  <g transform="translate(970,145)" class="t"><rect width="170" height="170" fill="#eee7f7" stroke="#8c73b0" class="bx"/><text x="85" y="55" class="b" text-anchor="middle">当前帧 tokens</text><text x="85" y="91" class="s" text-anchor="middle">已吸收历史</text><text x="85" y="122" class="s" text-anchor="middle">历史 tokens 丢弃</text><text x="85" y="150" class="s" text-anchor="middle">送入上层 VLM</text></g>
+  <rect x="75" y="410" width="1050" height="190" fill="#fff" stroke="#d9d0c7" rx="18"/>
+  <g class="t"><text x="110" y="454" class="h">为什么叫 compact？</text><text x="110" y="493" class="b">朴素拼接：VLM 继续处理 K×n 个视觉 token；这里：上层只处理 n 个“带历史”的当前 token。</text><text x="110" y="532" class="b">分解成本：空间 O(Kn²) + 时间 O(nK²)，而不是把时空摊平成 O(K²n²)。</text><text x="110" y="571" class="s">K=1 时，论文设计为与原图像编码器等价；因此可先单帧预训练，再在 SFT 切到 K=6。</text></g>
+</svg>

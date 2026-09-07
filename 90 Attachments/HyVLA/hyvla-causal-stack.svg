@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#75675b"/></marker>
+    <style>.t{font-family:Inter,'Noto Sans CJK SC',sans-serif;fill:#2d2926}.h{font-size:24px;font-weight:700}.b{font-size:17px}.s{font-size:14px;fill:#6d625b}.box{stroke-width:2;rx:18}.arr{stroke:#75675b;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  </defs>
+  <rect width="1200" height="520" fill="#fbf8f2" rx="24"/>
+  <text x="60" y="55" class="t h">HyVLA 的主因果链：每一层解决上一层留下的瓶颈</text>
+  <g class="t">
+    <rect x="55" y="110" width="190" height="190" fill="#f7ead7" stroke="#c89452" class="box"/>
+    <text x="150" y="147" text-anchor="middle" class="h">数据</text><text x="150" y="184" text-anchor="middle" class="b">自然人类操作</text><text x="150" y="211" text-anchor="middle" class="b">精确 6DoF 标签</text><text x="150" y="253" text-anchor="middle" class="s">Hy-UMI-10K</text><text x="150" y="276" text-anchor="middle" class="s">10K+ h / 70 tasks</text>
+    <rect x="285" y="110" width="190" height="190" fill="#e5f2ed" stroke="#55957d" class="box"/>
+    <text x="380" y="147" text-anchor="middle" class="h">表征</text><text x="380" y="184" text-anchor="middle" class="b">语义与控制分工</text><text x="380" y="211" text-anchor="middle" class="b">历史压进当前帧</text><text x="380" y="253" text-anchor="middle" class="s">MoT + Compact Memory</text><text x="380" y="276" text-anchor="middle" class="s">Block-wise mask</text>
+    <rect x="515" y="110" width="190" height="190" fill="#ece7f5" stroke="#8873ad" class="box"/>
+    <text x="610" y="147" text-anchor="middle" class="h">动作</text><text x="610" y="184" text-anchor="middle" class="b">连续、多峰轨迹</text><text x="610" y="211" text-anchor="middle" class="b">跨机体坐标接口</text><text x="610" y="253" text-anchor="middle" class="s">Flow Matching</text><text x="610" y="276" text-anchor="middle" class="s">Relative EEF chunk</text>
+    <rect x="745" y="110" width="190" height="190" fill="#f5e5e2" stroke="#b66b61" class="box"/>
+    <text x="840" y="147" text-anchor="middle" class="h">纠错</text><text x="840" y="184" text-anchor="middle" class="b">专盯长尾失败</text><text x="840" y="211" text-anchor="middle" class="b">偏好而非奖励模型</text><text x="840" y="253" text-anchor="middle" class="s">rollback pairs</text><text x="840" y="276" text-anchor="middle" class="s">FlowPRO / RPRO</text>
+    <rect x="975" y="110" width="170" height="190" fill="#e7eef3" stroke="#6686a1" class="box"/>
+    <text x="1060" y="147" text-anchor="middle" class="h">部署</text><text x="1060" y="184" text-anchor="middle" class="b">慢推理不断控制</text><text x="1060" y="211" text-anchor="middle" class="b">轨迹平滑接续</text><text x="1060" y="253" text-anchor="middle" class="s">async buffer</text><text x="1060" y="276" text-anchor="middle" class="s">Bézier stitching</text>
+  </g>
+  <path d="M245 205 H278" class="arr"/><path d="M475 205 H508" class="arr"/><path d="M705 205 H738" class="arr"/><path d="M935 205 H968" class="arr"/>
+  <g class="t s" text-anchor="middle"><text x="265" y="184">标签可学</text><text x="495" y="184">条件可用</text><text x="725" y="184">策略可修</text><text x="955" y="184">动作可执行</text></g>
+  <rect x="130" y="355" width="940" height="110" fill="#fff" stroke="#d9d0c7" rx="16"/>
+  <text x="600" y="392" text-anchor="middle" class="t h">关键理解</text>
+  <text x="600" y="425" text-anchor="middle" class="t b">这不是“换一个 action head”就完成的论文；数据、架构、后训练与部署互相补洞。</text>
+  <text x="600" y="451" text-anchor="middle" class="t s">任何一环被拿掉，剩余模块都无法单独兑现“真实机器人高频闭环控制”。</text>
+</svg>

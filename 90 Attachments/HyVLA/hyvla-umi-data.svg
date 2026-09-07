@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690">
+ <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0L10 3L0 6Z" fill="#70635a"/></marker><style>.t{font-family:Inter,'Noto Sans CJK SC',sans-serif;fill:#2d2926}.h{font-size:25px;font-weight:700}.b{font-size:18px}.s{font-size:14px;fill:#6d625b}.bx{stroke-width:2;rx:16}.ar{stroke:#70635a;stroke-width:3;fill:none;marker-end:url(#a)}</style></defs>
+ <rect width="1200" height="690" fill="#fbf8f2" rx="24"/><text x="55" y="55" class="t h">UMI 数据闭环：自然人类操作如何变成机器人可学习监督</text>
+ <g class="t" text-anchor="middle"><rect x="60" y="115" width="220" height="130" fill="#f7ead7" stroke="#c89452" class="bx"/><text x="170" y="160" class="b">人自然操作</text><text x="170" y="193" class="s">手指接触 / 力反馈</text><text x="170" y="219" class="s">不受机器人关节限制</text>
+ <rect x="360" y="95" width="250" height="170" fill="#dff1ed" stroke="#56947f" class="bx"/><text x="485" y="137" class="b">同步传感</text><text x="485" y="170" class="s">头部 + 腕部 RGB</text><text x="485" y="197" class="s">mocap 6DoF pose</text><text x="485" y="224" class="s">encoder gripper state</text><text x="485" y="251" class="s">可选 6D force/torque</text>
+ <rect x="690" y="115" width="210" height="130" fill="#e4ecfa" stroke="#6687bc" class="bx"/><text x="795" y="160" class="b">时间/坐标对齐</text><text x="795" y="193" class="s">frame ↔ pose ↔ gripper</text><text x="795" y="219" class="s">统一到训练坐标系</text>
+ <rect x="980" y="115" width="170" height="130" fill="#eee7f7" stroke="#8c73b0" class="bx"/><text x="1065" y="160" class="b">VLA 样本</text><text x="1065" y="193" class="s">observation</text><text x="1065" y="219" class="s">+ action chunk</text></g>
+ <path d="M280 180H350M610 180H680M900 180H970" class="ar"/>
+ <rect x="70" y="350" width="480" height="190" fill="#fff" stroke="#d9d0c7" class="bx"/><text x="105" y="393" class="t h">得到的优势</text><text x="105" y="432" class="t b">自然行为 + 精确末端动作标签</text><text x="105" y="469" class="t b">不绑定某台机器人的 joint topology</text><text x="105" y="506" class="t b">更快扩展到 10K+ 小时</text>
+ <rect x="650" y="350" width="480" height="190" fill="#fff3ef" stroke="#c47b6f" class="bx"/><text x="685" y="393" class="t h">没有自动消失的问题</text><text x="685" y="432" class="t b">mocap cage 限制场地扩展</text><text x="685" y="469" class="t b">人体轨迹可能对机器人不可达</text><text x="685" y="506" class="t b">触觉感受 ≠ 策略获得触觉输入</text>
+ <text x="600" y="625" text-anchor="middle" class="t s">UMI 的关键不是“拍更多视频”，而是让视觉与可执行动作在时间和坐标上准确对齐。</text>
+</svg>
