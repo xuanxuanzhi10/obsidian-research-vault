@@ -1,0 +1,84 @@
+.gitignore
+  h_c2b50b6ba78233 1-14
+.obsidian/app.json
+  h_c2b50b6ba78233 1
+.obsidian/appearance.json
+  h_c2b50b6ba78233 1
+.obsidian/core-plugins.json
+  h_c2b50b6ba78233 1-33
+.obsidian/graph.json
+  h_c2b50b6ba78233 1-22
+"00 Maps/VLA 学习地图.md"
+  h_c2b50b6ba78233 1-49
+"00 Maps/VLA 概念索引.md"
+  h_c2b50b6ba78233 1-46
+"00 Maps/待核实事实.md"
+  h_c2b50b6ba78233 1-42
+"00 Maps/论文知识库.md"
+  h_c2b50b6ba78233 1-44
+"10 Papers/Hy-Embodied-0.5-VLA.md"
+  h_c2b50b6ba78233 1-148
+"10 Papers/OpenVLA.md"
+  h_c2b50b6ba78233 1-45
+"10 Papers/π₀.5.md"
+  h_c2b50b6ba78233 1-52
+"10 Papers/π₀.md"
+  h_c2b50b6ba78233 1-49
+"20 Concepts/Action Chunking.md"
+  h_c2b50b6ba78233 1-34
+"20 Concepts/Action Expert.md"
+  h_c2b50b6ba78233 1-31
+"20 Concepts/Adaptive RMSNorm.md"
+  h_c2b50b6ba78233 1-24
+"20 Concepts/Block-wise Causal Attention.md"
+  h_c2b50b6ba78233 1-18
+"20 Concepts/Compact Memory Encoder.md"
+  h_c2b50b6ba78233 1-18
+"20 Concepts/FAST Tokenizer.md"
+  h_c2b50b6ba78233 1-34
+"20 Concepts/Flow Matching.md"
+  h_c2b50b6ba78233 1-37
+"20 Concepts/FlowPRO.md"
+  h_c2b50b6ba78233 1-22
+"20 Concepts/KV Cache.md"
+  h_c2b50b6ba78233 1-28
+"20 Concepts/LoRA.md"
+  h_c2b50b6ba78233 1-28
+"20 Concepts/Mixture of Transformers.md"
+  h_c2b50b6ba78233 1-24
+"20 Concepts/Relative EEF Action.md"
+  h_c2b50b6ba78233 1-27
+"20 Concepts/UMI.md"
+  h_c2b50b6ba78233 1-26
+"30 Comparisons/VLA 方法比较.md"
+  h_c2b50b6ba78233 1-22
+"40 Topics/动作表示方法对比.md"
+  h_c2b50b6ba78233 1-23
+"40 Topics/数据策略对比.md"
+  h_c2b50b6ba78233 1-27
+"40 Topics/模型架构设计.md"
+  h_c2b50b6ba78233 1-33
+"40 Topics/训练范式地图.md"
+  h_c2b50b6ba78233 1-40
+"40 Topics/部署与推理优化.md"
+  h_c2b50b6ba78233 1-23
+"90 Attachments/README.md"
+  h_c2b50b6ba78233 1-7
+Templates/概念笔记模板.md
+  h_c2b50b6ba78233 1-41
+Templates/论文笔记模板.md
+  h_c2b50b6ba78233 1-53
+Welcome.md
+  h_c2b50b6ba78233 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "fbf0c234d5d1fea17e915098725918e49a7a8789",
+  "prompts": {},
+  "humans": {
+    "h_c2b50b6ba78233": {
+      "author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
