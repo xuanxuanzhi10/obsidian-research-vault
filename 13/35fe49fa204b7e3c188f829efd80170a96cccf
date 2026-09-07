@@ -1,0 +1,27 @@
+.obsidian/plugins/obsidian-git/data.json
+  s_a3320701e75207::t_35badf440b3cef 1-20
+.obsidian/community-plugins.json
+  s_a3320701e75207::t_35badf440b3cef 1-3
+.obsidian/plugins/obsidian-git/main.js
+  s_a3320701e75207::t_f4789563b55de2 1-425
+.obsidian/plugins/obsidian-git/manifest.json
+  s_a3320701e75207::t_2e0435a06fc4c4 1-10
+.obsidian/plugins/obsidian-git/styles.css
+  s_a3320701e75207::t_fdf2014e053d63 1-705
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "1335fe49fa204b7e3c188f829efd80170a96cccf",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
