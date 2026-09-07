@@ -1,0 +1,14 @@
+# Per-device Obsidian UI state; syncing these creates needless conflicts.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+
+# Local trash and OS metadata.
+.trash/
+.DS_Store
+Thumbs.db
+
+# Temporary editor files.
+*.tmp
+*.swp
+*~
