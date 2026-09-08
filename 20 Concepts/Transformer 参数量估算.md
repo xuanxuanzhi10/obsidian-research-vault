@@ -31,6 +31,56 @@ $$P\approx L(4d^2+8d^2)=12Ld^2.$$
 
 这个公式省略 bias、norm、embedding、input/output heads，也假设 FFN 只有两个矩阵。
 
+### 追问：为什么两个 LayerNorm 写成 `2 × 2d = 4d`？
+
+先把“归一化计算”和“可学习参数”分开。对一个 token `x∈R^d`，标准 LayerNorm 会计算均值与方差，但均值、方差是由当前输入临时算出的统计量，不是模型参数。真正训练并保存在 checkpoint 中的是每个通道的 affine 参数：
+
+$$y_i=\gamma_i\frac{x_i-\mu}{\sqrt{\sigma^2+\epsilon}}+\beta_i.$$
+
+- `γ∈R^d`：每个特征通道一个缩放量；
+- `β∈R^d`：每个特征通道一个偏移量；
+- 因而一个带 affine 的 LayerNorm 有 `d+d=2d` 个参数；
+- 标准 Pre-Norm Transformer block 常在 Attention 前、FFN 前各放一个，所以是 `2×2d=4d`。
+
+当 `d=1024` 时，两个 LayerNorm 是 `4096` 个参数。这里的第一个 `2` 表示**两个 LayerNorm 模块**，第二个 `2d` 表示**一个模块里的 γ+β**。
+
+```python
+class ToyPreNormBlock:
+    def __init__(self, d=1024):
+        self.norm_before_attention = LayerNorm(d)  # gamma[d] + beta[d]
+        self.norm_before_ffn = LayerNorm(d)        # gamma[d] + beta[d]
+
+    def forward(self, x):
+        x = x + attention(self.norm_before_attention(x))
+        x = x + ffn(self.norm_before_ffn(x))
+        return x
+```
+
+> [!warning] 不要把 `4d` 当成所有 Transformer 的固定答案
+> RMSNorm 通常只有 scale，因此一个模块约 `d`；有些 LayerNorm 关闭 affine 或 bias；有些 block 还有额外 norm。必须看实际模块配置。RMSNorm 不减均值，而标准 LayerNorm 会减均值并按方差缩放。
+
+### 追问：为什么 Embedding 是 `vocab × d`？
+
+Embedding 是一张可学习查找表，而不是把 token ID 当连续数值做回归。词表中每个离散 ID 都保存一个 `d` 维向量：
+
+```python
+class TokenEmbedding:
+    def __init__(self, vocab_size=32000, d=1024):
+        # 第 i 行就是 token_id=i 的向量
+        self.table = Parameter(shape=[vocab_size, d])
+
+    def forward(self, token_ids):       # token_ids: [B, N]
+        return self.table[token_ids]     # output: [B, N, d]
+```
+
+所以共有 `vocab_size` 行、每行 `d` 个参数：
+
+$$P_{embed}=|V|\times d.$$
+
+例如 `32000×1024=32,768,000≈32.8M`。token ID `1729` 只是拿出第 1729 行；它本身没有“数值 1729 的大小意义”。
+
+Embedding 与输出 LM head 有时共享同一张权重（weight tying），此时不能重复计算；视觉 patch projection、action projection 和位置 embedding 也叫 embedding，但参数公式由各自输入 shape 决定。FTP-1 的 Tactile Expert 处理连续 tactile tokens，不应未经代码核对就额外假设存在一张大型 text-vocabulary embedding。
+
 ## 第二层：用最小例子逐矩阵计算
 
 ```python

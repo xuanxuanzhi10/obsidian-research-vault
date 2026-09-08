@@ -108,6 +108,9 @@ Action block     A = [加噪后的未来动作块 a_τ]
 
 Vision、Language、Action 各自拥有非共享 QKV 和 FFN，因为像素 patch、文本 token、连续动作 token 的统计结构差异很大。但三者产生的 Q/K/V 会进入 joint-attention，按照 mask 交换信息。
 
+> [!question] HyVLA 是否像 π0.5 一样用 Adaptive RMSNorm 注入 state？
+> 原文没有报告 AdaRMSNorm/AdaLN。它明确把 projected robot state 作为独立 `[s_t]` block，位于 perception block 与 noisy-action block 之间。不要由“HyVLA 借鉴 π0.5”推断 state 注入实现相同。详见 [[状态条件注入方式比较]]。
+
 ```text
 完全共享参数 → 动作控制被迫适应语言模型的计算方式
 完全隔离模块 → 动作又读不到语言和视觉语义

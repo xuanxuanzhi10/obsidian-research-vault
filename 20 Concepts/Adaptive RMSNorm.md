@@ -81,6 +81,19 @@ def ftp1_condition(proprio, flow_timestep):
 
 增加一个 token 的确会让 attention 长度从 `N` 变为 `N+1`，但通常不是显著算力瓶颈；AdaRMSNorm 的核心优势是**调制形式和逐层直达路径**，而不是省掉一个 token 的计算。
 
+## 重要澄清：用了 AdaRMSNorm，不等于用它注入 state
+
+同一个 adaptive norm 可以接收 timestep、class label、text condition 或 robot state。必须检查传给 condition MLP 的究竟是什么，不能从“模型用了 AdaRMSNorm”推断“state 没有 token”。详见 [[状态条件注入方式比较]]。
+
+| 模型 | Adaptive norm 接收什么 | State 走什么路径 | 已核对结论 |
+|---|---|---|---|
+| π0 | 不使用 AdaRMSNorm | continuous state 作为 suffix state token | 官方 OpenPI 代码 |
+| π0.5 | Flow Matching timestep | state 离散化后进入 tokenized prompt | 官方 OpenPI 代码与配置 |
+| HyVLA | 论文未报告使用 AdaRMS/AdaLN | projected state 是独立 `[s_t]` block | HyVLA Sec. 2.3 |
+| FTP-1 | timestep + proprioception | final design 用二者共同调制 Action Expert | FTP-1 Appendix B.3 + 官方代码 |
+
+所以“π0.5 只用 AdaRMSNorm 注入 proprioception，不再使用 state token”是错误的；它把 **timestep** 放进 AdaRMSNorm，而 state 已在 prompt token 中。HyVLA 也不能按 π0.5 猜测：其论文明确画出了 state block。
+
 ## 第四层：证据、边界与待核实项
 
 - **FTP-1 明确声称**：preliminary experiments 中，AdaRMSNorm 注入 proprioception 比独立 proprioceptive token 有更好 generalization/robustness（Appendix B.3）。
