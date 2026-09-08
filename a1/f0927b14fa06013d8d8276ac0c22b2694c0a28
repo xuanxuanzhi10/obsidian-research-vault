@@ -1,0 +1,53 @@
+"00 Maps/VLA 概念索引.md"
+  s_a3320701e75207::t_3c72f15a2922b5 58-60,63
+"00 Maps/VLA 学习地图.md"
+  s_a3320701e75207::t_3c72f15a2922b5 28-29,46-48,60
+"40 Topics/触觉机器人学习.md"
+  s_a3320701e75207::t_17d5131cdde575 21
+  s_a3320701e75207::t_3c72f15a2922b5 18-19,22-34,61,147-153
+  s_a3320701e75207::t_2c395d9af87671 20
+"10 Papers/VLA/触觉/FTP-1.md"
+  s_a3320701e75207::t_3664820a096255 1-143
+"10 Papers/VLA/触觉/N0-TWAM.md"
+  s_a3320701e75207::t_e937d9baabf618 1-173
+"20 Concepts/Morphology-Aware Tactile Token Space.md"
+  s_a3320701e75207::t_fc92a03fe079fa 1-37
+"20 Concepts/触觉标点.md"
+  s_a3320701e75207::t_22be1eeda0476d 1-25
+"20 Concepts/预测触觉与观测触觉.md"
+  s_a3320701e75207::t_6f44f4e6d1e125 1-34
+"30 Comparisons/触觉 VLA 方法比较.md"
+  s_a3320701e75207::t_7ab6957e3b2856 1-51
+"90 Attachments/FTP-1/ftp1-study-guide.html"
+  s_a3320701e75207::t_3bd1e8da7a5edd 1-520
+"90 Attachments/FTP-1/ftp1-teaching-attention.svg"
+  s_a3320701e75207::t_a7101efbbc38c9 1
+"90 Attachments/FTP-1/ftp1-teaching-mtts.svg"
+  s_a3320701e75207::t_5de684485facc4 1-7
+"90 Attachments/N0-TWAM/n0-twam-study-guide.html"
+  s_a3320701e75207::t_d0baa217d095ef 1-476
+"90 Attachments/N0-TWAM/n0-twam-teaching-cascade.svg"
+  s_a3320701e75207::t_28126ac72ad4d5 1
+"90 Attachments/N0-TWAM/n0-twam-teaching-punctuation.svg"
+  s_a3320701e75207::t_b6468d635155da 1
+"90 Attachments/N0-TWAM/n0-twam-teaching-two-paths.svg"
+  s_a3320701e75207::t_9f65f931e8e199 1
+"90 Attachments/Tactile-VLA/tactile-vla-qa2.html"
+  s_a3320701e75207::t_1e1ba6fee96137 1-408
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "a1f0927b14fa06013d8d8276ac0c22b2694c0a28",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
