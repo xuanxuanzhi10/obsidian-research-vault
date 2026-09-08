@@ -1,0 +1,5 @@
+interface:
+  display_name: "因果链论文讲解"
+  short_description: "按因果链精读论文，提取原始 pipeline 图并沉淀到 Obsidian"
+  brand_color: "#4F7787"
+  default_prompt: "Use $paper-causal-guide to explain this paper as a causal learning guide and include its original method pipeline figure."
