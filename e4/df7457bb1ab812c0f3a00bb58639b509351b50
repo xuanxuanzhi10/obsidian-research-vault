@@ -1,0 +1,33 @@
+"20 Concepts/Transformer 参数量估算.md"
+  s_a3320701e75207::t_6f7d57e3336261 34-83
+"20 Concepts/Adaptive RMSNorm.md"
+  s_a3320701e75207::t_6f7d57e3336261 84-96
+"10 Papers/VLA/Hy-Embodied-0.5-VLA.md"
+  s_a3320701e75207::t_e8cb74170852da 111-113
+"00 Maps/VLA 概念索引.md"
+  s_a3320701e75207::t_e8cb74170852da 43
+"90 Attachments/Tactile-VLA/state-conditioning-comparison.svg"
+  s_a3320701e75207::t_8b1ec1b68b67aa 1
+"00 Maps/VLA 学习地图.md"
+  s_a3320701e75207::t_e8cb74170852da 61
+"30 Comparisons/状态条件注入方式比较.md"
+  s_a3320701e75207::t_8b1ec1b68b67aa 1-104
+"10 Papers/VLA/π₀.5.md"
+  s_a3320701e75207::t_e8cb74170852da 15-16,51-53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "e4df7457bb1ab812c0f3a00bb58639b509351b50",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
