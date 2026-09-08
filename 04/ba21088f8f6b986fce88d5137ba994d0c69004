@@ -1,0 +1,35 @@
+.obsidian/snippets/academic-blog.css
+  s_a3320701e75207::t_771c5d4e40a72e 1-168
+.obsidian/app.json
+  s_a3320701e75207::t_771c5d4e40a72e 1-5
+.obsidian/appearance.json
+  s_a3320701e75207::t_771c5d4e40a72e 1-11
+.obsidian/themes/AnuPpuccin/manifest.json
+  s_a3320701e75207::t_a1a2e6a6cb96c1 1-7
+.obsidian/themes/AnuPpuccin/theme.css
+  s_a3320701e75207::t_eb232988f0c734 1-8511
+.obsidian/themes/Minimal/manifest.json
+  s_a3320701e75207::t_f51372284d7e49 1-8
+.obsidian/themes/Minimal/theme.css
+  s_a3320701e75207::t_701761d834252d 1-8707
+.obsidian/themes/Things/manifest.json
+  s_a3320701e75207::t_d65ba315440342 1-7
+.obsidian/themes/Things/theme.css
+  s_a3320701e75207::t_0d6a14a5eabad0 1-1954
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "04ba21088f8f6b986fce88d5137ba994d0c69004",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
