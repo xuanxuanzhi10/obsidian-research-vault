@@ -37,14 +37,16 @@ created: 2026-09-07
 ## 多模态架构
 
 - [[Mixture of Transformers]]：参数专门化，注意力中交流
+- [[Transformer 参数量估算]]：从 Q/K/V/O、MQA/GQA 与 gated FFN 的矩阵 shape 估算模型规模
 - [[Block-wise Causal Attention]]：怎样控制条件到动作的信息方向
-- [[Adaptive RMSNorm]]：怎样把生成时间或其他条件注入每层
+- [[Adaptive RMSNorm]]：怎样用 scale、shift、gate 把 timestep 与本体状态直接注入每层
 - [[Compact Memory Encoder]]：怎样保留历史而不让 VLM token 暴涨
 
 ## 训练与适配
 
 - [[LoRA]]：低成本微调大 VLA
 - [[FlowPRO]]：用 winning/losing action pairs 修复长尾失败
+- [[异构多域分布式训练]]：同域组成本地 batch，专属参数本域更新，共享参数跨域汇聚
 
 ## 推理与部署
 

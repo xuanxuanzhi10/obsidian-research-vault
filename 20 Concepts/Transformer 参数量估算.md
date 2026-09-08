@@ -34,15 +34,20 @@ $$P\approx L(4d^2+8d^2)=12Ld^2.$$
 ## 第二层：用最小例子逐矩阵计算
 
 ```python
-def transformer_block_params(d_model, n_heads, head_dim, d_ff,
-                             gated_ffn=False):
-    # Attention 内部总宽度；它不一定等于 d_model
-    d_attn = n_heads * head_dim
+def transformer_block_params(d_model, n_q_heads, n_kv_heads,
+                             head_dim, d_ff, gated_ffn=False):
+    # Q 可以比 K/V 拥有更多 heads：MHA / GQA / MQA 都能计算
+    q_width = n_q_heads * head_dim
+    kv_width = n_kv_heads * head_dim
 
-    # Wq/Wk/Wv: [d_model, d_attn]，Wo: [d_attn, d_model]
-    attention = 4 * d_model * d_attn
+    # Wq + Wk + Wv + Wo
+    attention = (
+        d_model * q_width
+        + 2 * d_model * kv_width
+        + q_width * d_model
+    )
 
-    # 普通 FFN 两个矩阵；SwiGLU/GeGLU 常有三个主矩阵
+    # 普通 FFN 两个矩阵；SwiGLU/GeGLU 是 gate/up/down 三个矩阵
     ffn_matrices = 3 if gated_ffn else 2
     ffn = ffn_matrices * d_model * d_ff
 
@@ -52,16 +57,20 @@ def transformer_block_params(d_model, n_heads, head_dim, d_ff,
 
 ### FTP-1 Tactile Expert 为什么约 300M？
 
-论文 Appendix B.4 给出：`d_model=1024`、`L=18`、`d_ff=4096`、`8 heads`、`head_dim=256`。因此：
+论文 Appendix B.4 给出：`d_model=1024`、`L=18`、`d_ff=4096`、`8 query heads`、`head_dim=256`。官方代码进一步确认 `num_kv_heads=1`，因此这里是 MQA，并使用 gate/up/down 三矩阵 FFN：
 
 ```python
-d_attn = 8 * 256                         # 2048
-P_attn = 4 * 1024 * 2048                # 8.39M / layer
-P_ffn  = 2 * 1024 * 4096                # 8.39M / layer（若为普通两矩阵 FFN）
-P_core = 18 * (P_attn + P_ffn)           # ≈ 302M
+q_width  = 8 * 256                       # 2048
+kv_width = 1 * 256                       # 256（MQA）
+P_attn = (1024*q_width                   # Wq
+          + 2*1024*kv_width              # Wk, Wv
+          + q_width*1024)                # Wo
+        # = 4.72M / layer
+P_ffn = 3 * 1024 * 4096                  # gate/up/down = 12.58M / layer
+P_core = 18 * (P_attn + P_ffn)           # ≈ 311.4M
 ```
 
-这正好解释论文写的 `300M-parameter Transformer`。HTML 里的 `12×18×1024²≈226M` 假定 `head_dim=d/heads=128`；但 FTP-1 明确给出 `head_dim=256`，所以这里不能直接套标准速算式。
+这与官方配置注释的 `311M params` 一致，也解释了论文为何把它称为约 300M。HTML 里的 `12×18×1024²≈226M` 同时假定 `head_dim=d/heads=128`、普通 MHA 和两矩阵 FFN；FTP-1 三个条件都不同，所以不能直接套用。
 
 ### 注意力头数到底影响参数量吗？
 
@@ -75,7 +84,7 @@ P_core = 18 * (P_attn + P_ffn)           # ≈ 302M
 | 变化 | 参数式如何变 | 必须检查什么 |
 |---|---|---|
 | SwiGLU / GeGLU | FFN 常由 2 个矩阵变 3 个 | `d_ff` 是否已按门控缩小 |
-| GQA / MQA | K/V 头少于 Q 头 | `n_kv_heads` 与各自 head_dim |
+| GQA / MQA | K/V 头少于 Q 头，减少 K/V 参数与 cache | `n_kv_heads` 与各自 head_dim |
 | 非标准 head_dim | `d_attn≠d_model` | 不能使用 `4d²` |
 | MoT | 每个 expert 有独立投影/FFN | 哪些参数共享，哪些分模态 |
 | embedding / LM head | 可能占大量参数 | vocab、是否 weight tying |
@@ -95,7 +104,6 @@ def estimate_model(config):
 
 ### 证据边界
 
-- FTP-1 论文明确报告配置和约 300M 规模，但没有逐矩阵参数清单；上面的 302M 是根据已报告 shape 的工程推算。
-- FFN 若采用 gated variant，公式会变化；论文只写 `MLP dimension 4096`，需要官方代码才能确认所有矩阵细节。
+- FTP-1 论文明确报告主要配置和约 300M 规模；官方仓库 `gemma_300m` 配置进一步给出 `num_kv_heads=1` 并标注 `311M params`。
+- 官方实现的 FeedForward 使用 gating/up/linear 三个主权重，因此上面的约 311.4M 核心层推算与代码结构一致；小量 norm 等参数不会改变量级。
 - HTML 中按模型量级列出的“能力范围”是教学性经验，不是可验证的硬阈值，因此不作为知识库事实表保留。
-

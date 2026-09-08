@@ -47,13 +47,13 @@ class AdaptiveRMSNorm:
         # condition: [B, c]，例如 flow timestep + proprioception
         x_hat = x / sqrt(mean(x**2, dim=-1, keepdim=True) + eps)
 
-        # 不同实现可只生成 scale，也可生成 shift / residual gate
+        # FTP-1/OpenPI 官方实现生成 scale、shift、residual gate
         scale, shift, gate = condition_mlp(condition).chunk(3, dim=-1)
         y = (1 + scale[:, None, :]) * x_hat + shift[:, None, :]
         return x + gate[:, None, :] * attention_or_ffn(y)
 ```
 
-不要把这段伪代码当成 FTP-1 官方实现。论文只明确说明“经 adaptive RMSNorm 注入 attention blocks”，没有在文中展开其究竟生成 scale、shift、gate 中的哪些量。
+这段是教学伪代码，不是逐行复制，但它的 `scale + shift + gate`、zero-initialized condition projection，以及对 Attention/FFN 两条 residual branch 的调制，已经由 FTP-1 官方仓库实现核对。
 
 ### 3. FTP-1 的条件怎样形成？
 
@@ -84,7 +84,7 @@ def ftp1_condition(proprio, flow_timestep):
 ## 第四层：证据、边界与待核实项
 
 - **FTP-1 明确声称**：preliminary experiments 中，AdaRMSNorm 注入 proprioception 比独立 proprioceptive token 有更好 generalization/robustness（Appendix B.3）。
+- **官方代码确认**：condition 经过 zero-initialized Dense 投影为 `3d`，切分成 scale/shift/gate；pre-attention 和 pre-FFN 都执行 adaptive RMSNorm，gate 控制对应 residual branch。zero-init 使初始调制与残差增量为零，训练再逐渐打开条件作用。
 - **尚未报告**：正文没有给独立数值表、任务拆分或统计显著性，因此不能量化这项设计贡献。
 - **已核对配置**：proprioception 经 Fourier encoding、3-layer ReLU MLP、LayerNorm；与归一化后的 flow-timestep features 拼接；注入 attention blocks。
-- **待核实**：π0/π0.5、T-Rex、N0-TWAM 各自究竟采用 AdaRMSNorm 还是 AdaLN、是否含 zero-init/gate，必须分别依据原文或代码，不能从家族名称推断。
-
+- **边界**：上面的实现可作为 π0.5/FTP-1 代码族的具体例子，但 T-Rex、N0-TWAM 或其他 DiT 的 AdaLN/AdaRMS 仍应分别核对，不能由名称推断完全相同。

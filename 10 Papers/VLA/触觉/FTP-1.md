@@ -11,7 +11,7 @@ source: "[[FTP-1.pdf]]"
 # FTP-1：先统一“触觉来自哪里”，再跨传感器预训练
 
 上级地图：[[VLA 学习地图]] · 主题：[[触觉机器人学习]]  
-核心概念：[[Morphology-Aware Tactile Token Space]] · [[预测触觉与观测触觉]]  
+核心概念：[[Morphology-Aware Tactile Token Space]] · [[Adaptive RMSNorm]] · [[Transformer 参数量估算]] · [[异构多域分布式训练]]
 对比入口：[[触觉 VLA 方法比较]]
 
 原文：[[FTP-1.pdf|论文 PDF]] · [[ftp1-study-guide.html|HTML 原版讲解（系统浏览器打开）]]
@@ -140,4 +140,3 @@ HyVLA 保留视觉语言 + Flow Matching 主干
 ```
 
 因此它最像**触觉基础层**，而不是完整的高频控制答案。
-
