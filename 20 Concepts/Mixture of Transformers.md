@@ -22,15 +22,33 @@ status: deep-explained
 
 MoT 的折中：
 
-```text
-Vision:   Q_v,K_v,V_v, FFN_v
-Language: Q_l,K_l,V_l, FFN_l
-Action:   Q_a,K_a,V_a, FFN_a
-                 ↓
-        masked joint attention
+```python
+# 教学伪代码：一个 HyVLA MoT layer
+# 不是官方代码；目的是看清“哪里独立、哪里发生交互”。
+
+def mot_layer(vision, language, action, attention_mask):
+    # 1. 每种模态使用自己的投影参数
+    q_v, k_v, v_v = vision_qkv(vision)       # [B, Nv, heads, Dh]
+    q_l, k_l, v_l = language_qkv(language)   # [B, Nl, heads, Dh]
+    q_a, k_a, v_a = action_qkv(action)       # [B, Na, heads, Dh]
+
+    # 2. 拼在同一个注意力空间里交换信息
+    q = concat([q_v, q_l, q_a], dim="token")
+    k = concat([k_v, k_l, k_a], dim="token")
+    v = concat([v_v, v_l, v_a], dim="token")
+    mixed = attention(q, k, v, mask=attention_mask)
+
+    # 3. 按 token 边界拆回各模态
+    mixed_v, mixed_l, mixed_a = split(mixed, [Nv, Nl, Na])
+
+    # 4. 每种模态再走自己的 FFN
+    vision_out = vision_ffn(mixed_v)
+    language_out = language_ffn(mixed_l)
+    action_out = action_ffn(mixed_a)
+    return vision_out, language_out, action_out
 ```
 
-每种 token 用自己的投影生成 Q/K/V，随后按统一序列与 mask 做注意力。输出再回各自 FFN。因此“共享”的是交互空间/注意力运算，“不共享”的是投影和非线性计算参数。
+逐行看，跨模态交互只发生在 `attention(...)`；`vision_qkv/language_qkv/action_qkv` 和三个 FFN 都使用各自参数。因此“共享注意力”更准确地说是共享一次联合注意力运算及交互空间，不是共享同一套 QKV 权重。
 
 ## 与 MoE 的差异
 

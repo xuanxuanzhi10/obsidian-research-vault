@@ -18,14 +18,7 @@ aliases: [块级因果注意力]
 
 ## 它在解决什么矛盾？
 
-严格 token-wise causal mask 会迫使同一 action chunk 逐点生成，图像内部也不能完整交流；完全双向又会让 perception 表征读取 noisy action，破坏稳定条件前缀。于是粒度从 token 提升到 block：
-
-```text
-P = perception（images + language）
-S = robot state
-A = noisy action chunk
-顺序：P → S → A
-```
+严格 token-wise causal mask 会迫使同一 action chunk 逐点生成，图像内部也不能完整交流；完全双向又会让 perception 表征读取 noisy action，破坏稳定条件前缀。于是粒度从 token 提升到 block：P 是 perception，S 是 robot state，A 是 noisy action chunk，顺序为 `P → S → A`。
 
 | Query | 能读取 | 不能读取 |
 |---|---|---|
@@ -35,13 +28,41 @@ A = noisy action chunk
 
 ## 玩具矩阵怎么手工构造？
 
-假设 5 个 P、2 个 S、3 个 A。对任意 query `i`、key `j`：
+假设 5 个 P、2 个 S、3 个 A。下面用接近实现的伪代码构造 mask：
 
 ```python
-allow(i, j) = block_index(j) <= block_index(i)
+# 教学伪代码：Block-wise Causal Attention Mask
+# 不是论文官方实现，但每一行都对应图中的一个区域。
+
+def build_blockwise_mask(num_p=5, num_s=2, num_a=3):
+    block_sizes = [num_p, num_s, num_a]
+    block_names = ["P: perception", "S: state", "A: noisy action"]
+
+    # token_block = [0,0,0,0,0, 1,1, 2,2,2]
+    #                └──── P ────┘ └S┘ └─ A ─┘
+    token_block = repeat_each_block_id(block_sizes)
+    total_tokens = sum(block_sizes)
+    mask = zeros(total_tokens, total_tokens)  # [query, key]
+
+    for query in range(total_tokens):
+        for key in range(total_tokens):
+            query_block = token_block[query]
+            key_block = token_block[key]
+
+            # 核心规则：只能读取自己所在块或更早的条件块
+            if key_block <= query_block:
+                mask[query, key] = ALLOW
+            else:
+                mask[query, key] = BLOCK
+
+    return mask, block_names
 ```
 
-注意比较的是 block index，不是 token index，所以 A₁ 能看 A₂/A₃，P₁ 也能看 P₅。
+注意比较的是 `block index`，不是 `token index`：
+
+- `query=A₁, key=A₃`：二者 block id 都是 2，所以允许；
+- `query=P₁, key=P₅`：二者 block id 都是 0，所以允许；
+- `query=P₁, key=A₁`：`2 > 0`，因此禁止，动作不能反向进入感知。
 
 ## 为什么 A 块内部双向不算作弊？
 

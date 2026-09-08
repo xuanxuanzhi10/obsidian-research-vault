@@ -24,15 +24,47 @@ aliases: [紧凑记忆编码器]
 
 设每帧 `n` 个 patch、隐藏维 `d`：
 
-```text
-X: [K,n,d]
-transpose conceptual axes → 对每个 patch p 得到 [K,d]
-causal temporal attention → [K,n,d]
-每帧 spatial attention   → [K,n,d]
-只取当前帧               → [n,d]
+```python
+# 教学伪代码：HyVLA Compact Memory Encoder
+# 关键：没有 learnable query token，也不是 Perceiver-style resampler。
+
+class CompactMemoryEncoder:
+    def __init__(self, vit):
+        # 复用原 ViT 已有的 QKV 和 output projection
+        # 论文强调：不增加新的可学习参数
+        self.qkv = vit.qkv
+        self.out_proj = vit.out_proj
+
+    def memory_block(self, frame_tokens):
+        # frame_tokens: [B, K, N, D]
+        # B=batch, K=历史帧数, N=每帧 patch 数, D=hidden dim
+
+        x = add_fixed_temporal_encoding(frame_tokens)
+        # temporal encoding 采用固定 sinusoidal 编码；当前帧 e(0)=0
+
+        # 1. 交换 K 与 N 的观察方式：固定 patch，沿时间看历史
+        x_by_patch = rearrange(x, "B K N D -> B N K D")
+        # 每个 patch 位置形成一条长度 K 的时间序列
+
+        x_by_patch = causal_temporal_attention(
+            x_by_patch,
+            qkv=self.qkv,
+            out_proj=self.out_proj,
+        )  # [B, N, K, D]；过去可影响当前，未来不能影响过去
+
+        # 2. 换回逐帧表示，在每一帧内部理解空间关系
+        x = rearrange(x_by_patch, "B N K D -> B K N D")
+        x = spatial_attention_per_frame(x)  # [B, K, N, D]
+
+        # 3. 上层 VLM 不保留全部历史，只接收“吸收过历史”的当前帧
+        current_tokens = x[:, -1, :, :]     # [B, N, D]
+        return current_tokens
 ```
 
-“同位置跨时间”先回答这个局部区域发生了什么，“同帧跨空间”再把手、物体和背景组合起来。
+逐行理解：`N` 条时间序列先回答“同一个 patch 位置刚才发生了什么”，随后每帧的 `N` 个 patch 再回答“手、物体和背景如何组合”。最后的 `[:, -1]` 是 compact 的关键：历史信息留下，历史 token 不继续进入上层 VLM。
+
+> [!warning] 为什么图一的伪代码风格可取、内容却不能照搬？
+> `class + comments + shape` 很适合学习；但图一把机制写成 learnable query cross-attention，实际对应的是另一类 resampler。这里保留呈现方式，替换为 HyVLA 原文机制。
 
 ## 为什么复杂度更低？
 
