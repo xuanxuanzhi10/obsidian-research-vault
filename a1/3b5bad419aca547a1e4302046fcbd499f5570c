@@ -1,0 +1,25 @@
+.agents/skills/paper-causal-guide/SKILL.md
+  s_a3320701e75207::t_f03cc489092f0a 1-208
+AGENTS.md
+  s_a3320701e75207::t_f03cc489092f0a 1-22
+CLAUDE.md
+  s_a3320701e75207::t_f03cc489092f0a 1-9
+.agents/skills/paper-causal-guide/agents/openai.yaml
+  s_a3320701e75207::t_53f1ef0f9d8f65 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "a13b5bad419aca547a1e4302046fcbd499f5570c",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
