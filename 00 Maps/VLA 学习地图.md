@@ -25,6 +25,8 @@ created: 2026-09-07
 - [[π₀.5]] — 异构 co-training 与 open-world generalization
 - [[OpenVLA]] — 开放的 autoregressive VLA 基线
 - [[T-Rex]] — 慢速视觉规划 + 高频触觉细化的灵巧操作 VLA
+- [[FTP-1]] — MTTS 统一异构触觉并跨传感器预训练
+- [[N0-TWAM]] — 联合预测未来视频/触觉，并用当前触觉闭环纠错
 
 ## 核心概念
 
@@ -41,6 +43,9 @@ created: 2026-09-07
 - [[UMI]]
 - [[触觉信号表示]]
 - [[异步触觉动作细化]]
+- [[Morphology-Aware Tactile Token Space]]
+- [[预测触觉与观测触觉]]
+- [[触觉标点]]
 
 ## 横向入口
 
@@ -52,3 +57,4 @@ created: 2026-09-07
 - [[部署与推理优化]]
 - [[待核实事实]]
 - [[触觉机器人学习]]
+- [[触觉 VLA 方法比较]]

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>触觉 VLA 深度答疑 (二)</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f9fafb;--bg-card:#fff;--bg-code:#f0f3f4;--bg-highlight:#eef3f8;--bg-chain:#ecf1f5;--text:#1a1a1a;--text-secondary:#4a4a4a;--text-tertiary:#7a7a7a;--accent:#2d6a9b;--accent-light:#4e96c8;--accent-dark:#1e4a70;--border:#d5dde5;--border-light:#e5eaef;--chain-line:#8ab0d0;--tag-bg:#dce8f2;--tag-text:#2a5a85;--warning-bg:#fef3e2;--warning-border:#e8b94a;--warning-text:#7a5d1a;--strength-bg:#e6f4ea;--strength-border:#4a9a5a;--strength-text:#2a6a3a;--weakness-bg:#fde8e8;--weakness-border:#c44a4a;--weakness-text:#8a2a2a;--serif:'Noto Serif SC','Songti SC',serif;--sans:'Inter',-apple-system,sans-serif;--mono:'JetBrains Mono','Menlo',monospace;--q-bg:#e8f0f8;--q-border:#4e96c8}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141618;--bg-card:#1b1e22;--bg-code:#202428;--bg-highlight:#1c2530;--bg-chain:#1a2228;--text:#e4e8ec;--text-secondary:#b0b8c0;--text-tertiary:#7e8a94;--accent:#4e96c8;--accent-light:#6ab0e0;--accent-dark:#3878a8;--border:#2e3640;--border-light:#263030;--chain-line:#3a5a70;--tag-bg:#1e2e3a;--tag-text:#6ab0e0;--warning-bg:#2e2818;--warning-border:#a08030;--warning-text:#d4b868;--strength-bg:#1a2e1e;--strength-border:#3a8a4a;--strength-text:#6ac07a;--weakness-bg:#2e1a1a;--weakness-border:#b44a4a;--weakness-text:#e08080;--q-bg:#1e2a36;--q-border:#3878a8}}
+:root[data-theme="dark"]{--bg:#141618;--bg-card:#1b1e22;--bg-code:#202428;--bg-highlight:#1c2530;--bg-chain:#1a2228;--text:#e4e8ec;--text-secondary:#b0b8c0;--text-tertiary:#7e8a94;--accent:#4e96c8;--accent-light:#6ab0e0;--accent-dark:#3878a8;--border:#2e3640;--border-light:#263030;--chain-line:#3a5a70;--tag-bg:#1e2e3a;--tag-text:#6ab0e0;--warning-bg:#2e2818;--warning-border:#a08030;--warning-text:#d4b868;--strength-bg:#1a2e1e;--strength-border:#3a8a4a;--strength-text:#6ac07a;--weakness-bg:#2e1a1a;--weakness-border:#b44a4a;--weakness-text:#e08080;--q-bg:#1e2a36;--q-border:#3878a8}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.78;font-size:15.5px;-webkit-font-smoothing:antialiased}.container{max-width:780px;margin:0 auto;padding:40px 24px 80px}
+.header{margin-bottom:40px;padding-bottom:32px;border-bottom:2px solid var(--accent)}.header-tag{font-family:var(--mono);font-size:12px;color:var(--tag-text);background:var(--tag-bg);display:inline-block;padding:3px 10px;border-radius:4px;margin-bottom:16px}.header h1{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.35;margin-bottom:14px}.subtitle{font-size:15px;color:var(--text-secondary);line-height:1.7}
+.section{margin-bottom:52px}.section-num{font-family:var(--mono);font-size:13px;color:var(--accent);margin-bottom:6px}.section h2{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:8px}.section h3{font-family:var(--serif);font-size:17px;font-weight:700;margin:24px 0 10px}.section p{margin-bottom:14px}
+.q-box{background:var(--q-bg);border-left:4px solid var(--q-border);padding:14px 20px;border-radius:0 6px 6px 0;margin:0 0 22px}.q-box p{margin:0;font-weight:600;color:var(--accent)}
+.recap{border:2px dashed var(--chain-line);border-radius:8px;padding:16px 20px;margin:24px 0;background:var(--bg-chain)}.recap-label{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:1px}.recap p{font-size:14px;color:var(--text-secondary);margin-bottom:8px}.recap p:last-child{margin-bottom:0}
+.chain{display:flex;align-items:center;gap:12px;padding:14px 20px;margin:32px 0;background:var(--bg-chain);border-left:3px solid var(--chain-line);border-radius:0 6px 6px 0;font-size:13.5px;color:var(--text-secondary)}.chain-arrow{color:var(--accent);font-weight:700;font-size:16px;flex-shrink:0}
+pre{background:var(--bg-code);border:1px solid var(--border-light);border-radius:6px;padding:16px 20px;overflow-x:auto;margin:16px 0}pre code{font-family:var(--mono);font-size:13px;line-height:1.65;color:var(--text)}code{font-family:var(--mono);font-size:.9em;background:var(--bg-code);padding:2px 5px;border-radius:3px}
+.highlight{border-left:4px solid var(--accent);background:var(--bg-highlight);padding:16px 20px;border-radius:0 6px 6px 0;margin:20px 0}.highlight p{margin-bottom:8px}.highlight p:last-child{margin-bottom:0}
+.strength,.weakness,.note{padding:14px 20px;border-radius:0 6px 6px 0;margin:18px 0}.strength{background:var(--strength-bg);border-left:4px solid var(--strength-border)}.strength .card-label{color:var(--strength-text)}.strength p{color:var(--strength-text)}.weakness{background:var(--weakness-bg);border-left:4px solid var(--weakness-border)}.weakness .card-label{color:var(--weakness-text)}.weakness p{color:var(--weakness-text)}.note{background:var(--warning-bg);border-left:4px solid var(--warning-border)}.note .card-label{color:var(--warning-text)}.note p{color:var(--warning-text)}.card-label{font-family:var(--mono);font-size:11px;letter-spacing:1px;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px}th,td{padding:10px 14px;border:1px solid var(--border);text-align:left}th{background:var(--bg-code);font-weight:600;font-size:13px}td{color:var(--text-secondary)}
+@media(max-width:600px){body{font-size:14.5px}.header h1{font-size:22px}.section h2{font-size:18px}.container{padding:24px 16px 60px}pre{padding:12px 14px}pre code{font-size:12px}table{font-size:12px}th,td{padding:7px 8px}}
+.theme-toggle{position:fixed;top:16px;right:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:14px;z-index:100}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">🌓</button>
+<div class="container">
+
+<div class="header">
+  <div class="header-tag">Deep Q&A Companion #2</div>
+  <h1>触觉 VLA 深度答疑（二）：参数估算、AdaRMSNorm 与异构训练基础设施</h1>
+  <div class="subtitle">覆盖三个独立知识点：Transformer 参数量的计算方法（通用技能）、AdaRMSNorm 条件注入机制（架构技巧）、异构多域训练的 GPU 调度（工程实践）。</div>
+</div>
+
+<!-- ====== Q1 ====== -->
+<div class="section" id="q1">
+  <div class="section-num">Q1</div>
+  <h2>Transformer 参数量怎么从结构估算？参数量级代表什么？</h2>
+  <div class="q-box"><p>「18 层，宽度 1024，8 头」→ 怎么算出 300M 参数？参数量级代表什么？</p></div>
+
+  <h3>先搞清楚：一个 Transformer 层里有什么参数？</h3>
+
+  <p>一个标准 Transformer 层包含两大块：Self-Attention 和 FFN（Feed-Forward Network）。每块有自己的权重矩阵。</p>
+
+<pre><code># ===== 一个 Transformer 层的参数 =====
+
+# 设：
+# d = 隐藏维度（hidden size）= 1024
+# h = 注意力头数 = 8
+# d_head = 每个头的维度 = d / h = 128
+# d_ffn = FFN 中间维度，通常 = 4 * d = 4096
+
+# ──── Self-Attention ────
+# Q 投影: d × d = 1024 × 1024 = 1,048,576
+# K 投影: d × d = 1024 × 1024 = 1,048,576
+# V 投影: d × d = 1024 × 1024 = 1,048,576
+# Output 投影: d × d = 1024 × 1024 = 1,048,576
+# Attention 总参数: 4 × d² = 4 × 1024² = 4,194,304
+
+# ──── FFN (两层 MLP) ────
+# 第一层: d × d_ffn = 1024 × 4096 = 4,194,304
+# 第二层: d_ffn × d = 4096 × 1024 = 4,194,304
+# FFN 总参数: 2 × d × d_ffn = 8,388,608
+# (如果用 SwiGLU/GeGLU，FFN 有三个矩阵，参数量 ×1.5)
+
+# ──── LayerNorm ────
+# 2 个 LayerNorm × 2d = 4,096（可忽略不计）
+
+# ──── 单层总计 ────
+# ≈ 4d² + 2 × d × d_ffn
+# = 4 × 1024² + 2 × 1024 × 4096
+# = 4,194,304 + 8,388,608
+# ≈ 12.6M</code></pre>
+
+  <h3>整个模型的参数</h3>
+
+<pre><code># ===== FTP-1 的 Tactile Expert 估算 =====
+
+# 18 层 × 12.6M/层 ≈ 226M
+
+# 再加上：
+# - Embedding 层：vocab × d（如果有的话）
+# - 最终输出头
+# - 各种 bias 项
+# → 总计约 250-300M，符合论文说的 300M
+
+# ===== 通用公式（速算） =====
+# 参数 ≈ 12 × L × d²
+# 其中 L = 层数, d = 隐藏维度
+# （假设 d_ffn = 4d，标准 Attention）
+
+# 验证：
+# FTP-1 Tactile Expert: 12 × 18 × 1024² ≈ 226M ✓
+# GPT-2 Small: 12 × 12 × 768² ≈ 85M（实际 117M，因为有 embedding）
+# Qwen3VL-2B: 12 × 28 × 2048² ≈ 1.4B ✓（T-Rex Action Expert）</code></pre>
+
+  <div class="highlight">
+    <p><strong>速算公式：参数 ≈ 12 × 层数 × 隐藏维度²</strong></p>
+    <p>这个公式在大多数标准 Transformer 上误差在 20% 以内（embedding 和 head 额外贡献一些参数）。记住它，以后看到任何模型配置都能秒算量级。</p>
+  </div>
+
+  <h3>注意力头数影响参数量吗？</h3>
+
+  <p><strong>不影响。</strong> 这是一个常见误解。头数 h 只影响每个头的维度 d_head = d / h，但 Q、K、V 的总投影矩阵大小始终是 d × d。8 头每头 128 维，和 16 头每头 64 维，参数量完全相同。头数影响的是注意力的「多样性」（更多头 = 更多不同的注意力模式），不是参数量。</p>
+
+  <h3>参数量级代表什么？</h3>
+
+  <table>
+    <tr><th>量级</th><th>典型模型</th><th>能力范围</th></tr>
+    <tr><td>~100M</td><td>BERT-base, ViT-B</td><td>单一任务特征提取，编码器</td></tr>
+    <tr><td>~300M</td><td>FTP-1 Tactile Expert</td><td>单一模态的专用处理，中等复杂度的生成</td></tr>
+    <tr><td>~1B</td><td>T-Rex Action/Tactile Expert</td><td>条件生成（配合视觉先验），需要预训练</td></tr>
+    <tr><td>~3B</td><td>Qwen3VL-2B, PaliGemma</td><td>视觉-语言理解，多任务泛化，完整 VLM</td></tr>
+    <tr><td>~7B</td><td>N₀-TWAM, LLaMA-7B</td><td>复杂推理，世界建模，多模态生成</td></tr>
+    <tr><td>~70B+</td><td>GPT-4 级别</td><td>通用智能，涌现能力</td></tr>
+  </table>
+
+  <p>参数量级本质上决定了模型的<strong>容量</strong>——它能记住多少模式、处理多复杂的映射。但更大 ≠ 更好：300M 的 Tactile Expert 配合 π0.5 的视觉先验，效果可以很好；而 7B 模型如果没有足够数据训练，反而会过拟合。参数量和数据量、任务复杂度需要匹配。</p>
+
+  <div class="note">
+    <div class="card-label">为什么 MoT 中不同 Expert 用不同大小？</div>
+    <p>核心逻辑：<strong>有大规模预训练支撑的模态用大模型，从零训练的模态用小模型。</strong> N₀-TWAM 的 Video Expert（5B）有 Wan2.2 的视频预训练支撑；T-Rex 的 Tactile Expert（0.62B）从零训练所以故意缩窄。如果给一个从零训练的 Expert 过大的容量，它在有限的触觉数据上会过拟合，反而不如小模型。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q1 解决了参数估算。Q2 进入一个重要的架构技巧——AdaRMSNorm。</span>
+</div>
+
+<!-- ====== Q2 ====== -->
+<div class="section" id="q2">
+  <div class="section-num">Q2</div>
+  <h2>AdaRMSNorm 是什么？为什么用它注入本体感知？</h2>
+  <div class="q-box"><p>「本体感知信息编码后，用它来调制 Attention 层的归一化参数」——这是什么意思？为什么比独立 token 好？</p></div>
+
+  <h3>第一步：理解 RMSNorm</h3>
+
+  <p>在讲 AdaRMSNorm 之前，先搞清楚 RMSNorm（Root Mean Square Normalization）。它是 LayerNorm 的简化版，用在 Transformer 的每一层。</p>
+
+<pre><code># ===== LayerNorm vs RMSNorm =====
+
+# LayerNorm（标准版）：
+# 1. 计算均值 μ 和方差 σ²
+# 2. 归一化: x_norm = (x - μ) / √(σ² + ε)
+# 3. 缩放平移: y = γ · x_norm + β
+#    其中 γ 和 β 是可学习参数
+
+# RMSNorm（简化版）：
+# 1. 只计算 RMS: rms = √(mean(x²))
+# 2. 归一化: x_norm = x / rms
+# 3. 只缩放: y = γ · x_norm
+#    去掉了均值中心化和偏置 β
+#    → 更快，效果几乎一样
+
+# γ 的形状: [d]（隐藏维度大小）
+# γ 控制每个特征维度的"重要性"
+# γ_i 大 → 第 i 个特征被放大
+# γ_i 小 → 第 i 个特征被抑制</code></pre>
+
+  <h3>第二步：理解 Adaptive（自适应）</h3>
+
+  <p>标准 RMSNorm 的 γ 是固定的可学习参数——对所有输入都用同一组 γ。<strong>Adaptive</strong> 的意思是：γ 不再固定，而是根据某个条件信号动态生成。</p>
+
+<pre><code># ===== 标准 RMSNorm =====
+# γ = 固定参数 [d]（训练后不变）
+# y = γ · (x / rms(x))
+
+# ===== Adaptive RMSNorm =====
+# condition = 某个条件信号（比如本体感知、时间步等）
+# γ = MLP(condition)  ← 根据条件动态生成！
+# y = γ · (x / rms(x))
+
+# 效果：不同的条件产生不同的 γ
+# → 归一化后的特征被不同地放大/抑制
+# → 条件信号"调制"了 Transformer 的行为</code></pre>
+
+  <h3>第三步：用 AdaRMSNorm 注入本体感知</h3>
+
+<pre><code># ===== FTP-1 中的 AdaRMSNorm 本体感知注入 =====
+
+# 输入：关节角度等本体感知信号 s ∈ R^D_proprio
+# 
+# 步骤 1：编码本体感知
+#   s_fourier = FourierEncoding(s)      # 扩展维度
+#   s_encoded = MLP_3layer(s_fourier)   # [D_proprio] → [d_hidden]
+#   s_encoded = LayerNorm(s_encoded)
+#
+# 步骤 2：和时间步特征拼接（π0.5 的做法）
+#   t_features = LayerNorm(timestep_embedding)
+#   condition = concat(s_encoded, t_features)
+#
+# 步骤 3：生成自适应缩放参数
+#   γ = Linear(condition)               # condition → [d_hidden]
+#
+# 步骤 4：在 Transformer 每一层的 Attention 前应用
+#   x_norm = x / rms(x)                 # 标准 RMS 归一化
+#   x_modulated = γ · x_norm            # 用本体感知调制！
+#   Q, K, V = Attention_projection(x_modulated)
+
+# 直觉：
+# 当手臂伸直时（关节角度 A），γ 会放大某些特征
+# 当手臂弯曲时（关节角度 B），γ 会放大另一些特征
+# → Attention 的行为随关节状态而变化
+# → 模型"知道"手臂现在什么姿态</code></pre>
+
+  <h3>为什么比独立 token 好？</h3>
+
+  <p>「独立 token」的做法是：把本体感知编码成一个 token，和视觉/语言 token 一起放进 Transformer 的序列里。这看似直觉，但有两个问题：</p>
+
+  <div class="highlight">
+    <p><strong>问题 1：注意力竞争。</strong> Transformer 的 Attention 是所有 token 竞争注意力资源。本体感知只是一个低维的关节角度向量（几十维），和几百个高维的视觉 token 放在一起，很容易被"淹没"——Attention 分配给它的权重可能很小，信息传不进去。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>问题 2：全局 vs 局部。</strong> 本体感知是一个全局状态（整个手臂的姿态），它应该影响所有 token 的处理方式，而不是只被某些 token attend to。AdaRMSNorm 把它作为归一化的调制信号，天然地影响<strong>每一层的每一个 token</strong>——这比在 Attention 中作为一个可选的查询对象更全面。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>问题 3：序列长度。</strong> 加一个 token 会增加 Attention 的序列长度，增加计算量（Attention 是 O(n²)）。AdaRMSNorm 不增加序列长度，只是改变归一化参数——几乎零额外计算成本。</p>
+  </div>
+
+  <h3>类比理解</h3>
+
+  <p>把 Transformer 想象成一个多人会议（每个 token 是一个参会者）。独立 token 的做法相当于让「本体感知」也坐在会议桌旁，等别人来问它——但它声音小，经常被忽略。AdaRMSNorm 的做法相当于用「本体感知」来调节会议室的灯光和温度——它不参与讨论，但所有人的行为都被它隐式地影响了。</p>
+
+  <div class="note">
+    <div class="card-label">AdaRMSNorm 的更广泛应用</div>
+    <p>这个技巧不是 FTP-1 发明的。它最初来自 Diffusion 模型领域（DiT/Scalable Diffusion Transformers），用来注入扩散时间步 t。π0/π0.5 把它引入机器人策略来注入 Flow Matching 时间步和本体感知。现在几乎所有基于 Flow Matching 的 VLA 都在用这个技巧——你在 T-Rex 和 N₀-TWAM 中也能看到类似的 AdaLN（Adaptive Layer Normalization）设计。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q2 解决了 AdaRMSNorm 的原理。Q3 进入工程实践——怎么在 GPU 集群上高效训练异构数据。</span>
+</div>
+
+<!-- ====== Q3 ====== -->
+<div class="section" id="q3">
+  <div class="section-num">Q3</div>
+  <h2>异构数据的 GPU 分域训练是怎么做到的？</h2>
+  <div class="q-box"><p>「自动按数据域分配 GPU，确保同一个 GPU batch 内的样本来自同一个数据源。传感器特定模块的梯度独立更新，共享模块的梯度合并后更新。」——具体是怎么实现的？</p></div>
+
+  <h3>先理解问题：为什么不能直接混在一起训练？</h3>
+
+<pre><code># ===== FTP-1 的数据异构性 =====
+
+# 数据源 A (GelSight-Mini): 触觉是 224×224 RGB 图像
+#   → 需要用 ViT 编码器
+#   → 输出 1 个 [CLS] token
+
+# 数据源 B (ATI Force): 触觉是 6 维力/力矩向量
+#   → 需要用 MLP 编码器
+#   → 输出 1 个 token
+
+# 数据源 C (Contactile): 触觉是 8×8×3 压力阵列
+#   → 需要用 CNN 编码器
+#   → 输出 1 个 token
+
+# 问题：如果一个 batch 里混了 A、B、C 三种数据...
+# 每个样本需要走不同的编码器！
+# → 无法做统一的矩阵运算（GPU 擅长的是对整个 batch 做同样的操作）
+# → 效率极低，因为 GPU 要对每个样本单独处理</code></pre>
+
+  <h3>解决方案：按域分配 GPU</h3>
+
+<pre><code># ===== FTP-1 的分域训练架构 =====
+
+# 假设有 48 个 GPU，26 个数据源
+
+# 步骤 1: 将数据源分组到 GPU
+# GPU 0-5:  只加载 GelSight-Mini 数据（Image 型）
+# GPU 6-11: 只加载 Sharpa DTC 数据（Image 型）
+# GPU 12-15: 只加载 ATI Force 数据（State 型）
+# GPU 16-19: 只加载 Contactile 数据（Array 型）
+# ... 以此类推
+# → 每个 GPU 的 batch 内，所有样本来自同一个数据源
+# → 同一个编码器可以对整个 batch 做矩阵运算 → 高效！
+
+# 步骤 2: 前向传播
+# GPU 0 (GelSight 数据):
+#   触觉 → GelSight ViT 编码器 → 共享 T3 Transformer → MTTS tokens
+#   视觉 → SigLIP → Vision tokens
+#   所有 tokens → Tactile Expert + VL Expert + Action Expert
+#   计算 loss
+
+# GPU 12 (ATI Force 数据):
+#   触觉 → ATI MLP 编码器 → MTTS tokens
+#   视觉 → SigLIP → Vision tokens（同一个！）
+#   所有 tokens → Tactile Expert + VL Expert + Action Expert（同一个！）
+#   计算 loss</code></pre>
+
+  <h3>关键：梯度的分域更新</h3>
+
+<pre><code># ===== 梯度更新的分域策略 =====
+
+# 模型参数分两类：
+# 
+# 【传感器特定参数】（每种传感器独有的编码器权重）
+# - GelSight ViT 编码器
+# - ATI MLP 编码器
+# - Contactile CNN 编码器
+# - 每种传感器的参数只在加载该传感器数据的 GPU 上有梯度
+#
+# 【共享参数】（所有数据源共用的模块权重）
+# - T3 共享 Transformer
+# - Tactile Expert
+# - VL Expert
+# - Action Expert
+# - Functional-area Embeddings
+# - 这些参数在所有 GPU 上都有梯度
+
+# ===== 梯度更新流程 =====
+
+# 1. 每个 GPU 独立做前向+反向传播
+#    → 得到 sensor-specific 梯度 和 shared 梯度
+
+# 2. Sensor-specific 梯度：只在对应的 GPU 组内汇聚
+#    GelSight ViT 的梯度只在 GPU 0-5 之间 AllReduce
+#    ATI MLP 的梯度只在 GPU 12-15 之间 AllReduce
+#    → 不同传感器的编码器互不干扰
+
+# 3. Shared 梯度：在所有 GPU 之间汇聚
+#    Tactile Expert 的梯度在全部 48 个 GPU 之间 AllReduce
+#    → 共享模块从所有数据源的信号中学习
+
+# 4. 各自用汇聚后的梯度更新参数
+
+# 伪代码：
+for gpu in all_gpus:
+    batch = load_data(gpu.assigned_domain)       # 同域数据
+    loss = model.forward(batch)
+    loss.backward()
+
+# 传感器特定梯度：组内 AllReduce
+for sensor_group in sensor_groups:
+    all_reduce(sensor_group.gpus, 
+               sensor_group.encoder.gradients)
+
+# 共享梯度：全局 AllReduce  
+all_reduce(all_gpus, shared_modules.gradients)
+
+# 统一更新
+optimizer.step()</code></pre>
+
+  <div class="highlight">
+    <p><strong>本质上这是 Data Parallelism + Model Sharding 的混合体。</strong> 从数据角度看，不同 GPU 处理不同域的数据（类似数据并行）。从模型角度看，传感器特定的模块只存在于对应的 GPU 组上（类似模型分片）。共享模块在所有 GPU 上都有完整副本，梯度全局同步。</p>
+  </div>
+
+  <h3>为什么这样设计有效？</h3>
+
+  <p><strong>效率：</strong>同一个 GPU batch 内数据格式统一，GPU 可以做高效的矩阵运算。如果混合不同格式的数据，要么用 padding（浪费算力），要么逐样本处理（无法并行）。</p>
+
+  <p><strong>正确性：</strong>传感器特定编码器只从自己的传感器数据中学习梯度，不会被其他传感器的信号污染。共享模块从所有传感器的信号中学习，获得跨传感器的通用表示。</p>
+
+  <p><strong>灵活性：</strong>新增一种传感器时，只需要增加一组 GPU 来处理它的数据，定义一个新的传感器特定编码器，共享模块不需要改动。</p>
+
+  <h3>实际框架中怎么实现？</h3>
+
+<pre><code># 大致对应 PyTorch 的实现方式：
+
+# 1. 数据加载：用 DistributedSampler 的自定义版本
+#    每个 GPU 的 rank 绑定到特定数据源
+class DomainDistributedSampler:
+    def __init__(self, dataset, domain_id, gpu_ranks):
+        # 只采样 domain_id 对应的数据
+        # 只分配给 gpu_ranks 中的 GPU
+        ...
+
+# 2. 模型定义：传感器编码器注册为不同的模块组
+class FTP1(nn.Module):
+    def __init__(self):
+        self.sensor_encoders = nn.ModuleDict({
+            'gelsight': GelSightViTEncoder(),
+            'ati': ATIMLPEncoder(),
+            'contactile': ContactileCNNEncoder(),
+        })
+        self.shared_tactile_expert = TactileExpert()  # 共享
+        self.shared_vl_expert = VLExpert()             # 共享
+        ...
+
+# 3. 梯度同步：用 process group 控制 AllReduce 的范围
+#    PyTorch 的 dist.new_group() 可以创建子通信组
+gelsight_group = dist.new_group(ranks=[0,1,2,3,4,5])
+ati_group = dist.new_group(ranks=[12,13,14,15])
+all_group = dist.new_group(ranks=list(range(48)))
+
+# 传感器梯度在子组内同步
+# 共享梯度在全组内同步</code></pre>
+
+  <div class="note">
+    <div class="card-label">这种设计的限制</div>
+    <p>数据采样比例受限于 GPU 分配。如果你给 GelSight 分了 6 个 GPU，给 ATI 分了 4 个 GPU，那训练时 GelSight 数据的有效采样量会是 ATI 的 1.5 倍（假设 batch size 相同）。要精确控制采样比例，需要配合每个域的 batch size 和梯度累积步数来调节。FTP-1 论文中 Table 4 的 "Sample-Scale" 列就是在做这个调节。</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-label">三个问题的知识点总结</div>
+    <p><strong>Q1 参数估算：</strong>速算公式 12 × L × d²。头数不影响参数量。量级决定容量，但需和数据量匹配。</p>
+    <p><strong>Q2 AdaRMSNorm：</strong>用条件信号（本体感知、时间步）动态生成归一化的缩放参数 γ，实现「全局调制」。比独立 token 更高效（不增加序列长度）、更全面（影响每一层的每一个 token）。</p>
+    <p><strong>Q3 分域训练：</strong>同域数据分配到同一组 GPU → 传感器特定梯度在组内同步 → 共享模块梯度在全局同步。用 PyTorch 的 process group 子通信组实现。</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

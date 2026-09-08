@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N0-TWAM 学习指南 - VLA 学习系列第7篇</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#faf8f5;--bg-card:#fff;--bg-code:#f4f0ea;--bg-highlight:#faf3ea;--bg-chain:#f5efe6;--text:#1a1a1a;--text-secondary:#4a4a4a;--text-tertiary:#7a7a7a;--accent:#b8722d;--accent-light:#d4974e;--accent-dark:#8a5520;--border:#e5ddd2;--border-light:#ede7de;--chain-line:#d4b88a;--tag-bg:#f5ead8;--tag-text:#8a5e28;--warning-bg:#fef3e2;--warning-border:#e8b94a;--warning-text:#7a5d1a;--strength-bg:#e6f4ea;--strength-border:#4a9a5a;--strength-text:#2a6a3a;--weakness-bg:#fde8e8;--weakness-border:#c44a4a;--weakness-text:#8a2a2a;--serif:'Noto Serif SC','Songti SC',serif;--sans:'Inter',-apple-system,sans-serif;--mono:'JetBrains Mono','Menlo',monospace}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#181614;--bg-card:#211e1a;--bg-code:#2a2520;--bg-highlight:#2e2618;--bg-chain:#28221a;--text:#ece6de;--text-secondary:#c0b4a4;--text-tertiary:#948676;--accent:#d4974e;--accent-light:#e4b06a;--accent-dark:#b87a38;--border:#3e362c;--border-light:#332c24;--chain-line:#6e5a3a;--tag-bg:#382c1e;--tag-text:#e4b06a;--warning-bg:#2e2818;--warning-border:#a08030;--warning-text:#d4b868;--strength-bg:#1a2e1e;--strength-border:#3a8a4a;--strength-text:#6ac07a;--weakness-bg:#2e1a1a;--weakness-border:#b44a4a;--weakness-text:#e08080}}
+:root[data-theme="dark"]{--bg:#181614;--bg-card:#211e1a;--bg-code:#2a2520;--bg-highlight:#2e2618;--bg-chain:#28221a;--text:#ece6de;--text-secondary:#c0b4a4;--text-tertiary:#948676;--accent:#d4974e;--accent-light:#e4b06a;--accent-dark:#b87a38;--border:#3e362c;--border-light:#332c24;--chain-line:#6e5a3a;--tag-bg:#382c1e;--tag-text:#e4b06a;--warning-bg:#2e2818;--warning-border:#a08030;--warning-text:#d4b868;--strength-bg:#1a2e1e;--strength-border:#3a8a4a;--strength-text:#6ac07a;--weakness-bg:#2e1a1a;--weakness-border:#b44a4a;--weakness-text:#e08080}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.78;font-size:15.5px;-webkit-font-smoothing:antialiased}.container{max-width:780px;margin:0 auto;padding:40px 24px 80px}
+.header{margin-bottom:40px;padding-bottom:32px;border-bottom:2px solid var(--accent)}.header-tag{font-family:var(--mono);font-size:12px;color:var(--tag-text);background:var(--tag-bg);display:inline-block;padding:3px 10px;border-radius:4px;margin-bottom:16px}.header h1{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.35;margin-bottom:14px}.subtitle{font-size:15px;color:var(--text-secondary);line-height:1.7}.series-badge{margin-top:16px;font-size:13px;color:var(--text-tertiary);display:flex;align-items:center;gap:8px}.series-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+.nav{background:var(--bg-card);border:1px solid var(--border-light);border-radius:8px;padding:20px 24px;margin-bottom:40px}.nav-title{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:12px}.nav ol{list-style:none;counter-reset:nc}.nav ol li{counter-increment:nc;margin-bottom:6px}.nav ol li a{color:var(--text-secondary);text-decoration:none;font-size:14px;display:flex;align-items:baseline;gap:10px;transition:color .15s}.nav ol li a:hover{color:var(--accent)}.nav ol li a::before{content:counter(nc,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--accent-light);min-width:20px}
+.section{margin-bottom:50px}.section-num{font-family:var(--mono);font-size:13px;color:var(--accent);margin-bottom:6px}.section h2{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:8px}.section h3{font-family:var(--serif);font-size:17px;font-weight:700;margin:24px 0 10px}.section-lead{font-style:italic;color:var(--text-secondary);margin-bottom:18px;font-size:14.5px}.section p{margin-bottom:14px}
+.recap{border:2px dashed var(--chain-line);border-radius:8px;padding:16px 20px;margin:24px 0;background:var(--bg-chain)}.recap-label{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:1px}.recap p{font-size:14px;color:var(--text-secondary);margin-bottom:8px}.recap p:last-child{margin-bottom:0}
+.chain{display:flex;align-items:center;gap:12px;padding:14px 20px;margin:32px 0;background:var(--bg-chain);border-left:3px solid var(--chain-line);border-radius:0 6px 6px 0;font-size:13.5px;color:var(--text-secondary)}.chain-arrow{color:var(--accent);font-weight:700;font-size:16px;flex-shrink:0}
+pre{background:var(--bg-code);border:1px solid var(--border-light);border-radius:6px;padding:16px 20px;overflow-x:auto;margin:16px 0}pre code{font-family:var(--mono);font-size:13px;line-height:1.65;color:var(--text)}code{font-family:var(--mono);font-size:.9em;background:var(--bg-code);padding:2px 5px;border-radius:3px}
+.highlight{border-left:4px solid var(--accent);background:var(--bg-highlight);padding:16px 20px;border-radius:0 6px 6px 0;margin:20px 0}.highlight p{margin-bottom:8px}.highlight p:last-child{margin-bottom:0}
+.strength,.weakness,.note{padding:14px 20px;border-radius:0 6px 6px 0;margin:18px 0}.strength{background:var(--strength-bg);border-left:4px solid var(--strength-border)}.strength .card-label{color:var(--strength-text)}.strength p{color:var(--strength-text)}.weakness{background:var(--weakness-bg);border-left:4px solid var(--weakness-border)}.weakness .card-label{color:var(--weakness-text)}.weakness p{color:var(--weakness-text)}.note{background:var(--warning-bg);border-left:4px solid var(--warning-border)}.note .card-label{color:var(--warning-text)}.note p{color:var(--warning-text)}.card-label{font-family:var(--mono);font-size:11px;letter-spacing:1px;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px}th,td{padding:10px 14px;border:1px solid var(--border);text-align:left}th{background:var(--bg-code);font-weight:600;font-size:13px}td{color:var(--text-secondary)}
+@media(max-width:600px){body{font-size:14.5px}.header h1{font-size:22px}.section h2{font-size:18px}.container{padding:24px 16px 60px}pre{padding:12px 14px}pre code{font-size:12px}table{font-size:12px}th,td{padding:7px 8px}}
+.theme-toggle{position:fixed;top:16px;right:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:14px;z-index:100}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">🌓</button>
+<div class="container">
+
+<div class="header">
+  <div class="header-tag">Sequential Learning Guide</div>
+  <h1>从零理解 N₀-TWAM：第一个能「预见触感」的世界-动作模型</h1>
+  <div class="subtitle">N₀-TWAM 提出了一个全新的思路：触觉不仅是模型的输入，更应该是模型预测的一部分。它在同一个 Flow Matching 目标下联合预测未来视频、未来触觉和动作，让策略在行动前就能「想象」接下来手指会摸到什么。7.16B 参数，30000+ 小时预训练数据，UniVTAC 上 84.5%，真机 46.3%。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第7篇（前序：HyVLA → π0 → π0.5 → OpenVLA → T-Rex → FTP-1）</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">逻辑链路</div>
+  <ol>
+    <li><a href="#s1">定位：为什么触觉应该被「预测」而不只是被「消费」？</a></li>
+    <li><a href="#s2">架构拆解：非对称 MoT + Diffusion-Forcing 级联</a></li>
+    <li><a href="#s3">触觉的双重角色：预测的未来 + 观测的现在</a></li>
+    <li><a href="#s4">触觉标点：用接触事件切分长 horizon 任务</a></li>
+    <li><a href="#s5">数据与训练</a></li>
+    <li><a href="#s6">实验结果</a></li>
+    <li><a href="#s7">三篇触觉论文的终极对比</a></li>
+    <li><a href="#s8">局限与对你预研的总结建议</a></li>
+  </ol>
+</nav>
+
+<!-- ====== S1 ====== -->
+<div class="section" id="s1">
+  <div class="section-num">01</div>
+  <h2>定位：为什么触觉应该被「预测」而不只是被「消费」？</h2>
+  <p class="section-lead">这节回答：N₀-TWAM 和 T-Rex / FTP-1 的本质区别是什么？「世界模型」思路为什么对触觉重要？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：T-Rex 和 FTP-1 对触觉的使用方式</div>
+    <p><strong>T-Rex：</strong>触觉是输入信号——模型感知当前触觉，用它来精炼当前动作。核心是「摸到了什么→调整动作」的反应式控制。</p>
+    <p><strong>FTP-1：</strong>触觉也是输入信号——独立 Tactile Expert 消费统一化的触觉 token，辅助动作生成。核心是跨传感器迁移。</p>
+    <p>两者的共同点：<strong>触觉只是被「消费」（读取），从不被「生成」（预测）。</strong></p>
+  </div>
+
+  <p>N₀-TWAM 问了一个更深的问题：如果模型能<strong>预测</strong>下一刻手指会摸到什么，它就能在行动前判断「这个动作会导致物体滑落」或「这个动作会成功插入」——这是一种<strong>前瞻能力</strong>，不是事后反应。</p>
+
+  <h3>World-Action Model (WAM) 的思路</h3>
+
+  <p>你之前学的 VLA（π0、π0.5、OpenVLA）都是「观察→动作」的直接映射。World-Action Model 多了一步：先预测未来会发生什么（生成未来视频帧），然后基于这个预测来决定动作。就像下棋——你先在脑中推演几步，再决定怎么走。</p>
+
+  <p>但现有的 WAM 只预测未来视觉。N₀-TWAM 的创新是：<strong>把触觉也纳入预测目标，让模型同时预测未来会看到什么和会摸到什么。</strong></p>
+
+  <div class="highlight">
+    <p><strong>核心公式（直觉版）：</strong></p>
+    <p>VLA：  观察当前画面 → 输出动作</p>
+    <p>WAM：  观察当前画面 → 预测未来画面 → 基于预测输出动作</p>
+    <p>N₀-TWAM：观察当前画面+触觉 → 预测未来画面+<strong>未来触觉</strong> → 基于预测输出动作</p>
+  </div>
+
+  <h3>三篇论文的定位关系</h3>
+  <table>
+    <tr><th></th><th>T-Rex</th><th>FTP-1</th><th>N₀-TWAM</th></tr>
+    <tr><td>核心问题</td><td>高频触觉反应</td><td>跨传感器迁移</td><td>触觉前瞻预测</td></tr>
+    <tr><td>触觉角色</td><td>输入（反应式）</td><td>输入（跨硬件）</td><td>输入 + 预测目标</td></tr>
+    <tr><td>模型范式</td><td>VLA + 快慢分离</td><td>VLA + 独立 Expert</td><td>World-Action Model</td></tr>
+    <tr><td>模型规模</td><td>~3.4B</td><td>基于 π0.5</td><td>7.16B</td></tr>
+    <tr><td>预训练数据</td><td>100h 触觉</td><td>3000h 触觉</td><td>30000h+ 视觉触觉</td></tr>
+  </table>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了「为什么要预测触觉」。下一节拆解怎么做到的——非对称 MoT 架构。</span>
+</div>
+
+<!-- ====== S2 ====== -->
+<div class="section" id="s2">
+  <div class="section-num">02</div>
+  <h2>架构拆解：非对称 MoT + Diffusion-Forcing 级联</h2>
+  <p class="section-lead">这节回答：三个 Expert 怎么组织？「先预测再行动」的级联是怎么在一次前向传播里实现的？</p>
+
+  <h3>三个 Expert 的非对称设计</h3>
+
+  <p>N₀-TWAM 有三个 Expert，但大小不同：</p>
+
+  <table>
+    <tr><th>Expert</th><th>隐藏维度</th><th>参数量</th><th>来源</th></tr>
+    <tr><td>Video Expert</td><td>3072（全宽）</td><td>5.00B</td><td>从预训练视频模型 Wan2.2 热启动</td></tr>
+    <tr><td>Action Expert</td><td>1024（窄）</td><td>1.13B</td><td>从零训练</td></tr>
+    <tr><td>Tactile Expert</td><td>1024（窄）</td><td>1.03B</td><td>从零训练</td></tr>
+    <tr><td colspan="2"><strong>总计</strong></td><td><strong>7.16B</strong></td><td></td></tr>
+  </table>
+
+  <div class="note">
+    <div class="card-label">为什么非对称？</div>
+    <p>如果三个 Expert 都用全宽 3072，总参数量约 15B——训练成本翻倍。但 Action 和 Tactile 没有大规模预训练来支撑那么大的容量，所以故意缩窄到 1024。它们通过共享 Attention 间接获取视觉先验，不需要自己也那么大。这和 T-Rex 的 Tactile Expert 缩窄 FFN 的思路一致。</p>
+  </div>
+
+  <h3>Diffusion-Forcing 级联：一次前向传播实现「先预测再行动」</h3>
+
+  <p>这是 N₀-TWAM 最精妙的设计。通过一个特殊的 Attention Mask，在单次前向传播内实现了：</p>
+
+<pre><code># ===== 一个 chunk 内的因果级联 =====
+
+# 每个 chunk 包含 2 个 latent frame（时间步）
+# 每个 latent frame 有三种 token：Video, Tactile, Action
+
+# 步骤 1（预测阶段）：
+# Video token 和 Tactile token 互相 attend（共同去噪）
+# → 联合生成未来视频 + 未来触觉
+# Action token 此时是噪声，但它可以看到 Video 和 Tactile
+
+# 步骤 2（行动阶段）：
+# Video 和 Tactile 的去噪完成，KV Cache 冻结
+# Action token 被反复去噪（多步 Euler 积分）
+# 它 attend to 刚刚预测好的未来视频和触觉
+# → 基于「预见的未来」生成动作
+
+# 关键：Action 的去噪只跑轻量的 Action Expert
+# 不需要重跑 Video Expert → 推理效率高</code></pre>
+
+  <h3>Attention Mask 的精确规则</h3>
+
+<pre><code># ===== Mask 的三条规则 =====
+
+# 每个 token 有两个状态：noisy（正在去噪）和 clean（已完成/历史）
+
+# 规则 1: clean token → 可以 attend to 当前及之前位置的 clean token
+# 规则 2: noisy token → 可以 attend to 严格之前位置的 clean token
+# 规则 3: noisy token → 可以 attend to 同一位置的 noisy token（共同去噪）
+
+# 效果：
+# 同一帧的 noisy Video 和 noisy Tactile 互相看到（规则3）→ 联合生成
+# noisy Action 可以看到同帧的 clean Video 和 clean Tactile（规则2）
+# → Action 基于「已经去噪完的」未来视觉和触觉来行动
+# 没有任何 token 可以看到未来 chunk → 因果性保证</code></pre>
+
+  <div class="recap">
+    <div class="recap-label">和 T-Rex 级联的对比</div>
+    <p>T-Rex 的级联是在 Flow Matching 的时间步上切分（τ=1→0.4 慢流，0.4→0 快流），目的是频率分离。N₀-TWAM 的级联是在模态之间切分（先预测 Video+Tactile，再去噪 Action），目的是实现「先预见再行动」。两者的级联对象不同，但都利用了 KV Cache 冻结来避免重复计算。</p>
+  </div>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>整个「先预测再行动」的级联完全靠 Attention Mask 实现，不需要修改 Attention 算子本身。这意味着训练时可以在一次前向传播中同时训练所有模态，推理时只需要切换哪些 token 是 noisy/clean 即可——非常优雅的工程设计。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了架构骨架。下一节深入触觉的两条路径——这是 N₀-TWAM 最核心的创新。</span>
+</div>
+
+<!-- ====== S3 ====== -->
+<div class="section" id="s3">
+  <div class="section-num">03</div>
+  <h2>触觉的双重角色：预测的未来 + 观测的现在</h2>
+  <p class="section-lead">这节回答：触觉在 N₀-TWAM 中具体怎么用？「预测路径」和「观测路径」各自做什么？</p>
+
+  <h3>路径一：Predicted Tactile（预测触觉——前瞻）</h3>
+
+  <p>触觉传感器（InTac S1）本质上是一个小相机拍摄软胶的变形。所以触觉观测就是一个小视频流。N₀-TWAM 用和场景视频相同的 VAE 编码器来编码触觉视频，让触觉和视觉共享同一个潜在空间（latent space）。</p>
+
+<pre><code># ===== 预测路径 =====
+
+# 触觉图像 → 同一个 Wan VAE 编码 → 触觉 latent token
+# 加上 sensor-id embedding（区分不同手指的传感器）
+
+# 训练目标：和视频一样的 Flow Matching 去噪
+# → 模型学会预测未来触觉的变化
+
+# 预测的是残差形式：
+# Δt_i = x_t_i - x_t_0    （未来触觉 - 初始触觉）
+# 因为大部分时间触觉不变（没接触），有意义的是变化量
+
+# 效果：模型能「想象」下一刻手指会感受到什么
+# → 如果预测的触觉显示物体会滑落，模型可以提前调整动作</code></pre>
+
+  <h3>路径二：Observed Tactile（观测触觉——反应）</h3>
+
+  <p>预测路径提供前瞻能力，但它毕竟是「想象」，可能不准。所以还需要一条路径注入<strong>真实的当前触觉信号</strong>。</p>
+
+<pre><code># ===== 观测路径 =====
+
+# 当前帧的触觉图像
+#   ↓
+# NeoForce 力估计器（frozen）：触觉图像 → 3轴力图 [fx, fy, fz]
+#   ↓
+# NeoForce 编码器（fine-tuned）：力图 → representation tokens
+#   ↓
+# Cross-Attention 注入 Action Expert（zero-initialized！）
+
+# 关键设计：
+# 1. 力空间表示：不是原始图像，而是物理力图
+#    fx, fy: 剪切力（驱动滑动和抓取）
+#    fz: 法向力（按压力度）
+#    + 二值接触掩码
+#    → 传感器无关的物理量
+
+# 2. Zero-initialized：初始时这条路径输出为零
+#    → 从预训练模型加上这条路径不会扰动已学到的行为
+#    → 和 FTP-1 的独立 Expert 思路类似</code></pre>
+
+  <div class="highlight">
+    <p><strong>两条路径的分工：</strong></p>
+    <p>预测路径（anticipated）= 前瞻。在接触发生之前，帮助策略避免不良动作（如预测到「这个角度插入会卡住」）。</p>
+    <p>观测路径（reactive）= 纠偏。在接触发生之后，帮助策略实时修正（如感觉到「物体在滑→加大力度」）。</p>
+    <p>两者解决不同的失败模式：前瞻减少接触前的错误，观测支持接触后的恢复。</p>
+  </div>
+
+  <h3>分阶段训练：先预测，后观测</h3>
+
+  <p>一个非常重要的训练细节：</p>
+
+  <p><strong>预训练阶段：</strong>只开启预测路径，关闭观测路径。目的是让模型专心学会预测未来触觉，而不是偷懒直接用当前触觉信号。</p>
+
+  <p><strong>后训练阶段：</strong>开启观测路径（zero-initialized cross-attention）。在已经学会前瞻的基础上，再加入实时反应能力。</p>
+
+  <div class="note">
+    <div class="card-label">为什么这样分阶段？</div>
+    <p>如果预训练时就给模型当前触觉，模型会「偷懒」——直接用当前触觉做决策，不去学前瞻能力。这就像考试时如果可以翻书，你就不会认真记知识点。先逼模型学会预测（不给真实触觉），再给它真实触觉做补充，才能两种能力都学到。</p>
+  </div>
+
+  <div class="note">
+    <div class="card-label">Tactile Condition Dropout</div>
+    <p>训练时以 10% 的概率完全丢弃触觉 token（不是置零，而是从序列中删除）。效果：① 让模型在没有触觉时也能退化为视觉策略；② 传感器故障时不会崩溃；③ 提供了一个 Classifier-Free Guidance 的旋钮——推理时可以放大触觉的影响力。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>两条触觉路径讲清楚了。下一节看 N₀-TWAM 独有的「触觉标点」——用触觉事件来切分和调度长 horizon 任务。</span>
+</div>
+
+<!-- ====== S4 ====== -->
+<div class="section" id="s4">
+  <div class="section-num">04</div>
+  <h2>触觉标点：用接触事件切分长 horizon 任务</h2>
+  <p class="section-lead">这节回答：长 horizon 任务（如泡柠檬茶）怎么分解？触觉信号在这里扮演什么角色？</p>
+
+  <p>「泡柠檬茶」需要：搅拌柠檬→拿起杯子→倒茶→端上桌。一个 action chunk 只能覆盖几秒，无法一次性完成。模型需要知道「现在到了哪个阶段」。</p>
+
+  <p>N₀-TWAM 的洞察是：<strong>阶段的切换点总是伴随着触觉的突变</strong>——抓取开始（力上升）、释放（力归零）、插入到位（力突增）。这些「接触事件」天然地把长任务切分成子任务。</p>
+
+<pre><code># ===== 触觉标点的流程 =====
+
+# 【训练时】
+# 1. 用触觉信号的变化检测接触事件（力突增=抓取，力消失=释放）
+# 2. 在接触事件处切分演示 → 多个子任务片段
+# 3. 每个片段用 Gemini 3.5 Flash 生成简短指令
+#    如 "Pick up the Cup", "Pour the Tea", "Serve Drink"
+# 4. 每个片段独立后训练，各自用自己的语言指令
+
+# 【推理时】
+# 1. 维护一个子任务队列 ["搅柠檬", "拿杯子", "倒茶", "端上桌"]
+# 2. 模型执行当前子任务
+# 3. 判断何时切换到下一个子任务：
+#    - 预测路径：预测的未来触觉显示即将完成 → 提前触发
+#    - 观测路径：观测到的真实触觉确认完成 → 确认切换
+# 4. 切换到下一个子任务指令，继续执行
+
+# 触觉信号同时用于：
+# - 切分演示（训练）
+# - 判断抓取是否成功（力上升=成功，夹空=失败）
+# - 触发子任务切换（推理）</code></pre>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>触觉标点的巧妙之处在于一个信号做三件事：切分数据、验证成功、调度执行。而且它比视觉更可靠——两个视觉上几乎相同的场景（「杯子靠近碟子但没碰到」vs「杯子已经放上碟子」），触觉信号可以直接区分（有力 vs 无力）。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>架构和机制都讲完了。下一节看数据和训练。</span>
+</div>
+
+<!-- ====== S5 ====== -->
+<div class="section" id="s5">
+  <div class="section-num">05</div>
+  <h2>数据与训练</h2>
+  <p class="section-lead">这节回答：30000+ 小时的数据从哪来？怎么训练一个 7B 的触觉世界模型？</p>
+
+  <h3>数据：NeoData</h3>
+
+  <table>
+    <tr><th>维度</th><th>数值</th></tr>
+    <tr><td>总时长</td><td>30,000+ 小时</td></tr>
+    <tr><td>机器人类型</td><td>6 种（ARX5, UR, Flexiv, Franka, PiPER, UMI）</td></tr>
+    <tr><td>任务数</td><td>450 个</td></tr>
+    <tr><td>触觉覆盖</td><td>大部分集携带同步的逐指触觉流</td></tr>
+    <tr><td>触觉传感器</td><td>InTac S1（视觉型触觉传感器）</td></tr>
+    <tr><td>动作空间</td><td>20 维（双臂各 10 维：3D 位置 + 6D 旋转 + 1D 夹爪）</td></tr>
+  </table>
+
+  <p>数据量是 T-Rex（100h）的 300 倍，FTP-1（3000h）的 10 倍。这是 N₀-TWAM 能学到高质量世界模型的基础。</p>
+
+  <h3>训练流程</h3>
+
+  <p><strong>预训练：</strong>128 个 H800 GPU，30,000 步，batch size 512，AdamW lr=1e-4。Video Expert 从 LingBot-VA（基于 Wan2.2 的视频世界模型）热启动；Action 和 Tactile Expert 从零训练。只开启预测路径，不开启观测路径。视频:触觉:动作损失权重 = 1:1:1。</p>
+
+  <p><strong>NeoForce 编码器预训练：</strong>8 个 A100 GPU，100,000 步。ViT-B backbone（DINOv2 初始化），在 20,000 条演示 × 30 个任务上训练。学会把触觉图像转换为力空间表示。</p>
+
+  <p><strong>后训练：</strong>开启观测路径（zero-init cross-attention），在任务特定数据上微调。1000 步，所有 Transformer 参数都可训练。</p>
+
+  <h3>数据处理</h3>
+
+<pre><code># 视频和触觉都用 Wan VAE 编码（frozen）
+# 30fps → 10fps 下采样 → VAE 4x 时间压缩 → 33 latent frames/window
+# 一个 window = 387 raw frames ≈ 12.9 秒
+
+# 触觉被当作"小视频"处理——和场景视频用同一个 VAE
+# 这让触觉和视觉共享同一个 latent space
+# → shared attention 中两者可以直接互相理解
+
+# 动作：chunk-anchored delta（相对于 chunk 起始位姿的增量）
+# 每个 embodiment 独立归一化</code></pre>
+
+  <div class="note">
+    <div class="card-label">Delta vs Absolute 动作表示</div>
+    <p>论文默认用 delta（增量），因为它平移不变、数值小、跨机器人迁移更好。但在对齐精度要求极高的任务（Lift Can、Grasp Chip）上，absolute（绝对位姿）更好——因为 delta 的误差会逐步累积。论文在这些任务上切换到了 absolute。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>下一节看实验结果——N₀-TWAM 在仿真和真机上的表现。</span>
+</div>
+
+<!-- ====== S6 ====== -->
+<div class="section" id="s6">
+  <div class="section-num">06</div>
+  <h2>实验结果</h2>
+  <p class="section-lead">这节回答：N₀-TWAM 比 VLA 和视觉 WAM 好多少？触觉的两条路径各自贡献了什么？</p>
+
+  <h3>仿真 UniVTAC 结果</h3>
+
+  <table>
+    <tr><th>方法</th><th>类型</th><th>平均成功率</th></tr>
+    <tr><td>GigaWorld-Policy</td><td>WAM（纯视觉）</td><td>16.5%</td></tr>
+    <tr><td>LingBot-VA</td><td>WAM（纯视觉）</td><td>31.4%</td></tr>
+    <tr><td>π0.5</td><td>VLA</td><td>41.4%</td></tr>
+    <tr><td>FastWAM</td><td>WAM（纯视觉）</td><td>48.0%</td></tr>
+    <tr><td>InternVLA-A1</td><td>VLA</td><td>67.1%</td></tr>
+    <tr><td><strong>N₀-TWAM</strong></td><td><strong>Tactile WAM</strong></td><td><strong>84.5%</strong></td></tr>
+  </table>
+
+  <p>N₀-TWAM 比最强 baseline（InternVLA-A1）高出 17 个百分点。值得注意的是，纯视觉 WAM（LingBot-VA 31.4%）甚至不如 VLA（π0.5 41.4%）——在接触密集任务上，仅仅预测未来画面不够，必须预测未来触觉才有用。</p>
+
+  <h3>真机结果</h3>
+  <p>8 个任务，N₀-TWAM 平均 46.3%，π0.5 30.0%，LingBot-VA 21.9%，FastWAM 14.4%。优势最大的任务：Bottle Standing（70% vs 20%）、Socket Plugging（70% vs 60%）——这些任务的成败取决于视觉无法分辨的接触状态。</p>
+
+  <h3>消融实验</h3>
+
+  <table>
+    <tr><th>变体</th><th>UniVTAC</th><th>NeoSim</th></tr>
+    <tr><td><strong>Full Model</strong></td><td><strong>84.5%</strong></td><td><strong>49.4%</strong></td></tr>
+    <tr><td>20% 预训练数据</td><td>65.4%</td><td>—</td></tr>
+    <tr><td>去掉预测路径</td><td>71.8%</td><td>41.1%</td></tr>
+    <tr><td>去掉观测路径</td><td>70.5%</td><td>29.6%</td></tr>
+  </table>
+
+  <p><strong>数据规模是最大的单一因素</strong>（84.5→65.4），这和 FTP-1 的发现一致——触觉基础模型需要大规模数据。两条触觉路径都有贡献，但观测路径在 NeoSim 上的影响更大（49.4→29.6，-20%），可能因为 NeoSim 的仿真触觉与真实传感器差异大，观测路径的力空间表示更鲁棒。</p>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>泛化实验中，视觉扰动下 N₀-TWAM 保持 45%（π0.5 降到 25%，LingBot-VA 降到 30%）。因为触觉不受光照/背景变化影响——这是触觉相对于视觉的天然优势，N₀-TWAM 通过触觉 condition dropout 学会了在视觉不可靠时自动依赖触觉。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>单篇的分析完成了。下一节做三篇触觉论文的终极对比。</span>
+</div>
+
+<!-- ====== S7 ====== -->
+<div class="section" id="s7">
+  <div class="section-num">07</div>
+  <h2>三篇触觉论文的终极对比</h2>
+  <p class="section-lead">T-Rex、FTP-1、N₀-TWAM 分别代表三种不同的触觉 VLA 路线。</p>
+
+  <table>
+    <tr><th>维度</th><th>T-Rex</th><th>FTP-1</th><th>N₀-TWAM</th></tr>
+    <tr><td>触觉的角色</td><td>反应式输入</td><td>跨硬件输入</td><td>输入 + 预测目标</td></tr>
+    <tr><td>快慢分离</td><td>✅ 20Hz 触觉精炼</td><td>❌</td><td>❌（但 KV Cache 加速推理）</td></tr>
+    <tr><td>触觉前瞻</td><td>❌</td><td>❌</td><td>✅ 预测未来触觉</td></tr>
+    <tr><td>跨传感器</td><td>❌</td><td>✅ 21 种传感器</td><td>❌（单一传感器）</td></tr>
+    <tr><td>时序建模</td><td>VQ-VAE 16帧</td><td>单帧</td><td>VAE latent 视频流</td></tr>
+    <tr><td>触觉编码</td><td>VQ-VAE + CNN</td><td>异构编码器</td><td>共享 VAE + NeoForce</td></tr>
+    <tr><td>世界模型</td><td>❌</td><td>❌</td><td>✅ 联合预测视觉+触觉</td></tr>
+    <tr><td>长 horizon</td><td>有限</td><td>有限</td><td>✅ 触觉标点调度</td></tr>
+    <tr><td>灵巧手</td><td>✅ 22-DoF</td><td>✅ 多种</td><td>❌ 平行夹爪为主</td></tr>
+    <tr><td>预训练数据</td><td>100h 触觉</td><td>3000h 触觉</td><td>30000h+ 视觉触觉</td></tr>
+    <tr><td>模型规模</td><td>~3.4B</td><td>~π0.5 级别</td><td>7.16B</td></tr>
+  </table>
+
+  <div class="highlight">
+    <p><strong>三条路线的互补性：</strong></p>
+    <p><strong>T-Rex</strong> 擅长「速度」——20Hz 触觉反应，适合需要即时力控的灵巧手操作。</p>
+    <p><strong>FTP-1</strong> 擅长「广度」——跨 21 种传感器迁移，适合需要适配多种硬件的场景。</p>
+    <p><strong>N₀-TWAM</strong> 擅长「深度」——预测未来触觉做前瞻决策，适合需要预判接触后果的复杂任务。</p>
+    <p>理想方案：用 FTP-1 的 MTTS 统一多种传感器 → 用 N₀-TWAM 的世界模型做触觉前瞻 → 用 T-Rex 的快慢分离做实时纠偏。三者组合覆盖触觉 VLA 的全部需求。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="card-label">N₀-TWAM 的不足</div>
+    <p><strong>仅支持视觉型触觉传感器。</strong> N₀-TWAM 用 VAE 把触觉当「小视频」编码，这只对 GelSight 类的视觉触觉传感器有效。对于 T-Rex 用的力/变形传感器或 FTP-1 支持的阵列/状态型传感器，这个方案不适用。</p>
+    <p><strong>没有灵巧手支持。</strong> 动作空间是 20 维平行夹爪（双臂各 10 维），不像 T-Rex 的 62 维灵巧手。</p>
+    <p><strong>推理成本高。</strong> 7.16B 模型 + 视频生成 + 触觉生成，即使有非对称设计和 KV Cache，推理成本仍远高于 T-Rex 的快流（17ms）。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>最后一节总结三篇论文对你预研 HYVLA + 触觉的综合建议。</span>
+</div>
+
+<!-- ====== S8 ====== -->
+<div class="section" id="s8">
+  <div class="section-num">08</div>
+  <h2>局限与对你预研的总结建议</h2>
+  <p class="section-lead">三篇触觉论文读完了。如果你要在 HYVLA 里加触觉，最终建议是什么？</p>
+
+  <div class="highlight">
+    <p><strong>决策一：触觉只做输入，还是也做预测目标？</strong></p>
+    <p>如果你的 HYVLA 是标准 VLA 架构（观察→动作），参考 T-Rex 或 FTP-1，触觉作为输入通过独立 Expert 注入。如果你的 HYVLA 未来要升级成 World-Action Model，参考 N₀-TWAM，把触觉纳入预测目标——但这需要大量同步触觉数据和视频生成能力。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>决策二：你的传感器策略是什么？</strong></p>
+    <p>如果固定用一种视觉型触觉传感器（如 GelSight）→ N₀-TWAM 的 VAE 编码方案最自然。如果固定用力/变形传感器 → T-Rex 的 VQ-VAE 方案最深入。如果需要支持多种传感器 → FTP-1 的 MTTS 方案是唯一选择。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>决策三：你需要什么频率的触觉反应？</strong></p>
+    <p>如果任务需要 20Hz 级别的力控（灵巧手操作）→ T-Rex 的快慢分离是必需的。如果任务主要是夹爪级别的接触判断（插入、抓取）→ N₀-TWAM 的 chunk 级触觉条件化足够。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>决策四：数据从哪来？</strong></p>
+    <p>这可能是最现实的约束。T-Rex 路线需要带触觉的灵巧手遥操作系统（100h 即可见效）。FTP-1 路线可以聚合已有公开数据集（3000h，但需要 MTTS 标注）。N₀-TWAM 路线需要大规模自建数据管线（30000h，自己的传感器和采集系统）。根据你的资源选择可行路线。</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-label">三篇触觉 VLA 论文的核心共识</div>
+    <p><strong>共识 1：</strong>触觉不能简单拼接到 VLM 里（π0.5+tactile、Tactile-VLA 都失败了），需要独立的处理通道。</p>
+    <p><strong>共识 2：</strong>大规模预训练对触觉至关重要（三篇论文的消融实验一致证明了数据规模的收益）。</p>
+    <p><strong>共识 3：</strong>触觉在视觉不可靠时（遮挡、光照变化、视觉相似的不同接触状态）提供不可替代的信息。</p>
+    <p><strong>共识 4：</strong>触觉能力可以通过 mid-training / pretraining 高效注入已有 VLA，不需要从零开始。</p>
+    <p><strong>分歧：</strong>触觉应该只被消费（T-Rex/FTP-1）还是也被预测（N₀-TWAM）；是否需要高频快慢分离（T-Rex）还是 chunk 级条件化就够（FTP-1/N₀-TWAM）；跨传感器泛化是否是必要目标（FTP-1 说是，其他两篇没涉及）。</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTP-1 学习指南 - VLA 学习系列第6篇</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤚</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f9fafb;--bg-card:#fff;--bg-code:#f0f4f3;--bg-highlight:#eef6f4;--bg-chain:#ecf3f1;--text:#1a1a1a;--text-secondary:#4a4a4a;--text-tertiary:#7a7a7a;--accent:#1a7a6d;--accent-light:#4abcaa;--accent-dark:#145e54;--border:#dce5e2;--border-light:#e8efec;--chain-line:#8ec4b8;--tag-bg:#e0f2ee;--tag-text:#1a6b60;--warning-bg:#fef3e2;--warning-border:#e8b94a;--warning-text:#7a5d1a;--strength-bg:#e6f4ea;--strength-border:#4a9a5a;--strength-text:#2a6a3a;--weakness-bg:#fde8e8;--weakness-border:#c44a4a;--weakness-text:#8a2a2a;--serif:'Noto Serif SC','Songti SC',serif;--sans:'Inter',-apple-system,sans-serif;--mono:'JetBrains Mono','Menlo',monospace}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141918;--bg-card:#1b2220;--bg-code:#1f2a27;--bg-highlight:#1c2e29;--bg-chain:#1a2824;--text:#e4ece8;--text-secondary:#b0c0b8;--text-tertiary:#7e948a;--accent:#4abcaa;--accent-light:#6ed4c2;--accent-dark:#38a090;--border:#2e3e38;--border-light:#263330;--chain-line:#3a6e60;--tag-bg:#1e3830;--tag-text:#6ed4c2;--warning-bg:#2e2818;--warning-border:#a08030;--warning-text:#d4b868;--strength-bg:#1a2e1e;--strength-border:#3a8a4a;--strength-text:#6ac07a;--weakness-bg:#2e1a1a;--weakness-border:#b44a4a;--weakness-text:#e08080}}
+:root[data-theme="dark"]{--bg:#141918;--bg-card:#1b2220;--bg-code:#1f2a27;--bg-highlight:#1c2e29;--bg-chain:#1a2824;--text:#e4ece8;--text-secondary:#b0c0b8;--text-tertiary:#7e948a;--accent:#4abcaa;--accent-light:#6ed4c2;--accent-dark:#38a090;--border:#2e3e38;--border-light:#263330;--chain-line:#3a6e60;--tag-bg:#1e3830;--tag-text:#6ed4c2;--warning-bg:#2e2818;--warning-border:#a08030;--warning-text:#d4b868;--strength-bg:#1a2e1e;--strength-border:#3a8a4a;--strength-text:#6ac07a;--weakness-bg:#2e1a1a;--weakness-border:#b44a4a;--weakness-text:#e08080}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.78;font-size:15.5px;-webkit-font-smoothing:antialiased}.container{max-width:780px;margin:0 auto;padding:40px 24px 80px}
+.header{margin-bottom:40px;padding-bottom:32px;border-bottom:2px solid var(--accent)}.header-tag{font-family:var(--mono);font-size:12px;color:var(--tag-text);background:var(--tag-bg);display:inline-block;padding:3px 10px;border-radius:4px;margin-bottom:16px}.header h1{font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.35;margin-bottom:14px}.subtitle{font-size:15px;color:var(--text-secondary);line-height:1.7}.series-badge{margin-top:16px;font-size:13px;color:var(--text-tertiary);display:flex;align-items:center;gap:8px}.series-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+.nav{background:var(--bg-card);border:1px solid var(--border-light);border-radius:8px;padding:20px 24px;margin-bottom:40px}.nav-title{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:12px}.nav ol{list-style:none;counter-reset:nc}.nav ol li{counter-increment:nc;margin-bottom:6px}.nav ol li a{color:var(--text-secondary);text-decoration:none;font-size:14px;display:flex;align-items:baseline;gap:10px;transition:color .15s}.nav ol li a:hover{color:var(--accent)}.nav ol li a::before{content:counter(nc,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--accent-light);min-width:20px}
+.section{margin-bottom:50px}.section-num{font-family:var(--mono);font-size:13px;color:var(--accent);margin-bottom:6px}.section h2{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:8px}.section h3{font-family:var(--serif);font-size:17px;font-weight:700;margin:24px 0 10px}.section-lead{font-style:italic;color:var(--text-secondary);margin-bottom:18px;font-size:14.5px}.section p{margin-bottom:14px}
+.recap{border:2px dashed var(--chain-line);border-radius:8px;padding:16px 20px;margin:24px 0;background:var(--bg-chain)}.recap-label{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:1px}.recap p{font-size:14px;color:var(--text-secondary);margin-bottom:8px}.recap p:last-child{margin-bottom:0}
+.chain{display:flex;align-items:center;gap:12px;padding:14px 20px;margin:32px 0;background:var(--bg-chain);border-left:3px solid var(--chain-line);border-radius:0 6px 6px 0;font-size:13.5px;color:var(--text-secondary)}.chain-arrow{color:var(--accent);font-weight:700;font-size:16px;flex-shrink:0}
+pre{background:var(--bg-code);border:1px solid var(--border-light);border-radius:6px;padding:16px 20px;overflow-x:auto;margin:16px 0}pre code{font-family:var(--mono);font-size:13px;line-height:1.65;color:var(--text)}code{font-family:var(--mono);font-size:.9em;background:var(--bg-code);padding:2px 5px;border-radius:3px}
+.highlight{border-left:4px solid var(--accent);background:var(--bg-highlight);padding:16px 20px;border-radius:0 6px 6px 0;margin:20px 0}.highlight p{margin-bottom:8px}.highlight p:last-child{margin-bottom:0}
+.strength,.weakness,.note{padding:14px 20px;border-radius:0 6px 6px 0;margin:18px 0}.strength{background:var(--strength-bg);border-left:4px solid var(--strength-border)}.strength .card-label{color:var(--strength-text)}.strength p{color:var(--strength-text)}.weakness{background:var(--weakness-bg);border-left:4px solid var(--weakness-border)}.weakness .card-label{color:var(--weakness-text)}.weakness p{color:var(--weakness-text)}.note{background:var(--warning-bg);border-left:4px solid var(--warning-border)}.note .card-label{color:var(--warning-text)}.note p{color:var(--warning-text)}.card-label{font-family:var(--mono);font-size:11px;letter-spacing:1px;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px}th,td{padding:10px 14px;border:1px solid var(--border);text-align:left}th{background:var(--bg-code);font-weight:600;font-size:13px}td{color:var(--text-secondary)}
+@media(max-width:600px){body{font-size:14.5px}.header h1{font-size:22px}.section h2{font-size:18px}.container{padding:24px 16px 60px}pre{padding:12px 14px}pre code{font-size:12px}table{font-size:12px}th,td{padding:7px 8px}}
+.theme-toggle{position:fixed;top:16px;right:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:14px;z-index:100}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')" aria-label="切换主题">🌓</button>
+<div class="container">
+
+<div class="header">
+  <div class="header-tag">Sequential Learning Guide</div>
+  <h1>从零理解 FTP-1：第一个跨传感器的触觉基础策略模型</h1>
+  <div class="subtitle">FTP-1 解决了一个 T-Rex 没有触及的问题：不同品牌、不同类型的触觉传感器输出完全不同的信号，如何让一个模型在 21 种传感器上预训练，并迁移到从未见过的传感器？核心方案是 Morphology-Aware Tactile Token Space (MTTS) + 独立 Tactile Expert + 3000 小时异构触觉数据。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第6篇（前序：HyVLA → π0 → π0.5 → OpenVLA → T-Rex）</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">逻辑链路</div>
+  <ol>
+    <li><a href="#s1">定位与背景：FTP-1 解决什么问题？和 T-Rex 的关系</a></li>
+    <li><a href="#s2">核心创新：MTTS——把所有触觉统一成同一种语言</a></li>
+    <li><a href="#s3">架构拆解：三 Expert 设计与触觉编码器</a></li>
+    <li><a href="#s4">训练数据：3000 小时异构触觉数据集</a></li>
+    <li><a href="#s5">训练范式与部署</a></li>
+    <li><a href="#s6">实验结果：见过的传感器 + 没见过的传感器</a></li>
+    <li><a href="#s7">消融实验与设计决策</a></li>
+    <li><a href="#s8">T-Rex vs FTP-1：两种触觉 VLA 思路的对比</a></li>
+    <li><a href="#s9">局限与对你预研的启示</a></li>
+  </ol>
+</nav>
+
+<!-- ====== S1 ====== -->
+<div class="section" id="s1">
+  <div class="section-num">01</div>
+  <h2>定位与背景：FTP-1 解决什么问题？</h2>
+  <p class="section-lead">这节回答：T-Rex 已经做了触觉 VLA，FTP-1 还在解决什么问题？两者的定位有什么不同？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：T-Rex 做到了什么</div>
+    <p>T-Rex 在一套硬件（Sharpa Wave 灵巧手 + 特定力/变形传感器）上做到了触觉反应式操作，核心是快慢分离的级联 Flow Matching。但它有一个隐含前提：<strong>传感器是固定的</strong>——VQ-VAE 编码器、变形图编码器都是针对特定传感器训练的。换一种传感器，整个触觉管线要重做。</p>
+  </div>
+
+  <p>FTP-1 的出发点完全不同。它不关心高频触觉反应（没有快慢分离），而是关心一个更基础的问题：<strong>触觉能不能像视觉一样做跨硬件的大规模预训练？</strong></p>
+
+  <p>视觉领域已经有了 ImageNet、LAION 这样的大规模数据集，不同相机拍的照片格式基本统一（RGB 图像），所以一个 ViT 可以在所有视觉数据上预训练。但触觉领域面临的是完全碎片化的传感器生态：</p>
+
+  <table>
+    <tr><th>传感器类型</th><th>输出格式</th><th>举例</th></tr>
+    <tr><td>Image 型</td><td>RGB/灰度图像（接触区域的视觉化）</td><td>GelSight、Sharpa DTC、Xense</td></tr>
+    <tr><td>Array 型</td><td>空间阵列（H×W×D 的压力/力分布）</td><td>Contactile、3DViTac、uSkin</td></tr>
+    <tr><td>State 型</td><td>低维向量（力/力矩数值）</td><td>ATI 六轴力传感器、关节力矩</td></tr>
+  </table>
+
+  <p>这三类传感器的输出形状、分辨率、物理含义完全不同。一个 GelSight 输出 224×224 的 RGB 触觉图像，一个 ATI 传感器输出 6 个浮点数——你怎么把它们放在同一个模型里训练？</p>
+
+  <div class="highlight">
+    <p><strong>FTP-1 的核心命题：</strong>设计一个统一的触觉表示空间（MTTS），让不同传感器的信号都能被映射到同一组 token 上。在这个统一空间里做大规模预训练，让模型学会可迁移的触觉操作能力——甚至迁移到预训练时从未见过的传感器。</p>
+  </div>
+
+  <h3>T-Rex vs FTP-1：定位对比</h3>
+  <table>
+    <tr><th></th><th>T-Rex</th><th>FTP-1</th></tr>
+    <tr><td>核心问题</td><td>如何用触觉做高频反应式控制</td><td>如何跨传感器学习可迁移的触觉能力</td></tr>
+    <tr><td>传感器</td><td>1 种（Sharpa Wave 力+变形）</td><td>21 种（3 大类）</td></tr>
+    <tr><td>快慢分离</td><td>✅ 核心创新</td><td>❌ 不涉及</td></tr>
+    <tr><td>跨传感器迁移</td><td>❌ 不涉及</td><td>✅ 核心创新</td></tr>
+    <tr><td>预训练数据</td><td>100h 触觉 + 22889h 人类视频</td><td>3000h 触觉（26 个数据源）</td></tr>
+    <tr><td>基础架构</td><td>EgoScale (Qwen3VL-2B)</td><td>π0.5 (PaliGemma)</td></tr>
+    <tr><td>触觉融合方式</td><td>Tactile Expert（异步快流）</td><td>Tactile Expert（独立 Transformer）</td></tr>
+  </table>
+
+  <p>可以说，T-Rex 和 FTP-1 解决的是触觉 VLA 的两个正交维度：T-Rex 解决「深度」（单一传感器上的极致利用），FTP-1 解决「广度」（跨传感器的统一表示和迁移）。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节明确了 FTP-1 的定位。下一节深入它最核心的创新——MTTS，理解它怎么把 21 种传感器统一到同一个 token 空间。</span>
+</div>
+
+<!-- ====== S2 ====== -->
+<div class="section" id="s2">
+  <div class="section-num">02</div>
+  <h2>核心创新：MTTS——把所有触觉统一成同一种语言</h2>
+  <p class="section-lead">这节回答：MTTS 是什么？24 个功能区域是怎么定义的？不同传感器怎么映射进去？</p>
+
+  <h3>问题的本质：传感器异构性</h3>
+
+  <p>不同触觉传感器不仅输出格式不同，安装位置也不同。一个 GelSight 装在平行夹爪的两个指尖上（2 个传感器），一个 Sharpa DTC 装在灵巧手的 5 根手指上（5-10 个传感器），一个 ATI 力传感器装在手腕上（1 个传感器）。如果你不考虑安装位置，把所有信号混在一起，模型根本不知道「这个信号来自拇指还是手腕」。</p>
+
+  <h3>MTTS 的设计：24 个功能区域槽位</h3>
+
+  <p>FTP-1 的解决方案是定义一个固定的「功能区域地图」，把手和手臂划分为 24 个标准化的区域，每个区域对应一个 token 槽位：</p>
+
+<pre><code># ===== MTTS 功能区域定义 =====
+
+# 槽位 0-14：手部触觉区域（共 15 个）
+# 0: 拇指指尖    1: 食指指尖    2: 中指指尖    3: 无名指指尖   4: 小指指尖
+# 5: 拇指中段    6: 食指中段    ...
+# 每个区域对应手上一个具体的接触功能区
+
+# 槽位 15-20：力/力矩信号
+# 15: 手腕力矩
+# 16-20: 各手指的关节力矩
+
+# 槽位 21-23：保留（未来扩展用）
+
+# ===== 不同传感器怎么映射 =====
+
+# 灵巧手（如 Sharpa Wave，5 根手指各有触觉）：
+# → 拇指传感器 → 槽位 0
+# → 食指传感器 → 槽位 1
+# → ... 自然映射到对应的功能区域
+
+# 平行夹爪（如 Robotiq，只有两侧各一个传感器）：
+# → 左侧传感器 → 槽位 0（拇指位）
+# → 右侧传感器 → 槽位 1（食指位）
+# → 因为平行夹爪的两指功能等价于拇指+食指的捏取
+
+# 手腕力传感器（如 ATI，1 个传感器）：
+# → 映射到槽位 15（手腕力矩）
+
+# 左右手区分：用不同的 functional-area embedding</code></pre>
+
+  <div class="highlight">
+    <p><strong>直觉理解：</strong>MTTS 就像一张标准化的「手部地图」。不管你用什么传感器，你告诉模型「这个信号来自拇指指尖」还是「来自手腕」——通过统一的槽位编号和共享的功能区域嵌入（functional-area embedding），模型可以跨传感器理解「拇指感受到的压力」这个语义概念，而不需要关心底层传感器是 GelSight 图像还是 ATI 力值。</p>
+  </div>
+
+  <h3>功能区域嵌入（Functional-Area Embedding）</h3>
+
+  <p>每个 token 在进入 Transformer 之前，会加上一个可学习的嵌入向量来标识它属于哪个功能区域。这个嵌入<strong>跨所有传感器共享</strong>——不管是 GelSight 的拇指 token 还是 Sharpa DTC 的拇指 token，它们加的是同一个「拇指」嵌入。</p>
+
+  <p>这个设计让模型在预训练时就能学到「拇指的触觉模式」这个跨传感器的通用概念。</p>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>MTTS 的优雅之处在于它是<strong>传感器无关的</strong>：新增一种传感器时，你只需要定义它的信号应该映射到哪些槽位，然后训练一个新的传感器特定编码器——MTTS 的槽位定义和功能区域嵌入完全复用。这就是 FTP-1 能迁移到未见传感器的基础。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了 MTTS 怎么定义统一的 token 空间。下一节看模型架构——不同格式的触觉信号怎么编码成 MTTS token，以及 Tactile Expert 怎么和 VL Expert 协作。</span>
+</div>
+
+<!-- ====== S3 ====== -->
+<div class="section" id="s3">
+  <div class="section-num">03</div>
+  <h2>架构拆解：三 Expert 设计与触觉编码器</h2>
+  <p class="section-lead">这节回答：FTP-1 的完整数据流是什么？和 T-Rex 的三 Expert 有什么不同？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：T-Rex 的三 Expert</div>
+    <p>T-Rex 的三个 Expert（Latent、Action、Tactile）共享同一个 Attention 层，用不同的 FFN 来区分。Tactile Expert 通过复用 KV Cache 实现高频推理。FTP-1 的架构思路有本质不同——它的 Tactile Expert 是一个完全独立的 Transformer，不和 VL Expert 共享 Attention。</p>
+  </div>
+
+  <h3>整体架构</h3>
+
+<pre><code># ===== FTP-1 架构（基于 π0.5）=====
+
+# 三个 Expert，但组织方式和 T-Rex 不同：
+# 1. VL Expert：处理视觉+语言（继承自 π0.5 的 PaliGemma）
+# 2. Tactile Expert：独立的 300M Transformer，处理触觉 token
+# 3. Action Expert：Flow Matching 动作生成（继承自 π0.5）
+
+# 关键区别：
+# - VL Expert 和 Tactile Expert 是独立的，不共享 Attention
+# - Action Expert 可以 attend to VL Expert 和 Tactile Expert
+# - 但 Tactile Expert 不能 attend to VL Expert（单向）
+# → 触觉和视觉-语言是「平行处理，后期融合」</code></pre>
+
+  <h3>异构触觉编码器</h3>
+
+  <p>三种类型的触觉信号用完全不同的编码器：</p>
+
+<pre><code># ===== Image 型触觉编码 =====
+# 输入：触觉图像（如 GelSight 的接触纹理图）
+# 流程：
+# 1. 缩放到 224×224
+# 2. Sensor-specific ViT（depth=3, width=768）→ 每个传感器独立
+# 3. Shared T3 Transformer（depth=9, width=768）→ 跨传感器共享！
+# 4. 取 [CLS] token 作为该功能区域的触觉 token
+# 注：T3 模块用预训练的 T3 权重初始化
+
+# ===== Array 型触觉编码 =====
+# 输入：空间阵列 [H, W, D]（如 Contactile 的压力网格）
+# 流程：
+# 1. Fourier encoding 扩展信号维度
+# 2. 3-layer CNN 提取空间特征
+# 3. 2-layer MLP → 该功能区域的触觉 token
+
+# ===== State 型触觉编码 =====
+# 输入：低维向量 [D]（如 6D 力/力矩）
+# 流程：
+# 1. Fourier encoding
+# 2. 3-layer MLP → 该功能区域的触觉 token
+
+# ===== 最终处理（所有类型共享）=====
+# LayerNorm → 加 functional-area embedding → 2-layer GELU MLP
+# → 输入 Tactile Expert</code></pre>
+
+  <div class="note">
+    <div class="card-label">和 T-Rex 触觉编码的关键区别</div>
+    <p>T-Rex 用 VQ-VAE 做力信号的时序压缩（16 帧历史→1 个 token），强调的是<strong>时间动态</strong>。FTP-1 用 Fourier encoding + MLP 处理单帧力信号，不做时序建模。FTP-1 对 Image 型触觉使用 T3 Transformer（一个专门为触觉图像预训练的模型），强调的是<strong>跨传感器的表示统一</strong>。两者的设计取向完全不同。</p>
+  </div>
+
+  <h3>Tactile Expert 的角色</h3>
+
+  <p>Tactile Expert 是一个独立的 300M 参数 Transformer（18 层，宽度 1024，8 头），和 VL Expert 完全分开。Action Expert 在生成动作时，通过 cross-attention 同时查询 VL Expert 和 Tactile Expert 的输出。</p>
+
+  <p>为什么不把触觉 token 直接注入 VL Expert（像 Tactile-VLA 那样做 adapter）？论文给出三个理由：</p>
+
+  <p>① 独立的 Tactile Expert 可以在未见传感器上直接复用预训练权重，只需重新训练 sensor-specific encoder；② 避免触觉信号干扰已经预训练好的视觉-语言表示；③ 实验证明独立 Expert 比 adapter 注入效果更好（Tactile-VLA 在多个任务上比纯 π0.5 还差）。</p>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>FTP-1 的模块化设计非常适合「即插即用」场景：遇到新传感器时，只需训练一个轻量的 sensor-specific encoder（Image 型的话只有 3 层 ViT），Tactile Expert 和 VL Expert 的权重全部复用。这大大降低了迁移到新硬件的成本。</p>
+  </div>
+
+  <h3>本体感知注入：AdaRMSNorm</h3>
+
+  <p>一个有趣的工程细节：本体感知（关节角度等）不是作为 token 注入 Transformer，而是通过 Adaptive RMSNorm 注入——把本体感知信息编码后，用它来调制 Attention 层的归一化参数。这和 π0.5 的做法一致，论文发现这比独立 token 的方式泛化更好。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了架构。下一节看支撑这个架构的 3000 小时异构数据集是怎么组织的。</span>
+</div>
+
+<!-- ====== S4 ====== -->
+<div class="section" id="s4">
+  <div class="section-num">04</div>
+  <h2>训练数据：3000 小时异构触觉数据集</h2>
+  <p class="section-lead">这节回答：26 个数据源是怎么聚合的？怎么处理数据不平衡？</p>
+
+  <h3>数据规模</h3>
+  <table>
+    <tr><th>维度</th><th>数值</th></tr>
+    <tr><td>总时长</td><td>~3000 小时</td></tr>
+    <tr><td>数据源数量</td><td>26 个</td></tr>
+    <tr><td>触觉传感器种类</td><td>21 种（7 Image + 5 Array + 9 State）</td></tr>
+    <tr><td>数据类型</td><td>人手 20% + 灵巧手 30% + 夹爪 50%</td></tr>
+  </table>
+
+  <div class="recap">
+    <div class="recap-label">对比：T-Rex 和 FTP-1 的数据策略差异</div>
+    <p>T-Rex 用 100 小时自己收集的高质量触觉同步数据（单一传感器、单一机器人），按动词-名词组合组织。FTP-1 用 3000 小时聚合的异构数据（21 种传感器、多种机器人），核心目标不是数据质量而是多样性——让模型见过尽可能多的传感器和操作场景。</p>
+  </div>
+
+  <h3>数据聚合策略</h3>
+
+  <p>FTP-1 的数据来源非常多样：既有大型机器人数据集（RH20T 的多个配置）、人手操作数据（EgoTac 系列）、UMI 风格数据（FreeTacMan、exUMI），也有论文自己收集的新数据（Sharpa North-FTP-1，约 4000 条长 horizon 灵巧操作演示）。</p>
+
+  <p>不同数据源的规模差异巨大（最大的几百倍于最小的），所以 FTP-1 对每个数据源设置了采样权重，确保训练时各类数据的比例大致为 20:30:50（人手:灵巧手:夹爪）。</p>
+
+  <h3>统一动作空间（UAS）</h3>
+
+  <p>不同机器人的动作空间也不同——有的是单臂关节控制，有的是双臂末端位姿控制。FTP-1 采用了一个统一动作空间（Unified Action Space），把所有动作表示为固定长度的稀疏向量：</p>
+
+<pre><code># UAS 结构
+action = [a_L, a_R, a_ego, a_sup]
+
+# a_L, a_R: 左右臂（各含 3D 平移 + 6D 旋转 + 7 关节 + 32 手关节）
+# a_ego: 头部控制（3D 平移 + 6D 旋转）
+# a_sup: 补充槽位（腰部、移动等）
+
+# 手部关节用 FAAS（Function-Actuator-Aligned Space）：
+# 不同品牌的灵巧手，功能相似的关节映射到同一个槽位
+# → Allegro 手的拇指弯曲 和 Shadow 手的拇指弯曲 占同一个位置
+
+# 对于不支持某些维度的机器人，用 mask 在 loss 中排除</code></pre>
+
+  <div class="note">
+    <div class="card-label">FAAS 和 MTTS 的对称设计</div>
+    <p>MTTS 统一了触觉输入空间（不同传感器 → 同一组功能区域 token），FAAS/UAS 统一了动作输出空间（不同机器人 → 同一组动作槽位）。输入端和输出端都做了异构统一，这是 FTP-1 能做跨硬件预训练的基础。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>数据和架构都讲完了。下一节看训练流程。</span>
+</div>
+
+<!-- ====== S5 ====== -->
+<div class="section" id="s5">
+  <div class="section-num">05</div>
+  <h2>训练范式与部署</h2>
+  <p class="section-lead">这节回答：FTP-1 怎么训练？和 T-Rex 的三阶段训练有什么不同？</p>
+
+  <h3>训练流程：两阶段</h3>
+
+  <p>和 T-Rex 的三阶段不同，FTP-1 只有两阶段：</p>
+
+  <p><strong>Stage 1: 大规模异构预训练。</strong> 在 3000 小时触觉数据上从头训练触觉编码器、Tactile Expert、AdaRMSNorm 注入器和动作投影层。VL Expert 和 Action Expert 从 π0.5 初始化。48 个 NVIDIA H20 GPU，batch size 768，训练 50k 步，学习率从 1e-4 衰减到 5e-5。</p>
+
+  <p><strong>Stage 2: 下游微调。</strong> 在特定任务上用少量演示（50-400 条）微调。8 个 A800 GPU，batch size 64，20k 步。</p>
+
+  <div class="note">
+    <div class="card-label">和 T-Rex 训练范式的对比</div>
+    <p>T-Rex 是「人类视频预训练 → 触觉中间训练 → 任务后训练」三阶段；FTP-1 是「π0.5 权重初始化 + 触觉大规模预训练 → 任务微调」两阶段。T-Rex 的预训练阶段不包含触觉，靠 mid-training 注入；FTP-1 的预训练本身就包含触觉，但它站在 π0.5 的肩膀上（视觉-语言-动作能力直接继承）。</p>
+  </div>
+
+  <h3>训练基础设施的特殊设计</h3>
+
+  <p>一个有趣的工程细节：由于 26 个数据源的格式完全不同（不同传感器用不同编码器），FTP-1 开发了专门的训练基础设施——<strong>自动按数据域分配 GPU</strong>，确保同一个 GPU batch 内的样本来自同一个数据源（格式相同）。传感器特定模块的梯度独立更新，共享模块的梯度合并后更新。</p>
+
+  <h3>迁移到未见传感器</h3>
+
+<pre><code># ===== 遇到新传感器时的微调策略 =====
+
+# 从 FTP-1 预训练 checkpoint 出发：
+# ✅ 复用：Tactile Expert（300M Transformer）
+# ✅ 复用：VL Expert + Action Expert
+# ✅ 复用：Functional-area embedding
+# ✅ 复用：T3 共享 Transformer（如果是 Image 型传感器）
+# ❌ 从零训练：Sensor-specific encoder（轻量，3层ViT或3层CNN或3层MLP）
+
+# 微调时只需 50-100 条任务演示</code></pre>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>预训练 50k 步后性能饱和，论文认为是触觉数据多样性不足的瓶颈。但即便如此，这个预训练已经足以在未见传感器上带来 +31% 的成功率提升——说明 Tactile Expert 确实学到了跨传感器的可迁移触觉操作知识。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>训练讲完了。下一节看实验结果——特别是在未见传感器上的迁移效果。</span>
+</div>
+
+<!-- ====== S6 ====== -->
+<div class="section" id="s6">
+  <div class="section-num">06</div>
+  <h2>实验结果：见过的和没见过的传感器</h2>
+  <p class="section-lead">这节回答：FTP-1 在预训练见过的传感器上表现如何？迁移到未见传感器时真的有效吗？</p>
+
+  <h3>评测设置</h3>
+  <p>FTP-1 把预训练好的 checkpoint 分发给全球 5 个独立机构，每个机构在自己的硬件上做微调和评测。这种分布式评测方式本身就很有说服力——证明结果不依赖于作者自己的特定实验环境。</p>
+
+  <h3>见过的传感器（3 个设置）</h3>
+  <table>
+    <tr><th>方法</th><th>UniVTAC (仿真)</th><th>Sharpa North (真机)</th><th>Sharpa&Dexmate (真机)</th><th>总平均</th></tr>
+    <tr><td>π0.5（无触觉）</td><td>49.2%</td><td>—</td><td>—</td><td>45.3%</td></tr>
+    <tr><td>Tactile-VLA</td><td>41.8%</td><td>—</td><td>—</td><td>35.8%</td></tr>
+    <tr><td>FTP-π0.5（架构同，无预训练）</td><td>45.2%</td><td>—</td><td>—</td><td>41.6%</td></tr>
+    <tr><td><strong>FTP-1</strong></td><td><strong>66.7%</strong></td><td>—</td><td>—</td><td><strong>62.5%</strong></td></tr>
+  </table>
+
+  <p>FTP-1 在所有设置上一致最优，平均 62.5%（比第二名高 +17.2%）。</p>
+
+  <div class="note">
+    <div class="card-label">关键发现</div>
+    <p><strong>Tactile-VLA（把触觉注入 VLM 的 adapter 方案）比纯 π0.5 还差。</strong> 这和 T-Rex 论文中 π0.5+tactile 的结果高度一致——进一步证实了「简单拼接触觉到已有 VLA 会帮倒忙」这个结论。正确的做法是用独立的 Expert，而不是 adapter。</p>
+  </div>
+
+  <h3>未见传感器（2 个设置）——最关键的实验</h3>
+  <table>
+    <tr><th>方法</th><th>FlexivXense (Xense 图像传感器)</th><th>TactileUMI (Contactile 阵列传感器)</th><th>平均</th></tr>
+    <tr><td>π0.5</td><td>12.5%</td><td>20%</td><td>15.0%</td></tr>
+    <tr><td>Tactile-VLA</td><td>5%</td><td>15%</td><td>8.3%</td></tr>
+    <tr><td>FTP-π0.5（无预训练）</td><td>7.5%</td><td>30%</td><td>15.0%</td></tr>
+    <tr><td><strong>FTP-1</strong></td><td><strong>42.5%</strong></td><td><strong>55%</strong></td><td><strong>46.6%</strong></td></tr>
+  </table>
+
+  <p>在从未见过的传感器上，FTP-1 比无预训练的 FTP-π0.5 高出 <strong>+31.6%</strong>。这是本文最惊人的结果——模型在预训练时从未接触过 Xense 和 Contactile 传感器，但 Tactile Expert 学到的触觉操作知识可以迁移过去。</p>
+
+  <div class="highlight">
+    <p><strong>为什么能迁移？</strong> MTTS 的统一槽位 + 功能区域嵌入让模型学到的是「拇指指尖受到向左的切向力时应该怎么调整」这种语义级的触觉知识，而不是「GelSight 图像的第 (100,50) 个像素变亮了」这种传感器特定的底层模式。前者是可迁移的，后者不是。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>结果很好，但收益到底来自哪里？下一节的消融实验回答这个问题。</span>
+</div>
+
+<!-- ====== S7 ====== -->
+<div class="section" id="s7">
+  <div class="section-num">07</div>
+  <h2>消融实验与设计决策</h2>
+  <p class="section-lead">这节回答：FTP-1 的提升是来自数据分布更接近、还是来自真正的触觉知识迁移？</p>
+
+  <h3>核心消融：NTP-1（No-Tactile Pretraining）</h3>
+
+  <p>论文设计了一个非常精准的消融来区分两个假说：</p>
+
+  <p><strong>假说 1（数据分布）：</strong>FTP-1 表现好是因为预训练数据和下游任务更接近，微调更容易。</p>
+  <p><strong>假说 2（可迁移知识）：</strong>FTP-1 的 Tactile Expert 学到了通用的触觉操作知识。</p>
+
+  <p>NTP-1 的做法：用完全相同的预训练数据和设置，但<strong>去掉触觉输入和触觉相关架构</strong>。微调时再加回触觉架构（从零开始）。如果 NTP-1 和 FTP-1 性能接近→假说 1 成立；如果 FTP-1 明显更好→假说 2 成立。</p>
+
+  <table>
+    <tr><th>方法</th><th>UniVTAC (见过的传感器)</th><th>FlexivXense (未见传感器)</th></tr>
+    <tr><td>FTP-π0.5</td><td>41.8%</td><td>—</td></tr>
+    <tr><td>NTP-1</td><td>50.0%</td><td>7.5%</td></tr>
+    <tr><td><strong>FTP-1</strong></td><td><strong>66.7%</strong></td><td><strong>42.5%</strong></td></tr>
+  </table>
+
+  <p>在见过的传感器上：NTP-1 比 FTP-π0.5 好（50% vs 41.8%），说明数据分布确实有帮助。但 FTP-1 又大幅优于 NTP-1（66.7% vs 50%），<strong>差值 +16.7% 只能归功于触觉预训练</strong>。</p>
+
+  <p>在未见传感器上：NTP-1 仅 7.5%，几乎和没有预训练一样。FTP-1 高达 42.5%，差距 +35%。<strong>这明确支持假说 2：触觉知识是可迁移的，且迁移效果在未见传感器上更加显著。</strong></p>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>这个消融实验设计得非常干净——NTP-1 和 FTP-1 唯一的区别就是预训练时是否包含触觉。通过这个控制变量，论文令人信服地证明了触觉操作知识可以跨传感器迁移，而不仅仅是数据分布的偶然匹配。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>消融证明了 FTP-1 的核心价值。下一节做 T-Rex 和 FTP-1 的系统对比，帮你建立两种触觉 VLA 思路的完整图景。</span>
+</div>
+
+<!-- ====== S8 ====== -->
+<div class="section" id="s8">
+  <div class="section-num">08</div>
+  <h2>T-Rex vs FTP-1：两种触觉 VLA 思路的深度对比</h2>
+  <p class="section-lead">这节回答：如果我要在自己的框架里加触觉，应该参考哪个？两者能结合吗？</p>
+
+  <table>
+    <tr><th>维度</th><th>T-Rex</th><th>FTP-1</th></tr>
+    <tr><td>核心目标</td><td>单一硬件上的极致触觉利用</td><td>跨硬件的通用触觉能力</td></tr>
+    <tr><td>触觉编码</td><td>VQ-VAE（力时序）+ CNN（变形图）</td><td>异构编码器（ViT/CNN/MLP，按信号类型）</td></tr>
+    <tr><td>时序建模</td><td>✅ 16帧力历史</td><td>❌ 单帧</td></tr>
+    <tr><td>空间变形</td><td>✅ 变形深度图</td><td>仅 Image 型传感器有空间信息</td></tr>
+    <tr><td>触觉统一表示</td><td>❌ 针对单一传感器</td><td>✅ MTTS 24 槽位</td></tr>
+    <tr><td>快慢分离</td><td>✅ 级联 Flow Matching（5Hz+20Hz）</td><td>❌ 标准 Flow Matching</td></tr>
+    <tr><td>Tactile Expert</td><td>轻量（0.62B），共享 Attention</td><td>独立 Transformer（300M），不共享</td></tr>
+    <tr><td>VLM 骨干</td><td>Qwen3VL-2B</td><td>PaliGemma（π0.5）</td></tr>
+    <tr><td>预训练数据</td><td>22889h 视频 + 100h 触觉</td><td>3000h 触觉（π0.5 提供视觉-语言初始化）</td></tr>
+    <tr><td>跨传感器迁移</td><td>❌</td><td>✅ +31%</td></tr>
+    <tr><td>高频触觉反应</td><td>✅ 20Hz</td><td>❌ 标准频率</td></tr>
+  </table>
+
+  <div class="highlight">
+    <p><strong>它们能结合吗？</strong> 理论上完全可以，而且非常互补。想象一个融合方案：用 MTTS 做统一的触觉接口（来自 FTP-1），在这个统一空间上用 VQ-VAE 做时序编码（来自 T-Rex），再通过级联 Flow Matching 做快慢分离（来自 T-Rex），同时在大规模异构数据上预训练 Tactile Expert（来自 FTP-1）。这将同时具备跨传感器迁移能力和高频触觉反应能力。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="card-label">FTP-1 相对 T-Rex 的不足</div>
+    <p><strong>没有时序触觉建模。</strong> FTP-1 对 State 型信号只用单帧 Fourier encoding + MLP，丢失了力的时间动态（「力在增大」vs「力在减小」）。T-Rex 的 VQ-VAE 用 16 帧历史捕捉时序模式，在力控任务上更有优势。</p>
+    <p><strong>没有快慢分离。</strong> FTP-1 的触觉反应速度受限于完整推理周期（包括 ViT 编码），无法做到 T-Rex 那样的 20Hz 触觉纠偏。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="card-label">T-Rex 相对 FTP-1 的不足</div>
+    <p><strong>完全绑定单一传感器。</strong> VQ-VAE 的码本和变形图编码器都是为 Sharpa Wave 的特定传感器训练的，换一种传感器整个管线要重训。</p>
+    <p><strong>没有统一的触觉接口。</strong> 如果要接入 GelSight 这样的图像型传感器，T-Rex 的架构需要大幅改动。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>最后一节总结对你预研工作的实际建议。</span>
+</div>
+
+<!-- ====== S9 ====== -->
+<div class="section" id="s9">
+  <div class="section-num">09</div>
+  <h2>局限与对你预研的启示</h2>
+  <p class="section-lead">读完两篇触觉 VLA 论文后，如果你要在 HYVLA 里加触觉，应该怎么想？</p>
+
+  <h3>FTP-1 的局限</h3>
+
+  <p><strong>1. 没有力伺服/力控。</strong> FTP-1 只做触觉感知（感知接触状态来辅助决策），不做力控制（主动调节施加的力）。在需要精确力控的任务（如 T-Rex 的涂牙膏、酸碱滴定）上，FTP-1 的能力可能不如 T-Rex。</p>
+
+  <p><strong>2. 预训练数据多样性仍然有限。</strong> 50k 步就饱和了，说明 3000 小时的数据量对于触觉 foundation model 来说可能还不够。</p>
+
+  <p><strong>3. 触觉预测能力缺失。</strong> 不能预测未来的触觉状态（T-Rex 也没做这个），这限制了模型做前瞻性力控调整的能力。</p>
+
+  <h3>对你预研 HYVLA + 触觉的综合建议</h3>
+
+  <div class="highlight">
+    <p><strong>建议一：先搞清你的传感器定位。</strong> 如果你用的是固定的单一传感器方案，参考 T-Rex 的深度利用路线（VQ-VAE + 快慢分离）。如果你需要支持多种传感器或预期硬件会变化，参考 FTP-1 的 MTTS 统一接口。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>建议二：触觉 Expert 应该独立。</strong> 两篇论文的消融实验一致表明：把触觉信号通过 adapter 注入已有 VLM 会劣化性能。正确的做法是用独立的 Expert（T-Rex 用共享 Attention + 独立 FFN，FTP-1 用完全独立的 Transformer），让触觉模态有自己的专用处理通道。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>建议三：考虑数据收集的可行性。</strong> T-Rex 的数据（100h）需要带触觉传感器的灵巧手遥操作系统——硬件门槛很高。FTP-1 的数据（3000h）通过聚合已有公开数据集获得——如果你没有触觉遥操作系统，FTP-1 的路线更现实。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>建议四：理想方案可能是两者的结合。</strong> 用 MTTS 做统一接口 + 跨传感器预训练（FTP-1 的广度），在部署时用级联 Flow Matching 做快慢分离 + VQ-VAE 时序编码（T-Rex 的深度）。预训练阶段追求通用性，部署阶段追求反应性。</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-label">两篇触觉 VLA 的核心要点回顾</div>
+    <p><strong>T-Rex：</strong>级联 Flow Matching 实现 5Hz+20Hz 快慢分离；VQ-VAE 编码 16 帧力历史的时序动态；100h 动词-名词组合数据集；65% 平均成功率（+30% vs 最强 baseline）。</p>
+    <p><strong>FTP-1：</strong>MTTS 24 槽位统一异构触觉信号；独立 300M Tactile Expert 学习跨传感器知识；3000h 来自 26 个数据源、21 种传感器的聚合数据；在未见传感器上 +31% 成功率迁移。</p>
+    <p><strong>共识：</strong>触觉不能简单拼接到 VLM；需要独立的 Expert 或专用通道；mid-training/pretraining 比从零训练触觉高效得多。</p>
+  </div>
+
+</div>
+
+</div>
+</body>
+</html>
