@@ -12,6 +12,10 @@ aliases: [相对末端执行器动作, Relative End-Effector Action]
 
 ![[90 Attachments/HyVLA/hyvla-relative-eef.svg]]
 
+## 直觉理解
+
+它像给不同机器人发送同一条导航指令：“夹爪从当前位置向左移动 3 cm，并旋转到这个朝向。”上层策略描述空间意图；每台机器人再用自己的 IK 决定各关节怎样弯曲。
+
 ## 为什么不用 joint action？
 
 同一个空间目标，在 6-DoF 机械臂、双臂机器人和 humanoid 上对应完全不同的关节维度与数值。joint action 把任务意图和 embodiment kinematics 绑死，难以复用人类示范。
@@ -48,6 +52,22 @@ HyVLA 对 JAKA 做 IK feasibility filter，对 humanoid 限制 reachable shell�
 ## 与 Action Chunking 的关系
 
 Relative EEF 定义每一步“表示什么”；[[Action Chunking]] 定义一次预测多少步。二者是坐标表示与时间打包两个不同轴。
+
+## 在论文生态中的位置
+
+| 论文/方法 | 动作接口维度 | 当前作用 |
+|---|---|---|
+| [[Hy-Embodied-0.5-VLA]] | relative EEF delta chunk | 减轻 UMI 与不同机器人 joint topology 的差异 |
+| Joint-space policy | joint position/velocity/torque | 更贴近底层控制，但强绑定 embodiment |
+| Absolute EEF policy | 世界或基座坐标中的目标 pose | 全局目标明确，但更依赖标定与工作空间 |
+
+## 优势、代价与失败边界
+
+**优势：** action dimension 和语义更容易跨机械臂复用；适合由人类末端轨迹提供监督。
+
+**代价：** 需要可靠坐标标定、IK 与低层控制；长 chunk 会积累状态估计和执行误差。
+
+**边界：** 它抽掉的是 joint topology，不是可达域、动力学、碰撞和 humanoid 全身协调。
 
 ## 出现于
 

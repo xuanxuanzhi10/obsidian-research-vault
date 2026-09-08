@@ -1,28 +1,60 @@
 ---
 type: concept
 topic: inference
-status: checked-seed
+status: learning-guide
+aliases: [Key-Value Cache, 键值缓存]
 ---
 
 # KV Cache
 
-一句话：缓存不变 prefix 的 attention keys/values，避免后续生成步骤重复计算。
+> [!summary] 一句话定义
+> 缓存不会变化的 attention Key/Value，使后续生成步骤不必重复计算同一前缀。
 
-## 在 Flow Matching VLA 中
+## 直觉理解
 
-如果 [[Block-wise Causal Attention]] 保证 perception/state 不依赖 noisy action，那么多次 solver iteration 中只有 action tokens 需要更新，固定条件的 K/V 可以复用。
+回答同一篇文章上的十个问题时，不必每次重新扫描并抄写全文；可以保留文章的索引，只重新处理新问题。KV Cache 保存的就是 attention 查找所需的“索引和值”。
 
-## 成立的前提
+## 为什么需要它
 
-- prefix 在各次生成迭代中不变
-- attention mask 阻止 prefix 读取会变化的 action block
-- position encoding 与缓存位置一致
+Transformer 每层都会从 hidden state 计算 K/V。如果图像、语言和状态在多次生成迭代中不变，重复计算它们只增加延迟。
 
-如果 perception token 会反向读取 noisy action，旧缓存就不再代表本轮计算。
+## 工作原理：第一次与后续迭代
+
+```text
+第一次：P/S → K_PS,V_PS ┐
+        A_0 → K_A0,V_A0 ├→ attention
+
+第二次：复用 K_PS,V_PS  ┐
+        A_1 → K_A1,V_A1 ├→ attention
+```
+
+在 Flow Matching VLA 中，`A_τ` 每个 solver step 都变化，因此 action 部分不能直接沿用旧 cache；固定条件可以复用。
+
+## 成立的三个前提
+
+1. prefix 内容在各次迭代中不变；
+2. mask 阻止 prefix 读取会变化的 action block；
+3. position encoding 与缓存位置保持一致。
+
+若 perception 能反向读取 noisy action，它自己的 hidden/K/V 也会随 `τ` 变化，旧缓存立即失效。
+
+## 与相近概念的边界
+
+- Action Chunking 减少需要重规划的频率；KV Cache 减少一次多步生成内的重复计算。
+- 缓存不是压缩：它通常以额外显存换取更低计算延迟。
+- 训练 checkpoint cache 与 attention KV cache 不是一回事。
+
+## 在论文生态中的位置
+
+- [[Hy-Embodied-0.5-VLA]]：P/S 作为稳定条件前缀，配合 [[Block-wise Causal Attention]]；已核对机制。
+- [[π₀]]、[[π₀.5]]：当前知识库记录了相似条件生成结构，具体缓存实现待原文/代码复核。
+
+## 优势、代价与失败边界
+
+**优势：** 不改变模型输出语义即可减少重复投影和前缀计算。
+
+**代价：** 占用显存，并增加缓存生命周期、位置和 batch 管理复杂度。
 
 > [!question] KV Cache 会让模型更聪明吗？
-> 不会。它只消除重复计算，主要改变 latency 与显存占用，不改变已训练权重表达的 policy。
+> 不会。它改变的是计算复用和延迟，不会增加训练权重中不存在的能力。
 
-## 出现于
-
-- [[Hy-Embodied-0.5-VLA]]

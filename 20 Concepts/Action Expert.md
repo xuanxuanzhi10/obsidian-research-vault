@@ -1,31 +1,60 @@
 ---
 type: concept
 topic: architecture
-status: checked-seed
+status: learning-guide
+aliases: [动作专家]
 ---
 
 # Action Expert
 
-一句话：在保留 VLM 语义能力的同时，给连续动作生成一条专门的计算路径。
+> [!summary] 一句话定义
+> 在保留 VLM 语义表征的同时，为连续动作生成提供专门的参数和计算路径。
 
-## 为什么需要？
+![[90 Attachments/HyVLA/hyvla-mot-flow.svg]]
 
-视觉语言 token 与机器人动作的统计结构不同：前者偏语义和离散，后者要求连续、精确并具有强时间相关性。完全共享参数会要求同一组权重同时适应两种任务。
+## 直觉理解
+
+VLM 像理解任务的“观察员”，Action Expert 像把观察转成精细控制的“运动员”。观察员知道“把 USB 插进去”是什么意思，运动员需要处理毫米级位置、姿态和时间协调。
+
+## 为什么需要它
+
+语言 token 偏符号与语义，动作 tensor 是连续、精确、强时间相关的信号。全部共享一套参数，会要求同一 FFN 同时服务两种差异很大的统计分布；完全分离又会让动作读不到视觉语言条件。
+
+## 工作原理
+
+```text
+视觉/语言 backbone ──条件信息──┐
+robot state ────────────────────┼→ Action Expert → action velocity/chunk
+noisy action + flow time τ ─────┘
+```
+
+具体模型中，它可能通过 joint attention 读取 backbone，也可能通过 cross-attention 或显式条件向量连接。名字相同不代表接口完全相同。
 
 ## 它做什么，不做什么？
 
-- 读取视觉、语言和 robot state 条件。
-- 预测动作生成过程中的向量场或动作块。
-- 不等同于独立 low-level controller；IK、servo 和 safety layer 仍可位于模型之外。
+**通常做：** 融合视觉、语言、状态条件；生成动作 token、连续动作或速度场。
 
-## 常见误读
+**通常不做：** IK、servo、碰撞保护、力矩闭环和安全限制；这些仍可位于模型外。
 
-> [!warning]
-> “独立参数路径”不等于“动作损失不会更新 VLM”。是否冻结、梯度如何传播，要看具体训练配置，而不是从 expert 这个名字推断。
+## 在论文生态中的位置
 
-## 出现于
+| 论文 | 当前知识库记录 | 核实状态 |
+|---|---|---|
+| [[Hy-Embodied-0.5-VLA]] | 370M action tower，输出 Flow Matching velocity | 已核对全文 |
+| [[π₀]] | VLM 与连续动作 expert 双路建模 | 待原文 PDF 复核细节 |
+| [[π₀.5]] | 后训练阶段使用连续动作 expert | 待原文 PDF 复核细节 |
 
-- [[π₀]]
-- [[π₀.5]]
-- [[Hy-Embodied-0.5-VLA]]
+## 与相近概念的边界
+
+- [[Mixture of Transformers]] 是更广的多模态参数分工方式；Action Expert 是动作一侧的专门路径。
+- low-level controller 把目标转成真实 actuator command；Action Expert 通常仍属于学习策略。
+
+## 优势、代价与失败边界
+
+**优势：** 动作容量可单独调整，连续控制不必完全复用语言 FFN。
+
+**代价：** 增加参数管理、mask、宽度对齐和训练稳定性问题。
+
+> [!warning] 常见误读
+> “独立参数路径”不等于“动作损失不会更新 VLM”。是否冻结、梯度如何传播，必须看论文训练配置。
 

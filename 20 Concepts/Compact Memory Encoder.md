@@ -12,6 +12,10 @@ aliases: [紧凑记忆编码器]
 
 ![[90 Attachments/HyVLA/hyvla-compact-memory.svg]]
 
+## 直觉理解
+
+人看操作视频时，不会把过去六帧逐像素背下来，而会让当前画面携带“手刚从左边移过来”“杯子已经被抬起”的历史。Compact Memory 做的不是另写一份视频摘要，而是在图像编码器内部让当前 patch 吸收对应位置的过去信息。
+
 ## 因果链
 
 机器人要判断速度、遮挡和操作阶段 → 单帧不够 → 直接拼 K 帧让 VLM token 数乘 K → 将时空注意力分解并尽早压缩 → 当前帧 token 带着历史进入 VLM。
@@ -55,7 +59,25 @@ causal temporal attention → [K,n,d]
 
 RoboTwin 中 full 为 90.9/90.1，w/o memory 为 88.8/88.6。历史有效得到支持，但“每 4 层”“共享 QKV”“固定编码”等选择没有逐项消融。
 
+## 与相近方法的边界
+
+| 方法 | 历史怎样进入模型 | 上层 token 数 |
+|---|---|---:|
+| 直接拼接 K 帧 | 所有帧 token 一起送入 VLM | `K·n` |
+| Learned-query resampler | 用额外 query cross-attention 压缩 | 由 query 数决定 |
+| HyVLA Compact Memory | 同 patch 跨时间，再做帧内空间注意力 | `n` |
+
+> [!warning] 不要照搬下载版中的错误
+> HyVLA 这里不是 learned query token resampler。论文描述的是 temporal/spatial attention，并强调无新增可学习参数。
+
+## 优势、代价与失败边界
+
+**优势：** 上层 VLM token 数不随 K 增长；K=1 与单帧预训练兼容。
+
+**代价：** 历史最终被压进当前帧 token，细粒度旧信息可能丢失；计算仍随 K 增长，只是不是最昂贵的全时空平方增长。
+
+**边界：** 只在 HyVLA 当前实验中得到验证，不能直接推出任意视频模型都有效。
+
 ## 出现于
 
 - [[Hy-Embodied-0.5-VLA]]
-
