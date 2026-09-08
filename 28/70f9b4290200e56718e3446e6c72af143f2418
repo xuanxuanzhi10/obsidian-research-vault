@@ -1,0 +1,33 @@
+"20 Concepts/Adaptive RMSNorm.md"
+  s_a3320701e75207::t_4cde1815bd15e1 50,56,87,90
+"10 Papers/VLA/触觉/FTP-1.md"
+  s_a3320701e75207::t_27c59c039071e4 14
+"90 Attachments/Tactile-VLA/adarmsnorm-conditioning.svg"
+  s_a3320701e75207::t_4cde1815bd15e1 1
+"20 Concepts/Transformer 参数量估算.md"
+  s_a3320701e75207::t_4cde1815bd15e1 37-50,60,63-70,73,87,107-108
+"30 Comparisons/触觉 VLA 方法比较.md"
+  s_a3320701e75207::t_4cde1815bd15e1 11-12
+"40 Topics/触觉机器人学习.md"
+  s_a3320701e75207::t_4cde1815bd15e1 24-25
+"00 Maps/VLA 概念索引.md"
+  s_a3320701e75207::t_4cde1815bd15e1 40,42,49
+"90 Attachments/Tactile-VLA/transformer-parameter-ledger.svg"
+  s_a3320701e75207::t_4cde1815bd15e1 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "2870f9b4290200e56718e3446e6c72af143f2418",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
