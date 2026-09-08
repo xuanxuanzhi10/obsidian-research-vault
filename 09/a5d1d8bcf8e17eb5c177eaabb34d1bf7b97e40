@@ -1,0 +1,20 @@
+"10 Papers/LLM/.gitkeep"
+  h_c2b50b6ba78233 1
+"10 Papers/VLM/.gitkeep"
+  h_c2b50b6ba78233 1
+"10 Papers/_待读/.gitkeep"
+  h_c2b50b6ba78233 1
+"10 Papers/视频生成/.gitkeep"
+  h_c2b50b6ba78233 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "09a5d1d8bcf8e17eb5c177eaabb34d1bf7b97e40",
+  "prompts": {},
+  "humans": {
+    "h_c2b50b6ba78233": {
+      "author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
