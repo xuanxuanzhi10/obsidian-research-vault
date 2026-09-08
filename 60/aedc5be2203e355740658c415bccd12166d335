@@ -1,0 +1,43 @@
+"00 Maps/VLA 学习地图.md"
+  s_a3320701e75207::t_b6acaf5dd891b4 19,27,42-43,54
+"20 Concepts/触觉信号表示.md"
+  s_a3320701e75207::t_b6acaf5dd891b4 1-70
+"90 Attachments/T-Rex/trex-teaching-slow-fast.svg"
+  s_a3320701e75207::t_b6acaf5dd891b4 1-10
+"00 Maps/VLA 概念索引.md"
+  s_a3320701e75207::t_b6acaf5dd891b4 55-60
+"10 Papers/VLA/触觉/T-Rex.md"
+  s_a3320701e75207::t_374472b3bb3868 1-306
+"40 Topics/部署与推理优化.md"
+  s_a3320701e75207::t_374472b3bb3868 20,25-27
+"90 Attachments/T-Rex/trex-teaching-research-map.svg"
+  s_a3320701e75207::t_b6acaf5dd891b4 1-8
+"20 Concepts/异步触觉动作细化.md"
+  s_a3320701e75207::t_b6acaf5dd891b4 1-58
+"40 Topics/触觉机器人学习.md"
+  s_a3320701e75207::t_b6acaf5dd891b4 1-137
+"40 Topics/模型架构设计.md"
+  s_a3320701e75207::t_374472b3bb3868 27-32,39
+"90 Attachments/T-Rex/trex-teaching-tactile-token.svg"
+  s_a3320701e75207::t_b6acaf5dd891b4 1-16
+"90 Attachments/T-Rex/trex-qa-guide.html"
+  s_a3320701e75207::t_cb24d7f2279741 1-824
+"90 Attachments/T-Rex/trex-study-guide.html"
+  s_a3320701e75207::t_77b0ded0400892 1-1085
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "60aedc5be2203e355740658c415bccd12166d335",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
