@@ -1,0 +1,47 @@
+"20 Concepts/Block-wise Causal Attention.md"
+  s_a3320701e75207::t_ae46b67e483408 15-18,60-75
+"20 Concepts/FlowPRO.md"
+  s_a3320701e75207::t_ae46b67e483408 15-18,61-76
+  s_a3320701e75207::t_79fcb299a829ce 77
+"20 Concepts/Relative EEF Action.md"
+  s_a3320701e75207::t_ae46b67e483408 15-18,56-70
+  s_a3320701e75207::t_aae7463b0dbec6 71
+"20 Concepts/Compact Memory Encoder.md"
+  s_a3320701e75207::t_ae46b67e483408 15-18,62-80
+"20 Concepts/UMI.md"
+  s_a3320701e75207::t_ae46b67e483408 15-18,60-74
+  s_a3320701e75207::t_8ecc0c2d73bdd5 75
+"20 Concepts/Mixture of Transformers.md"
+  s_a3320701e75207::t_ae46b67e483408 15-18,51-66
+"20 Concepts/Action Chunking.md"
+  s_a3320701e75207::t_5ab2aed3e7f46c 4-5,10-11,13,15,17-31,35-38,40,42-48,50-63
+"20 Concepts/Action Expert.md"
+  s_a3320701e75207::t_5ab2aed3e7f46c 4-5,10-11,13,15-31,35-50,52,54,56,58-59
+"20 Concepts/Adaptive RMSNorm.md"
+  s_a3320701e75207::t_5ab2aed3e7f46c 4-5,10-11,13,15,17,19,21,23-68
+"20 Concepts/LoRA.md"
+  s_a3320701e75207::t_5ab2aed3e7f46c 4-5,10-11,13,15-27,30-31,34-43,47-55,57,59,61
+"20 Concepts/Flow Matching.md"
+  s_a3320701e75207::t_ae46b67e483408 15-18,72-86
+  s_a3320701e75207::t_59132f1e944b70 87
+"20 Concepts/FAST Tokenizer.md"
+  s_a3320701e75207::t_5ab2aed3e7f46c 4-5,11-16,20,22,25-28,32-35,39-55,57
+"20 Concepts/KV Cache.md"
+  s_a3320701e75207::t_5ab2aed3e7f46c 4-5,10-11,13,15,17,19,21,23-41,43-59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "5ae4aef92ce76ff178162b497003b747c1a7fc8b",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
