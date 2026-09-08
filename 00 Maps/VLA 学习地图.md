@@ -16,6 +16,7 @@ created: 2026-09-07
 5. 怎样把 policy 适配到不同 embodiment？
 6. SFT 后的长尾失败怎样继续修正？
 7. 慢模型怎样驱动高频真实机器人？
+8. 视觉看不见接触内部状态时，触觉怎样进入表示、动作与闭环？
 
 ## 已读论文
 
@@ -23,6 +24,7 @@ created: 2026-09-07
 - [[π₀]] — VLM + continuous Action Expert
 - [[π₀.5]] — 异构 co-training 与 open-world generalization
 - [[OpenVLA]] — 开放的 autoregressive VLA 基线
+- [[T-Rex]] — 慢速视觉规划 + 高频触觉细化的灵巧操作 VLA
 
 ## 核心概念
 
@@ -37,6 +39,8 @@ created: 2026-09-07
 - [[Compact Memory Encoder]]
 - [[FlowPRO]]
 - [[UMI]]
+- [[触觉信号表示]]
+- [[异步触觉动作细化]]
 
 ## 横向入口
 
@@ -47,3 +51,4 @@ created: 2026-09-07
 - [[模型架构设计]]
 - [[部署与推理优化]]
 - [[待核实事实]]
+- [[触觉机器人学习]]

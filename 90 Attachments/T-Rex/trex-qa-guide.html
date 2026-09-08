@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-Rex 深度答疑 - VLA 学习系列第5篇补充</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦖</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #faf9f7;
+  --bg-card: #ffffff;
+  --bg-code: #f3f0ec;
+  --bg-highlight: #f5f0fa;
+  --bg-chain: #f0ecf5;
+  --text: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #7a7a7a;
+  --accent: #7b4ba0;
+  --accent-light: #a67cc8;
+  --accent-dark: #5a3478;
+  --border: #e0dbd5;
+  --border-light: #ece8e3;
+  --chain-line: #c4b3d6;
+  --tag-bg: #ede4f5;
+  --tag-text: #6a3d8f;
+  --warning-bg: #fef3e2;
+  --warning-border: #e8b94a;
+  --warning-text: #7a5d1a;
+  --strength-bg: #e6f4ea;
+  --strength-border: #4a9a5a;
+  --strength-text: #2a6a3a;
+  --weakness-bg: #fde8e8;
+  --weakness-border: #c44a4a;
+  --weakness-text: #8a2a2a;
+  --serif: 'Noto Serif SC', 'Songti SC', serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'Menlo', monospace;
+  --q-bg: #f0e8f6;
+  --q-border: #b48ad6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161418; --bg-card: #1e1b22; --bg-code: #252229;
+    --bg-highlight: #271f30; --bg-chain: #221d28;
+    --text: #e8e4ec; --text-secondary: #b8b0c0; --text-tertiary: #887e94;
+    --accent: #b48ad6; --accent-light: #c9a5e4; --accent-dark: #8a5cb8;
+    --border: #332e3a; --border-light: #2a2630; --chain-line: #5a4870;
+    --tag-bg: #2e2438; --tag-text: #c9a5e4;
+    --warning-bg: #2e2818; --warning-border: #a08030; --warning-text: #d4b868;
+    --strength-bg: #1a2e1e; --strength-border: #3a8a4a; --strength-text: #6ac07a;
+    --weakness-bg: #2e1a1a; --weakness-border: #b44a4a; --weakness-text: #e08080;
+    --q-bg: #2a2232; --q-border: #8a5cb8;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161418; --bg-card: #1e1b22; --bg-code: #252229;
+  --bg-highlight: #271f30; --bg-chain: #221d28;
+  --text: #e8e4ec; --text-secondary: #b8b0c0; --text-tertiary: #887e94;
+  --accent: #b48ad6; --accent-light: #c9a5e4; --accent-dark: #8a5cb8;
+  --border: #332e3a; --border-light: #2a2630; --chain-line: #5a4870;
+  --tag-bg: #2e2438; --tag-text: #c9a5e4;
+  --warning-bg: #2e2818; --warning-border: #a08030; --warning-text: #d4b868;
+  --strength-bg: #1a2e1e; --strength-border: #3a8a4a; --strength-text: #6ac07a;
+  --weakness-bg: #2e1a1a; --weakness-border: #b44a4a; --weakness-text: #e08080;
+  --q-bg: #2a2232; --q-border: #8a5cb8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.78; font-size: 15.5px; -webkit-font-smoothing: antialiased; }
+.container { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
+.header { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 2px solid var(--accent); }
+.header-tag { font-family: var(--mono); font-size: 12px; color: var(--tag-text); background: var(--tag-bg); display: inline-block; padding: 3px 10px; border-radius: 4px; margin-bottom: 16px; }
+.header h1 { font-family: var(--serif); font-size: 26px; font-weight: 700; line-height: 1.35; margin-bottom: 14px; }
+.subtitle { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+.series-badge { margin-top: 16px; font-size: 13px; color: var(--text-tertiary); display: flex; align-items: center; gap: 8px; }
+.series-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+.nav { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; }
+.nav-title { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+.nav ol { list-style: none; counter-reset: nc; }
+.nav ol li { counter-increment: nc; margin-bottom: 6px; }
+.nav ol li a { color: var(--text-secondary); text-decoration: none; font-size: 14px; display: flex; align-items: baseline; gap: 10px; transition: color .15s; }
+.nav ol li a:hover { color: var(--accent); }
+.nav ol li a::before { content: "Q" counter(nc); font-family: var(--mono); font-size: 12px; color: var(--accent-light); min-width: 24px; }
+.section { margin-bottom: 52px; }
+.section-num { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+.section h2 { font-family: var(--serif); font-size: 21px; font-weight: 700; margin-bottom: 8px; }
+.section h3 { font-family: var(--serif); font-size: 17px; font-weight: 700; margin: 24px 0 10px; }
+.section-lead { font-style: italic; color: var(--text-secondary); margin-bottom: 18px; font-size: 14.5px; }
+.section p { margin-bottom: 14px; }
+.q-box { background: var(--q-bg); border-left: 4px solid var(--q-border); padding: 14px 20px; border-radius: 0 6px 6px 0; margin: 0 0 22px; }
+.q-box p { margin: 0; font-weight: 600; color: var(--accent); }
+.recap { border: 2px dashed var(--chain-line); border-radius: 8px; padding: 16px 20px; margin: 24px 0; background: var(--bg-chain); }
+.recap-label { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-bottom: 8px; letter-spacing: 1px; }
+.recap p { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+.recap p:last-child { margin-bottom: 0; }
+.chain { display: flex; align-items: center; gap: 12px; padding: 14px 20px; margin: 32px 0; background: var(--bg-chain); border-left: 3px solid var(--chain-line); border-radius: 0 6px 6px 0; font-size: 13.5px; color: var(--text-secondary); }
+.chain-arrow { color: var(--accent); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+pre { background: var(--bg-code); border: 1px solid var(--border-light); border-radius: 6px; padding: 16px 20px; overflow-x: auto; margin: 16px 0; }
+pre code { font-family: var(--mono); font-size: 13px; line-height: 1.65; color: var(--text); }
+code { font-family: var(--mono); font-size: .9em; background: var(--bg-code); padding: 2px 5px; border-radius: 3px; }
+.highlight { border-left: 4px solid var(--accent); background: var(--bg-highlight); padding: 16px 20px; border-radius: 0 6px 6px 0; margin: 20px 0; }
+.highlight p { margin-bottom: 8px; }
+.highlight p:last-child { margin-bottom: 0; }
+.strength, .weakness, .note { padding: 14px 20px; border-radius: 0 6px 6px 0; margin: 18px 0; }
+.strength { background: var(--strength-bg); border-left: 4px solid var(--strength-border); }
+.strength .card-label { color: var(--strength-text); }
+.strength p { color: var(--strength-text); }
+.weakness { background: var(--weakness-bg); border-left: 4px solid var(--weakness-border); }
+.weakness .card-label { color: var(--weakness-text); }
+.weakness p { color: var(--weakness-text); }
+.note { background: var(--warning-bg); border-left: 4px solid var(--warning-border); }
+.note .card-label { color: var(--warning-text); }
+.note p { color: var(--warning-text); }
+.card-label { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; }
+table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13.5px; }
+th, td { padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+th { background: var(--bg-code); font-weight: 600; font-size: 13px; }
+td { color: var(--text-secondary); }
+.fig { text-align: center; margin: 24px 0; }
+.fig svg { max-width: 100%; }
+.fig-cap { font-size: 13px; color: var(--text-tertiary); margin-top: 8px; font-style: italic; }
+@media (max-width: 600px) {
+  body { font-size: 14.5px; }
+  .header h1 { font-size: 22px; }
+  .section h2 { font-size: 18px; }
+  .container { padding: 24px 16px 60px; }
+  pre { padding: 12px 14px; }
+  pre code { font-size: 12px; }
+  table { font-size: 12px; }
+  th, td { padding: 7px 8px; }
+}
+.theme-toggle { position: fixed; top: 16px; right: 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 14px; z-index: 100; }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题">🌓</button>
+<div class="container">
+
+<div class="header">
+  <div class="header-tag">Deep Q&A Companion</div>
+  <h1>T-Rex 深度答疑：从力传感器到异步推理的 8 个「为什么」</h1>
+  <div class="subtitle">针对第 5 篇学习指南中的 8 个核心困惑，用物理直觉、工程细节和可视化伪代码逐一拆解。每个问题独立成章，但通过回顾框相互串联。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第5篇补充答疑</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">8 个问题</div>
+  <ol>
+    <li><a href="#q1">力/力矩为什么是 6 维？变形图是什么？</a></li>
+    <li><a href="#q2">动作维度 62 的分解</a></li>
+    <li><a href="#q3">KV Cache 到底怎么回事？为什么分两次？</a></li>
+    <li><a href="#q4">Action Expert 为什么是 Qwen3VL-2B？和 VLM 什么关系？</a></li>
+    <li><a href="#q5">一个 chunk 内多次触觉更新怎么做到的？真的能快吗？</a></li>
+    <li><a href="#q6">延迟增强 δ ∈ {0,4,8,12} 是干嘛的？</a></li>
+    <li><a href="#q7">VQ-VAE 是什么？详细讲</a></li>
+    <li><a href="#q8">全局串联：所有组件如何协作</a></li>
+  </ol>
+</nav>
+
+<!-- ====== Q1 ====== -->
+<div class="section" id="q1">
+  <div class="section-num">Q1</div>
+  <h2>力/力矩为什么是 6 维？变形图是什么？</h2>
+  <div class="q-box"><p>「为什么每根手指有 6 维力/力矩？手指变形图是什么？力为什么是三维的？力矩是什么？」</p></div>
+
+  <p>这个问题的核心其实是物理学，跟 AI 暂时没关系。我们先把传感器搞清楚。</p>
+
+  <h3>力（Force）：3 维</h3>
+
+  <p>你生活在三维空间里。当你的手指按压一个物体时，物体给手指的反作用力可以在三个方向上分解：</p>
+
+<pre><code># 手指指尖的局部坐标系
+# 想象你伸出食指，指尖朝前
+#
+#        ↑ z（法向：垂直于指尖皮肤，按压方向）
+#        |
+#        |
+#   ←----+---→ x（横向：左右方向）
+#       /
+#      / y（纵向：指尖前后方向）
+#
+# 三个力分量：
+# Fx: 横向力（比如物体在手指上左右滑动）
+# Fy: 纵向力（比如物体沿手指长度方向滑移）
+# Fz: 法向力（按压力度——你捏得多紧）</code></pre>
+
+  <p>所以力是 3 维的 [Fx, Fy, Fz]，因为空间本身就是 3 维的。每个维度对应一个空间方向上的推/拉。</p>
+
+  <h3>力矩（Torque）：也是 3 维</h3>
+
+  <p>力矩是力绕某个轴旋转的趋势。你拧瓶盖时，手指施加的不只是推力，还有一个「拧」的力——这就是力矩。</p>
+
+<pre><code># 同样的坐标系下，三个力矩分量：
+#
+# Tx: 绕 x 轴的力矩（手指尖端上下翘动的趋势）
+# Ty: 绕 y 轴的力矩（手指尖端左右扭动的趋势）
+# Tz: 绕 z 轴的力矩（拧螺丝的那种旋转力）
+#
+# 物理学里，力矩 = 力 × 力臂（叉积）
+# 三维空间 → 叉积结果也是三维 → 所以力矩也是 3 维</code></pre>
+
+  <p>在机器人领域，一个传感器能测到 [Fx, Fy, Fz, Tx, Ty, Tz] 共 6 维，叫做<strong>六轴力/力矩传感器（6-axis Force/Torque sensor）</strong>，也叫六轴力臂（6-axis wrench）。这是触觉传感器的标准配置。</p>
+
+  <div class="highlight">
+    <p><strong>为什么需要力矩而不只是力？</strong> 想象你在拧灯泡——你的指尖施加的力的方向几乎不变（都是按住灯泡），但力矩在持续变化（你在旋转它）。如果只有力的 3 个分量，模型无法区分「按住不动」和「按住并旋转」。力矩提供了旋转交互的关键信息。</p>
+  </div>
+
+  <h3>变形深度图（Deformation Map）</h3>
+
+  <p>这个传感器和力传感器完全不同。每根手指的指尖有一层柔软的「皮肤」（通常是硅胶或弹性体）。当手指按压物体时，这层皮肤会变形——中间凹陷深、边缘浅。</p>
+
+<pre><code># 变形深度图是一张单通道灰度图
+# 像素值 = 该位置的皮肤凹陷深度
+#
+# 例：手指按在一个圆柱形物体（铅笔）上
+#
+#   [ 0  0  0  0  0  0 ]    ← 没碰到的区域，深度=0
+#   [ 0  0  2  2  0  0 ]    ← 边缘，轻微变形
+#   [ 0  2  5  5  2  0 ]    ← 接触区域，深度较大
+#   [ 0  2  5  5  2  0 ]    ← 接触区域
+#   [ 0  0  2  2  0  0 ]    ← 边缘
+#   [ 0  0  0  0  0  0 ]    ← 没碰到
+#
+# 你可以从这张图里读出：
+# 1. 接触区域的形状（这里是长条形 → 圆柱体）
+# 2. 接触的力度分布（中间深=力大，边缘浅=力小）
+# 3. 滑移方向（如果物体在滑动，变形图会整体偏移）
+# 4. 边缘检测（变形图的梯度方向暴露了物体边缘位置）</code></pre>
+
+  <p><strong>变形图能提供什么 6 维力不能提供的？</strong></p>
+
+  <p>6 维力是全局的汇总信息——它告诉你「这根手指整体受了多大的力」，但不告诉你「力分布在指尖的哪个位置」。变形图是空间分辨率高的局部信息——它告诉你「哪个像素在受力、受多少」。</p>
+
+  <p>举个例子：分杯子任务中，手指摸到两个杯子叠在一起的接缝处，6 维力只能说「有东西在抵着」，变形图能显示出接缝的线条形状和位置，帮助模型判断应该在哪个方向用力才能把杯子分开。</p>
+
+  <div class="note">
+    <div class="card-label">两者的关系</div>
+    <p>6 维力是变形图的「低维摘要」：理论上对变形图做面积积分就能得到总力和总力矩。但反过来不行——从 6 维力无法还原空间分布。所以论文同时使用两者，这也被消融实验验证了：只用力（-6%）、只用变形（-11%），两者都用最好。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q1 搞清了传感器输入的物理含义。Q2 接着看模型输出端——为什么动作是 62 维？</span>
+</div>
+
+<!-- ====== Q2 ====== -->
+<div class="section" id="q2">
+  <div class="section-num">Q2</div>
+  <h2>动作维度 62 的分解</h2>
+  <div class="q-box"><p>「动作维度 62 = 双臂 14 + 双手 44 + 4，为什么是这些数据？」</p></div>
+
+  <p>这个问题的本质是：机器人的身体有多少个「可动零件」？每个零件需要一个控制量。</p>
+
+  <h3>先看硬件</h3>
+
+  <p>T-Rex 的机器人是 Dexmate Vega-1，一个双臂移动机器人。在论文的实验中，底座（轮子）、躯干、头部都固定不动，只控制两条手臂和两只手。</p>
+
+<pre><code># ===== 机器人可动部件清单 =====
+
+# 【手臂】每条 7 个关节（7-DoF，工业标准配置）
+# 肩部: 3 个旋转关节（肩抬起/放下、前后摆、内外旋）
+# 肘部: 1 个旋转关节（弯曲/伸直）
+# 腕部: 3 个旋转关节（上下翻、左右翻、旋转）
+# 两条手臂 → 7 × 2 = 14 维
+
+# 【灵巧手】Sharpa Wave，每只手 22 个关节（22-DoF）
+# 每根手指约 4 个关节（弯曲/伸展/侧摆/旋转）
+# 5 根手指 × ~4 关节 + 拇指额外自由度 = 22 关节
+# 两只手 → 22 × 2 = 44 维
+
+# 【手腕 delta】4 维
+# 这是相对末端执行器的位姿变化（delta control）
+# 不是绝对位置，而是「相对于当前位置移动多少」
+# 双腕各 2 维？或双腕共 4 维 SE(3) 的压缩表示？
+
+# 总计: 14 + 44 + 4 = 62 维</code></pre>
+
+  <div class="note">
+    <div class="card-label">为什么不同部位用不同控制方式？</div>
+    <p>论文说手臂用 <strong>relative end-effector delta control</strong>（末端执行器相对增量控制），手指用 <strong>absolute joint control</strong>（绝对关节角度控制）。原因是：手臂控制的目标是「把手移到哪里」（笛卡尔空间的位移和旋转），用末端增量更直觉；手指控制的目标是「每根手指弯曲多少度」（关节空间），用绝对角度更稳定。这是机器人控制领域的常见做法。</p>
+  </div>
+
+  <h3>为什么 7-DoF 手臂？</h3>
+
+  <p>3D 空间中描述一个刚体的位姿需要 6 个自由度（3 平移 + 3 旋转）。如果手臂只有 6 个关节，它刚好能到达目标位姿，但路径是唯一的——没有冗余，遇到障碍物就绕不过去。第 7 个关节提供了「冗余自由度」，让手臂在到达同一个目标时可以选择不同的姿态（类似你的手可以从上面或下面绕过杯子去抓东西），这在灵巧操作中非常重要。</p>
+
+  <h3>为什么 22-DoF 手？</h3>
+
+  <p>人手有大约 20-27 个自由度（取决于怎么计算耦合关节）。22-DoF 的 Sharpa Wave 灵巧手是目前商用灵巧手中自由度较高的之一，足以完成大部分灵巧操作。作为对比：Allegro Hand 是 16-DoF（4 根手指各 4 关节），Shadow Hand 是 24-DoF。</p>
+
+  <div class="highlight">
+    <p><strong>直觉理解：</strong>62 维动作 = 你告诉机器人的每一帧指令包含 62 个数字，描述「两条手臂移到哪里、十根手指各弯曲到什么角度」。一个 action chunk 有 16 帧 → 模型一次性输出 [16, 62] 的矩阵，规划未来 16 步每一步的全身姿态。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q2 搞清了输出端。Q3 是最核心的架构问题——KV Cache 和两段式去噪到底是怎么连在一起的。</span>
+</div>
+
+<!-- ====== Q3 ====== -->
+<div class="section" id="q3">
+  <div class="section-num">Q3</div>
+  <h2>KV Cache 到底怎么回事？为什么分两次？</h2>
+  <div class="q-box"><p>「我还是没有看懂这个设计，为什么 Action Expert 积分 10 步得到 KV Cache？这和 VLM 给的 KV Cache 有什么不同？为什么要分两个 Expert？」</p></div>
+
+  <p>这是 T-Rex 最容易混淆的部分。让我一步步从最基础的概念讲起。</p>
+
+  <h3>先搞清楚：KV Cache 到底是什么？</h3>
+
+  <div class="recap">
+    <div class="recap-label">基础概念回顾</div>
+    <p>Transformer 的 Self-Attention 中，每个 token 会被投影成 Query (Q)、Key (K)、Value (V) 三个向量。Attention 计算的本质是：用 Q 去查 K，得到权重，加权求和 V。KV Cache 就是<strong>把已经算过的所有 token 的 K 和 V 缓存起来</strong>，下次新来一个 token 时，它只需要算自己的 Q、K、V，然后用自己的 Q 去查所有缓存的 K——不需要重新计算之前 token 的 K 和 V。</p>
+  </div>
+
+  <h3>T-Rex 里有哪些 KV？</h3>
+
+  <p>理解的关键是：T-Rex 的三个 Expert 共享同一个 Attention 层。也就是说，视觉 token、语言 token、动作 token、触觉 token 都在同一个 Attention 里互相看到对方。每种 token 都会产生自己的 K 和 V。</p>
+
+<pre><code># ===== Attention 中的所有 token 及其 K-V =====
+
+# 慢流（Action Expert 运行时）的 token 序列：
+tokens_slow = [
+    vis_token_1, vis_token_2, ..., vis_token_N,   # ViT 编码的视觉 token
+    lang_token_1, lang_token_2, ...,               # 文本编码的语言 token
+    future_latent_1, future_latent_2, ...,         # Latent Expert 的预测 token
+    action_token_1, action_token_2, ...,           # 16 个动作 token（带噪声）
+]
+
+# 每个 token 都会生成自己的 K 和 V
+# KV_cache_slow = 所有这些 token 的 K 和 V
+
+# 当 Action Expert 跑完 6 步 Euler 后：
+# 1. 视觉/语言/latent token 的 KV 不变（它们不依赖 τ）
+# 2. 动作 token 的 KV 已经更新到 τ=0.4 的状态
+
+# → 冻结这整个 KV Cache，传给 Tactile Expert</code></pre>
+
+  <h3>Tactile Expert 怎么用这个 Cache？</h3>
+
+<pre><code># ===== 快流（Tactile Expert 运行时） =====
+
+# Tactile Expert 的输入 token：
+tokens_fast = [
+    tactile_token_1, ..., tactile_token_M,  # 新鲜的触觉 token
+    action_token_1, ..., action_token_16,   # 从 τ=0.4 继续去噪的动作 token
+]
+
+# Attention 计算时：
+# Q: 来自 tokens_fast（触觉 + 动作）
+# K, V: 来自 KV_cache_slow（视觉+语言+latent+动作@τ=0.4）
+#      + tokens_fast 自己的 K, V
+
+# 关键：Tactile Expert 不需要重新跑 ViT！
+# 它通过 Attention 查询 KV_cache 里的视觉/语言信息
+# 就像你提了一个问题（Q），然后去一个已经准备好的资料库（K,V）里查答案</code></pre>
+
+  <div class="highlight">
+    <p><strong>你问的「这和 VLM 给的 KV Cache 有什么不同」？</strong></p>
+    <p>答案是：<strong>它就是 VLM 的 KV Cache，加上 Action Expert 去噪过程中产生的 KV。</strong> 整个 KV Cache 包含两部分：① 视觉/语言/latent token 的 KV（来自 VLM 的视觉编码和语言编码）；② 动作 token 在 τ=0.4 状态下的 KV（来自 Action Expert 的 6 步去噪过程）。论文把这两部分拼在一起叫 KV<sub>τsplit</sub> = [KV<sup>lat</sup> ∥ KV<sup>act</sup><sub>τsplit</sub>]。</p>
+  </div>
+
+  <h3>为什么要分两个 Expert？</h3>
+
+  <p>这个问题的答案归结为一个字：<strong>快</strong>。</p>
+
+  <p>让我们算一笔账：</p>
+
+<pre><code># ===== 如果用单一 Expert（不分快慢）=====
+
+# 每次出动作都需要：
+# 1. ViT 编码 3 张 RGB 图 (640×360)    → 非常慢，约 100ms
+# 2. Text Encoder 编码语言              → 约 5ms
+# 3. Latent Expert forward              → 约 20ms
+# 4. Action Expert 10 步 Euler 积分      → 约 60ms
+# 总计：~185ms → 频率约 5Hz
+
+# ===== T-Rex 的快慢分离 =====
+
+# 慢流（每个 chunk 跑一次）：
+# 1. ViT 编码        → 100ms
+# 2. Text Encoder    → 5ms
+# 3. Latent Expert   → 20ms
+# 4. Action Expert 6步 → 36ms
+# 总计：~161ms，但只跑一次
+
+# 快流（chunk 内跑 4 次）：
+# 1. 触觉编码        → 约 2ms
+# 2. Tactile Expert 4步 Euler → 约 12ms（FFN 缩窄，参数少）
+# 3. 查 KV Cache（不跑 ViT）→ 约 3ms
+# 总计：~17ms → 频率约 60Hz（远超 20Hz 的需求）
+
+# 快流不需要重新跑 ViT，这是节省的核心！</code></pre>
+
+  <p>所以分两个 Expert 的目的不是为了精度（一个 Expert 也能做到），而是为了<strong>让触觉能以 20Hz 的频率影响动作</strong>。如果不分，每次触觉更新都要等 ViT 重新编码图像（~100ms），触觉反应频率就被拖到 5Hz——手指碰到东西 200ms 后才能调整力度，对于滑移检测、力控这些场景来说太慢了。</p>
+
+  <div class="note">
+    <div class="card-label">类比理解</div>
+    <p>想象你在黑暗中走路：每 3 秒用手电筒照一下前方（慢流=视觉），看清大致方向后，中间靠脚底的触觉（快流=触觉）来调整每一步的落脚位置——你不需要每一步都打手电筒，但你需要每一步都感觉地面。T-Rex 的慢流是「打手电筒」（跑 ViT），快流是「感觉地面」（跑触觉编码）。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q3 解决了架构的核心疑惑。Q4 接着追问：Action Expert 为什么要用那么大的模型？</span>
+</div>
+
+<!-- ====== Q4 ====== -->
+<div class="section" id="q4">
+  <div class="section-num">Q4</div>
+  <h2>Action Expert 为什么是 Qwen3VL-2B？和 VLM 是同一个吗？</h2>
+  <div class="q-box"><p>「Action Expert 是 Qwen3VL-2B 吗？为什么不是更轻的？和 VLM 是同一个吗？」</p></div>
+
+  <h3>MoT 架构下「Expert」的含义</h3>
+
+  <p>先纠正一个容易产生的误解：在 MoT 架构下，<strong>Expert 不是一个独立的完整模型</strong>。它更像是同一个 Transformer 的「不同人格」。</p>
+
+<pre><code># ===== MoT 的内部结构 =====
+#
+# 一个标准的 Transformer Layer 包含：
+# 1. Self-Attention（生成 Q, K, V → 计算注意力）
+# 2. FFN（Feed-Forward Network，两层 MLP）
+#
+# 在 MoT 中：
+# - Self-Attention 是 **共享的**（所有 Expert 用同一个）
+# - FFN 是 **各自独立的**（每个 Expert 有自己的 FFN）
+#
+# 所以：
+# Latent Expert = 共享 Attention + Latent FFN
+# Action Expert = 共享 Attention + Action FFN
+# Tactile Expert = 共享 Attention + Tactile FFN（缩窄版）
+#
+# 它们不是三个独立网络，而是一个网络的三个「模式」</code></pre>
+
+  <h3>回答「和 VLM 是同一个吗」</h3>
+
+  <p><strong>是的</strong>，但只有骨干（backbone）是共享的。具体来说：</p>
+
+  <p>Qwen3VL-2B 提供了 Transformer 的基础结构（28 层，隐藏维度 2048）。Latent Expert 和 Action Expert 各自用这个结构，但 FFN 层的权重不同。你可以理解为：</p>
+
+  <p>Qwen3VL-2B 就像一个「大脑壳」，里面装了三套不同的「思维回路」（FFN），它们共享同一个「感知通道」（Attention）。所以 Table 4 中写 Latent Expert 和 Action Expert 都是 1.41B 参数——这不是说有两个 1.41B 的模型，而是说每个 Expert 的 Attention+FFN 加起来是 1.41B（其中 Attention 参数是重叠计数的）。</p>
+
+  <h3>为什么 Action Expert 不用更轻的模型？</h3>
+
+  <p>因为 Action Expert 的任务不是「简单地去噪」——它需要<strong>理解视觉场景和语言指令来规划动作</strong>。「涂牙膏」和「翻书页」需要完全不同的动作序列，Action Expert 必须从图像和文字中理解当前任务才能去噪出正确方向的动作。这需要强大的语义理解能力，所以必须用 VLM 级别的模型。</p>
+
+  <p>相比之下，Tactile Expert 的任务是「在已知大方向的前提下，根据手感做微调」——它不需要重新理解任务语义，所以可以用更小的 FFN（中间维度 1536 vs 标准宽度）。</p>
+
+  <div class="highlight">
+    <p><strong>总结：</strong>Action Expert 用 Qwen3VL-2B 的原因 = 它需要视觉语义理解能力来做动作规划。但它只在慢流跑一次（每个 chunk），所以大模型的计算成本可以被摊销掉。而 Tactile Expert 因为要跑 4 次/chunk，所以被刻意设计得更轻。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q4 解释了为什么大模型用在慢流。Q5 深入到 chunk 内部——触觉更新到底怎么运作？</span>
+</div>
+
+<!-- ====== Q5 ====== -->
+<div class="section" id="q5">
+  <div class="section-num">Q5</div>
+  <h2>一个 chunk 内多次触觉更新怎么做到的？真的能快吗？</h2>
+  <div class="q-box"><p>「竟然是在一个 action chunk 里分成多段高频更新吗？为什么这样设计？这样真的能快吗？」</p></div>
+
+  <h3>先理解 action chunk 的执行过程</h3>
+
+  <div class="recap">
+    <div class="recap-label">回顾：Action Chunking</div>
+    <p>你在 π0 中学过 Action Chunking：模型不是一帧一帧地输出动作，而是一次输出未来 H 帧的动作序列（chunk）。π0 的 chunk 大小是 50 步，T-Rex 是 16 步。关键点是：chunk 生成后，机器人按照这个计划依次执行每一步。</p>
+  </div>
+
+  <p>现在问题来了：如果你一次性规划了 16 步动作，但在执行第 5 步时手指突然检测到物体开始滑落——你不能等到 16 步执行完再重新规划，你需要立即修改后面的动作。</p>
+
+  <h3>T-Rex 的解决方案：chunk 内分段刷新</h3>
+
+<pre><code># ===== 一个 action chunk 的执行时间线 =====
+# chunk = 16 步，每步约 50ms（20Hz 快流执行频率）
+
+# 时间轴：
+# 步骤:  1  2  3  4 | 5  6  7  8 | 9  10 11 12 | 13 14 15 16
+#        ─────────   ─────────   ──────────   ──────────
+#        子chunk 0   子chunk 1   子chunk 2    子chunk 3
+
+# ===== 慢流 =====
+# 在 chunk 开始前，Action Expert 跑一次：
+# 输入：当前视觉+语言 → 输出：半成品动作 [16, 62] at τ=0.4
+# 冻结 KV Cache
+# 耗时 ~160ms，但这是异步的，不阻塞执行
+
+# ===== 快流 =====
+# 在每个子 chunk 开始时，Tactile Expert 用最新触觉刷新：
+
+# t=0（执行步骤1前）：
+#   读取最新触觉 → 精炼子chunk 0 (步骤1-4) → 执行
+#   耗时 ~17ms
+
+# t=4（执行步骤5前）：
+#   读取最新触觉 → 精炼子chunk 1 (步骤5-8) → 执行
+#   ⚡ 此时触觉已经反映了步骤1-4的执行结果！
+
+# t=8（执行步骤9前）：
+#   读取最新触觉 → 精炼子chunk 2 (步骤9-12) → 执行
+
+# t=12（执行步骤13前）：
+#   读取最新触觉 → 精炼子chunk 3 (步骤13-16) → 执行</code></pre>
+
+  <h3>为什么这样设计？</h3>
+
+  <p><strong>核心矛盾：</strong>大模型（Action Expert）慢但聪明，小模型（Tactile Expert）快但只能微调。解决方案：让大模型给出方向，小模型在执行过程中根据触觉反馈做实时纠偏。</p>
+
+  <p><strong>为什么不每步都跑 Tactile Expert？</strong> 因为即使 Tactile Expert 够快（~17ms），每步都跑也没有必要——触觉信号的有意义变化在 4 步（~200ms）的尺度上发生。更频繁的更新只会引入传感器噪声。4 步一更新是精度和效率的平衡点。</p>
+
+  <h3>真的快吗？数字说话</h3>
+
+<pre><code># 硬件：NVIDIA H100 GPU
+
+# 不分快慢（假设的 baseline）：
+# 每次出动作 = ViT(100ms) + 10步Euler(60ms) = 160ms
+# 触觉反应延迟 = 160ms（太慢！）
+# 控制频率 = 6.25 Hz
+
+# T-Rex 快慢分离：
+# 慢流（后台异步）：ViT + 6步Euler = 136ms，每chunk跑一次
+# 快流（前台实时）：触觉编码(2ms) + 4步Euler(12ms) + KV查询(3ms) = 17ms
+# 触觉反应延迟 = 17ms（足够快！）
+# 触觉更新频率 = 每4步一次 ≈ 20Hz（满足需求）
+
+# 同时，底层控制线程以 300Hz 运行，
+# 持续追踪 Tactile Expert 最近输出的动作目标</code></pre>
+
+  <div class="highlight">
+    <p><strong>关键洞察：</strong>快流之所以快，是因为它<strong>跳过了三个最耗时的步骤</strong>：① ViT 编码图像（~100ms，占总时间 60%+）；② Text Encoder 编码语言；③ Latent Expert 的 future prediction。它只做触觉编码和 4 步轻量 Euler 积分，所有视觉-语言上下文通过 KV Cache 免费获得。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q5 解释了快慢流的时序。Q6 是一个训练细节——为什么需要延迟增强？</span>
+</div>
+
+<!-- ====== Q6 ====== -->
+<div class="section" id="q6">
+  <div class="section-num">Q6</div>
+  <h2>延迟增强 δ ∈ {0,4,8,12} 是干嘛的？</h2>
+  <div class="q-box"><p>「加一个时间偏移 δ ∈ {0, 4, 8, 12} 是干嘛的？」</p></div>
+
+  <p>这个问题需要你先理解训练和部署之间的差异。</p>
+
+  <h3>训练时 vs 部署时的差异</h3>
+
+<pre><code># ===== 训练时（离线，所有数据完美对齐）=====
+# 数据集里的每条轨迹都是时间对齐的：
+# 时刻 t: 视觉图像_t, 触觉信号_t, 动作_t 完美同步
+#
+# 如果训练时总是用同一时刻 t 的视觉和触觉...
+# 模型会学到：「视觉和触觉总是来自同一时刻」
+
+# ===== 部署时（在线，异步执行）=====
+# 慢流在 t=0 读了视觉，冻结 KV Cache
+# 快流在 t=4 用触觉精炼 → 触觉来自 t=4，但 KV Cache 里的视觉来自 t=0
+# 快流在 t=8 用触觉精炼 → 触觉来自 t=8，但 KV Cache 里的视觉仍然来自 t=0
+# 快流在 t=12 用触觉精炼 → 触觉来自 t=12，视觉来自 t=0
+
+# 问题：视觉和触觉之间有 0~12 步的时间差！
+# 如果训练时从不见过这种时间差，部署时性能会下降</code></pre>
+
+  <h3>延迟增强的做法</h3>
+
+<pre><code># ===== 训练时的延迟增强 =====
+# 每个训练样本，随机采样一个延迟 δ ∈ {0, 4, 8, 12}
+
+# 假设当前样本的时间戳是 t：
+# 视觉上下文 c_vl: 用时刻 t 的图像和语言（和正常一样）
+# 触觉上下文 c_tac: 用时刻 t+δ 的触觉信号（往后偏移 δ 步）
+
+# δ=0: 视觉和触觉完美同步（和没有增强一样）
+# δ=4: 触觉比视觉晚 4 步
+# δ=8: 触觉比视觉晚 8 步
+# δ=12: 触觉比视觉晚 12 步
+
+# 这样模型在训练时就见过了各种延迟程度，
+# 部署时即使视觉和触觉不同步，也不会懵</code></pre>
+
+  <div class="highlight">
+    <p><strong>本质：</strong>这是一种 domain randomization（域随机化）技巧，但不是随机化颜色或光照，而是随机化时间对齐。目标是让模型在训练时就习惯「KV Cache 里的视觉信息可能已经过时了几步」这个现实，从而在部署时更鲁棒。</p>
+  </div>
+
+  <p>{0, 4, 8, 12} 这四个值精确对应了部署时快流在 chunk 内的四个触发点——所以这不是随意选的数字，而是完全模拟了部署时可能出现的所有延迟情况。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>Q6 是一个精巧的训练技巧。Q7 进入最后一个大知识点——VQ-VAE，这是你之前没接触过的模型架构。</span>
+</div>
+
+<!-- ====== Q7 ====== -->
+<div class="section" id="q7">
+  <div class="section-num">Q7</div>
+  <h2>VQ-VAE 是什么？详细讲</h2>
+  <div class="q-box"><p>「VQ-VAE 是什么？可以详细讲讲吗？之前没见过。」</p></div>
+
+  <p>VQ-VAE（Vector Quantized Variational AutoEncoder）是 2017 年 DeepMind 提出的一种生成模型。我从最基础开始讲，分三步走：先讲 AutoEncoder，再讲 VAE，最后讲 VQ-VAE。</p>
+
+  <h3>第一步：AutoEncoder（自编码器）</h3>
+
+<pre><code># 自编码器的目标：压缩 → 还原
+#
+# 输入 x ──→ [Encoder] ──→ 压缩表示 z ──→ [Decoder] ──→ 重建 x̂
+#   |                        (瓶颈层)                      |
+#   └─────────── 训练目标：让 x̂ ≈ x ──────────────────────┘
+#
+# 例：把一张 28×28 的图（784 维）压缩成 32 维向量，再还原回 784 维
+# 如果还原得好，说明 32 维向量保留了图的关键信息
+#
+# z 是连续向量，可以取任何实数值</code></pre>
+
+  <h3>第二步：VAE（变分自编码器）</h3>
+
+<pre><code># VAE 的改进：z 不是一个确定的向量，而是从一个分布中采样
+#
+# 输入 x ──→ [Encoder] ──→ μ, σ ──→ z = μ + σ·ε ──→ [Decoder] ──→ x̂
+#                           |         (ε ~ N(0,1))
+#                           |         随机采样！
+#                           └→ 这让 z 的空间变得连续、平滑
+#
+# VAE 的好处：可以生成新数据（从 z 空间随机采样，Decode 出新样本）
+# VAE 的问题：z 是连续的，空间可能不够紧凑，表示效率不高</code></pre>
+
+  <h3>第三步：VQ-VAE（向量量化变分自编码器）</h3>
+
+<pre><code># VQ-VAE 的核心改进：把连续的 z 离散化
+#
+# 它维护一个「码本」(codebook)：K 个预定义的向量
+# codebook = {e_1, e_2, ..., e_K}   # K 个 D 维向量
+#
+# 编码过程：
+# 输入 x ──→ [Encoder] ──→ z_e (连续向量)
+#                              |
+#                              ↓ 量化
+#                        找码本中最近的向量
+#                        z_q = e_k, where k = argmin ‖z_e - e_i‖
+#                              |
+#                              ↓
+#                         [Decoder] ──→ x̂
+#
+# z_q 不是任意值，只能是码本中 K 个向量之一！
+
+# 打个比方：
+# 连续表示 z_e = 3.7 → 如果码本是 {1, 2, 3, 4, 5}
+# 量化后 z_q = 4（最近的码本向量）
+# 
+# 微小变化（3.7 → 3.8）不改变结果（还是 4）
+# → 这就是为什么 VQ-VAE 对传感器漂移鲁棒！</code></pre>
+
+  <h3>VQ-VAE 的训练</h3>
+
+<pre><code># VQ-VAE 有三个损失：
+
+# 1. 重建损失：让 Decoder 的输出接近输入
+L_recon = ‖x - Decoder(z_q)‖²
+
+# 2. 码本损失：让码本向量靠近 Encoder 的输出
+#    （移动码本去靠近数据）
+L_codebook = ‖stop_gradient(z_e) - e_k‖²
+
+# 3. 承诺损失：让 Encoder 的输出靠近码本向量
+#    （移动 Encoder 输出去靠近码本）
+L_commit = ‖z_e - stop_gradient(e_k)‖²
+
+# 总损失
+L = L_recon + L_codebook + β * L_commit
+
+# 注意：量化操作 argmin 不可导！
+# 解决方案：straight-through estimator
+# 前向传播用 z_q，反向传播时梯度直接穿过量化步骤传给 z_e</code></pre>
+
+  <h3>T-Rex 中的 VQ-VAE 用法</h3>
+
+  <p>理解了通用 VQ-VAE 后，来看 T-Rex 怎么用它编码触觉力信号：</p>
+
+<pre><code># ===== T-Rex 的触觉 VQ-VAE =====
+
+# 输入：一根手指最近 16 帧的 6D 力信号
+# x = force[t-15:t]   # 形状 [16, 6]
+
+# Encoder：1D 时序卷积网络
+# 沿时间维度做卷积 + 下采样
+# [16, 6] → Conv1D → [8, 64] → Conv1D → [4, 128] → MeanPool → [256]
+# z_e: 一个 256 维连续向量
+
+# 量化：
+# 码本大小 K=64，每个码本向量 256 维
+# z_q = codebook[argmin distance(z_e, codebook)]
+# 输出：1 个离散 token（索引 k ∈ {0, 1, ..., 63}）
+
+# Decoder：对称的上采样卷积网络
+# [256] → 反卷积 → [16, 6]  （重建原始力信号）
+
+# 特殊设计：
+# 1. 权重共享：5根手指用同一套 Encoder/Decoder 权重
+#    但加入 finger-identity embedding 区分手指
+#    （类似位置编码，但标识的是「第几根手指」）
+#
+# 2. Magnitude-weighted MSE：
+#    L_recon = Σ_t w_t · ‖x_t - x̂_t‖²
+#    其中 w_t = ‖x_t‖ （力越大的帧权重越高）
+#    → 让编码器专注于「有接触」的帧，忽略空闲帧
+#
+# 3. EMA 更新码本 + 重新播种：
+#    用指数移动平均更新码本向量
+#    如果某个码本向量长时间没被用到，
+#    就用当前 batch 的 z_e 替换它 → 防止码本崩塌</code></pre>
+
+  <h3>为什么用 VQ-VAE 而不用普通 MLP？</h3>
+
+  <table>
+    <tr><th>特性</th><th>MLP 编码</th><th>VQ-VAE 编码</th></tr>
+    <tr><td>输出类型</td><td>连续向量</td><td>离散 token（码本索引）</td></tr>
+    <tr><td>抗漂移能力</td><td>弱：传感器漂移直接影响输出</td><td>强：微小漂移不改变码本索引</td></tr>
+    <tr><td>时序建模</td><td>弱：MLP 没有时序归纳偏置</td><td>强：1D Conv 天然捕捉时序模式</td></tr>
+    <tr><td>压缩效率</td><td>一般：输出维度固定</td><td>高：16帧×6维 → 1个token</td></tr>
+    <tr><td>可解释性</td><td>低</td><td>高：可以查看码本对应什么触觉模式</td></tr>
+  </table>
+
+  <p>消融实验的数据：MLP Force + Deform = 58%，VQ-VAE Force + Deform（Full Model）= 65%。VQ-VAE 带来了 7 个百分点的提升。</p>
+
+  <div class="highlight">
+    <p><strong>VQ-VAE 的直觉：</strong>把连续的高频触觉信号「翻译」成一个有限的触觉词汇表（64 个「触觉单词」）。码本中的每个向量代表一种典型的触觉模式——比如「稳定抓握」「正在滑移」「力逐渐增大」「突然接触」等。每根手指的 16 帧力历史被归类为最匹配的一个触觉单词，然后送入 Transformer。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>所有疑问都已解答。最后一节把所有知识串在一起，画出完整的信息流。</span>
+</div>
+
+<!-- ====== Q8 ====== -->
+<div class="section" id="q8">
+  <div class="section-num">Q8</div>
+  <h2>全局串联：所有组件如何协作</h2>
+  <p class="section-lead">把 Q1-Q7 的所有知识点串在一起，走一遍从传感器原始信号到机器人动作的完整流程。</p>
+
+<pre><code># ============================================================
+#        T-Rex 完整推理流程（一个 action chunk 的生命周期）
+# ============================================================
+
+# ===== 第 0 步：感知（硬件层）=====
+# 3 个相机各自拍一张 640×360 RGB 图
+# 10 根手指各自读取：
+#   - 6D 力/力矩 [Fx,Fy,Fz,Tx,Ty,Tz]  ← Q1 讲的
+#   - 变形深度图 [H,W]                  ← Q1 讲的
+# 机器人读取 62 维当前关节状态              ← Q2 讲的
+
+# ===== 第 1 步：慢流（~160ms，每 chunk 一次）=====
+# 1a. ViT 编码 3 张 RGB → 视觉 token
+# 1b. TextEncoder 编码语言指令 → 语言 token
+# 1c. Latent Expert 预测未来视觉表示
+# 1d. Action Expert 从噪声去噪 6 步 → 半成品动作 [16, 62]
+#     （这一步也解释了 Q4：为什么要用 Qwen3VL-2B 级别的模型）
+# 1e. 冻结 KV Cache
+#     （Q3 讲的：包含视觉+语言+latent+动作的所有 K,V）
+
+# ===== 第 2 步：快流（~17ms，每 chunk 执行 4 次）=====
+# 在 chunk 内偏移 {0, 4, 8, 12} 处各跑一次（Q5 讲的）
+
+# 2a. 读取最新触觉信号
+#     - 每根手指最近 16 帧力 → VQ-VAE → 1 个离散 token（Q7 讲的）
+#     - 当前力 → Linear → 即时力 token
+#     - 当前变形图 → 冻结ResNet → 变形 token
+#     拼接成触觉 token 序列
+
+# 2b. Tactile Expert 接收：
+#     - 触觉 token（新鲜的）
+#     - KV Cache（冻结的，来自第 1 步）← Q3 讲的
+#     - 半成品动作（从 τ=0.4 继续去噪）
+#     做 4 步 Euler 积分 → 精炼的动作 [4, 62]
+
+# 2c. 把精炼后的 4 步动作发给 300Hz 底层控制器执行
+
+# ===== 第 3 步：执行 =====
+# 300Hz 控制器持续追踪最新的动作目标
+# 通过 Pink (差分逆运动学) 转换为关节命令 → PID 控制
+
+# ===== 训练时的额外细节 =====
+# - Action Expert 在全区间 (0,1] 训练（保持独立能力）
+# - Tactile Expert 在 (0, 0.4] 训练
+# - KV Cache 传给 Tactile Expert 时 detach 梯度
+# - 延迟增强 δ ∈ {0,4,8,12}（Q6 讲的）
+# - 总损失 = L_act + L_tac + 0.5 * L_future</code></pre>
+
+  <div class="recap">
+    <div class="recap-label">8 个问题的知识图谱</div>
+    <p><strong>Q1（力/力矩/变形图）</strong>→ 是 Tactile Expert 的原始输入</p>
+    <p><strong>Q7（VQ-VAE）</strong>→ 把 Q1 的原始信号压缩成 token</p>
+    <p><strong>Q2（62 维动作）</strong>→ 是 Action/Tactile Expert 的输出格式</p>
+    <p><strong>Q4（Qwen3VL-2B）</strong>→ 是 Action Expert 的模型骨干</p>
+    <p><strong>Q3（KV Cache）</strong>→ 连接 Action Expert 和 Tactile Expert 的桥梁</p>
+    <p><strong>Q5（chunk 内更新）</strong>→ KV Cache 复用使得高频成为可能</p>
+    <p><strong>Q6（延迟增强）</strong>→ 让 Q5 的异步设计在训练时也被模拟</p>
+  </div>
+
+  <div class="strength">
+    <div class="card-label">整体评价</div>
+    <p>T-Rex 的核心创新不在于单个组件（VQ-VAE、MoT、Flow Matching 都不是新的），而在于<strong>系统级的集成设计</strong>：通过级联 Flow Matching 在数学上优雅地实现快慢分离，通过 KV Cache 复用把计算成本摊销到慢流，通过 mid-training 避免了从零收集触觉预训练数据的天价成本。每个决策都有消融实验支撑——这是一篇工程功底非常扎实的系统论文。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>对你接下来的预研建议：</strong>你现在已经理解了 T-Rex 的完整方案。接下来做调研时，建议关注三个方向：① 其他触觉编码方案（GelSight 视觉触觉 vs 力传感器，各有什么优劣）；② 其他快慢分离架构（RDP、Fast-in-Slow 等和 T-Rex 的对比）；③ 你的 HYVLA 框架如果要加触觉，哪些模块可以直接复用、哪些需要重新设计。</p>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>

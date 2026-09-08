@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <style>
+    .bg{fill:#fbf8f1}.card{fill:#fff;stroke:#d6cdbd;stroke-width:2}.force{fill:#e8f2ed;stroke:#5d8a74}.deform{fill:#efe9f8;stroke:#8667a6}.out{fill:#f8ead9;stroke:#b87939}.t{font:700 27px sans-serif;fill:#27231e}.h{font:700 22px sans-serif;fill:#27231e}.p{font:18px sans-serif;fill:#514b43}.s{font:16px monospace;fill:#645d54}.a{stroke:#756d62;stroke-width:3;marker-end:url(#m)}
+  </style>
+  <defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#756d62"/></marker></defs>
+  <rect class="bg" width="1200" height="620" rx="24"/><text class="t" x="50" y="55">T-Rex 怎样把“触觉”变成 Transformer 可消费的 token？</text>
+  <rect class="card force" x="45" y="95" width="310" height="185" rx="18"/><text class="h" x="70" y="132">时间通道：力的变化</text><text class="p" x="70" y="168">每个指尖最近 16 帧</text><text class="s" x="70" y="198">[T=16, wrench=6]</text><text class="p" x="70" y="232">3D force + 3D torque</text><text class="p" x="70" y="260">回答：接触正在怎样变化？</text>
+  <rect class="card force" x="445" y="95" width="310" height="185" rx="18"/><text class="h" x="470" y="132">VQ-VAE 动态编码</text><text class="p" x="470" y="168">共享 1D Conv → 256D</text><text class="p" x="470" y="201">最近邻 codebook，K=64</text><text class="p" x="470" y="234">每只手每根手指 1 token</text><text class="p" x="470" y="263">抗漂移、压缩历史模式</text>
+  <path class="a" d="M355 188 H435"/>
+  <rect class="card force" x="845" y="95" width="310" height="185" rx="18"/><text class="h" x="870" y="132">瞬时旁路</text><text class="p" x="870" y="170">当前 wrench 直接投影</text><text class="s" x="870" y="202">Proj_f(f_t)</text><text class="p" x="870" y="238">避免量化/时间压缩</text><text class="p" x="870" y="267">抹掉“这一刻”的冲击</text>
+  <rect class="card deform" x="45" y="340" width="310" height="185" rx="18"/><text class="h" x="70" y="377">空间通道：皮肤形变图</text><text class="p" x="70" y="414">每个指尖单通道 depth map</text><text class="p" x="70" y="448">边缘、滑移、剪切、接触几何</text><text class="p" x="70" y="482">回答：接触发生在哪里/怎样？</text>
+  <rect class="card deform" x="445" y="340" width="310" height="185" rx="18"/><text class="h" x="470" y="377">轻量空间编码</text><text class="p" x="470" y="414">ResNet-18 前 3 stages</text><text class="p" x="470" y="447">各 stage 重投影到 128 channels</text><text class="p" x="470" y="480">自监督预训练，policy 时冻结</text><path class="a" d="M355 430 H435"/>
+  <rect class="card out" x="845" y="340" width="310" height="185" rx="18"/><text class="h" x="870" y="377">统一触觉 token</text><text class="s" x="870" y="414">concat(</text><text class="s" x="890" y="444">VQ(history),</text><text class="s" x="890" y="474">Proj(current), Deform)</text><text class="s" x="870" y="504">→ tactile expert</text>
+  <path class="a" d="M755 188 H835"/><path class="a" d="M755 430 H835"/>
+  <text class="p" x="45" y="585">记忆钩子：历史力告诉你“怎么变”，当前力告诉你“现在多大”，形变图告诉你“在哪里、以什么几何接触”。</text>
+</svg>

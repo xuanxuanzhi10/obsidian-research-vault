@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-Rex 学习指南 - VLA 学习系列第5篇</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦖</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #faf9f7;
+  --bg-card: #ffffff;
+  --bg-code: #f3f0ec;
+  --bg-highlight: #f5f0fa;
+  --bg-chain: #f0ecf5;
+  --text: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #7a7a7a;
+  --accent: #7b4ba0;
+  --accent-light: #a67cc8;
+  --accent-dark: #5a3478;
+  --border: #e0dbd5;
+  --border-light: #ece8e3;
+  --chain-line: #c4b3d6;
+  --tag-bg: #ede4f5;
+  --tag-text: #6a3d8f;
+  --warning-bg: #fef3e2;
+  --warning-border: #e8b94a;
+  --warning-text: #7a5d1a;
+  --strength-bg: #e6f4ea;
+  --strength-border: #4a9a5a;
+  --strength-text: #2a6a3a;
+  --weakness-bg: #fde8e8;
+  --weakness-border: #c44a4a;
+  --weakness-text: #8a2a2a;
+  --serif: 'Noto Serif SC', 'Songti SC', serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'Menlo', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161418;
+    --bg-card: #1e1b22;
+    --bg-code: #252229;
+    --bg-highlight: #271f30;
+    --bg-chain: #221d28;
+    --text: #e8e4ec;
+    --text-secondary: #b8b0c0;
+    --text-tertiary: #887e94;
+    --accent: #b48ad6;
+    --accent-light: #c9a5e4;
+    --accent-dark: #8a5cb8;
+    --border: #332e3a;
+    --border-light: #2a2630;
+    --chain-line: #5a4870;
+    --tag-bg: #2e2438;
+    --tag-text: #c9a5e4;
+    --warning-bg: #2e2818;
+    --warning-border: #a08030;
+    --warning-text: #d4b868;
+    --strength-bg: #1a2e1e;
+    --strength-border: #3a8a4a;
+    --strength-text: #6ac07a;
+    --weakness-bg: #2e1a1a;
+    --weakness-border: #b44a4a;
+    --weakness-text: #e08080;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #161418;
+  --bg-card: #1e1b22;
+  --bg-code: #252229;
+  --bg-highlight: #271f30;
+  --bg-chain: #221d28;
+  --text: #e8e4ec;
+  --text-secondary: #b8b0c0;
+  --text-tertiary: #887e94;
+  --accent: #b48ad6;
+  --accent-light: #c9a5e4;
+  --accent-dark: #8a5cb8;
+  --border: #332e3a;
+  --border-light: #2a2630;
+  --chain-line: #5a4870;
+  --tag-bg: #2e2438;
+  --tag-text: #c9a5e4;
+  --warning-bg: #2e2818;
+  --warning-border: #a08030;
+  --warning-text: #d4b868;
+  --strength-bg: #1a2e1e;
+  --strength-border: #3a8a4a;
+  --strength-text: #6ac07a;
+  --weakness-bg: #2e1a1a;
+  --weakness-border: #b44a4a;
+  --weakness-text: #e08080;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 15.5px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Header */
+.header {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.header-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--tag-text);
+  background: var(--tag-bg);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.header h1 {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.series-badge {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.series-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* Navigation */
+.nav {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 40px;
+}
+
+.nav-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.nav ol {
+  list-style: none;
+  counter-reset: nav-counter;
+}
+
+.nav ol li {
+  counter-increment: nav-counter;
+  margin-bottom: 6px;
+}
+
+.nav ol li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  transition: color 0.15s;
+}
+
+.nav ol li a:hover {
+  color: var(--accent);
+}
+
+.nav ol li a::before {
+  content: counter(nav-counter, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent-light);
+  min-width: 20px;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 48px;
+}
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.section h2 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.section h3 {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  margin: 24px 0 10px;
+  color: var(--text);
+}
+
+.section-lead {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+  font-size: 14.5px;
+}
+
+.section p {
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+/* Recap box */
+.recap {
+  border: 2px dashed var(--chain-line);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+  background: var(--bg-chain);
+}
+
+.recap-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.recap p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.recap p:last-child { margin-bottom: 0; }
+
+/* Chain connector */
+.chain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  margin: 32px 0;
+  background: var(--bg-chain);
+  border-left: 3px solid var(--chain-line);
+  border-radius: 0 6px 6px 0;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+
+.chain-arrow {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Code blocks */
+pre {
+  background: var(--bg-code);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+pre code {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: var(--bg-code);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+/* Highlight box */
+.highlight {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-highlight);
+  padding: 16px 20px;
+  border-radius: 0 6px 6px 0;
+  margin: 20px 0;
+}
+
+.highlight p {
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.highlight p:last-child { margin-bottom: 0; }
+
+/* Strength / Weakness / Note */
+.strength, .weakness, .note {
+  padding: 14px 20px;
+  border-radius: 0 6px 6px 0;
+  margin: 18px 0;
+}
+
+.strength {
+  background: var(--strength-bg);
+  border-left: 4px solid var(--strength-border);
+}
+
+.strength .card-label { color: var(--strength-text); }
+.strength p { color: var(--strength-text); }
+
+.weakness {
+  background: var(--weakness-bg);
+  border-left: 4px solid var(--weakness-border);
+}
+
+.weakness .card-label { color: var(--weakness-text); }
+.weakness p { color: var(--weakness-text); }
+
+.note {
+  background: var(--warning-bg);
+  border-left: 4px solid var(--warning-border);
+}
+
+.note .card-label { color: var(--warning-text); }
+.note p { color: var(--warning-text); }
+
+.card-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.card-label + p { margin-top: 0; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 13.5px;
+}
+
+th, td {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+th {
+  background: var(--bg-code);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+td {
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body { font-size: 14.5px; }
+  .header h1 { font-size: 23px; }
+  .section h2 { font-size: 19px; }
+  .container { padding: 24px 16px 60px; }
+  pre { padding: 12px 14px; }
+  pre code { font-size: 12px; }
+  table { font-size: 12px; }
+  th, td { padding: 7px 8px; }
+}
+
+/* Theme toggle */
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 100;
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题">🌓</button>
+<div class="container">
+
+<div class="header">
+  <div class="header-tag">Sequential Learning Guide</div>
+  <h1>从零理解 T-Rex：用触觉让机器人的手「有感觉」</h1>
+  <div class="subtitle">T-Rex 提出了一套完整的触觉反应式灵巧操作框架：100小时触觉同步数据集 + 变频率 MoT 架构 + 时空触觉 VQ-VAE 编码器，在 12 个需要精细力控的任务上比最强 baseline 高出 30%。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第5篇（前序：HyVLA → π0 → π0.5 → OpenVLA）</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">逻辑链路</div>
+  <ol>
+    <li><a href="#s1">定位与背景：为什么 VLA 需要触觉？</a></li>
+    <li><a href="#s2">架构拆解：三个 Expert 如何协作</a></li>
+    <li><a href="#s3">核心技术机制：异步级联 Flow Matching</a></li>
+    <li><a href="#s4">触觉编码器：把「摸到什么」变成 token</a></li>
+    <li><a href="#s5">训练数据：T-Rex Dataset 的设计哲学</a></li>
+    <li><a href="#s6">训练范式：三阶段渐进式训练</a></li>
+    <li><a href="#s7">消融实验与设计决策</a></li>
+    <li><a href="#s8">实验评估：12 个任务的全面对比</a></li>
+    <li><a href="#s9">局限与反思</a></li>
+  </ol>
+</nav>
+
+<!-- ====== Section 1 ====== -->
+<div class="section" id="s1">
+  <div class="section-num">01</div>
+  <h2>定位与背景：为什么 VLA 需要触觉？</h2>
+  <p class="section-lead">这节回答：现有 VLA 缺了什么？触觉能补上什么？T-Rex 在这个领域的位置是什么？</p>
+
+  <p>想象一下你闭着眼从口袋里摸出钥匙、插进锁孔——你完全靠手指的触感完成了这一系列动作。现有的 VLA 模型（你已经学过的 π0、π0.5、OpenVLA、HyVLA）全部只依赖视觉和语言，它们的「手」是「麻木」的：看得见但摸不到。</p>
+
+  <p>这在简单任务（抓取、推动）中问题不大，但遇到<strong>接触密集（contact-rich）</strong>的任务就会崩溃。比如：翻书页要感觉到纸的薄度、剥鸡蛋不能捏碎、麻将牌面朝下要靠摸来识别花色。这些任务的共同特点是：视觉信息不够，必须通过力和变形反馈来做实时调整。</p>
+
+  <h3>触觉进 VLA 的三大障碍</h3>
+
+  <p>T-Rex 系统性地指出了三个阻碍：</p>
+
+  <p><strong>障碍一：没有大规模触觉数据。</strong>现有的机器人数据集（OXE、DROID、BridgeData）几乎都是平行夹爪+纯视觉，没有同步的触觉信号。从零收集触觉数据又贵又慢——你需要戴数据手套操控灵巧手，每根手指上都有传感器。</p>
+
+  <p><strong>障碍二：频率不匹配。</strong>VLM 主干网络（如 Qwen-VL）需要处理图像和语言，推理速度约 5Hz。但触觉反应需要 20Hz 以上——你的手指碰到东西要马上调整力度，不能等 200ms 后才反应。这是一个根本性的架构矛盾。</p>
+
+  <p><strong>障碍三：触觉信号怎么表示？</strong>力信号是高频时序数据（每根手指 6 维力/力矩 × 30Hz），变形是空间图像。直接把原始信号拼接到 token 序列里会淹没有用信息。</p>
+
+  <div class="highlight">
+    <p><strong>T-Rex 的核心思路：</strong>不要求触觉数据从预训练阶段就参与，而是设计一个「中间训练（mid-training）」阶段，在已经学会视觉和语言的 VLA 基础上，高效地接入触觉模态。架构上用异步的「快慢系统」解决频率矛盾，用 VQ-VAE 把高频力信号压缩成紧凑的 token。</p>
+  </div>
+
+  <h3>与你已读论文的关系</h3>
+
+  <table>
+    <tr><th>方法</th><th>触觉</th><th>灵巧手</th><th>架构思路</th><th>动作生成</th></tr>
+    <tr><td>π0 / π0.5</td><td>❌</td><td>部分</td><td>VLM + Action Expert (MoT)</td><td>Flow Matching</td></tr>
+    <tr><td>OpenVLA</td><td>❌</td><td>❌</td><td>VLM 直接出离散 token</td><td>自回归</td></tr>
+    <tr><td>HyVLA</td><td>❌</td><td>❌</td><td>分层 VLA</td><td>Flow Matching</td></tr>
+    <tr><td><strong>T-Rex</strong></td><td>✅ 力+变形</td><td>✅ 双臂22自由度</td><td>MoT + Tactile Expert</td><td>级联 Flow Matching</td></tr>
+  </table>
+
+  <p>可以看到，T-Rex 直接在 π0 的 MoT 架构基础上进行了扩展——在原有的 Latent Expert 和 Action Expert 之上，新增了一个 Tactile Expert，形成三专家协作。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了「为什么需要触觉」和三大障碍。下一节我们拆解 T-Rex 的三专家架构，看它怎么从输入到输出把视觉、语言、触觉融合在一起。</span>
+</div>
+
+<!-- ====== Section 2 ====== -->
+<div class="section" id="s2">
+  <div class="section-num">02</div>
+  <h2>架构拆解：三个 Expert 如何协作</h2>
+  <p class="section-lead">这节回答：T-Rex 的完整数据流是什么？从摄像头/手指到最终动作，信号经过了哪些模块？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：MoT 是什么？</div>
+    <p>你在学 π0 时接触过 MoT（Mixture-of-Transformers）：同一个 Transformer 主干网络，不同模态使用不同的 FFN 层（即不同的 Expert），但共享同一个 Attention 层。这样不同模态可以互相「看到」对方（通过 shared attention），但各自的表示空间由各自的 FFN 控制。T-Rex 把这个思路从两个 Expert 扩展到了三个。</p>
+  </div>
+
+  <h3>整体架构：一快两慢</h3>
+
+  <p>T-Rex 的 MoT 包含三个 Expert，各司其职：</p>
+
+  <p><strong>① Latent Expert（潜在专家）</strong>——处理头部/腕部摄像头的 RGB 图像和语言指令，通过 ViT 编码视觉特征、Text Encoder 编码语言。它的独特任务是<strong>预测未来的视觉表示</strong>（future visual latent prediction），为后续的动作规划提供时间锚点。这和你在 π0 里学过的 latent prediction 概念一致。</p>
+
+  <p><strong>② Action Expert（动作专家）</strong>——低频（~5Hz）动作生成器。接收 Latent Expert 提供的视觉-语言上下文，通过 Flow Matching 从纯噪声去噪成粗略的动作计划。它产出的是一个「半成品」动作——还带有残余噪声。</p>
+
+  <p><strong>③ Tactile Expert（触觉专家）</strong>——高频（~20Hz）动作精炼器。它不重新处理图像和语言，而是直接复用 Action Expert 的 KV Cache（缓存的视觉-语言上下文），仅基于实时触觉信号对半成品动作做最后的去噪，产出最终可执行的动作。</p>
+
+  <div class="note">
+    <div class="card-label">容易混淆的点</div>
+    <p>Tactile Expert 并不是一个独立的小网络。它和 Action Expert 共享同一个 Attention 层（shared attention），只是 FFN 不同。关键区别是：Tactile Expert <strong>不需要跑 ViT</strong>——它复用缓存好的 KV，所以推理速度可以比 Action Expert 快 4 倍。</p>
+  </div>
+
+  <h3>完整数据流伪代码</h3>
+
+<pre><code># ===== 输入 =====
+rgb_head  = ZED_Mini_camera()         # 头部相机 [640×360]
+rgb_wrist = ZED_OneS_cameras(×2)      # 腕部相机 [640×360] ×2
+lang      = "Apply toothpaste"        # 语言指令
+force     = tactile_force_sensors()   # 10根手指 × 6维力 [10, 6]
+deform    = tactile_deform_maps()     # 10根手指 × 变形图 [10, H, W]
+
+# ===== Latent Expert: 编码视觉+语言，预测未来视觉 =====
+vis_tokens = ViT(rgb_head, rgb_wrist)           # [N_vis, 2048]
+lang_tokens = TextEncoder(lang)                  # [N_lang, 2048]
+future_latent = LatentExpert(vis_tokens, lang_tokens)  # 预测未来帧
+
+# ===== Action Expert: 低频去噪（慢流） =====
+noise = sample_gaussian(shape=[16, 62])  # 16步动作chunk, 62维动作
+x_1 = noise                              # Flow Matching 起点（纯噪声）
+
+# 从 τ=1 去噪到 τ=0.4（6步 Euler），产出半成品动作
+x_0.4 = ActionExpert.denoise(
+    x_1, steps=6, τ: 1→0.4,
+    context=[vis_tokens, lang_tokens]
+)
+KV_cache = ActionExpert.save_kv_cache()  # 缓存视觉-语言 KV
+
+# ===== Tactile Expert: 高频精炼（快流） =====
+tactile_tokens = SpatioTemporalTactileEncoder(force, deform)  # [N_tac, dim]
+
+# 从 τ=0.4 去噪到 τ=0（4步 Euler），产出最终动作
+action = TactileExpert.denoise(
+    x_0.4, steps=4, τ: 0.4→0,
+    context=KV_cache,     # 复用！不重新跑 ViT
+    tactile=tactile_tokens # 实时触觉
+)
+# action: [16, 62] → 16步 × (双臂14关节 + 双手44关节 + 双腕4维SE3)</code></pre>
+
+  <p>注意几个关键数字：动作维度 62 = 双臂 14（7×2 关节）+ 双手 44（22×2 手指关节）+ 4（双腕相对 delta）。Action chunk 长度 16，对应 ~3.2 秒的动作规划（5Hz × 16 = 3.2s）。</p>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>Tactile Expert 复用 KV Cache 的设计极其巧妙——它把视觉编码的计算成本完全摊销到了慢流上。快流每次只需要跑 4 步轻量 Euler 积分 + 小 FFN，所以可以在一个 action chunk 内被触发 4 次（偏移 0, 4, 8, 12），实现 ~20Hz 的触觉反应频率。</p>
+  </div>
+
+  <h3>模型规模</h3>
+  <table>
+    <tr><th>组件</th><th>骨干</th><th>参数量</th></tr>
+    <tr><td>Latent Expert</td><td>Qwen3VL-2B</td><td>1.41B</td></tr>
+    <tr><td>Action Expert</td><td>Qwen3VL-2B</td><td>1.41B</td></tr>
+    <tr><td>Tactile Expert</td><td>独立（FFN 缩窄到 1536）</td><td>0.62B</td></tr>
+    <tr><td><strong>总计</strong></td><td></td><td><strong>~3.4B</strong></td></tr>
+  </table>
+
+  <p>Tactile Expert 故意比 Action Expert 小（0.62B vs 1.41B），因为它需要快速推理，FFN 中间维度从 Action Expert 的标准宽度缩窄到了 1536。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了三个 Expert 的分工和数据流。但其中最关键的「去噪怎么被切成两半」还没展开——下一节深入讲级联 Flow Matching 的数学原理。</span>
+</div>
+
+<!-- ====== Section 3 ====== -->
+<div class="section" id="s3">
+  <div class="section-num">03</div>
+  <h2>核心技术机制：异步级联 Flow Matching</h2>
+  <p class="section-lead">这节回答：Flow Matching 的去噪过程是怎么被「切成两段」的？为什么能这么切？训练时怎么保证两段的一致性？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：Flow Matching 基础</div>
+    <p>你在 π0 中学过 Flow Matching：在噪声 x₁ 和目标动作 x₀ 之间画一条直线，模型学习沿这条线的「速度场」。推理时从噪声出发，沿着学到的速度场一步步走到干净动作。与 Diffusion 相比，Flow Matching 的路径是直线插值（而非扩散过程），训练更稳定，推理步数更少。</p>
+  </div>
+
+  <h3>标准 Flow Matching 回顾</h3>
+
+  <p>给定一段演示动作 A<sub>demo</sub> 和高斯噪声 ε，线性插值为：</p>
+
+<pre><code># 插值路径
+x_τ = (1 - τ) * A_demo + τ * ε    # τ=0: 干净动作, τ=1: 纯噪声
+
+# 恒速目标（两端之差）
+v* = ε - A_demo
+
+# 训练损失：让网络预测的速度场匹配 v*
+L = E[‖v_θ(x_τ, τ | context) - v*‖²]</code></pre>
+
+  <p>注意 T-Rex 的时间方向：τ=1 是纯噪声，τ=0 是干净动作。推理时从 τ=1 往 τ=0 走。</p>
+
+  <h3>级联切分：在 τ=0.4 处切一刀</h3>
+
+  <p>T-Rex 的核心创新是把这条去噪路径在 τ<sub>split</sub>=0.4 处切成两段：</p>
+
+<pre><code># ===== 推理时的级联去噪 =====
+
+# 第一段：Action Expert 负责（慢流，~5Hz）
+# τ: 1.0 → 0.4，共 6 步 Euler（步长 Δτ = -0.1）
+x_1 = ε ~ N(0, I)                           # 起点：纯噪声
+for k in range(6):                           # 6 步去噪
+    τ = 1.0 - k * 0.1
+    v = ActionExpert(x_τ, τ, context=视觉+语言)
+    x_{τ-0.1} = x_τ + (-0.1) * v             # Euler 积分
+
+x_0.4 = 结果   # 「半成品」：仍有残余噪声，但已有大致形状
+KV_cache = 冻结当前的 KV Cache
+
+# ------- 分割线：以下不再需要 ViT -------
+
+# 第二段：Tactile Expert 负责（快流，~20Hz）
+# τ: 0.4 → 0.0，共 4 步 Euler
+for k in range(4):
+    τ = 0.4 - k * 0.1
+    v = TactileExpert(x_τ, τ, KV_cache, 实时触觉)
+    x_{τ-0.1} = x_τ + (-0.1) * v
+
+action = x_0   # 最终干净动作 [16, 62]</code></pre>
+
+  <div class="highlight">
+    <p><strong>为什么能切？</strong> 因为 Flow Matching 的速度场 v* 在整条路径上是恒定的（v* = ε - A_demo 不随 τ 变化）。所以不管哪个网络来预测这个速度场，只要它预测得准，最终结果就一样。T-Rex 让两个 Expert 在各自的 τ 区间上分别拟合同一个目标 v*，数学上是自洽的。</p>
+  </div>
+
+  <h3>异步执行：一个 chunk 内触觉精炼 4 次</h3>
+
+  <p>这才是真正让触觉「反应式」的关键。一个 action chunk 有 16 步动作。慢流跑一次产出整个 chunk 的半成品。然后快流在 chunk 内的偏移 {0, 4, 8, 12} 处各跑一次，每次用最新的触觉信号来精炼对应的 4 步子 chunk：</p>
+
+<pre><code># ===== 异步执行时序 =====
+# Action Expert（慢流）: ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ (跑一次，产出16步)
+# Tactile Expert（快流）: ████     ████     ████     ████
+#                         t=0      t=4      t=8      t=12
+#                         用最新   用最新    用最新    用最新
+#                         触觉     触觉      触觉     触觉
+
+# 快流每次只跑 4 步 Euler 积分（轻量），耗时短
+# → 可以在 action chunk 执行过程中多次更新动作</code></pre>
+
+  <h3>训练时怎么处理两段？</h3>
+
+<pre><code># ===== 训练损失 =====
+τ_act ~ Beta(1.5, 1.0) on (0, 1]      # Action Expert 在整个区间训练
+τ_tac = τ_split * τ̃                    # Tactile Expert 只在 [0, 0.4] 训练
+  where τ̃ ~ Beta(1.5, 1.0) on (0, 1]
+
+# Action Expert 损失
+L_act = ‖f_act(x_τ_act, τ_act; 视觉语言) - v*‖²
+
+# Tactile Expert 损失
+# 注意：KV_cache 是 detached 的（不回传梯度）
+KV_cache = ActionExpert.forward_detached(x_τ_split)
+L_tac = ‖f_tac(x_τ_tac, τ_tac; 触觉, KV_cache) - v*‖²
+
+# 总损失
+L = L_act + 1.0 * L_tac + 0.5 * L_future_visual</code></pre>
+
+  <div class="note">
+    <div class="card-label">关键设计细节</div>
+    <p><strong>Action Expert 在全区间 (0,1] 训练，而不只是 [0.4,1]。</strong> 这是为了保持它的独立能力——即使没有 Tactile Expert，Action Expert 自己也能完成完整去噪。这让模型在触觉传感器失效时仍能 fallback 到纯视觉控制。</p>
+  </div>
+
+  <div class="note">
+    <div class="card-label">训练时的延迟增强</div>
+    <p>部署时快流和慢流是异步的，触觉信号和视觉信号之间天然存在时间差。为了防止训练时过拟合于完美同步，训练时会随机给触觉数据加一个时间偏移 δ ∈ {0, 4, 8, 12}——让触觉特征和视觉特征不完全对齐，模拟部署时的真实情况。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了级联 Flow Matching 的机制——慢流出粗动作、快流用触觉精炼。但快流消费的「触觉 token」是怎么从原始传感器信号编码出来的？下一节详解触觉编码器。</span>
+</div>
+
+<!-- ====== Section 4 ====== -->
+<div class="section" id="s4">
+  <div class="section-num">04</div>
+  <h2>触觉编码器：把「摸到什么」变成 token</h2>
+  <p class="section-lead">这节回答：机器人手指的原始触觉信号长什么样？如何压缩成 Transformer 能消费的 token？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：为什么需要编码？</div>
+    <p>前面第 01 节提到过障碍三：原始触觉信号是高频时序+空间图像，直接拼接到 token 序列会淹没信息。这一节就是解决这个问题的。</p>
+  </div>
+
+  <h3>原始触觉数据长什么样？</h3>
+
+  <p>每只手有 5 根手指，每根手指的触觉传感器提供两类信号：</p>
+
+  <p><strong>1. 力/力矩向量（Force）：</strong>每根手指每帧一个 6 维向量（3 维力 + 3 维力矩），采样率 30Hz。T-Rex 用最近 16 帧的力历史 f<sub>t-15:t</sub> 作为输入，形状为 [16, 6]（每根手指）。</p>
+
+  <p><strong>2. 变形深度图（Deformation Map）：</strong>单通道的空间图像，记录手指指尖皮肤的变形分布。可以想象成一张热力图——按压一个圆形物体时中间深、边缘浅。这里面包含了视觉看不到的接触几何信息：边缘、滑移方向、剪切模式。</p>
+
+  <h3>编码方案：三路并行，拼接成 token 序列</h3>
+
+<pre><code># ===== 触觉编码 =====
+# 输入：每根手指的力历史和当前变形图
+
+# --- 路径 1: VQ-VAE 编码力的时序模式 ---
+# 对每根手指独立处理（权重共享）
+f_history = force[t-15:t]                # [16, 6] 每根手指
+z_vq = VQ_VAE_Encoder(f_history)         # 1D 时序卷积 → 256维 → 量化
+  # 输出：每根手指 1 个离散 token
+  # 码本大小 K=64，权重跨5根手指共享
+  # 用 finger-identity embedding 区分不同手指
+
+# --- 路径 2: 直接投影当前力 ---
+f_current = force[t]                     # [6] 当前帧
+z_force = Linear(f_current)              # 保留即时接触信息
+
+# --- 路径 3: 卷积编码变形图 ---
+d_current = deform_map[t]                # [1, H, W] 当前变形图
+z_deform = DeformEncoder(d_current)      # ResNet-18 前3层 → 展平 → 线性投影
+  # 这个编码器是预训练+冻结的（自监督卷积自编码器）
+
+# --- 拼接 ---
+z_tactile = concat(z_vq, z_force, z_deform)
+# 每根手指产出若干 token，10根手指 → 触觉 token 序列</code></pre>
+
+  <h3>VQ-VAE 的细节</h3>
+
+  <p>VQ-VAE（Vector-Quantized Variational Autoencoder）在这里的作用是把 16 帧的连续力信号压缩成一个离散 token。为什么不用 MLP 直接编码？</p>
+
+  <p><strong>抗漂移。</strong> 触觉传感器存在零点漂移（长时间使用后基线会偏移），VQ-VAE 的量化操作天然具有离散化的鲁棒性——微小的传感器漂移不会改变量化后的码本索引。</p>
+
+  <p><strong>信息压缩。</strong> 16帧 × 6维 = 96 个浮点数，被压缩成码本中 1 个 256 维向量。这个压缩比很高，迫使编码器只保留最重要的时序模式（比如「力在增大」「检测到滑移」「稳定接触」）。</p>
+
+  <p>训练 VQ-VAE 时有一个巧妙的损失设计：<strong>magnitude-weighted MSE</strong>——力越大的帧权重越高。这是因为大部分时间手指没有接触（力为零），如果不加权，编码器会把精力花在编码「什么都没碰到」这个无意义状态上。</p>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>三路编码各取所长：VQ-VAE 捕捉力的时序动态（最近 16 帧的趋势），直接投影保留即时力值（当前这一帧的精确读数），变形图编码器提取空间接触几何。三者互补，缺一不可——消融实验（第 07 节会讲）证实了这一点。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="card-label">不足</div>
+    <p>变形图编码器是预训练后冻结的（frozen），不参与策略训练。这虽然节省参数，但也意味着编码器无法针对具体任务做适应性调整。如果某个任务需要特殊的变形特征（比如布料的褶皱模式），冻结的编码器可能提取不到。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>到这里，模型架构的所有组件你都了解了：三个 Expert + 触觉编码器 + 级联 Flow Matching。下一节换个视角，看支撑这个模型的数据是怎么收集和组织的。</span>
+</div>
+
+<!-- ====== Section 5 ====== -->
+<div class="section" id="s5">
+  <div class="section-num">05</div>
+  <h2>训练数据：T-Rex Dataset 的设计哲学</h2>
+  <p class="section-lead">这节回答：100 小时的触觉数据是怎么设计的？为什么不按任务收集、而是按「动词-名词组合」？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：数据在 VLA 中的角色</div>
+    <p>你在 π0.5 中学到了多数据源协同训练的重要性；在 OpenVLA 中学到了 OXE 数据集如何汇聚不同机器人的数据。但这些数据集几乎没有触觉信号，也很少涉及灵巧手。T-Rex Dataset 填补的就是这个空白。</p>
+  </div>
+
+  <h3>数据规模与构成</h3>
+
+  <table>
+    <tr><th>维度</th><th>数值</th></tr>
+    <tr><td>总时长</td><td>100 小时</td></tr>
+    <tr><td>轨迹数</td><td>7,700+</td></tr>
+    <tr><td>物体种类</td><td>200+ 日常物品</td></tr>
+    <tr><td>动作原语（motor primitives）</td><td>22 种</td></tr>
+    <tr><td>物体-原语组合</td><td>502 种（从 4,554 种候选中筛选可行的）</td></tr>
+    <tr><td>每个组合的演示数</td><td>~16 次</td></tr>
+    <tr><td>中位集长度</td><td>29.8 秒</td></tr>
+    <tr><td>收集周期</td><td>10 周</td></tr>
+  </table>
+
+  <h3>核心设计哲学：动词-名词组合（Verb-Noun Composition）</h3>
+
+  <p>这是 T-Rex Dataset 最独特的设计决策。传统方法是按最终任务收集数据（如「翻书页 100 次」），但 T-Rex 换了个思路：<strong>按动作原语收集。</strong></p>
+
+  <p>22 种动作原语包括：close, peel, wrap, fold, wipe, squeeze, insert, extract, press, slide, pick, pour, twist 等。207 种物体涵盖 11 个类别：个人护理、五金工具、玩具、厨房用品、包装胶带、电子产品、布料、衣物、容器、纸张等。</p>
+
+  <p>把每种可行的「动词×名词」组合演示 ~16 次，得到的数据集虽然不是任何一个具体任务的专家级数据，但覆盖了接触密集行为的基本词汇表。就像学语言时先掌握基本单词和语法，再组合成句子。</p>
+
+  <div class="highlight">
+    <p><strong>为什么这个设计有效？</strong> 消融实验（第 07 节详述）对比了同样 100 小时的「任务特定数据」和「动词-名词组合数据」——后者在下游任务上泛化更好，零样本迁移能力也更强。原因是动词-名词数据覆盖了更广的接触模式空间，模型学到了可组合的操作「原子能力」。</p>
+  </div>
+
+  <h3>每条轨迹包含什么？</h3>
+
+<pre><code># 每条轨迹（episode）的同步数据流，30Hz 采样
+episode = {
+    "rgb_head":    [T, 640, 360, 3],     # 头部 ZED X Mini 左眼
+    "rgb_wrist_L": [T, 640, 360, 3],     # 左腕 ZED X One S
+    "rgb_wrist_R": [T, 640, 360, 3],     # 右腕 ZED X One S
+    "arm_joints":  [T, 14],              # 双臂 2×7 关节位置+速度
+    "hand_joints": [T, 44],              # 双手 2×22 DoF
+    "ee_poses":    [T, 2, 7],            # 双腕 SE(3) 位姿
+    "tactile_force":  [T, 10, 6],        # 10指 × 6维力/力矩
+    "tactile_deform": [T, 10, H, W],     # 10指 × 变形深度图
+    "language":    "pick up the cup..."   # 自然语言指令
+}</code></pre>
+
+  <h3>数据质量控制</h3>
+  <p>收集完成后做了严格的清洗：去掉触觉测量不稳定的、传感器流损坏的、遥操作失误导致异常运动的轨迹。语言标注使用商业 VLM 自动生成（输入头部相机的 4-6 帧抽样 + 物体名和动作名），然后由人工验证去除幻觉和不准确的描述。</p>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>场景多样性做得很好：6 种不同桌面背景，每个场景随机放置 0-5 个干扰物，物体初始位置和朝向也随机化。这让模型不会过拟合到特定场景布局上。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>上一节讲了数据的收集逻辑。有了模型（02-04 节）和数据（05 节），下一节看它们如何通过三阶段训练组装在一起。</span>
+</div>
+
+<!-- ====== Section 6 ====== -->
+<div class="section" id="s6">
+  <div class="section-num">06</div>
+  <h2>训练范式：三阶段渐进式训练</h2>
+  <p class="section-lead">这节回答：T-Rex 的训练分几步？每步用什么数据、训练什么模块、达成什么能力？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：π0 和 π0.5 的训练策略</div>
+    <p>π0 是「预训练 + 微调」两阶段；π0.5 扩大了预训练数据的异构性，让一个模型同时处理多机器人。T-Rex 在此基础上加了一个中间阶段（mid-training），专门用来注入触觉能力——这个「三段式」是本文的训练创新。</p>
+  </div>
+
+  <h3>Stage 1: 大规模人类自我中心视频预训练</h3>
+
+  <table>
+    <tr><th>维度</th><th>细节</th></tr>
+    <tr><td>数据</td><td>22,889 小时人类第一人称视频（来自 EgoScale）</td></tr>
+    <tr><td>训练模块</td><td>Latent Expert + Action Expert</td></tr>
+    <tr><td>Tactile Expert</td><td>❌ 不参与</td></tr>
+    <tr><td>学到什么</td><td>视觉语义理解 + 粗粒度手臂/手部运动先验</td></tr>
+  </table>
+
+  <p>这一阶段遵循 EgoScale 的范式：用人类第一人称视频学习「看到什么→做什么」的通用映射。Latent Expert 学习视觉-语言表示，Action Expert 学习从重定向后的人手运动中预测动作。注意：这里完全没有触觉信号——但这没关系，因为这个阶段的目标是获取广泛的视觉运动先验。</p>
+
+  <h3>Stage 2: 触觉接地的机器人中间训练（Mid-training）</h3>
+
+  <table>
+    <tr><th>维度</th><th>细节</th></tr>
+    <tr><td>数据</td><td>T-Rex Dataset: 100 小时触觉同步遥操作数据</td></tr>
+    <tr><td>训练模块</td><td>Action Expert（适配到机器人观测） + Tactile Expert（从零开始）</td></tr>
+    <tr><td>学到什么</td><td>Action Expert 适配到真实机器人动作空间；Tactile Expert 学会用触觉做高频精炼</td></tr>
+  </table>
+
+  <p>这是 T-Rex 最核心的训练阶段。人类视频预训练提供了广泛的先验，但它有两个 gap：① 动作空间不同（人手 vs 机器人手）；② 没有触觉信号。Mid-training 用 100 小时的机器人数据同时弥补这两个 gap。</p>
+
+  <div class="highlight">
+    <p><strong>Mid-training 的哲学：</strong>不需要在预训练阶段就有触觉数据（那太贵了），而是让模型先通过海量视觉数据学会「如何操作物体」，再通过相对少量的触觉数据学会「如何根据手感微调动作」。就像人先通过视觉学会了抓取的大致策略，然后在实际接触中学会力度控制。</p>
+  </div>
+
+  <h3>Stage 3: 任务特定的后训练（Post-training）</h3>
+
+  <table>
+    <tr><th>维度</th><th>细节</th></tr>
+    <tr><td>数据</td><td>每个任务约 100 条演示</td></tr>
+    <tr><td>训练模块</td><td>全模型微调</td></tr>
+    <tr><td>学到什么</td><td>特定任务的精细技能</td></tr>
+  </table>
+
+  <p>值得注意的是，经过 mid-training 后，T-Rex 已经展现出零样本的接触操作能力（pick cube、flip page、press button、wipe plate 等简单任务）。对于更复杂的任务（如开锁、拧灯泡），才需要用 ~100 条任务演示做后训练。</p>
+
+  <h3>训练超参数</h3>
+
+<pre><code># 训练配置
+optimizer       = AdamW
+peak_lr         = 1e-4
+lr_schedule     = Cosine → 0
+gradient_clip   = 1.0
+mixed_precision = bf16
+GPUs            = 24 × NVIDIA H100
+DeepSpeed       = ZeroStage 1
+batch_per_gpu   = 16
+grad_accum      = 1
+# 总 batch_size = 24 × 16 = 384</code></pre>
+
+  <div class="strength">
+    <div class="card-label">亮点</div>
+    <p>三阶段训练的数据效率非常高。消融实验（Table 3）显示：只有 post-training 没有前两个阶段时平均成功率只有 18%；加上预训练到 45%；加上 mid-training 到 65%。每个阶段都有不可替代的贡献。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>训练范式讲完了。接下来我们看论文中的消融实验——它们验证了前面所有设计决策的合理性。</span>
+</div>
+
+<!-- ====== Section 7 ====== -->
+<div class="section" id="s7">
+  <div class="section-num">07</div>
+  <h2>消融实验与设计决策</h2>
+  <p class="section-lead">这节回答：每个设计选择到底带来了多大收益？去掉哪个部分影响最大？</p>
+
+  <div class="recap">
+    <div class="recap-label">回顾：需要验证的关键设计</div>
+    <p>到目前为止有四个核心设计需要验证：① 触觉信号本身是否有用（vs 纯视觉）；② 三路触觉编码各自的贡献；③ 异步快慢流是否比同步更好；④ 级联切分点 τ_split 怎么选。</p>
+  </div>
+
+  <h3>消融 1：触觉模态的重要性</h3>
+
+  <table>
+    <tr><th>配置</th><th>翻页</th><th>涂牙膏</th><th>分杯</th><th>开锁</th><th>抽卡</th><th>拧灯泡</th><th>平均</th></tr>
+    <tr><td><strong>Full Model</strong></td><td><strong>96</strong></td><td><strong>66</strong></td><td><strong>78</strong></td><td><strong>47</strong></td><td><strong>70</strong></td><td><strong>35</strong></td><td><strong>65</strong></td></tr>
+    <tr><td>w/o Tactile</td><td>76</td><td>39</td><td>58</td><td>23</td><td>34</td><td>20</td><td>42 (-23%)</td></tr>
+    <tr><td>MLP Force + Deform</td><td>89</td><td>58</td><td>72</td><td>44</td><td>58</td><td>29</td><td>58 (-7%)</td></tr>
+    <tr><td>Deform only</td><td>82</td><td>57</td><td>71</td><td>36</td><td>55</td><td>25</td><td>54 (-11%)</td></tr>
+    <tr><td>MLP Force + VQ-VAE Force</td><td>92</td><td>63</td><td>65</td><td>38</td><td>67</td><td>28</td><td>59 (-6%)</td></tr>
+  </table>
+
+  <p><strong>去掉全部触觉：-23%。</strong> 这是最关键的消融——证明触觉在接触密集任务上不是锦上添花，而是必需品。「抽卡」任务从 70% 暴跌到 34%，因为从卡套里抽出单张卡片必须靠手指感知卡的边缘和滑移。</p>
+
+  <p><strong>去掉 VQ-VAE，换成普通 MLP：-7%。</strong> 说明 VQ-VAE 的时序建模能力（编码 16 帧力历史的动态模式）比 MLP 强。</p>
+
+  <p><strong>只保留变形图，去掉所有力信号：-11%。</strong> 说明力信号和变形图各自携带不同信息，两者互补。</p>
+
+  <h3>消融 2：异步 vs 同步</h3>
+
+  <p><strong>去掉异步（w/o Async）：-5%。</strong> 同步意味着 Tactile Expert 和 Action Expert 一起跑、一起更新，频率被拉低到 ~5Hz。异步设计让触觉精炼频率达到 ~20Hz，在「分杯」和「抽卡」这类需要快速力反馈的任务上差距明显。</p>
+
+  <h3>消融 3：切分点 τ_split 的选择</h3>
+
+  <p>论文在三个任务上扫描了 K_slow ∈ {1, 2, 4, 6, 8}（总步数 10，K_slow 决定 Action Expert 跑几步）：</p>
+
+  <p><strong>K_slow = 6（τ_split = 0.4）</strong>在三个任务上一致最优。K_slow 太小→ Action Expert 去噪不够，交给 Tactile Expert 的半成品太嘈杂；K_slow 太大→留给 Tactile Expert 的去噪空间太小，触觉信息发挥不出来。</p>
+
+  <h3>消融 4：训练范式的贡献</h3>
+
+  <table>
+    <tr><th>预训练</th><th>中间训练</th><th>平均成功率</th></tr>
+    <tr><td>❌</td><td>❌</td><td>18%</td></tr>
+    <tr><td>❌</td><td>✅</td><td>34%</td></tr>
+    <tr><td>✅</td><td>❌</td><td>45%</td></tr>
+    <tr><td>✅</td><td>✅</td><td><strong>65%</strong></td></tr>
+  </table>
+
+  <p>两个阶段的贡献是相乘而非相加的——预训练提供语义和运动先验（+27%），mid-training 把先验接地到触觉可控的真实动作（+20%），两者缺一不可。</p>
+
+  <h3>消融 5：数据集设计的验证</h3>
+
+  <p>同样 100 小时，按动词-名词组合收集的 T-Rex 数据集 vs 按 11 个任务特定收集的数据集：T-Rex 数据集在 6 个后训练任务上成功率更高，在 4 个零样本任务上优势更明显（有 mid-training: 可以零样本做到 5-45%；无 mid-training: 全部 0%）。</p>
+
+  <div class="highlight">
+    <p><strong>总结：</strong>消融实验的逻辑链非常完整——每个设计决策都有独立的实验验证，且每个消融都在多个任务上保持一致的结论方向。这是一篇工程扎实的论文。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>消融实验证明了各组件的必要性。下一节看完整的实验结果——T-Rex 在 12 个任务上和 6 个 baseline 的全面对比。</span>
+</div>
+
+<!-- ====== Section 8 ====== -->
+<div class="section" id="s8">
+  <div class="section-num">08</div>
+  <h2>实验评估：12 个任务的全面对比</h2>
+  <p class="section-lead">这节回答：T-Rex 在哪些任务上优势最大？什么样的任务最能体现触觉的价值？</p>
+
+  <h3>硬件平台</h3>
+  <p>Dexmate Vega-1 双臂机器人 + 两只 Sharpa Wave 灵巧手（每只 22 自由度），头部 + 双腕共 3 个 ZED 相机，每根手指 1 个触觉传感器（力/力矩 + 变形图）。遥操作用 Manus 手套（手指动作）+ VIVE Trackers（手腕位姿）。</p>
+
+  <h3>12 个任务一览</h3>
+
+  <p>任务被分为三类：力敏感型（翻页、转蛋、擦盘、涂牙膏）、变形敏感型（分杯、麻将分类）、力+变形综合型（开锁、补药、酸碱滴定、抽卡、发牌、拧灯泡）。每个任务 16 次测试，物体位置/朝向随机化，使用累加式评分标准（完成每个子步骤得分）。</p>
+
+  <h3>主要结果</h3>
+
+  <table>
+    <tr><th>方法</th><th>预训练数据</th><th>触觉</th><th>平均成功率</th></tr>
+    <tr><td>ViTacFormer</td><td>无（从零训练）</td><td>✅ 力</td><td>3%</td></tr>
+    <tr><td>RDP</td><td>无（从零训练）</td><td>✅ 力</td><td>6%</td></tr>
+    <tr><td>Tactile-VLA</td><td>少量</td><td>✅ 力</td><td>15%</td></tr>
+    <tr><td>π0.5</td><td>大规模</td><td>❌</td><td>17%</td></tr>
+    <tr><td>π0.5 + tactile</td><td>大规模</td><td>✅ 简单拼接</td><td>6%</td></tr>
+    <tr><td>EgoScale</td><td>大规模自我中心视频</td><td>❌</td><td>35%</td></tr>
+    <tr><td><strong>T-Rex</strong></td><td>大规模自我中心 + mid-train</td><td>✅ 力+变形+VQ-VAE</td><td><strong>65%</strong></td></tr>
+  </table>
+
+  <div class="note">
+    <div class="card-label">关键发现</div>
+    <p><strong>π0.5 + tactile（6%）比 π0.5（17%）还差！</strong> 这说明简单地把触觉信号拼接到已有 VLA 模型里不仅没用，还有害。原因是预训练时从没见过触觉数据，突然加入一个全新模态会干扰已有的视觉-动作对齐。这恰恰论证了 T-Rex 设计 mid-training 和专门 Tactile Expert 的必要性。</p>
+  </div>
+
+  <h3>最大优势在哪些任务？</h3>
+
+  <p><strong>涂牙膏（66% vs 38%）：</strong>需要精确控制挤压力度——太轻挤不出来，太重牙膏溢出。纯视觉无法判断挤压力度。</p>
+
+  <p><strong>酸碱滴定（76% vs 43%）：</strong>需要用吸管吸取液体、滴入烧杯、晃动混合——每个步骤都涉及精细力控。</p>
+
+  <p><strong>抽卡（70% vs 41%）：</strong>从卡套中只抽出一张卡——需要触觉感知卡的边缘，用拇指和食指的力差来分离单张卡。</p>
+
+  <p><strong>最难的任务：拧灯泡（35%）。</strong>即使 T-Rex 也只有 35% 成功率（EgoScale 18%）。这个任务需要双手交接灯泡 + 对准螺纹 + 连续旋转，是最长 horizon、最多接触协调的任务。</p>
+
+  <div class="weakness">
+    <div class="card-label">不足</div>
+    <p>所有实验都在同一个硬件平台（Dexmate Vega-1）上完成。这意味着我们不知道 T-Rex 的触觉表示方案是否能迁移到其他灵巧手（如 Allegro Hand、Shadow Hand）或其他触觉传感器类型（如 GelSight 视觉触觉 vs 这里用的力/变形传感器）。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span>实验结果很亮眼，但完美吗？最后一节讨论论文承认的局限和开放的研究方向。</span>
+</div>
+
+<!-- ====== Section 9 ====== -->
+<div class="section" id="s9">
+  <div class="section-num">09</div>
+  <h2>局限与反思</h2>
+  <p class="section-lead">这节回答：T-Rex 没解决什么问题？如果你要在自己的 HYVLA 框架里集成触觉，应该注意什么？</p>
+
+  <h3>论文自述的局限</h3>
+
+  <p><strong>1. 长 horizon 任务仍然困难。</strong> 拧灯泡只有 35%，发牌 57%。这些任务需要多步精密接触协调，行为克隆（BC）在这类场景下分布偏移严重。论文建议未来可以引入强化学习或在线交互来改进。</p>
+
+  <p><strong>2. 硬件瓶颈。</strong> 触觉传感器有零点漂移、标定不一致、且只覆盖指尖没有掌心感应。这些硬件限制直接影响了策略性能的上限。</p>
+
+  <h3>论文没讨论但值得思考的问题</h3>
+
+  <div class="weakness">
+    <div class="card-label">不足</div>
+    <p><strong>跨传感器泛化。</strong> VQ-VAE 的码本和变形图编码器都是针对特定传感器（6 维力/力矩 + 单通道变形图）训练的。换一种触觉传感器（如 GelSight 的高分辨率触觉图像、BioTac 的电极阵列），整个触觉编码管线需要重新训练。这是触觉机器人领域的普遍挑战。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="card-label">不足</div>
+    <p><strong>推理成本。</strong> 论文没有给出具体的推理延迟数字。3.4B 参数的模型在 H100 上跑到 5Hz（慢流）应该不难，但 20Hz 的快流对部署环境有要求。在算力受限的嵌入式平台上，这个架构能否实时运行是个开放问题。</p>
+  </div>
+
+  <h3>对你预研 HYVLA + 触觉的启示</h3>
+
+  <div class="highlight">
+    <p><strong>启示一：不要在预训练阶段加触觉。</strong> T-Rex 最重要的教训是 mid-training 范式——先用纯视觉大规模预训练获取通用先验，再用少量触觉数据做模态对齐。这比从零开始联合训练便宜得多，效果也更好。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>启示二：触觉不能简单拼接。</strong> π0.5+tactile 的惨败（6% vs 17%）是最好的警示。触觉需要专门的编码器（VQ-VAE）、专门的 Expert 网络、专门的训练阶段。简单地把力向量 concat 到状态向量里只会帮倒忙。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>启示三：频率分离是刚需。</strong> 如果你的 HYVLA 架构跑在 ~5Hz，而触觉反应需要 ~20Hz，那你必须设计某种形式的快慢分离——T-Rex 的级联 Flow Matching 是一种方案，其他方案还有 RDP 的 slow-fast diffusion、Fast-in-Slow 的双系统等。核心思路相同：让大模型慢跑出方向，让小模型快跑做调整。</p>
+  </div>
+
+  <div class="highlight">
+    <p><strong>启示四：数据收集策略很重要。</strong> 如果你要收集触觉数据做中间训练，参考 T-Rex 的「动词-名词组合」策略而非「任务特定」策略。前者的泛化能力和数据效率都更高。但你需要一个支持触觉的遥操作系统——这是最大的工程门槛。</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-label">全文核心要点回顾</div>
+    <p><strong>数据：</strong>100h 触觉同步数据集，按 22 种动作原语 × 207 种物体的组合收集，比任务特定数据泛化更好。</p>
+    <p><strong>架构：</strong>三 Expert MoT（Latent + Action + Tactile），Tactile Expert 复用 KV Cache 实现 4x 频率提升。</p>
+    <p><strong>训练：</strong>三阶段渐进式——人类视频预训练 → 触觉接地中间训练 → 任务特定后训练。</p>
+    <p><strong>触觉编码：</strong>VQ-VAE（力时序）+ 线性投影（即时力）+ 冻结 ResNet（变形图），三路互补。</p>
+    <p><strong>核心机制：</strong>级联 Flow Matching 在 τ=0.4 处切分，慢流 6 步粗动作 + 快流 4 步触觉精炼，异步执行。</p>
+    <p><strong>结果：</strong>12 个任务平均 65%，比最强 baseline（EgoScale 35%）高 30 个百分点。</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>
