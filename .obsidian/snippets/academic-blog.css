@@ -1,0 +1,168 @@
+/* Academic Blog — a warm, quiet reading layer for research notes. */
+
+body.theme-light {
+  --background-primary: #fbfaf7;
+  --background-primary-alt: #f7f5f0;
+  --background-secondary: #f2efe9;
+  --background-secondary-alt: #ece8e0;
+  --text-normal: #2e2b27;
+  --text-muted: #756f67;
+  --text-faint: #9b948b;
+  --interactive-accent: #4f7787;
+  --interactive-accent-hover: #3f6676;
+  --link-color: #426f83;
+  --link-color-hover: #284f61;
+  --h1-color: #202a2d;
+  --h2-color: #29383c;
+  --h3-color: #38515a;
+  --code-background: #f1eee8;
+  --blockquote-border-color: #9fb4ad;
+  --file-line-width: 780px;
+}
+
+body.theme-dark {
+  --background-primary: #20211f;
+  --background-primary-alt: #242522;
+  --background-secondary: #1a1b19;
+  --background-secondary-alt: #171816;
+  --text-normal: #e5e0d7;
+  --text-muted: #aaa49b;
+  --interactive-accent: #83aeb8;
+  --link-color: #8ab7c2;
+  --link-color-hover: #b1d2d8;
+  --code-background: #292a27;
+  --blockquote-border-color: #607d76;
+  --file-line-width: 780px;
+}
+
+/* Keep metadata available to Properties view, but out of the article. */
+.workspace-leaf-content[data-type="markdown"] .metadata-container,
+.workspace-leaf-content[data-type="markdown"] .inline-title {
+  display: none;
+}
+
+.markdown-reading-view .markdown-preview-sizer,
+.markdown-source-view.mod-cm6 .cm-contentContainer {
+  max-width: var(--file-line-width);
+  margin-inline: auto;
+}
+
+.markdown-rendered,
+.markdown-source-view.mod-cm6 .cm-line {
+  letter-spacing: 0.008em;
+}
+
+.markdown-rendered p,
+.markdown-rendered li,
+.markdown-source-view.mod-cm6 .cm-line {
+  line-height: 1.85;
+}
+
+.markdown-rendered p {
+  margin-block: 0.75em 1em;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-source-view.mod-cm6 .HyperMD-header {
+  font-family: Inter, "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+  letter-spacing: -0.018em;
+}
+
+.markdown-rendered h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-top: 0.25em;
+  margin-bottom: 1.35em;
+}
+
+.markdown-rendered h2 {
+  font-size: 1.35em;
+  font-weight: 650;
+  margin-top: 2.35em;
+  padding-bottom: 0.38em;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-faint) 30%, transparent);
+}
+
+.markdown-rendered h3 {
+  font-size: 1.08em;
+  font-weight: 650;
+  margin-top: 1.8em;
+}
+
+.markdown-rendered a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.markdown-rendered blockquote {
+  color: var(--text-muted);
+  border-inline-start-width: 2px;
+  padding: 0.2em 0 0.2em 1.2em;
+  font-style: normal;
+}
+
+.callout {
+  border: 0;
+  border-inline-start: 3px solid rgb(var(--callout-color));
+  border-radius: 6px;
+  box-shadow: none;
+  background: rgba(var(--callout-color), 0.075);
+  padding: 0.8em 1em;
+}
+
+.callout-title {
+  font-family: Inter, "Noto Sans CJK SC", sans-serif;
+  font-weight: 650;
+}
+
+.markdown-rendered table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1.4em;
+  font-size: 0.94em;
+}
+
+.markdown-rendered th {
+  font-family: Inter, "Noto Sans CJK SC", sans-serif;
+  text-align: start;
+  background: var(--background-primary-alt);
+}
+
+.markdown-rendered th,
+.markdown-rendered td {
+  border-width: 0 0 1px;
+  border-color: color-mix(in srgb, var(--text-faint) 28%, transparent);
+  padding: 0.72em 0.8em;
+}
+
+.markdown-rendered code,
+.markdown-source-view.mod-cm6 .cm-inline-code {
+  border-radius: 4px;
+  padding: 0.12em 0.34em;
+}
+
+.markdown-rendered pre {
+  border: 1px solid color-mix(in srgb, var(--text-faint) 24%, transparent);
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 1em 1.1em;
+}
+
+.nav-file-title,
+.nav-folder-title {
+  font-family: Inter, "Noto Sans CJK SC", sans-serif;
+  border-radius: 5px;
+}
+
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split {
+  background: var(--background-secondary);
+}
+
+.workspace-tab-header-container,
+.view-header {
+  border-color: color-mix(in srgb, var(--text-faint) 20%, transparent);
+}

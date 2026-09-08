@@ -1,1 +1,11 @@
-{}
+{
+  "accentColor": "#4f7787",
+  "cssTheme": "Minimal",
+  "enabledCssSnippets": [
+    "academic-blog"
+  ],
+  "interfaceFontFamily": "Inter, Noto Sans CJK SC, Source Han Sans SC",
+  "textFontFamily": "Noto Serif CJK SC, Source Han Serif SC, Noto Sans CJK SC",
+  "monospaceFontFamily": "JetBrains Mono, Noto Sans Mono CJK SC",
+  "baseFontSize": 16
+}
