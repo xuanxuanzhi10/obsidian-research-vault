@@ -1,0 +1,20 @@
+"20 Concepts/Block-wise Causal Attention.md"
+  h_c2b50b6ba78233 21,31,34-58,61-65
+"20 Concepts/Compact Memory Encoder.md"
+  h_c2b50b6ba78233 27-61,64-67
+"20 Concepts/Mixture of Transformers.md"
+  h_c2b50b6ba78233 25-48,51
+Templates/概念笔记模板.md
+  h_c2b50b6ba78233 43-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "4c91f0438f3e8e8697cba01b1a390c954c1e5698",
+  "prompts": {},
+  "humans": {
+    "h_c2b50b6ba78233": {
+      "author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
