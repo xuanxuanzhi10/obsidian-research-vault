@@ -1,0 +1,29 @@
+"90 Attachments/Tactile-VLA/transformer-parameter-ledger.svg"
+  s_a3320701e75207::t_51aa96fae422a0 1
+"90 Attachments/Tactile-VLA/domain-aware-distributed-training.svg"
+  s_a3320701e75207::t_51aa96fae422a0 1
+"20 Concepts/Transformer 参数量估算.md"
+  s_a3320701e75207::t_51aa96fae422a0 1-101
+"20 Concepts/Adaptive RMSNorm.md"
+  s_a3320701e75207::t_51aa96fae422a0 4-5,7,10-13,16,18,20,22,24,26,28,30,32-34,36-37,39,41-53,56,58,60-64,66-68,70-71,73,75-80,82,84,86-89
+"20 Concepts/异构多域分布式训练.md"
+  s_a3320701e75207::t_51aa96fae422a0 1-106
+"90 Attachments/Tactile-VLA/adarmsnorm-conditioning.svg"
+  s_a3320701e75207::t_51aa96fae422a0 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "a24bff21bcf6d7b4870afd28d8b7a89e7473a4a3",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
