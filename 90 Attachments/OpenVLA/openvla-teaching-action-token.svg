@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="670" viewBox="0 0 1200 670">
+  <rect width="1200" height="670" fill="#faf8f3"/>
+  <style>.title{font:700 29px sans-serif;fill:#292622}.h{font:700 19px sans-serif;fill:#292622}.t{font:16px sans-serif;fill:#514b44}.s{font:14px sans-serif;fill:#655e56}.mono{font:15px monospace;fill:#37322d}.box{fill:#fff;stroke:#c9bca9;stroke-width:2}.arrow{stroke:#8f6946;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#8f6946"/></marker></defs>
+  <text x="55" y="52" class="title">OpenVLA：把一次 7D 连续动作改写成 7 次 token 分类</text>
+  <rect x="55" y="95" width="235" height="150" rx="16" class="box"/>
+  <text x="172" y="130" text-anchor="middle" class="h">连续动作 aₜ</text>
+  <text x="172" y="166" text-anchor="middle" class="mono">[Δx, Δy, Δz,</text>
+  <text x="172" y="192" text-anchor="middle" class="mono"> Δroll, Δpitch, Δyaw, grip]</text>
+  <text x="172" y="222" text-anchor="middle" class="s">shape = [7]，每步一个动作</text>
+  <path d="M290 170 H365" class="arrow"/>
+  <rect x="365" y="85" width="300" height="170" rx="16" fill="#f5ead6" stroke="#caa66d" stroke-width="2"/>
+  <text x="515" y="120" text-anchor="middle" class="h">每个维度独立分箱</text>
+  <text x="515" y="154" text-anchor="middle" class="t">边界：该维训练数据 1% / 99% 分位</text>
+  <text x="515" y="187" text-anchor="middle" class="t">区间均匀切为 256 bins</text>
+  <text x="515" y="220" text-anchor="middle" class="mono">bin(a[d]) ∈ {0,...,255}</text>
+  <path d="M665 170 H740" class="arrow"/>
+  <rect x="740" y="85" width="405" height="170" rx="16" fill="#e8f1ef" stroke="#8bb1a8" stroke-width="2"/>
+  <text x="942" y="120" text-anchor="middle" class="h">映射进 Llama 词表</text>
+  <text x="942" y="154" text-anchor="middle" class="t">复用词表最后 256 个、最少使用的 token</text>
+  <text x="942" y="187" text-anchor="middle" class="mono">[12, 128, 91, 133, 127, 126, 255]</text>
+  <text x="942" y="220" text-anchor="middle" class="s">不扩词表；这些 token 的语义在 VLA 微调中重写</text>
+  <path d="M942 255 V322" class="arrow"/>
+  <rect x="740" y="322" width="405" height="160" rx="16" fill="#ece6f5" stroke="#a58bc2" stroke-width="2"/>
+  <text x="942" y="357" text-anchor="middle" class="h">Llama 自回归预测</text>
+  <text x="942" y="392" text-anchor="middle" class="mono">p(z₁,...,z₇ | image, instruction)</text>
+  <text x="942" y="424" text-anchor="middle" class="t">训练：只在 7 个 action target 上算 CE</text>
+  <text x="942" y="454" text-anchor="middle" class="t">推理：token → bin center → 连续 7D 动作</text>
+  <path d="M740 402 H665" class="arrow"/>
+  <rect x="365" y="322" width="300" height="160" rx="16" class="box"/>
+  <text x="515" y="357" text-anchor="middle" class="h">动作反量化</text>
+  <text x="515" y="392" text-anchor="middle" class="t">按各维统计量恢复尺度</text>
+  <text x="515" y="425" text-anchor="middle" class="mono">â[d] = center(bin z[d])</text>
+  <text x="515" y="455" text-anchor="middle" class="s">误差上限依赖该维数据范围，不是固定毫米数</text>
+  <rect x="55" y="322" width="235" height="160" rx="16" fill="#f1ece4" stroke="#b79f83" stroke-width="2"/>
+  <text x="172" y="357" text-anchor="middle" class="h">闭环执行一个时间步</text>
+  <text x="172" y="392" text-anchor="middle" class="t">机器人执行 âₜ</text>
+  <text x="172" y="425" text-anchor="middle" class="t">重新拍图，再跑 7B 模型</text>
+  <text x="172" y="455" text-anchor="middle" class="s">没有 action chunking / proprio history</text>
+  <path d="M365 402 H290" class="arrow"/>
+  <rect x="90" y="535" width="1020" height="85" rx="14" fill="#efe7dc" stroke="#c9bca9"/>
+  <text x="600" y="570" text-anchor="middle" class="h">允许：z₂ 可条件于 z₁，因此维度相关性可以由自回归联合分布学习</text>
+  <text x="600" y="600" text-anchor="middle" class="h">代价：逐维量化 + 单步执行会引入量化误差、token 延迟与时间不连续</text>
+  <text x="600" y="650" text-anchor="middle" class="s">教学示意图（根据 OpenVLA Sec. 3.2 绘制，并非论文原图）</text>
+</svg>

@@ -44,7 +44,19 @@ LoRA 可训练参数：   r × (d_in + d_out)
 
 ## 在 VLA 中为什么有用？
 
-VLA backbone 往往数十亿参数；LoRA 让单任务或单机器人适配降低训练显存和 checkpoint 体积。当前知识库在 [[OpenVLA]] 中记录了 LoRA 高效微调实验，具体配置待原文 PDF 复核。
+VLA backbone 往往数十亿参数；LoRA 让单任务或单机器人适配降低训练显存和 checkpoint 体积。
+
+## OpenVLA 的实证坐标
+
+在 33 次 Franka-Tabletop rollouts 的较小 SigLIP-only OpenVLA variant 上：
+
+| 方法 | 成功率 | 可训练参数 | 显存（batch 16） |
+|---|---:|---:|---:|
+| Full FT | 69.7±7.2% | 7,188.1M | 163.3GB，2卡 FSDP |
+| LoRA r=32 | 68.2±7.5% | 97.6M（1.4%） | 59.7GB |
+| LoRA r=64 | 68.2±7.8% | 195.2M | 60.5GB |
+
+因此论文推荐默认 `r=32`；在单张 A100 上约 10-15 小时完成适配。注意：1.4% 指可训练参数，不是推理时只加载 1.4% 基座权重；这组实验也不是完整 DINOv2+SigLIP final checkpoint。
 
 ## 与相近方法的边界
 

@@ -46,7 +46,8 @@ action chunk [H,D]
 ## 在论文生态中的位置
 
 - FAST 原论文：概念来源，source 已记录但尚未在本 Vault 做全文精读。
-- [[π₀.5]]：当前知识库记录其将 FAST 与连续动作后训练结合；具体配置待 PDF 复核。
+- [[π₀.5]]：280k 离散预训练使用 FAST，80k 后训练加入连续 Flow Expert；PDF 已复核。
+- [[OpenVLA]] 不使用 FAST：它只对单个时间步的各动作维度分别做 256-bin quantization，见 [[逐维动作分箱]]。
 
 ## 优势、代价与失败边界
 
@@ -55,4 +56,3 @@ action chunk [H,D]
 **代价：** 量化引入精度损失；序列化和码率配置会影响跨数据集泛化。
 
 **边界：** FAST 的核心不是 VQ-VAE learned codebook；FAST 与 FAST+ 的训练规模和通用性也不能混为一谈。
-

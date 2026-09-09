@@ -9,7 +9,7 @@ created: 2026-09-07
 
 | 方法 | 动作表示 | 感知底座 | 数据/训练侧重点 | 最鲜明的问题意识 |
 |---|---|---|---|---|
-| [[OpenVLA]] | 离散 action tokens | 通用 VLM | OXE、开放微调 | 开源 generalist policy |
+| [[OpenVLA]] | 单步 7D、逐维 256-bin action tokens | Prismatic-7B：SigLIP+DINOv2→Llama 2 | 970k OpenX robot trajectories、端到端 27 epochs、LoRA/量化 | 开放、可微调的 generalist VLA baseline |
 | [[π₀]] | H=50 连续 Flow Matching | PaliGemma 3B + 300M Action Expert | >10k h、多样预训练→高质量 post-training | 语义预训练怎样兼容高频灵巧控制 |
 | [[π₀.5]] | 预训练 FAST；后训练/推理为 H=50 连续 Flow | PaliGemma 2.6B + 300M Action Expert | MM/ME/CE/HL/WD，后训练加 VI；280k+80k | 未见家庭中的开放世界长任务 |
 | [[Hy-Embodied-0.5-VLA]] | relative-EEF delta chunk | 4B embodied MoT | 10K h UMI + FlowPRO | 完整 real-world learning stack |
@@ -43,3 +43,16 @@ Action Expert：state + noisy actions，width 1024
 | 数据问题 | 多 embodiment 的通用控制 | 环境、语义、技能与高层的异构协同 |
 
 π₀.5 论文中的 `π₀-FAST+Flow` 是专门构造的增强基线，不是原始 π₀ 的训练方式。
+
+## OpenVLA 的基准坐标
+
+```text
+input：单张第三人称 RGB + language instruction
+vision：SigLIP 与 DINOv2 feature 沿 channel concat
+policy：Llama 2 7B 自回归输出 7 个 action tokens
+action：单时间步 relative EEF 6D + gripper，逐维 256 bins
+state/history：无 proprioception、无多帧历史
+deployment：bf16 RTX 4090 约 6Hz，无 action chunking
+```
+
+OpenVLA 与 π₀ 的核心分歧不是“离散能不能多峰”，而是计算接口：前者把动作完全纳入 LLM vocabulary；后者为连续 `[H,D]` action chunk 建立专用 Action Expert 与 Flow loss。

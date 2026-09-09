@@ -20,7 +20,7 @@ created: 2026-09-07
 ```
 
 > [!warning] 核实状态
-> “待原文 PDF 复核”表示当前只建立了知识链接，不能把具体配置当成已验证事实。现阶段 HyVLA、π₀、π₀.5 已完成全文与附录核查；OpenVLA 仍需 PDF 精读。
+> “待原文 PDF 复核”表示当前只建立了知识链接，不能把具体配置当成已验证事实。现阶段 HyVLA、π₀、π₀.5、OpenVLA 已完成全文与附录核查。
 
 ## 数据与动作标签
 
@@ -31,6 +31,7 @@ created: 2026-09-07
 
 - [[Action Chunking]]：为什么一次生成多步动作
 - [[FAST Tokenizer]]：怎样把动作块压缩成离散 token
+- [[逐维动作分箱]]：怎样把单步连续动作逐维量化成 LLM token，以及它和 FAST 的边界
 - [[Flow Matching]]：怎样直接生成连续、多峰动作分布
 - [[Action Expert]]：为什么动作需要专门计算路径
 
@@ -42,6 +43,7 @@ created: 2026-09-07
 - [[Adaptive RMSNorm]]：怎样用 scale、shift、gate 把 timestep 与本体状态直接注入每层
 - [[状态条件注入方式比较]]：HyVLA、π0、π0.5、FTP-1 怎样分别处理 robot state 与 flow timestep
 - [[Compact Memory Encoder]]：怎样保留历史而不让 VLM token 暴涨
+- [[双视觉编码器融合]]：怎样在同一 patch 上融合 SigLIP 语义与 DINOv2 空间 feature
 
 ## 训练与适配
 
@@ -56,6 +58,7 @@ created: 2026-09-07
 - [[KV Cache]]：复用不变条件的 attention 计算
 - [[Action Chunking]]：协调慢推理与快执行
 - [[层级 VLA 推理]]：总任务先变成可执行子任务，再条件化低层 action chunk
+- [[非阻塞控制与推理延迟]]：模型吞吐怎样改变动作保持时间与闭环动力学
 - [[部署与推理优化]]：从模型输出到实时控制系统
 
 ## 触觉感知与闭环

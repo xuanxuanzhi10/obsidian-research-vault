@@ -1,0 +1,1154 @@
+<!doctype html><html><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.B_zN8nKT.js","assets":"assets.8Gk803W0.js","comments":"comments.hEoja5zd.js","db":"db.DoKNwgX8.js","downloads":"downloads.th1YuAIk.js","embed":"embed.eqL6deQM.js","endpoints":"endpoints.CooJFPzL.js","mcp":"mcp.Ch3NPscy.js","network":"network.B5UA9Su4.js","permissions":"permissions.BNySkLV5.js","room":"room.Dc3WDo3b.js","sample":"sample.C2869FGz.js","self":"artifact.B_zN8nKT.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.Cil6ankx.js","comments":"_comments.e5-ml_Nr.js","translate":"_translate.5HCW4BJh.js","ldx":"_ldx.DycbNc-Q.js"}</script><script>(function(){"use strict";var fe=["light","dark","system"],de=/^[A-Za-z0-9_-]{1,64}$/,te=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,pe=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function me(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||pe.has(t)}var $e="http://www.w3.org/1999/xhtml",he="http://www.w3.org/2000/svg",_e=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ve=new Set(["script","style"]);function ye(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!_e.has(t):e.namespaceURI===he?!ve.has(t):!1}function x(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function we(e,t){const r=e.length,n=t.length;let a=0;for(;a<r&&a<n&&x(e.charCodeAt(a),t.charCodeAt(a));)a++;let o=0;for(;o<r-a&&o<n-a&&x(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:a,s:o}}function Ee(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,a=n.length,o=t.length,{p:c,s:i}=we(n,t);c===a&&i===0&&a===o||r.replaceData(c,a-c-i,t.slice(c,o-i));const m=r.data,f=e.ownerDocument.getSelection?.()??null,y=f!==null&&f.rangeCount>0&&(f.anchorNode===r||f.focusNode===r)?{anchor:f.anchorNode,anchorOffset:f.anchorOffset,focus:f.focusNode,focusOffset:f.focusOffset}:null;let d=-1,E=-1;for(let v=0;v<m.length&&v<t.length;v++){const A=m.charCodeAt(v),k=t.charCodeAt(v);A!==k&&x(A,k)&&(d<0&&(d=v),E=v)}const b=d>=0;if(b&&r.replaceData(d,E-d+1,t.slice(d,E+1)),b&&y!==null&&y.anchor!==null&&y.focus!==null)try{f.setBaseAndExtent(y.anchor,y.anchorOffset,y.focus,y.focusOffset)}catch{}}var be=new Set(["html","head","body","frameset"]);function ge(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&be.has(e.localName)}function Ae(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!de.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!te.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!te.test(r))return!1}return!0}function Le(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let a=0;a<n.length;a++)if(!t(n[a]))return!1;return!0}function Te(e){return e===null||typeof e!="object"?!1:Le(e.__frame_patch,Ae)}function Se(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function Re(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ke(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&fe.includes(r)}var O=/^[\w.-]+\.js$/;function Pe(e,t,r){return r?"inert":typeof t=="string"&&O.test(t)?e?[t]:"inert":e?"inert":"framed"}var Ye="frame_ldx_runtime",Oe="frame_ldx_build",Ge="script#an-form";function Ce(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function Me(){return{post:()=>{},on:()=>()=>{}}}var F="__frame_scroll",je=150,Ne=310,De=160,Be=3e4;function Ie(){let e=0,t=!1,r=!1,n=!1,a=0,o=null;const c=u=>{try{sessionStorage.setItem(F,JSON.stringify({y:u}))}catch{}},i=()=>{if(clearTimeout(e),o===null)return;const u=o;o=null,c(u)},m=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(i,je)};try{addEventListener("scroll",m,{passive:!0}),addEventListener("pagehide",i)}catch{}const f=()=>{let u;try{u=sessionStorage.getItem(F)}catch{return null}if(u===null)return null;let g;try{g=JSON.parse(u)}catch{g=null}const w=g?.y;if(!(typeof w=="number"&&Number.isFinite(w)&&w>=0)){try{sessionStorage.removeItem(F)}catch{}return null}return w};let y=!1;const d=u=>{try{const g=scrollY;scrollTo({top:u,left:0,behavior:"instant"}),a=u,n=!0,clearTimeout(e),o=null,c(u);const w=scrollY;w!==g&&(t=!0),w!==u&&!y&&(y=!0,addEventListener("load",()=>{try{if(scrollY===w){const M=f();d(M!==null?M:a)}}catch{}},{once:!0}))}catch{}},E=()=>{try{return!!location.hash}catch{return!0}};let b=!1;const v=()=>{try{if(b||innerWidth>Ne||innerHeight>De)return;b=!0;const u=Date.now(),g=()=>{try{removeEventListener("resize",g)}catch{}if(Date.now()-u>Be||r||E())return;const w=f();d(w!==null?w:a)};addEventListener("resize",g)}catch{}};let A=!1,k=!1;return{restore(){if(A||(A=!0,E()))return;const u=f();u!==null&&(d(u),v())},promoted(){if(k||(k=!0,E()))return;const u=f();u!==null?(d(u),v()):n&&d(a)}}}function Ue(e,t,r,n){let a=null;try{a=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:m=>m})??null}catch{}const o=window.Worker,c=o?.prototype,i=Object.freeze({Worker:o,workerOn:c?.addEventListener,workerPost:c?.postMessage,workerTerminate:c?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:a,origins:t});r(e).then(m=>m?.bootTopLevel?m.bootTopLevel(i,n):n.settle()).catch(()=>n.settle())}var Ve="modulepreload",Ze=function(e){return"/"+e},Je={},xe=function(t,r,n){let a=Promise.resolve();function o(c){const i=new Event("vite:preloadError",{cancelable:!0});if(i.payload=c,window.dispatchEvent(i),!i.defaultPrevented)throw c}return a.then(c=>{for(const i of c||[])i.status==="rejected"&&o(i.reason);return t().catch(o)})},Fe=window===top,re=Object.getOwnPropertyDescriptor(window,"claude"),j=Pe(Fe,window.__FRAME_PREAMBLE?.topLevel,re?.writable===!1),H=typeof j=="object"&&j[0],_=H?Me():Ce();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let a=0;a<r.length;a++){const o=r[a];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&j==="framed")try{_.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var He=1e4,ze=2e3,We=2e3,ne=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function oe(e){for(const t of ne)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var N=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),z=window.__FRAME_PREAMBLE?.transforms,W=window.__FRAME_PREAMBLE?.comments,q=window.__FRAME_PREAMBLE?.translate,K=window.__FRAME_PREAMBLE?.ldx;function C(e){return xe(()=>import("/_runtime/"+e),void 0)}function se(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:Y,hooks:B,pipe:()=>({wrap:(r,n)=>(...a)=>{try{return n(...a)}catch(o){return Promise.reject(o)}}})}}var D=null,S=null;function ae(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var X=!1,B={editBefore:null,edit:null};function qe(e,t,r=!1){const n=[];let a;if(r)try{B.editBefore?.(e)}catch{}for(const o of e.elements){const c=document.querySelector(`[data-id="${o.target}"]`);if(!c){a=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(i=>!me(i))){a=o.target;break}if(o.text!==void 0&&(!ye(c)||ge(c))){a=o.target;break}for(const[i,m]of Object.entries(o.attrsSet??{}))if(!ce(c,i)){try{c.setAttribute(i,m)}catch{}ie(c,i,m)}for(const i of o.attrsRemoved??[])ce(c,i)||(c.removeAttribute(i),ie(c,i,null));typeof o.text=="string"&&Ee(c,o.text),n.push(o.target)}if(r)try{B.edit?.(e.seq,n,a)}catch{}if(a!==void 0){_.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function ie(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function ce(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function le(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,X=!0):X&&(delete t.dataset.theme,t.style.colorScheme="",X=!1)}var I=new Map;function Ke(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function $(){for(const e of I.values())e.done||(e.nulled=!0,e.r(null))}var Xe=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),Y=(e,t)=>{const r=I.get(e);if(!r||r.done){r?.nulled&&S&&_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},S);return}const n=typeof t=="function"?Object.setPrototypeOf(t,Xe):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ue(){const e=re?.value??{};ae(window,"claude",e);for(const t of Object.keys(N)){if(e[t]!==void 0){ae(e,t,e[t]);continue}I.set(t,Ke())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(N,r))return Promise.resolve(null);const n=I.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(j==="framed"){const e=z&&O.test(z)?C(z).catch(()=>{}):Promise.resolve(void 0),t=s=>{if(s.type==="auxclick"&&s.button!==1)return;const h=s.target,p=h&&h.closest?h.closest("a[href],area[href]"):null;if(!p)return;const P=p.getAttribute("href");if(!P)return;let L;try{L=new URL(P,document.baseURI)}catch{return}if((L.protocol==="http:"||L.protocol==="https:")&&L.origin!==location.origin){s.preventDefault();const R=(p.getAttribute("target")??"").toLowerCase(),T=s.type==="auxclick"||s.metaKey||s.ctrlKey||s.shiftKey||s.altKey||!["","_self","_top","_parent"].includes(R);_.post({__frame_nav:!0,url:L.href,newTab:T},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=s=>{s.isTrusted&&(r.pointer=!0)},a=s=>{s.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",a,{capture:!0,passive:!0});const o={cb:null};addEventListener("keydown",s=>o.cb?.(s),!0),e.then(s=>s?.installEscapeForward?.(o,h=>{S&&_.post(h,S)})),e.then(s=>{s?.wireNav&&(s.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",a,!0),s.wireEngagement?.(r))});let c=null;try{c=Ie()}catch{}ue();let i=null,m=null,f=0;const y=_.on((s,h)=>{oe(h)&&Se(s)&&(i=s.__frame_init,S=h,y(),clearTimeout(f),m?.())});_.post({__frame_connect:!0},"*");const d=setTimeout,E=clearTimeout;let b=0;const v=()=>{try{_.post({__frame_alive:!0},"*")}catch{}b=d(v,ze)},A=()=>E(b);v(),addEventListener("load",A,{once:!0});const k=new Promise(s=>{m=s,f=setTimeout(()=>{y(),s()},He)}),u=document.readyState==="loading"?new Promise(s=>document.addEventListener("DOMContentLoaded",()=>s(),{once:!0})):Promise.resolve(),g=new WeakSet;addEventListener("error",s=>{s.target&&g.add(s.target)},!0);const w=()=>{let s=[];try{s=[...document.querySelectorAll("link[rel~=stylesheet]:not([rel~=alternate])")].filter(p=>!p.sheet&&!p.disabled&&!g.has(p)&&p.getAttribute("href")&&URL.canParse(p.href)&&(!p.media||matchMedia(p.media).matches))}catch{}let h=s.length;return h===0?Promise.resolve():new Promise(p=>{try{const P=d(p,We),L=()=>{--h===0&&(E(P),p())};for(const R of s)R.addEventListener("load",L,{once:!0}),R.addEventListener("error",L,{once:!0})}catch{p()}})};u.then(()=>{try{c?.restore()}catch{}});const M={cb:null};_.on((s,h)=>{if(oe(h)&&Re(s)){try{c?.promoted()}catch{}M.cb?.()}}),k.then(async()=>{if(!i||!S){$();return}le(i.theme);const s=S;let h=!1,p=!1;_.on((l,Z,U)=>{if(Z!==s)return;ke(l)&&le(l.__frame_theme.theme),Te(l)&&qe(l.__frame_patch,s,U);const J=l?.__fc_mode;J&&typeof J=="object"&&!h&&W&&O.test(W)&&(h=!0,C(W).then(ee=>ee.install?.(s,J.on===!0)).catch(()=>{}));const Q=l?.__ft_cmd;Q&&typeof Q=="object"&&!p&&q&&O.test(q)&&(p=!0,C(q).then(ee=>ee.install?.(s,Q)).catch(()=>{}))});const P=Object.keys(i.capabilities??{}).filter(l=>Object.hasOwn(N,l)).map(l=>[l,N[l]]).filter(l=>typeof l[1]=="string"&&O.test(l[1])),L=await Promise.allSettled(P.map(([,l])=>C(l))),R=await e,T=S;if(R?.buildBoot||_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},T),R?.buildBoot)try{D=R.buildBoot(i,R.TRANSFORMS??{},{shellOrigin:T,mount:Y,hooks:B},l=>_.post({__frame_cap_telemetry:l},T))}catch{_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},T),D=se(i,T)}else D=se(i,T);const G=l=>_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:l}},T),V=D;L.forEach((l,Z)=>{const U=P[Z][0];if(l.status!=="fulfilled"){G(U);return}try{l.value?.install?.(V)}catch{G(U)}}),$(),await u,await w(),A(),_.post({__frame_ready:!0},S),e.then(l=>l?.installSizeReporter?.(T,M)),V.flags.has("frame_ldx_runtime")&&K&&O.test(K)&&document.querySelector("script#an-form")&&C(K).then(l=>l?.boot?.({shellOrigin:s,build:V.flags.has(Oe)})).catch(()=>!1).then(l=>{l!==!0&&G("_ldx")})})}else H&&(ue(),Ue(H,ne,C,{settle:$,mount:Y}))})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>OpenVLA 学习指南</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f4f5f5;
+    --bg-card: #ffffff;
+    --bg-code: #e8ecee;
+    --bg-highlight: #dce8ed;
+    --bg-chain: #e4eaed;
+    --text: #262a2c;
+    --text-secondary: #5a6268;
+    --text-tertiary: #8a9198;
+    --accent: #1a7a6d;
+    --accent-light: #dce8ed;
+    --accent-dark: #14584e;
+    --border: #cdd4d8;
+    --border-light: #dce2e6;
+    --chain-line: #b0bac0;
+    --tag-bg: #dae0e4;
+    --tag-text: #4e5860;
+    --warning-bg: #fef3e2;
+    --warning-border: #e8b94a;
+    --warning-text: #7a5d1a;
+    --strength-bg: #e6f4ea;
+    --strength-border: #4a9a5a;
+    --strength-text: #2a6a3a;
+    --weakness-bg: #fde8e8;
+    --weakness-border: #c44a4a;
+    --weakness-text: #8a2a2a;
+    --serif: 'Noto Serif SC', 'Songti SC', serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', 'Menlo', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161819;
+      --bg-card: #1e2124;
+      --bg-code: #1c2428;
+      --bg-highlight: #182228;
+      --bg-chain: #1a2024;
+      --text: #d6dce0;
+      --text-secondary: #909aa0;
+      --text-tertiary: #606a70;
+      --accent: #4abcaa;
+      --accent-light: #182228;
+      --accent-dark: #7ad4c4;
+      --border: #303638;
+      --border-light: #282e30;
+      --chain-line: #404a4e;
+      --tag-bg: #2a3034;
+      --tag-text: #a0aab0;
+      --warning-bg: #2e2818;
+      --warning-border: #8a7030;
+      --warning-text: #d4b86a;
+      --strength-bg: #182818;
+      --strength-border: #3a7a3a;
+      --strength-text: #7aba7a;
+      --weakness-bg: #281818;
+      --weakness-border: #8a3a3a;
+      --weakness-text: #ca7a7a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161819;
+    --bg-card: #1e2124;
+    --bg-code: #1c2428;
+    --bg-highlight: #182228;
+    --bg-chain: #1a2024;
+    --text: #d6dce0;
+    --text-secondary: #909aa0;
+    --text-tertiary: #606a70;
+    --accent: #4abcaa;
+    --accent-light: #182228;
+    --accent-dark: #7ad4c4;
+    --border: #303638;
+    --border-light: #282e30;
+    --chain-line: #404a4e;
+    --tag-bg: #2a3034;
+    --tag-text: #a0aab0;
+    --warning-bg: #2e2818;
+    --warning-border: #8a7030;
+    --warning-text: #d4b86a;
+    --strength-bg: #182818;
+    --strength-border: #3a7a3a;
+    --strength-text: #7aba7a;
+    --weakness-bg: #281818;
+    --weakness-border: #8a3a3a;
+    --weakness-text: #ca7a7a;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--text);
+  }
+  .header .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 620px;
+  }
+
+  .nav {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 48px;
+  }
+  .nav-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+  .nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: nav-counter;
+  }
+  .nav li {
+    counter-increment: nav-counter;
+    margin-bottom: 6px;
+  }
+  .nav li a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 0;
+    transition: color 0.15s;
+  }
+  .nav li a:hover { color: var(--accent); }
+  .nav li a::before {
+    content: counter(nav-counter, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    width: 20px;
+  }
+
+  .chain {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 48px 0;
+    padding: 14px 20px;
+    background: var(--bg-chain);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
+  }
+  .chain-arrow {
+    font-size: 16px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .chain-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .section {
+    margin-bottom: 16px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 6px;
+    text-wrap: balance;
+    color: var(--text);
+  }
+  .section .section-lead {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    color: var(--text);
+  }
+  .section p {
+    margin: 0 0 14px;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--bg-code);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--text);
+  }
+  pre {
+    background: var(--bg-code);
+    border: 1px solid var(--border-light);
+    border-radius: 5px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 16px 0;
+    line-height: 1.6;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 13px;
+  }
+
+  .highlight {
+    background: var(--bg-highlight);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .highlight p {
+    margin: 0;
+    font-size: 14px;
+  }
+  .highlight strong {
+    color: var(--accent-dark);
+  }
+
+  .note {
+    background: var(--warning-bg);
+    border-left: 3px solid var(--warning-border);
+    padding: 14px 18px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .note p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--warning-text);
+  }
+  .note-label {
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .strength {
+    background: var(--strength-bg);
+    border-left: 3px solid var(--strength-border);
+    padding: 14px 18px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .strength p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--strength-text);
+  }
+  .strength .note-label {
+    color: var(--strength-text);
+  }
+
+  .weakness {
+    background: var(--weakness-bg);
+    border-left: 3px solid var(--weakness-border);
+    padding: 14px 18px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .weakness p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--weakness-text);
+  }
+  .weakness .note-label {
+    color: var(--weakness-text);
+  }
+
+  .diagram {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 24px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  .diagram-caption {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    text-align: center;
+    margin-top: 12px;
+    font-family: var(--mono);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+
+  .recap {
+    background: var(--bg-card);
+    border: 1px dashed var(--accent);
+    padding: 14px 18px;
+    border-radius: 5px;
+    margin: 24px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .recap strong {
+    color: var(--accent);
+  }
+
+  .series-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 12px;
+  }
+  .series-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; font-size: 14px; }
+    .header h1 { font-size: 24px; }
+    .section h2 { font-size: 19px; }
+    pre { padding: 12px 14px; }
+  }
+</style>
+
+<div class="header">
+  <div class="header-tag">Sequential Learning Guide</div>
+  <h1>从零理解 OpenVLA：用开源 VLM 构建通用机器人策略</h1>
+  <div class="subtitle">OpenVLA 用一个大胆的思路证明：把预训练好的视觉-语言模型直接微调到 97 万条机器人数据上，就能构建一个 7B 参数的开源通用机器人策略，以 7 倍参数优势胜过 55B 的 RT-2-X。本指南逐层拆解其设计逻辑和局限。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第四篇（第一篇：HyVLA · 第二篇：π₀ · 第三篇：π₀.5）</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">逻辑链路</div>
+  <ol>
+    <li><a href="#s1">OpenVLA 在 VLA 家族中的定位——"开源的第一步"</a></li>
+    <li><a href="#s2">架构拆解——从 VLM 到 VLA 只差一步</a></li>
+    <li><a href="#s3">动作离散化——把连续动作塞进 LLM 的词表里</a></li>
+    <li><a href="#s4">训练数据——97 万条 OXE 数据的筛选哲学</a></li>
+    <li><a href="#s5">训练范式——标准 Next-Token Prediction 的极简训练</a></li>
+    <li><a href="#s6">设计决策——那些看似简单却关键的工程选择</a></li>
+    <li><a href="#s7">实验评估——7B vs 55B 的真实对决</a></li>
+    <li><a href="#s8">微调与部署——让 VLA 走进消费级 GPU</a></li>
+    <li><a href="#s9">局限与反思——OpenVLA 没解决什么问题</a></li>
+  </ol>
+</nav>
+
+<!-- ========== SECTION 1 ========== -->
+<div class="section" id="s1">
+  <div class="section-num">01</div>
+  <h2>OpenVLA 在 VLA 家族中的定位——"开源的第一步"</h2>
+  <p class="section-lead">在 RT-2-X 证明"大模型可以做机器人"之后，OpenVLA 要回答的问题是：开源社区能不能复现这件事？</p>
+
+  <p>在你已经读过的三篇论文中，HyVLA 用混合 token 架构探索了动作表示的边界，π₀ 用 Flow Matching 和动作专家实现了灵巧操作，π₀.5 用多源异构数据让机器人走进真实家庭。这些工作各有亮点，但它们都面向一个前提性问题——<strong>VLM（视觉-语言模型）到底能不能直接变成机器人控制策略？</strong></p>
+
+  <p>在 OpenVLA 之前，对这个问题给出肯定答案的是 Google DeepMind 的 <strong>RT-2-X</strong>——一个 55B 参数的闭源 VLA。RT-2-X 证明了把互联网预训练的 VLM 微调到机器人数据上可以产生强大的泛化策略。但 RT-2-X 有两个致命问题：<strong>不开源</strong>（无法复现和改进），<strong>太大</strong>（55B 参数，推理需要多块 TPU）。</p>
+
+  <h3>OpenVLA 的核心命题</h3>
+  <div class="highlight">
+    <p><strong>问题：</strong>能否用 7B 参数的开源 VLM + 开源机器人数据，构建一个性能超过 55B 闭源模型的通用机器人策略，并且让任何研究者都能在消费级 GPU 上微调和部署？</p>
+  </div>
+
+  <p>OpenVLA 的答案是肯定的，但它的方法论出奇简单：不发明新架构，不设计新的动作表示，不引入 Flow Matching 或 Diffusion。它做的事情只有一件——<strong>选对底座 VLM，用足够大的数据，做标准的语言模型微调</strong>。</p>
+
+  <div class="recap">
+    <strong>回忆前三篇：</strong>HyVLA 用了混合离散/连续 token 和 MoT 架构；π₀ 用了 Flow Matching + Action Expert；π₀.5 用了两阶段训练（FAST 预训练→FM 后训练）+ 分层推理。OpenVLA 的方法相比之下极其简单——<strong>纯离散化 + 纯自回归</strong>，没有任何额外的动作表示组件。这种极简策略到底是优势还是劣势？带着这个问题往下读。
+  </div>
+
+  <h3>定位对比</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>特性</th><th>RT-2-X</th><th>OpenVLA</th><th>π₀</th></tr>
+      <tr><td>参数量</td><td>55B</td><td>7B</td><td>3B</td></tr>
+      <tr><td>开源</td><td>否（仅 API）</td><td>完全开源</td><td>权重开源</td></tr>
+      <tr><td>VLM 底座</td><td>PaLI-X 55B</td><td>Prismatic 7B</td><td>PaliGemma 3B</td></tr>
+      <tr><td>动作表示</td><td>离散 token</td><td>离散 token</td><td>连续向量 + FM</td></tr>
+      <tr><td>训练数据</td><td>OXE 子集 ~350k</td><td>OXE 子集 ~970k</td><td>OXE + 遥操作</td></tr>
+      <tr><td>可微调</td><td>否</td><td>是（LoRA）</td><td>是</td></tr>
+      <tr><td>推理硬件</td><td>多块 TPU</td><td>单块 RTX 4090</td><td>单块 GPU</td></tr>
+    </table>
+  </div>
+
+  <div class="strength">
+    <p class="note-label">亮点</p>
+    <p>OpenVLA 是第一个完全开源（模型权重 + 训练代码 + 数据管道）的 7B 级通用机器人策略，托管在 HuggingFace 上，可以用 <code>AutoModel</code> 一行加载。这对 VLA 研究的民主化意义重大。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>OpenVLA 的方法核心是"选对底座 VLM"。那它选了什么，为什么选它？下一节拆解 OpenVLA 的架构——你会发现它几乎就是一个视觉问答模型，只是把"回答"换成了"动作"。</span>
+</div>
+
+<!-- ========== SECTION 2 ========== -->
+<div class="section" id="s2">
+  <div class="section-num">02</div>
+  <h2>架构拆解——从 VLM 到 VLA 只差一步</h2>
+  <p class="section-lead">OpenVLA 的架构不是为机器人设计的——它就是一个视觉问答模型，只是输出变成了动作 token。</p>
+
+  <div class="recap">
+    <strong>上节回顾：</strong>OpenVLA 的核心策略是"选对底座 VLM + 标准微调"。现在来看它具体选了什么底座。
+  </div>
+
+  <p>OpenVLA 的底座是 <strong>Prismatic-7B</strong>——一个由 Stanford 研发的开源 VLM。Prismatic 本身是一个视觉问答模型（给它一张图+一个问题，它回答文本），OpenVLA 做的事情是把"回答文本"替换成"回答动作 token"。</p>
+
+  <h3>三模块架构</h3>
+
+  <pre><code># OpenVLA = Prismatic-7B 的三个模块，原封不动继承
+#
+# ┌─────────────────────────────────────────────────────────┐
+# │                   OpenVLA (~7B params)                  │
+# │                                                         │
+# │  ┌──────────┐  ┌──────────┐                             │
+# │  │  SigLIP   │  │  DINOv2  │   双视觉编码器 (~600M)      │
+# │  │ 语义特征   │  │ 空间特征  │                             │
+# │  └────┬─────┘  └────┬─────┘                             │
+# │       │              │                                   │
+# │       └──────┬───────┘                                   │
+# │              │ channel-wise 拼接                          │
+# │              ▼                                           │
+# │     ┌────────────────┐                                   │
+# │     │  MLP Projector  │  2 层 MLP，映射到 LLM 输入空间     │
+# │     └───────┬────────┘                                   │
+# │             │ 视觉 token 序列                              │
+# │             ▼                                            │
+# │     ┌────────────────────────────┐                       │
+# │     │      Llama 2 7B            │  语言模型骨干 (~7B)     │
+# │     │  输入：视觉token + 指令token │                       │
+# │     │  输出：动作token（7个）      │                       │
+# │     └────────────────────────────┘                       │
+# └─────────────────────────────────────────────────────────┘</code></pre>
+
+  <h3>模块一：双视觉编码器（~600M 参数）</h3>
+  <p>这是 OpenVLA 超过其他 VLM 底座的关键。Prismatic 同时使用两个视觉编码器：</p>
+
+  <p><strong>SigLIP</strong>（400M 参数）：用 Sigmoid Loss 训练的 CLIP 变体。SigLIP 被训练来对齐图像和文本，所以它的特征擅长<strong>语义理解</strong>——"这是一个杯子"、"那是一盘水果"。但它的空间分辨率较弱（不擅长精确定位物体边缘）。</p>
+
+  <p><strong>DINOv2</strong>（300M 参数）：自监督视觉编码器。DINO 系列不用文本标注，而是通过图像自身的结构来学习特征。它的特征擅长<strong>精细空间信息</strong>——物体的边缘、纹理、深度暗示。这对机器人控制至关重要（抓取需要精确知道物体边界在哪里）。</p>
+
+  <pre><code># 双编码器的特征融合
+def fuse_visual_features(image):
+    # 两个编码器独立处理同一张图
+    feat_siglip = siglip_encoder(image)   # [N_patches, D_sig]
+    feat_dino   = dinov2_encoder(image)   # [N_patches, D_dino]
+
+    # Channel-wise 拼接（不是相加！）
+    # 保留两种特征的独立信息
+    feat_fused = concat(feat_siglip, feat_dino, dim=-1)
+    # → [N_patches, D_sig + D_dino]
+
+    # MLP 投影到 LLM 的输入维度
+    visual_tokens = mlp_projector(feat_fused)
+    # → [N_patches, D_llm]
+    return visual_tokens</code></pre>
+
+  <div class="highlight">
+    <p><strong>为什么不用单个编码器？</strong>论文的消融实验（Appendix D.2）表明，去掉 DINOv2 后性能下降约 5%。虽然降幅不如去掉 OpenX 预训练数据大（30%），但双编码器确实对需要精细空间推理的任务有帮助。SigLIP 知道"那是一个杯子"，DINOv2 知道"杯子的边缘在像素坐标 (203, 415) 附近"——两者结合让抓取更准确。</p>
+  </div>
+
+  <div class="recap">
+    <strong>和前三篇的对比：</strong>π₀ 和 π₀.5 用的是 PaliGemma（单编码器 SigLIP），HyVLA 用的也是 SigLIP。OpenVLA 是本系列中唯一使用<strong>双视觉编码器</strong>的模型，用空间特征弥补语义编码器在定位精度上的不足。但代价是视觉模块更大（~600M vs PaliGemma 的 ~400M）。
+  </div>
+
+  <h3>模块二：MLP 投影器</h3>
+  <p>一个 2 层 MLP，把拼接后的视觉特征映射到 Llama 2 的输入空间。没有交叉注意力、没有 Q-Former、没有 Perceiver Resampler——<strong>就是最简单的线性投影</strong>。这意味着 patch 数量原封不动地传入 LLM（224×224 的图像产生 256 个视觉 token），会占据相当长的上下文窗口。</p>
+
+  <h3>模块三：Llama 2 7B 语言模型骨干</h3>
+  <p>标准的 Llama 2 7B——32 层 Transformer、4096 维隐藏层、32 个注意力头。OpenVLA 没有对 Llama 做任何架构修改（没有加 Action Expert、没有改注意力机制）。它的输入是"视觉 token + 语言指令 token"拼接的序列，输出是下一个 token 的预测。</p>
+
+  <div class="note">
+    <p class="note-label">关键差异</p>
+    <p>和 π₀ 对比：π₀ 在 PaliGemma 基础上<strong>新增了 Action Expert</strong>（独立的 MLP 层，用 MoT 和 Block-wise Causal Attention 实现），来生成连续动作向量。OpenVLA <strong>完全不加任何额外模块</strong>——它让 LLM 的标准文本解码器直接输出动作 token。这是最大的架构差异。</p>
+  </div>
+
+  <h3>图像分辨率的选择：224×224</h3>
+  <p>一个让人意外的决定：OpenVLA 只用 224×224 的图像输入。论文实验发现 224 和 384 分辨率<strong>在机器人任务上没有性能差异</strong>，但 384 的训练时间是 3 倍（因为 patch 数量随分辨率二次增长）。这和 VLM 领域的趋势相反——在视觉问答任务中，更高分辨率通常意味着更好的性能。</p>
+
+  <div class="weakness">
+    <p class="note-label">局限</p>
+    <p>224×224 对于精细操作（如拧螺丝、穿线）可能不够。这是一个效率优先的工程妥协，但限制了模型在高精度任务上的天花板。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>架构本身就是一个标准 VLM。但 VLM 输出的是文本 token，而机器人需要连续的关节角度或末端速度。OpenVLA 怎么把连续动作变成 token？下一节看它的动作离散化方案。</span>
+</div>
+
+<!-- ========== SECTION 3 ========== -->
+<div class="section" id="s3">
+  <div class="section-num">03</div>
+  <h2>动作离散化——把连续动作塞进 LLM 的词表里</h2>
+  <p class="section-lead">OpenVLA 把每个动作维度独立离散化成 256 个 bin，然后"借用" Llama 词表中最冷门的 256 个 token 来表示它们。</p>
+
+  <div class="recap">
+    <strong>上节回顾：</strong>OpenVLA 的架构是标准 Prismatic-7B VLM，没有任何额外的动作生成模块。这意味着动作必须被表示为 LLM 词表中的 token——所以需要一个离散化方案。
+  </div>
+
+  <h3>为什么需要离散化？</h3>
+  <p>机器人的动作是<strong>连续值</strong>——比如"手臂沿 x 轴移动 0.03 米、沿 y 轴移动 -0.01 米、夹爪开合角度 0.85"。但 Llama 2 是一个<strong>语言模型</strong>，它只能从词表中选择 token 并预测概率分布。你不能让 Llama 直接回归一个浮点数——它的输出层是 softmax over vocabulary，不是 MSE loss。</p>
+
+  <p>OpenVLA 的解决方案非常直接：<strong>把每个连续维度均匀切成 256 个 bin</strong>。</p>
+
+  <pre><code># OpenVLA 的动作离散化流程
+def discretize_action(continuous_action, bin_edges):
+    """
+    continuous_action: [7] → 7个维度 (dx, dy, dz, droll, dpitch, dyaw, gripper)
+    bin_edges: 每个维度 256 个均匀间隔的边界值
+
+    输出：7 个离散 token（每个 token 编号 0~255）
+    """
+    discrete_tokens = []
+    for dim in range(7):
+        value = continuous_action[dim]
+        # 计算边界：用训练数据中该维度的 1st 和 99th 百分位数
+        lo = percentile_1st[dim]    # 例如：-0.05
+        hi = percentile_99th[dim]   # 例如：+0.05
+        # 均匀分 256 个 bin
+        bin_index = int((value - lo) / (hi - lo) * 255)
+        bin_index = clip(bin_index, 0, 255)
+        discrete_tokens.append(bin_index)
+    return discrete_tokens  # → [128, 3, 130, 127, 125, 134, 255]
+
+# 每个 token 的精度 = (hi - lo) / 256
+# 例如：范围 [-0.05, +0.05] → 每个 bin 宽度 ≈ 0.0004 米 = 0.4 毫米</code></pre>
+
+  <h3>Token 映射的技巧：借用冷门 token</h3>
+  <p>离散化后，每个 bin 需要一个 Llama 词表中的 token 来表示。OpenVLA 的做法非常巧妙：<strong>在 Llama 的 32,000 个 token 中，找到训练数据中使用频率最低的 256 个 token</strong>，把它们"征用"为动作 token。</p>
+
+  <pre><code># Token 征用策略
+def select_action_tokens(llama_tokenizer, training_corpus):
+    # 统计每个 token 在训练数据中的出现频率
+    token_freq = count_frequency(llama_tokenizer, training_corpus)
+
+    # 取频率最低的 256 个 token
+    least_used = sorted(token_freq, key=lambda t: t.freq)[:256]
+
+    # 这些 token 通常是：
+    # - 罕见 Unicode 字符（如 Ħ, ŀ, Ŕ, ǰ）
+    # - 几乎不出现的子词片段
+    # - 特殊控制字符
+
+    # 建立映射：bin_index → token_id
+    action_vocab = {i: least_used[i].id for i in range(256)}
+    return action_vocab
+
+# 这样做的好处：
+# 1. 不需要扩展词表（词表大小不变，输出层不变）
+# 2. 这些冷门 token 原本就没有有用语义，覆盖它们不影响语言能力
+# 3. 它们的 embedding 在预训练时几乎没被学习过，可以自由重塑</code></pre>
+
+  <div class="highlight">
+    <p><strong>直觉理解：</strong>想象 Llama 的词表是一栋 32,000 个房间的大楼。大部分房间住着常用单词（"the"、"is"、"robot"），但有 256 个房间住着几乎从不露面的租客（罕见的 Unicode 符号）。OpenVLA 把这些租客赶走，让"向左移动 0.03 米"住进去。由于这些房间原本就没人在意，大楼的其他住户（语言能力）几乎不受影响。</p>
+  </div>
+
+  <h3>为什么是 256 个 bin？</h3>
+  <p>256 = 2⁸，刚好一个字节的表示范围。对于典型的机器人控制信号（末端执行器位移在 ±5cm 范围内），256 bin 的精度约为 0.4mm——对于多数桌面操作任务已经足够。但对于需要亚毫米精度的任务（如 PCB 元件插装），这个精度就显得粗糙了。</p>
+
+  <h3>每个维度独立离散化的问题</h3>
+
+  <div class="weakness">
+    <p class="note-label">核心局限</p>
+    <p><strong>维度间的相关性被忽略了。</strong>机器人动作的 7 个维度（dx, dy, dz, droll, dpitch, dyaw, gripper）通常是高度耦合的——比如"斜着伸手去拿杯子"需要 dx、dy、dz 同时变化，并且三者之间有特定的比例关系。把每个维度独立离散化，再让 LLM 自回归地逐个预测，模型必须隐式学会这种耦合——这比联合离散化（如 π₀.5 用的 FAST tokenizer）更困难。</p>
+  </div>
+
+  <div class="recap">
+    <strong>和 π₀/π₀.5 的动作表示对比：</strong>π₀ 完全不离散化——它用 Flow Matching 直接在连续空间中生成动作块（H=50 步×动作维度），动作间的时间和空间耦合自然保留。π₀.5 在预训练阶段用 FAST tokenizer 离散化，但 FAST 是一个<strong>学习到的分词器</strong>，它会把多个维度和时间步的联合模式编码成一个 token。OpenVLA 的离散化则是最简单的<strong>每维度独立均匀分 bin</strong>——没有跨维度建模，也没有时间上的 Action Chunking。
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>动作表示方案定了——每步 7 个离散 token。那喂给模型的训练数据从哪里来？下一节看 OpenVLA 怎么从 Open X-Embodiment 的海量数据中筛选出可用的 97 万条。</span>
+</div>
+
+<!-- ========== SECTION 4 ========== -->
+<div class="section" id="s4">
+  <div class="section-num">04</div>
+  <h2>训练数据——97 万条 OXE 数据的筛选哲学</h2>
+  <p class="section-lead">OpenVLA 不是用所有数据训练的，它从 Open X-Embodiment 中精心筛选出 97 万条——筛选的标准揭示了当前 VLA 的能力边界。</p>
+
+  <div class="recap">
+    <strong>上节回顾：</strong>OpenVLA 用 7 个离散 token（每维度一个）表示一步动作。这意味着训练数据需要是统一的 7-DoF 末端执行器控制格式。那些格式不一致的数据就需要筛掉——下面看 OpenVLA 的筛选规则。
+  </div>
+
+  <p><strong>Open X-Embodiment（OXE）</strong>是一个由 Google DeepMind 牵头的大规模机器人数据集联盟，汇集了 20+ 个实验室的数据。但 OXE 中的数据非常异构：有些是双臂、有些是单臂、有些有移动底盘、有些是导航任务。OpenVLA 不能直接用全部数据。</p>
+
+  <h3>三条筛选规则</h3>
+
+  <pre><code># OpenVLA 的数据筛选管道
+def filter_oxe_data(all_datasets):
+    selected = []
+    for dataset in all_datasets:
+        # 规则 1：只保留操作任务（去掉导航）
+        if dataset.task_type == "navigation":
+            continue
+
+        # 规则 2：只保留第三人称摄像头
+        if dataset.camera_type != "third_person":
+            continue
+
+        # 规则 3：只保留单臂末端执行器控制
+        if dataset.control_type not in ["end_effector_delta", "joint_delta"]:
+            continue
+        if dataset.num_arms > 1:
+            continue
+
+        selected.append(dataset)
+
+    return selected  # → 约 970k episodes</code></pre>
+
+  <p><strong>为什么只要操作任务？</strong>导航任务的动作空间完全不同（线速度+角速度 vs 末端位移+姿态），混在一起训练会让离散化 bin 的含义变得混乱。</p>
+
+  <p><strong>为什么只要第三人称视角？</strong>这是一个实用的决定——第三人称摄像头能看到更完整的场景，而腕部摄像头的视野太窄。但这意味着 OpenVLA 无法利用腕部相机的近距离细节。</p>
+
+  <p><strong>为什么只要单臂？</strong>因为动作空间固定为 7 维（6-DoF 末端位姿 + 1 夹爪）。双臂需要 14 维，这和词表映射不兼容。</p>
+
+  <h3>数据混合权重</h3>
+  <p>筛选后的 25+ 个数据集需要混合在一起训练。OpenVLA 沿用了 Octo 的混合权重策略，主要数据源包括：</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>数据集</th><th>权重</th><th>特点</th></tr>
+      <tr><td>Bridge V2</td><td>13.3%</td><td>WidowX 桌面操作，任务多样性最高</td></tr>
+      <tr><td>Fractal (RT-1)</td><td>12.7%</td><td>Google Robot 操作数据</td></tr>
+      <tr><td>Kuka</td><td>12.7%</td><td>工业机器人抓取</td></tr>
+      <tr><td>DROID</td><td>10.0%*</td><td>多环境 Franka 操作数据</td></tr>
+      <tr><td>BC-Z</td><td>7.5%</td><td>零样本任务泛化</td></tr>
+      <tr><td>FMB</td><td>7.1%</td><td>功能操作基准</td></tr>
+      <tr><td>其他 ~19 个</td><td>~36.7%</td><td>各种小规模数据集</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <p class="note-label">DROID 的故事</p>
+    <p>DROID 数据集一开始以 10% 权重加入训练。但在训练进行到 2/3 时，作者发现<strong>模型在 DROID 数据上的动作 token 准确率一直不收敛</strong>。他们决定在最后 1/3 的训练中<strong>移除 DROID，并把它的权重重新分配给其他数据集</strong>。这是一个务实但值得注意的决定——说明并非所有数据都对训练有帮助，数据质量问题在大规模训练中是真实存在的。</p>
+  </div>
+
+  <h3>数据清洗：去除"全零动作"</h3>
+  <p>论文在附录 C 中揭示了一个重要的数据质量问题：Bridge V2 数据集中，<strong>每条演示的第一个 timestep 的动作几乎全是零</strong>（因为录制开始时机器人还没动）。如果不清洗，模型会学到"遇到新场景就静止不动"的模式——在部署时表现为<strong>机器人冻住（freezing behavior）</strong>。</p>
+
+  <pre><code># 数据清洗的关键步骤
+def clean_bridge_data(demonstrations):
+    for demo in demonstrations:
+        # 过滤掉第一个 timestep（通常是全零动作）
+        demo.transitions = demo.transitions[1:]
+    return demonstrations
+
+# 这个简单的清洗让 Bridge V2 评估上的性能大幅提升
+# 注意：RT-2-X 没有做这个清洗，所以它在 Bridge 评估中
+# 需要用一个 workaround——查询第二高概率的动作 token
+# （因为最高概率的通常是全零）</code></pre>
+
+  <div class="weakness">
+    <p class="note-label">数据局限</p>
+    <p>OpenVLA 的 97 万条数据全部是单臂、单摄像头、末端执行器控制。这意味着它<strong>无法处理双臂协作、多视角输入、关节空间控制</strong>等场景。相比之下，π₀/π₀.5 的训练数据覆盖了多种构型和控制模式——包括 19 维的移动操作机器人和多摄像头输入。OpenVLA 的数据筛选提升了训练的简洁性，但也缩窄了它的能力边界。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>数据准备好了——97 万条统一格式的操作数据。接下来的问题是：怎么训练？OpenVLA 的训练方法会让你惊讶于它的简单。</span>
+</div>
+
+<!-- ========== SECTION 5 ========== -->
+<div class="section" id="s5">
+  <div class="section-num">05</div>
+  <h2>训练范式——标准 Next-Token Prediction 的极简训练</h2>
+  <p class="section-lead">OpenVLA 的训练和 GPT 的训练没有本质区别：预测下一个 token，只是 token 碰巧是动作。</p>
+
+  <div class="recap">
+    <strong>上节回顾：</strong>97 万条筛选后的数据，每步动作被离散化为 7 个 token。加上图像 token 和指令 token，每条样本就是一个 token 序列。现在可以用标准语言模型训练了。
+  </div>
+
+  <h3>训练目标</h3>
+  <p>OpenVLA 的训练目标是<strong>标准的交叉熵损失（Cross-Entropy Loss）</strong>，但<strong>只在动作 token 上计算</strong>——不对视觉 token 和指令 token 计算损失。</p>
+
+  <pre><code># OpenVLA 的训练流程（伪代码）
+def train_step(image, instruction, gt_action):
+    # 1. 编码图像 → 视觉 token
+    vis_tokens = vision_encoder(image)           # [256]
+
+    # 2. 编码指令 → 语言 token
+    lang_tokens = tokenizer(instruction)          # [~20]
+
+    # 3. 离散化真值动作 → 动作 token
+    action_tokens = discretize(gt_action)         # [7]
+
+    # 4. 拼接成输入序列
+    input_seq = concat(vis_tokens, lang_tokens, action_tokens)
+    # → [256 + ~20 + 7] ≈ [283]
+
+    # 5. 自回归预测
+    logits = llama(input_seq)
+
+    # 6. 只在动作 token 位置计算交叉熵损失
+    loss = cross_entropy(
+        logits[action_positions],   # 模型对动作 token 的预测
+        action_tokens               # 真值动作 token
+    )
+    # 语言 token 和视觉 token 的位置不参与 loss 计算
+
+    return loss</code></pre>
+
+  <div class="highlight">
+    <p><strong>为什么只在动作 token 上计算 loss？</strong>因为目标是学习"看到图像+指令后做出正确动作"，而不是"复述指令"或"描述图像"。这和 π₀.5 预训练阶段的做法一致——π₀.5 也是只在 FAST 动作 token 上计算 loss。但注意区别：π₀.5 还有 WD（互联网图文）数据会在文本 token 上计算 loss，而 OpenVLA 训练数据中没有任何非机器人数据。</p>
+  </div>
+
+  <h3>关键训练超参数</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>超参数</th><th>值</th><th>备注</th></tr>
+      <tr><td>学习率</td><td>2e-5（固定）</td><td>和 VLM 预训练相同，不需要 warmup</td></tr>
+      <tr><td>Batch size</td><td>2048</td><td>很大的 batch，需要 64 块 A100</td></tr>
+      <tr><td>训练轮数</td><td>27 epochs</td><td>远多于典型 LLM/VLM 的 1-2 epochs</td></tr>
+      <tr><td>精度</td><td>bfloat16</td><td>标准混合精度训练</td></tr>
+      <tr><td>并行策略</td><td>FSDP</td><td>Fully Sharded Data Parallel</td></tr>
+      <tr><td>训练时间</td><td>14 天</td><td>64 块 A100，共 21,500 A100 小时</td></tr>
+      <tr><td>动作 token 准确率</td><td>&gt;95%</td><td>训练到此准确率时停止</td></tr>
+    </table>
+  </div>
+
+  <h3>27 个 epoch——为什么 VLA 需要这么多轮？</h3>
+  <p>这是一个令人意外的发现。典型的 LLM 训练只需要 1-2 个 epoch（甚至不到 1 个），因为互联网文本数据量极大。但 OpenVLA 发现机器人数据需要<strong>反复学习</strong>——从 1 epoch 到 27 epoch，真实机器人评估的性能持续提升。</p>
+
+  <p>原因可能是：机器人数据比文本更"模式化"——同一个任务的不同演示在像素级别差异很大（灯光、物体摆放、微小的运动轨迹差异），但需要学习的底层运动模式是相似的。模型需要多次看到同一种模式的不同变体才能抽象出泛化特征。</p>
+
+  <h3>全参数微调——所有权重都参与</h3>
+  <p>和常见的"冻结视觉编码器"策略不同，OpenVLA <strong>微调所有 7B 参数</strong>——包括 SigLIP、DINOv2 和 Llama 2 的全部权重。论文发现<strong>微调视觉编码器对 VLA 至关重要</strong>，冻结视觉编码器会导致性能急剧下降甚至机器人行为不稳定。</p>
+
+  <div class="highlight">
+    <p><strong>这与 VLM 领域的常识相反。</strong>在视觉问答中，冻结视觉编码器通常能<strong>更好</strong>地保留预训练特征。但 VLA 不同——预训练的视觉编码器没有见过机器人夹爪、操作场景的俯视角、或者物体被遮挡的状态。<strong>VLA 任务需要的视觉特征和 ImageNet/互联网数据学到的不同</strong>，必须微调才能适应。</p>
+  </div>
+
+  <div class="recap">
+    <strong>训练范式对比：</strong>在本系列的四篇论文中，训练范式的复杂度递减——π₀.5 最复杂（两阶段训练 + 多种损失函数），π₀ 次之（Flow Matching 损失），HyVLA 中等（离散+连续混合损失），<strong>OpenVLA 最简单（纯交叉熵，单阶段）</strong>。OpenVLA 用最少的训练技巧实现了有竞争力的性能，这本身就是一个有价值的发现。
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>训练流程清楚了。但"简单"并不意味着"不需要思考"——OpenVLA 在 VLM 底座选择、分辨率、编码器微调等问题上做了大量对比实验。下一节看那些影响最终性能的关键工程决策。</span>
+</div>
+
+<!-- ========== SECTION 6 ========== -->
+<div class="section" id="s6">
+  <div class="section-num">06</div>
+  <h2>设计决策——那些看似简单却关键的工程选择</h2>
+  <p class="section-lead">OpenVLA 的方法论是"在一个简单框架中，用实验找到最好的一组选择"。每个选择都有消融实验支撑。</p>
+
+  <div class="recap">
+    <strong>上节回顾：</strong>OpenVLA 的训练是标准 next-token prediction，全参数微调，27 个 epoch。但这些超参数和设计选择不是随便定的——它们是大量对比实验的结果。
+  </div>
+
+  <h3>决策 1：VLM 底座的选择</h3>
+  <p>OpenVLA 对比了三个 VLM 底座：IDEFICS-1、LLaVA 1.5、Prismatic。在 BridgeData V2 的 5 个语言理解任务上：</p>
+
+  <p><strong>IDEFICS-1</strong>：在单物体场景中表现尚可，但在多物体场景中无法正确识别目标物体。<strong>LLaVA</strong>：在多物体语言理解上比 IDEFICS 高 35%，但仍不如 Prismatic。<strong>Prismatic</strong>：比 LLaVA 进一步提升约 10%，尤其在需要精细空间推理的任务上。</p>
+
+  <div class="highlight">
+    <p><strong>决策逻辑：</strong>Prismatic 胜出的原因不是"更大"（它和 LLaVA 参数量相近），而是<strong>双视觉编码器（SigLIP+DINOv2）带来的空间推理能力</strong>。当场景中有多个物体时，语言指令说"pick up the red bottle"，模型需要先在多个物体中定位红色瓶子——这需要精细的空间-语义对齐，正好是 DINOv2 空间特征的长项。</p>
+  </div>
+
+  <h3>决策 2：视觉编码器要不要微调？</h3>
+  <p>消融结果（Appendix D.3）非常明确：</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>策略</th><th>SigLIP ViT-SO</th><th>LLaVA v1.5 7B</th></tr>
+      <tr><td>冻结视觉编码器</td><td>85% 成功率</td><td>25% 成功率</td></tr>
+      <tr><td>微调视觉编码器</td><td><strong>95%</strong> 成功率</td><td><strong>90%</strong> 成功率</td></tr>
+    </table>
+  </div>
+  <p>冻结 LLaVA 的视觉编码器导致机器人行为完全不稳定。即使是表现更好的 SigLIP，冻结也损失了 10% 成功率。结论：<strong>VLA 必须微调视觉编码器</strong>。</p>
+
+  <h3>决策 3：训练多久？</h3>
+  <p>作者用一个代理指标——<strong>动作 token 预测准确率</strong>——来决定何时停止训练。当准确率超过 95% 时，继续训练的边际收益递减。从 1 epoch 到 27 epoch 的性能曲线显示：前几个 epoch 进步最快，后面逐渐趋平，但直到 27 epoch 仍未完全饱和。</p>
+
+  <h3>决策 4：学习率</h3>
+  <p>令人意外的简单——<strong>固定 2e-5，不需要 warmup，不需要衰减</strong>。这个学习率恰好就是 Prismatic VLM 预训练时用的学习率。作者扫描了多个数量级，发现 2e-5 一致最优。这暗示了一个有趣的现象：<strong>VLA 微调的最优学习率可能和 VLM 预训练一致</strong>，因为两者本质上都是在已有表示上学习新模式。</p>
+
+  <div class="strength">
+    <p class="note-label">工程价值</p>
+    <p>OpenVLA 的每个设计决策都有消融实验支撑，且最终选择都倾向于最简单的方案。这种"选择正确的简单做法"的研究哲学对后续工作非常有指导意义——不是所有问题都需要复杂的解决方案。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>设计决策都做好了，模型训练完了。最关键的问题来了——OpenVLA 到底有多强？下一节看它在真实机器人上的评估结果，以及 7B 模型怎么跟 55B 的 RT-2-X 打。</span>
+</div>
+
+<!-- ========== SECTION 7 ========== -->
+<div class="section" id="s7">
+  <div class="section-num">07</div>
+  <h2>实验评估——7B vs 55B 的真实对决</h2>
+  <p class="section-lead">OpenVLA 在 BridgeData V2 上以 70.6% 成功率超过 RT-2-X 的 50.6%，尽管只有后者 1/7 的参数。</p>
+
+  <div class="recap">
+    <strong>快速回忆架构：</strong>OpenVLA = SigLIP+DINOv2 双编码器 → MLP 投影 → Llama 2 7B → 7 个离散动作 token。训练数据 = 97 万条 OXE 单臂操作数据。训练方式 = 标准 cross-entropy，27 epochs。</strong>
+  </div>
+
+  <h3>评估平台与任务</h3>
+  <p>OpenVLA 在两个机器人平台上进行了 "开箱即用"（out-of-the-box）评估，不进行任何额外微调：</p>
+
+  <p><strong>BridgeData V2 WidowX</strong>：17 个任务，每个 10 次试验 = 170 次评估。涵盖 5 类泛化测试——视觉泛化（未见背景/干扰物）、运动泛化（未见位姿）、物理泛化（未见尺寸形状）、语义泛化（未见物体/指令）、语言理解（多物体中选正确目标）。</p>
+
+  <p><strong>Google Robot</strong>：12 个任务，每个 5 次 = 60 次评估。分为分布内和分布外（OOD）两组。</p>
+
+  <h3>核心结果</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>模型</th><th>参数</th><th>Bridge V2 成功率</th><th>Google 成功率</th></tr>
+      <tr><td>RT-1-X</td><td>35M</td><td>18.5%</td><td>33.3%</td></tr>
+      <tr><td>Octo</td><td>93M</td><td>20.0%</td><td>26.7%</td></tr>
+      <tr><td>RT-2-X</td><td>55B</td><td>50.6%</td><td>78.3%</td></tr>
+      <tr><td><strong>OpenVLA</strong></td><td><strong>7B</strong></td><td><strong>70.6%</strong></td><td><strong>85.0%</strong></td></tr>
+    </table>
+  </div>
+
+  <p>数字非常亮眼。但需要仔细解读：</p>
+
+  <h3>为什么 OpenVLA 能超过 RT-2-X？</h3>
+  <p>论文归因于三个因素：</p>
+
+  <p><strong>因素一：更大的训练数据</strong>——OpenVLA 用了 97 万条轨迹，RT-2-X 只用了约 35 万条（OXE 数据集的子集）。更多数据 = 更多样的操作模式。消融实验（Appendix D.1）表明：去掉 OXE 预训练、只在 BridgeData V2 上训练的 OpenVLA-Bridge 性能下降 30%。</p>
+
+  <p><strong>因素二：更好的数据清洗</strong>——OpenVLA 过滤掉了 Bridge 数据集中的全零动作 timestep（上文提到的"冻结行为"问题）。RT-2-X 没有做这个清洗，必须用查询第二高概率 token 的 workaround，效果不如直接清洗。</p>
+
+  <p><strong>因素三：融合视觉编码器</strong>——SigLIP+DINOv2 的组合比 RT-2-X 的单 ViT 编码器提供了更好的空间-语义特征。</p>
+
+  <div class="note">
+    <p class="note-label">公平性提醒</p>
+    <p>这个比较不完全公平：OpenVLA 用了 RT-2-X 近 3 倍的训练数据，并且做了 RT-2-X 没有做的数据清洗。如果 RT-2-X 也能用清洗后的 97 万条数据重新训练，差距可能会缩小。但由于 RT-2-X 不开源，无法验证。</p>
+  </div>
+
+  <h3>在哪些任务上 RT-2-X 更强？</h3>
+  <p><strong>语义泛化</strong>——在未见过的物体和概念上，RT-2-X（38.8%）略高于 OpenVLA（36.3%）。这不难理解：RT-2-X 的 55B PaLI-X 底座是在更大规模的互联网数据上预训练的，它的语义知识储备更丰富。而 OpenVLA 的 Llama 2 虽然语言能力强，但微调时只接触了机器人数据——<strong>没有联合训练互联网数据来保留语义知识</strong>。</p>
+
+  <div class="recap">
+    <strong>对比 π₀.5 的数据策略：</strong>这恰好印证了 π₀.5 为什么要加入 WD（互联网图文数据）——它通过联合训练来保留并增强模型的开放词汇语义能力。OpenVLA 只用机器人数据微调，虽然操作性能强，但语义泛化能力被 Llama 预训练时的知识"上限"限制住了。
+  </div>
+
+  <h3>微调到新任务的表现</h3>
+  <p>OpenVLA 还在 Franka-Tabletop（5Hz）和 Franka-DROID（15Hz）上测试了微调效果，每个任务只需 10-150 条演示：</p>
+
+  <p>结论是 OpenVLA 在<strong>需要语言理解的多指令任务</strong>上表现最好（比 Diffusion Policy 和 Octo 都强），但在<strong>需要高精度的窄任务</strong>（如"把胡萝卜放进碗里"）上不如 Diffusion Policy。这和预期一致——Diffusion Policy 用 action chunking 产生更平滑的轨迹，而 OpenVLA 逐步预测的离散动作在精细操作上更粗糙。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>评估结果说明 OpenVLA 是一个强大的"通用基础策略"。但 7B 模型怎么在实验室外的普通 GPU 上跑？下一节看 OpenVLA 的微调和部署方案——这是它的核心卖点。</span>
+</div>
+
+<!-- ========== SECTION 8 ========== -->
+<div class="section" id="s8">
+  <div class="section-num">08</div>
+  <h2>微调与部署——让 VLA 走进消费级 GPU</h2>
+  <p class="section-lead">LoRA 微调在单块 A100 上 10-15 小时完成，INT4 量化让推理只需 7GB 显存——这是 OpenVLA 对开源社区最重要的贡献。</p>
+
+  <div class="recap">
+    <strong>到目前为止的完整画面：</strong>OpenVLA = Prismatic-7B VLM（SigLIP+DINOv2 → MLP → Llama 2 7B），用 97 万条 OXE 数据做标准 cross-entropy 训练 27 epochs，产生的通用策略在 Bridge V2 和 Google Robot 上超过了 55B 的 RT-2-X。现在的问题是：研究者拿到这个模型后，怎么用它？
+  </div>
+
+  <h3>五种微调策略的对比</h3>
+  <p>论文系统对比了五种微调策略，在 Franka-Tabletop 任务上测试：</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>策略</th><th>成功率</th><th>可训参数</th><th>显存 (batch=16)</th></tr>
+      <tr><td>全参数微调</td><td>69.7%</td><td>7,188M (100%)</td><td>163 GB*</td></tr>
+      <tr><td>只微调最后一层</td><td>30.3%</td><td>465M (6%)</td><td>51 GB</td></tr>
+      <tr><td>冻结视觉编码器</td><td>47.0%</td><td>6,760M (94%)</td><td>157 GB*</td></tr>
+      <tr><td>"三明治"微调</td><td>62.1%</td><td>914M (13%)</td><td>64 GB</td></tr>
+      <tr><td><strong>LoRA (r=32)</strong></td><td><strong>68.2%</strong></td><td><strong>97.6M (1.4%)</strong></td><td><strong>60 GB</strong></td></tr>
+    </table>
+  </div>
+
+  <p>*需要 2 块 GPU 做 FSDP 分片</p>
+
+  <pre><code># LoRA 微调方案
+def lora_finetune(base_model, task_data, rank=32):
+    """
+    LoRA 的核心思想（回忆）：
+    原始权重矩阵 W [d_in, d_out] 保持不变
+    额外学习两个小矩阵 A [d_in, r] 和 B [r, d_out]
+    实际输出 = W·x + A·B·x
+
+    r=32 时，每层额外参数 = 2 × d × r ≈ 2 × 4096 × 32 = 262K
+    全模型约 97.6M 额外参数（原始 7B 的 1.4%）
+    """
+    # 对所有线性层加 LoRA adapter
+    model = add_lora(base_model, rank=rank, target="all_linear")
+
+    # 只训练 LoRA 参数，冻结原始权重
+    train(model, task_data,
+          lr=2e-5,
+          epochs="until_convergence",
+          trainable_params="lora_only")
+
+    # 训练时间：10-15 小时，单块 A100
+    # 对比全参数微调：8块 A100，5-15 小时
+    # → LoRA 在单卡上的总 GPU 小时数相当
+
+    return model</code></pre>
+
+  <div class="highlight">
+    <p><strong>核心发现：LoRA rank 不影响性能。</strong>论文测试了 r=32 和 r=64，性能几乎相同（68.2% vs 68.2%）。这意味着微调一个新任务只需要约 100M 参数——<strong>一个 adapter 只有几百 MB</strong>，可以轻松存储和切换多个任务。</p>
+  </div>
+
+  <h3>量化推理——从 16.8GB 到 7GB</h3>
+  <p>量化是让 OpenVLA 在消费级 GPU 上运行的关键。论文测试了三种精度：</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>精度</th><th>Bridge V2 成功率</th><th>显存占用</th></tr>
+      <tr><td>bfloat16</td><td>71.3%</td><td>16.8 GB</td></tr>
+      <tr><td>INT8</td><td>58.1%</td><td>10.2 GB</td></tr>
+      <tr><td>INT4</td><td>71.9%</td><td>7.0 GB</td></tr>
+    </table>
+  </div>
+
+  <p>一个反直觉的结果：<strong>INT4 比 INT8 性能更好</strong>（71.9% vs 58.1%），而且接近 bfloat16。原因是 INT8 的推理速度反而更慢（量化/反量化操作的开销），在非阻塞控制中导致系统动态变化。INT4 虽然精度更低，但推理更快，保持了与训练数据一致的控制频率。</p>
+
+  <div class="note">
+    <p class="note-label">阻塞 vs 非阻塞控制</p>
+    <p>在非阻塞控制（non-blocking control）中，机器人在等待模型预测时不会停下来，而是继续执行上一个动作。如果推理变慢（INT8），机器人执行的动作序列的"时间间距"就变了，相当于<strong>系统动力学改变了</strong>——这会导致性能下降。论文用阻塞控制验证了这一点：当强制所有精度以相同速度运行时，三者性能相当。</p>
+  </div>
+
+  <h3>推理速度</h3>
+  <p>在各种 GPU 上的推理速度（bfloat16 精度）：</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>GPU</th><th>推理频率</th><th>备注</th></tr>
+      <tr><td>RTX 4090</td><td>~6 Hz</td><td>消费级旗舰，足够桌面操作</td></tr>
+      <tr><td>A100</td><td>~5 Hz</td><td>数据中心 GPU</td></tr>
+      <tr><td>A5000</td><td>~3 Hz</td><td>工作站 GPU</td></tr>
+      <tr><td>RTX 1080 Ti</td><td>需要量化</td><td>老显卡，bfloat16 放不下</td></tr>
+    </table>
+  </div>
+
+  <p>6Hz 对于多数桌面操作任务足够（训练数据中 Bridge 的控制频率是 5Hz），但对于需要 50Hz 的灵巧操作（如 ALOHA 双臂协作）来说太慢了。</p>
+
+  <h3>远程推理服务器</h3>
+  <p>OpenVLA 还提供了一个<strong>远程推理服务器</strong>方案：把模型部署在有 GPU 的云端，机器人通过网络流式传输图像并接收动作预测。这样机器人端只需要一个普通电脑+摄像头，不需要本地 GPU。</p>
+
+  <div class="strength">
+    <p class="note-label">生态价值</p>
+    <p>OpenVLA 的代码库直接集成了 HuggingFace 的 <code>AutoModel</code>、LoRA 微调、量化推理——这意味着任何熟悉 HuggingFace 生态的 ML 工程师都可以像微调语言模型一样微调 VLA。这种<strong>生态兼容性</strong>是 OpenVLA 最大的工程贡献。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接：</strong>OpenVLA 的亮点讲完了。但作为学习者，更重要的是理解它<strong>没有解决</strong>的问题——这些局限正好对应了 π₀、π₀.5、HyVLA 等后续工作的动机。最后一节做一个诚实的局限分析。</span>
+</div>
+
+<!-- ========== SECTION 9 ========== -->
+<div class="section" id="s9">
+  <div class="section-num">09</div>
+  <h2>局限与反思——OpenVLA 没解决什么问题</h2>
+  <p class="section-lead">OpenVLA 证明了"简单方法 + 正确选择"能走很远，但也暴露了纯离散化+自回归范式的天花板。</p>
+
+  <div class="recap">
+    <strong>全文回顾：</strong>OpenVLA 用 Prismatic-7B（SigLIP+DINOv2→MLP→Llama 2 7B）作为底座，在 97 万条 OXE 数据上做标准 cross-entropy 训练。动作被离散化为 256 bin 映射到 Llama 的冷门 token 上，每步预测 7 个 token。它以 7B 参数超越了 55B 的 RT-2-X，并且可以用 LoRA 微调 + INT4 量化在消费级 GPU 上运行。
+  </div>
+
+  <h3>局限一：单图输入，无观测历史</h3>
+  <p>OpenVLA 每步只看<strong>一张图像</strong>。没有多摄像头输入，没有历史帧堆叠，没有本体感知（关节角度、力矩）。这意味着：</p>
+  <p>它无法利用时间信息——比如"物体正在滑动"需要对比连续帧才能判断。它也无法做精确的力控制——不知道当前关节受力状态。在需要反应式控制（reactive control）的任务中，这个局限尤为突出。</p>
+
+  <div class="recap">
+    <strong>对比：</strong>π₀/π₀.5 使用多摄像头输入（腕部+外部）和本体感知状态；HyVLA 接受多帧历史观测。Diffusion Policy 使用双步观测历史 + 本体感知。OpenVLA 是本系列中<strong>输入最少的模型</strong>。
+  </div>
+
+  <h3>局限二：无 Action Chunking</h3>
+  <p>OpenVLA 每步只预测<strong>一个时间步的动作</strong>（7 个 token = 1 步）。而 Diffusion Policy 一次预测一个动作块（T=8 或 16 步），π₀ 一次预测 H=50 步，π₀.5 一次预测 H=49 步。</p>
+
+  <pre><code># Action Chunking 的优势（OpenVLA 没有）
+#
+# 无 chunking：       →  →  →  →  →  →  每步独立预测
+#                     可能不连贯         推理频率 = 控制频率
+#
+# 有 chunking (π₀)：  [→→→→→→→→→→→→]    一次预测 50 步
+#                     轨迹天然平滑        推理频率 = 控制频率/50
+#
+# OpenVLA 的问题：
+# 1. 轨迹不平滑——每步独立预测，步间可能有抖动
+# 2. 推理瓶颈——每步都要跑一次 7B 模型 forward pass
+# 3. 无法表达多模态动作分布（同一场景可能有多种合理动作）</code></pre>
+
+  <div class="weakness">
+    <p class="note-label">核心架构局限</p>
+    <p><strong>自回归离散 token 无法表达动作的多模态性（multimodality）。</strong>在很多操作场景中，同一个状态下有多种合理动作——比如"把物体放到桌上"，放在左边或右边都对。离散化后的自回归模型只能选择一个 bin（mode collapse），而 Flow Matching（π₀）或 Diffusion Policy 天然能表达多模态分布。这也是论文承认 OpenVLA 在"需要灵巧精确的窄任务"上不如 Diffusion Policy 的根本原因。</p>
+  </div>
+
+  <h3>局限三：控制频率天花板</h3>
+  <p>6Hz 的推理速度对于桌面拾放任务足够，但对于接触丰富的操作（contact-rich manipulation）和高速任务完全不够。ALOHA 双臂系统需要 50Hz，工业装配需要 100Hz+。OpenVLA 的瓶颈在于每步都要做完整的 7B 模型推理——而 Action Chunking 可以通过一次推理覆盖多步，摊薄推理成本。</p>
+
+  <h3>局限四：无互联网数据联合训练</h3>
+  <p>OpenVLA 只用机器人数据微调，不同时训练互联网图文数据。这导致 Llama 2 的<strong>语义知识在微调过程中可能逐渐遗忘</strong>（catastrophic forgetting）。实验中语义泛化是 OpenVLA 唯一不如 RT-2-X 的类别，间接印证了这一点。</p>
+
+  <div class="recap">
+    <strong>这就是 π₀.5 的 WD 数据的意义：</strong>π₀.5 在训练中保留了互联网图文数据，用它来对抗语义遗忘。OpenVLA 的"只用机器人数据微调"策略更简单，但付出了语义泛化的代价。
+  </div>
+
+  <h3>局限五：可靠性不足</h3>
+  <p>论文诚实承认：OpenVLA 在测试任务上的成功率通常低于 90%。虽然超过了其他基线，但距离实际部署需要的 &gt;95% 可靠性还有明显差距。对于一个需要连续执行 5-10 分钟的任务来说，每步 85% 的成功率意味着整体成功率可能只有 ~20%。</p>
+
+  <h3>总结：OpenVLA 在 VLA 研究中的位置</h3>
+  <div class="diagram">
+    <pre><code style="font-size:12px;">
+  VLA 研究路线图（基于本系列四篇论文）
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │                                                             │
+  │  OpenVLA (2024.6)                                           │
+  │  ├─ 贡献：开源基线，证明 VLM→VLA 路径可行                      │
+  │  ├─ 方法：纯离散化 + 标准自回归                                │
+  │  └─ 天花板：无 action chunk，无多模态动作，6Hz                  │
+  │       │                                                     │
+  │       ▼ 解决"动作表示"的局限                                  │
+  │                                                             │
+  │  HyVLA (2024.?)                                             │
+  │  ├─ 改进：混合离散+连续 token，MoT 架构                        │
+  │  └─ 保留离散的语义能力，加入连续的精度                           │
+  │       │                                                     │
+  │       ▼ 解决"连续动作生成质量"的问题                           │
+  │                                                             │
+  │  π₀ (2024.10)                                               │
+  │  ├─ 改进：Flow Matching + Action Expert                      │
+  │  ├─ 50步 action chunk，多模态动作分布                          │
+  │  └─ 天花板：只在实验室评估，无长程规划                           │
+  │       │                                                     │
+  │       ▼ 解决"开放世界+长程任务"                                │
+  │                                                             │
+  │  π₀.5 (2025.2)                                              │
+  │  ├─ 改进：多源异构数据，分层推理                                │
+  │  ├─ 两阶段训练（FAST→FM），Adaptive RMSNorm                   │
+  │  └─ 首次在真实家庭完成 10-15 分钟长程任务                       │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘</code></pre>
+    <div class="diagram-caption">四篇论文的演进关系——每篇都在解决前一篇的核心局限</div>
+  </div>
+
+  <div class="highlight">
+    <p><strong>学习启示：</strong>OpenVLA 最大的贡献不是技术创新，而是<strong>建立基线</strong>和<strong>降低门槛</strong>。它证明了：(1) VLM→VLA 的路径是可行的；(2) 简单方法在正确选择下可以很有效；(3) 开源生态对研究至关重要。后续的 HyVLA、π₀、π₀.5 都在 OpenVLA 指出的方向上继续前进——用更好的动作表示、更多样的数据、更复杂的训练策略来逐步解决 OpenVLA 暴露的问题。</p>
+  </div>
+
+  <div class="strength">
+    <p class="note-label">OpenVLA 的核心亮点总结</p>
+    <p>完全开源（代码+权重+数据管道）· 7B 超越 55B RT-2-X · HuggingFace 一行加载 · LoRA 微调单卡 10h · INT4 量化仅需 7GB · 远程推理服务器 · 系统化的消融实验</p>
+  </div>
+
+  <div class="weakness">
+    <p class="note-label">OpenVLA 的核心局限总结</p>
+    <p>单图输入无历史 · 无 Action Chunking · 每维度独立离散化 · 6Hz 推理频率 · 无互联网数据联合训练 · 单臂末端执行器控制限制 · 成功率 &lt;90%</p>
+  </div>
+</div>
+
+</body></html>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+  <rect width="1200" height="560" fill="#faf8f3"/>
+  <style>.title{font:700 29px sans-serif;fill:#292622}.h{font:700 19px sans-serif;fill:#292622}.t{font:16px sans-serif;fill:#514b44}.s{font:14px sans-serif;fill:#655e56}.mono{font:15px monospace;fill:#37322d}.box{fill:#fff;stroke:#c9bca9;stroke-width:2}.arrow{stroke:#8f6946;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#8f6946"/></marker></defs>
+  <text x="55" y="52" class="title">为什么同一张图要经过 SigLIP 和 DINOv2？</text>
+  <rect x="55" y="145" width="180" height="150" rx="16" class="box"/>
+  <text x="145" y="185" text-anchor="middle" class="h">224×224 RGB</text>
+  <text x="145" y="220" text-anchor="middle" class="t">同一张第三人称图</text>
+  <text x="145" y="254" text-anchor="middle" class="s">切成对应 patch 序列</text>
+  <path d="M235 195 C300 195 300 130 360 130" class="arrow"/>
+  <path d="M235 245 C300 245 300 315 360 315" class="arrow"/>
+  <rect x="360" y="75" width="250" height="130" rx="16" fill="#e8f1ef" stroke="#8bb1a8" stroke-width="2"/>
+  <text x="485" y="115" text-anchor="middle" class="h">SigLIP features</text>
+  <text x="485" y="150" text-anchor="middle" class="t">更偏图文语义对齐</text>
+  <text x="485" y="180" text-anchor="middle" class="mono">F_sig ∈ ℝ[N,D_sig]</text>
+  <rect x="360" y="260" width="250" height="130" rx="16" fill="#f5ead6" stroke="#caa66d" stroke-width="2"/>
+  <text x="485" y="300" text-anchor="middle" class="h">DINOv2 features</text>
+  <text x="485" y="335" text-anchor="middle" class="t">更偏局部/空间视觉结构</text>
+  <text x="485" y="365" text-anchor="middle" class="mono">F_dino ∈ ℝ[N,D_dino]</text>
+  <path d="M610 140 C675 140 665 220 730 220" class="arrow"/><path d="M610 325 C675 325 665 240 730 240" class="arrow"/>
+  <rect x="730" y="150" width="220" height="160" rx="16" fill="#f1ece4" stroke="#b79f83" stroke-width="2"/>
+  <text x="840" y="188" text-anchor="middle" class="h">channel concat</text>
+  <text x="840" y="224" text-anchor="middle" class="mono">[F_sig ; F_dino]</text>
+  <text x="840" y="258" text-anchor="middle" class="mono">∈ ℝ[N,D_sig+D_dino]</text>
+  <text x="840" y="288" text-anchor="middle" class="s">不是 token 轴拼接，不把 N 翻倍</text>
+  <path d="M950 230 H1010" class="arrow"/>
+  <rect x="1010" y="150" width="150" height="160" rx="16" fill="#ece6f5" stroke="#a58bc2" stroke-width="2"/>
+  <text x="1085" y="190" text-anchor="middle" class="h">2-layer MLP</text>
+  <text x="1085" y="226" text-anchor="middle" class="t">投影到</text>
+  <text x="1085" y="252" text-anchor="middle" class="t">Llama space</text>
+  <text x="1085" y="285" text-anchor="middle" class="mono">[N,D_llm]</text>
+  <rect x="185" y="430" width="830" height="70" rx="14" fill="#efe7dc" stroke="#c9bca9"/>
+  <text x="600" y="458" text-anchor="middle" class="h">论文消融：OpenX 多样数据约贡献 30 个百分点；再去掉 DINOv2 约再降 5 个点</text>
+  <text x="600" y="486" text-anchor="middle" class="s">因此双编码器有帮助，但实验显示数据覆盖的贡献更大。</text>
+  <text x="600" y="540" text-anchor="middle" class="s">教学示意图（根据 Sec. 3.1 与 Appendix D.2 绘制，并非论文原图）</text>
+</svg>
