@@ -12,12 +12,14 @@ verification: mixed-primary-source-and-vault-synthesis
 
 入口：[[论文知识库]] · 配套：[[触觉机器人学习全景：感知、表征、闭环与 VLA]]
 
+逐篇粗读：[[VLA 经典论文粗读图鉴]] · [[VLA 前沿论文粗读雷达（2025-2026）]]
+
 > [!abstract] 先记住这件事
 > VLA 不是一条“大 VLM → 更大 VLM”的单线竞赛。它同时在补六个缺口：**理解指令、生成动作、覆盖数据、记住历史、从失败学习、及时闭环**。触觉主要补“接触状态看不见”和“纠偏来不及”，并不替代前面所有问题。
 
 ## 0. 如何使用这两篇笔记
 
-这是帮助选论文和选问题的全景地图，不是假装逐篇复现的百科。检索截止 **2026-09-09**；近期作品单列，不把预印本当成已通过同行评审。论文表中的“导航”表示核对官方论文条目、摘要或项目页，尚不构成全文精读；核心机制沿用你已有的精读笔记，本次另重点复核 π₀、T-Rex 与 RDP 的正文及附录。网页显示的发布时间、论文初稿年份、会议年份可能不同。
+这是帮助选论文和选问题的全景地图，不是假装逐篇复现的百科。检索截止 **2026-09-09**；近期作品单列，不把预印本当成已通过同行评审。论文表中的“导航”表示核对官方论文条目、摘要或项目页，尚不构成全文精读；经典与前沿条目的原始 pipeline、因果链和研究边界已另整理为两份逐篇粗读图鉴。网页显示的发布时间、论文初稿年份、会议年份可能不同。
 
 推荐三种读法：
 
@@ -72,6 +74,9 @@ flowchart TD
 “有没有大语言模型”“有没有语言输入”“有没有跨机器人数据”“有没有生成未来观测”是不同轴。DP、DP3 是重要基线，即使其原始设置不是通用 VLA，也不能从相关工作里删掉。
 
 ## 3. 经典论文：按缺口读，而不是按年代背
+
+> [!tip] 先看图再回来选文
+> 本节每篇的原始 pipeline、为什么成为经典、最值得关注的机制与不要误读之处，见 [[VLA 经典论文粗读图鉴]]。
 
 表内均给第一手入口；除已建立的 Vault 精读条目外，以下简评属于导航级。
 
@@ -194,12 +199,15 @@ toy 三块 `P=图像/语言，S=状态，A=带噪动作`：A 允许读 P、S 和
 
 ## 6. 2025–2026 前沿：变化发生在哪个瓶颈
 
+> [!tip] 前沿论文逐篇粗读
+> 14 篇方法的原始 pipeline 与证据边界见 [[VLA 前沿论文粗读雷达（2025-2026）]]；Gemini Robotics 2 与 Rho-alpha 目前按官方发布而非可复核论文处理。
+
 以下是精选雷达，不宣称覆盖截止日所有新投稿；“最新”不等于“最值得先读”。
 
 | 工作 / 一手入口 | 状态与时间 | 值得关注的增量 | 证据边界 |
 |---|---|---|---|
 | [Knowledge Insulation](https://www.pi.website/research/knowledge_insulation) | PI 官方研究，2025-05 | 大 VLM 接新连续 expert 时，如何保护已有知识与训练稳定性 | 属于后续训练配方，不能倒写成 π₀.5 初版已具有的全部实现 |
-| [Real-Time Chunking](https://www.pi.website/research/real_time_chunking) | PI 官方研究，2025-06，页面链出后续 | 生成与执行并行，约束已承诺/重叠动作，使新 chunk 接得上 | 解决过期动作与衔接；没有新增触觉就不能知道新滑移 |
+| [Real-Time Chunking](https://www.pi.website/research/real_time_chunking) | NeurIPS 2025；初稿 2025-06 | 生成与执行并行，约束已承诺/重叠动作，使新 chunk 接得上 | 解决过期动作与衔接；没有新增触觉就不能知道新滑移 |
 | [π*₀.6 / RECAP](https://www.physicalintelligence.company/download/pistar06.pdf) | PI 技术论文入口，2025 | 从 rollout、干预和回报继续改善策略 | 奖励、数据筛选和在线反馈预算必须一起比较；本次为导航级 |
 | [MEM](https://www.pi.website/research/memory) | PI 官方研究入口 | 短时视觉历史与更长期信息的分工 | 应问记忆存的是计划还是已发生事实；不能只看最长 demo |
 | [π₀.7](https://arxiv.org/abs/2604.15483) | PI 技术论文，2026-04；导航级 | 多样化上下文条件，利用含失败的自主数据与非机器人数据，使策略更可引导 | 作者报告开箱与跨形态能力；仍须逐项查 unseen 定义、提示信息和部署适配，不能泛化为任意任务即用 |
@@ -209,7 +217,7 @@ toy 三块 `P=图像/语言，S=状态，A=带噪动作`：A 允许读 P、S 和
 | [Gemini Robotics 2](https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/) | Google DeepMind 官方更新，2026-07-30 | 全身机器人能力及 reasoning/action 产品分工 | 官方演示/报告不是可下载同权重基线；ER 与动作模型不可混称 |
 | [Rho-alpha](https://www.microsoft.com/en-us/research/story/advancing-ai-for-the-physical-world/) | Microsoft Research 官方项目介绍，2026 | 视觉、语言、动作之外引入触觉 | 开放申请/介绍不等于完整训练复现；不要补写尚未公开的实现 |
 | [ReconVLA](https://arxiv.org/abs/2508.10333) / [Spatial Forcing](https://spatial-forcing.github.io/) | 2025 初稿 / 2026 研究线 | 用重建或空间辅助监督改善动作所需表征 | 对 3D 背景很相关；必须消融“额外监督”与“网络改动” |
-| [LingBot-VLA](https://github.com/Robbyant/lingbot-vla) | 官方仓库，2026；本次确认 4B / Depth 权重入口 | 几何/深度增强、工程化训练适配 | 未从该仓库确认的“2.0”宣传不纳入确定事实 |
+| [LingBot-VLA](https://github.com/Robbyant/lingbot-vla) / [2.0](https://arxiv.org/abs/2607.06403) | 1.0 与 2.0 均有 2026 技术报告；官方仓库/权重入口 | 从 20k 小时双臂数据、MoT/Depth，扩展到 60k 小时、20 种形态、whole-body action 与 future distillation | 版本间数据、动作空间、MoE 与监督同时变化；整体提升不能归因于单模块 |
 | [FailureSpot](https://arxiv.org/abs/2609.04277) | **2026-09-03 预印本，导航级** | 从动作异常弱监督与主动标注学习时间点级失败检测 | 检测不是恢复，更不是安全证明；应核对误报与检测提前量 |
 | [AdaRoboVLG](https://arxiv.org/abs/2609.04096) | **2026-09-03 预印本，导航级** | 显式抓取可行性与可组合基础模型先验解耦 | 属于 VLG 抓取邻近路线，不假装是通用 VLA；提醒我们模块化仍有价值 |
 

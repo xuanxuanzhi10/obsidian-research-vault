@@ -14,6 +14,11 @@
 - `openvla-fig*.png`、`openvla-table*.png`：从论文 PDF 裁剪的原始 pipeline 与实验图表
 - `openvla-teaching-*.svg`：动作 token 化、双视觉融合、控制延迟教学图，不是论文原图
 
+## VLA-Paper-Atlas
+
+- `*-pipeline.png`：为 [[VLA 经典论文粗读图鉴]] 与 [[VLA 前沿论文粗读雷达（2025-2026）]] 从各论文 PDF 裁剪的原始 method/pipeline figure
+- 图片下方均在对应笔记中标明 Figure 编号与 PDF 页码；数据论文使用原论文的数据采集/系统总览图
+
 - `Papers/`：论文 PDF
 - `Figures/`：论文架构图、实验图与截图
 

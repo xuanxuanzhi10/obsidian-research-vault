@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <defs>
+    <style>
+      .title{font:700 26px sans-serif;fill:#292521}.label{font:600 18px sans-serif;fill:#292521}.small{font:15px sans-serif;fill:#514b44}.box{stroke:#9c8e7d;stroke-width:2;rx:14}.arrow{stroke:#6d655b;stroke-width:3;fill:none}
+    </style>
+  </defs>
+  <rect width="1200" height="360" fill="#fbf8f1"/>
+  <text x="50" y="48" class="title">FailureSpot：从无标签动作异常到少量精确失败时间标注</text>
+  <rect x="50" y="95" width="190" height="150" class="box" fill="#e8f0e6"/>
+  <text x="145" y="132" text-anchor="middle" class="label">VLA action chunks</text>
+  <text x="145" y="167" text-anchor="middle" class="small">连续时刻的动作预测</text>
+  <text x="145" y="194" text-anchor="middle" class="small">大量、无需人工标签</text>
+  <path d="M240 170 H280" class="arrow"/><path d="M280 164 L290 170 L280 176 Z" fill="#6d655b"/>
+  <rect x="290" y="80" width="230" height="180" class="box" fill="#f4e4c1"/>
+  <text x="405" y="118" text-anchor="middle" class="label">弱监督信号</text>
+  <text x="405" y="153" text-anchor="middle" class="small">相邻 chunk 不一致</text>
+  <text x="405" y="180" text-anchor="middle" class="small">冻结 / idle</text>
+  <text x="405" y="207" text-anchor="middle" class="small">激烈随机动作</text>
+  <path d="M520 170 H560" class="arrow"/><path d="M560 164 L570 170 L560 176 Z" fill="#6d655b"/>
+  <rect x="570" y="95" width="190" height="150" class="box" fill="#e9e2f5"/>
+  <text x="665" y="132" text-anchor="middle" class="label">初始 detector</text>
+  <text x="665" y="167" text-anchor="middle" class="small">学习 timestamp score</text>
+  <text x="665" y="194" text-anchor="middle" class="small">估计不确定性</text>
+  <path d="M760 170 H800" class="arrow"/><path d="M800 164 L810 170 L800 176 Z" fill="#6d655b"/>
+  <rect x="810" y="80" width="170" height="180" class="box" fill="#dcebf2"/>
+  <text x="895" y="118" text-anchor="middle" class="label">Active learning</text>
+  <text x="895" y="153" text-anchor="middle" class="small">只选择最不确定轨迹</text>
+  <text x="895" y="180" text-anchor="middle" class="small">人工标 failure onset</text>
+  <text x="895" y="207" text-anchor="middle" class="small">减少密集标注成本</text>
+  <path d="M980 170 H1020" class="arrow"/><path d="M1020 164 L1030 170 L1020 176 Z" fill="#6d655b"/>
+  <rect x="1030" y="95" width="130" height="150" class="box" fill="#dcebd8"/>
+  <text x="1095" y="132" text-anchor="middle" class="label">精调</text>
+  <text x="1095" y="167" text-anchor="middle" class="small">更准的告警时间</text>
+  <text x="1095" y="194" text-anchor="middle" class="small">部署前检测</text>
+  <text x="50" y="304" class="small">允许路径：动作异常 → 弱标签 → 选少量难例 → 精确时间标签。失败路径：把整条失败轨迹的每一帧都标成失败，会污染真正正常的前半段。</text>
+  <text x="50" y="333" class="small">教学示意图（根据 FailureSpot 方法绘制，并非论文原图）</text>
+</svg>
