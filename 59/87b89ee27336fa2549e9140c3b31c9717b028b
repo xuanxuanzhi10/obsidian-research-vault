@@ -1,0 +1,51 @@
+"90 Attachments/Pi05/pi05-teaching-inference.svg"
+  s_a3320701e75207::t_08f95c38898f41 1-26
+"00 Maps/VLA 概念索引.md"
+  s_a3320701e75207::t_6231fc3a6485ed 23,51,58
+"20 Concepts/异构协同训练.md"
+  s_a3320701e75207::t_88bbb2d0adf09b 1-75
+"30 Comparisons/VLA 方法比较.md"
+  s_a3320701e75207::t_ff38bed59b50f1 14,34-45
+"20 Concepts/Flow Matching.md"
+  s_a3320701e75207::t_ff38bed59b50f1 78-82
+"20 Concepts/层级 VLA 推理.md"
+  s_a3320701e75207::t_88bbb2d0adf09b 1-71
+"20 Concepts/Adaptive RMSNorm.md"
+  s_a3320701e75207::t_ff38bed59b50f1 5,91
+"90 Attachments/README.md"
+  s_a3320701e75207::t_ff38bed59b50f1 3-9
+"90 Attachments/Pi05/pi05-teaching-data.svg"
+  s_a3320701e75207::t_08f95c38898f41 1-31
+"20 Concepts/状态条件注入方式比较.md"
+  s_a3320701e75207::t_ff38bed59b50f1 46
+"00 Maps/VLA 学习地图.md"
+  s_a3320701e75207::t_ff38bed59b50f1 52-53
+"10 Papers/VLA/π₀.5.md"
+  s_a3320701e75207::t_d00178deb01569 4,6-8,10,13,19-24,27-217,219,221,223,225,227-229,231-258,261,264-450,452,454,456-459,461,463,468,470,472-476
+  s_a3320701e75207::t_aaeec2edf6d711 15,17-18,464-467
+"90 Attachments/Pi05/pi05-teaching-training.svg"
+  s_a3320701e75207::t_08f95c38898f41 1-38
+"40 Topics/数据策略对比.md"
+  s_a3320701e75207::t_ff38bed59b50f1 16,28-35
+"40 Topics/训练范式地图.md"
+  s_a3320701e75207::t_ff38bed59b50f1 16,26
+  s_a3320701e75207::t_cac01dfeacba7d 27
+"90 Attachments/Pi05/pi05-study-guide.html"
+  s_a3320701e75207::t_8ad66583ead89b 1-1262
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "5987b89ee27336fa2549e9140c3b31c9717b028b",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
