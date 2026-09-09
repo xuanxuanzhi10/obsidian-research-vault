@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="710" viewBox="0 0 1200 710">
+  <style>.h{font:bold 28px sans-serif;fill:#262421}.t{font:20px sans-serif;fill:#302d29}.s{font:17px sans-serif;fill:#655f57}.lab{font:16px monospace;fill:#37332e}.ok{fill:#43836e}.no{fill:#eee9e1}.grid{stroke:#fff;stroke-width:3}.a{stroke:#716a62;stroke-width:3;fill:none;marker-end:url(#m)}</style>
+  <defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#716a62"/></marker></defs>
+  <text x="45" y="50" class="h">π₀ 的 Block-wise Causal Attention：行是 Query，列是 Key</text>
+  <text x="45" y="82" class="s">玩具序列：P₁ P₂ P₃ | S | A₁ A₂ A₃；绿色=允许读取，灰色=禁止</text>
+  <g transform="translate(110,150)">
+    <text x="152" y="-55" class="lab">P₁  P₂  P₃   S   A₁  A₂  A₃</text>
+    <text x="-70" y="34" class="lab">P₁</text><text x="-70" y="86" class="lab">P₂</text><text x="-70" y="138" class="lab">P₃</text><text x="-70" y="190" class="lab">S</text><text x="-70" y="242" class="lab">A₁</text><text x="-70" y="294" class="lab">A₂</text><text x="-70" y="346" class="lab">A₃</text>
+    <g class="grid">
+      <rect x="0" y="0" width="156" height="156" class="ok"/><rect x="156" y="0" width="52" height="156" class="no"/><rect x="208" y="0" width="156" height="156" class="no"/>
+      <rect x="0" y="156" width="156" height="52" class="ok"/><rect x="156" y="156" width="52" height="52" class="ok"/><rect x="208" y="156" width="156" height="52" class="no"/>
+      <rect x="0" y="208" width="156" height="156" class="ok"/><rect x="156" y="208" width="52" height="156" class="ok"/><rect x="208" y="208" width="156" height="156" class="ok"/>
+      <path d="M52 0V364M104 0V364M156 0V364M208 0V364M260 0V364M312 0V364M364 0V364M0 52H364M0 104H364M0 156H364M0 208H364M0 260H364M0 312H364M0 364H364" fill="none"/>
+    </g>
+    <text x="66" y="390" class="s">P：图像+语言</text><text x="155" y="420" class="s">S：robot state</text><text x="252" y="450" class="s">A：整块 noisy actions</text>
+  </g>
+  <g transform="translate(590,145)">
+    <rect x="0" y="0" width="550" height="125" rx="18" fill="#e4efe9" stroke="#8a9b91"/><text x="28" y="42" class="t">允许例：A₁ → A₃</text><text x="28" y="78" class="s">同一个 action block 内双向；50 个动作同时去噪，</text><text x="28" y="106" class="s">前一步必须知道后一步，才能形成连贯轨迹。</text>
+    <rect x="0" y="160" width="550" height="125" rx="18" fill="#f3e2dd" stroke="#a68c84"/><text x="28" y="202" class="t">禁止例：P₁ → A₁</text><text x="28" y="238" class="s">感知 prefix 不读取会随 τ 改变的 noisy action，</text><text x="28" y="266" class="s">因此其表示与 K/V 在十次去噪中保持稳定。</text>
+    <rect x="0" y="320" width="550" height="155" rx="18" fill="#eee7ce" stroke="#a79c79"/><text x="28" y="362" class="t">注意：mask 只规定前向可见性</text><text x="28" y="399" class="s">Action loss 仍可沿 A 对 P 的 attention 路径，</text><text x="28" y="427" class="s">反向更新 VLM 参数；“P 不看 A”不等于“VLM 冻结”。</text><text x="28" y="458" class="s">教学示意图（根据论文 Appendix B 绘制）</text>
+  </g>
+</svg>

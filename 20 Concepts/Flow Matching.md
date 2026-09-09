@@ -53,7 +53,7 @@ for tau in solver_grid:
     a = a + delta_tau * v_theta(condition, a, tau)
 ```
 
-[[Hy-Embodied-0.5-VLA]] 使用 10 个 Euler steps、`Δτ=0.1`。
+[[Hy-Embodied-0.5-VLA]] 和 [[π₀]] 都使用 10 个 Euler steps、`Δτ=0.1`。π₀ 训练时采用截止于 `s=0.999` 的 shifted Beta timestep distribution，更多采样高噪声的低 τ 区域；论文未给该分布相对 uniform/logit-normal 的独立下游消融。
 
 ## 它和 diffusion 的关系
 
@@ -74,7 +74,7 @@ Sec. 2.3 Eq. (3) 写 `ε-A`，但它给出的插值式从噪声 `τ=0` 到数据
 | 论文 | 当前知识库记录的用途 | 核实状态 |
 |---|---|---|
 | [[Hy-Embodied-0.5-VLA]] | 370M Action Expert，10-step Euler，生成 relative-EEF chunk | 已核对全文 |
-| [[π₀]] | 连续动作生成核心机制 | 待用原文 PDF 复核配置 |
+| [[π₀]] | H=50、10-step Euler、shifted-beta τ；速度目标 `A-ε` | 已核对全文与 Appendix B/D |
 | [[π₀.5]] | 与 FAST 离散动作表示组成分阶段训练 | 待用原文 PDF 复核配置 |
 
 ## 优势、代价与失败边界

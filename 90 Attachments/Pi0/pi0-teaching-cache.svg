@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="590" viewBox="0 0 1200 590">
+  <style>.h{font:bold 28px sans-serif;fill:#262421}.t{font:20px sans-serif;fill:#302d29}.s{font:17px sans-serif;fill:#655f57}.box{stroke:#958c81;stroke-width:2;rx:14}.line{stroke:#777067;stroke-width:2}</style>
+  <text x="45" y="48" class="h">一次 action chunk 的计算时间线：固定 prefix 只算一次，动作 suffix 重算十次</text>
+  <text x="45" y="88" class="s">论文 Table I · RTX 4090 · 三路相机</text>
+  <line x1="125" y1="150" x2="1145" y2="150" class="line"/>
+  <rect x="125" y="120" width="190" height="60" class="box" fill="#dceaf0"/><text x="155" y="157" class="t">图像编码 14 ms</text>
+  <rect x="315" y="120" width="260" height="60" class="box" fill="#e5ecd7"/><text x="342" y="157" class="t">P/S 前向 32 ms</text>
+  <rect x="575" y="120" width="390" height="60" class="box" fill="#ece2f1"/><text x="615" y="157" class="t">10× Action 前向共 27 ms</text>
+  <rect x="965" y="120" width="180" height="60" class="box" fill="#f3e1dc"/><text x="992" y="157" class="t">输出 H=50</text>
+  <text x="125" y="230" class="t">缓存内容</text>
+  <rect x="125" y="255" width="450" height="95" class="box" fill="#e5ecd7"/><text x="155" y="294" class="t">图像 + 语言 + state 的每层 K/V</text><text x="155" y="326" class="s">十个 solver step 中 observation 不变</text>
+  <text x="620" y="230" class="t">每个 τ 都要重新计算</text>
+  <rect x="620" y="255" width="525" height="95" class="box" fill="#ece2f1"/><text x="650" y="294" class="t">当前 Aτ 的 embedding、Q/K/V、FFN、速度头</text><text x="650" y="326" class="s">因为 noisy action 每次积分后都改变</text>
+  <text x="125" y="410" class="t">为什么 state 单独成块？</text><text x="125" y="448" class="s">S 可以读 P，但不能读 A；所以 state 的层间表示也不随 τ 变化，可和 P 一起缓存。</text>
+  <text x="125" y="495" class="t">不要误读“50 Hz”</text><text x="125" y="533" class="s">这是部分机器人 action 执行频率，不是 3.3B 模型每秒完整运行 50 次。50 Hz 机器人每 25 步（0.5 s）重规划一次。</text><text x="125" y="568" class="s">教学示意图（根据论文 Appendix D 绘制）</text>
+</svg>

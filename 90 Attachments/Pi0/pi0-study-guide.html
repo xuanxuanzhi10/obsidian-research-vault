@@ -1,0 +1,1109 @@
+<!doctype html><html><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.B_zN8nKT.js","assets":"assets.8Gk803W0.js","comments":"comments.hEoja5zd.js","db":"db.DoKNwgX8.js","downloads":"downloads.th1YuAIk.js","embed":"embed.eqL6deQM.js","endpoints":"endpoints.CooJFPzL.js","mcp":"mcp.Ch3NPscy.js","network":"network.B5UA9Su4.js","permissions":"permissions.BNySkLV5.js","room":"room.Dc3WDo3b.js","sample":"sample.C2869FGz.js","self":"artifact.B_zN8nKT.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.Cil6ankx.js","comments":"_comments.e5-ml_Nr.js","translate":"_translate.5HCW4BJh.js","ldx":"_ldx.DycbNc-Q.js"}</script><script>(function(){"use strict";var fe=["light","dark","system"],de=/^[A-Za-z0-9_-]{1,64}$/,te=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,pe=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function me(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||pe.has(t)}var $e="http://www.w3.org/1999/xhtml",he="http://www.w3.org/2000/svg",_e=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ve=new Set(["script","style"]);function ye(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!_e.has(t):e.namespaceURI===he?!ve.has(t):!1}function x(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function we(e,t){const r=e.length,n=t.length;let a=0;for(;a<r&&a<n&&x(e.charCodeAt(a),t.charCodeAt(a));)a++;let o=0;for(;o<r-a&&o<n-a&&x(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:a,s:o}}function Ee(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,a=n.length,o=t.length,{p:c,s:i}=we(n,t);c===a&&i===0&&a===o||r.replaceData(c,a-c-i,t.slice(c,o-i));const m=r.data,f=e.ownerDocument.getSelection?.()??null,y=f!==null&&f.rangeCount>0&&(f.anchorNode===r||f.focusNode===r)?{anchor:f.anchorNode,anchorOffset:f.anchorOffset,focus:f.focusNode,focusOffset:f.focusOffset}:null;let d=-1,E=-1;for(let v=0;v<m.length&&v<t.length;v++){const A=m.charCodeAt(v),k=t.charCodeAt(v);A!==k&&x(A,k)&&(d<0&&(d=v),E=v)}const b=d>=0;if(b&&r.replaceData(d,E-d+1,t.slice(d,E+1)),b&&y!==null&&y.anchor!==null&&y.focus!==null)try{f.setBaseAndExtent(y.anchor,y.anchorOffset,y.focus,y.focusOffset)}catch{}}var be=new Set(["html","head","body","frameset"]);function ge(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&be.has(e.localName)}function Ae(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!de.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!te.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!te.test(r))return!1}return!0}function Le(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let a=0;a<n.length;a++)if(!t(n[a]))return!1;return!0}function Te(e){return e===null||typeof e!="object"?!1:Le(e.__frame_patch,Ae)}function Se(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function Re(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ke(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&fe.includes(r)}var O=/^[\w.-]+\.js$/;function Pe(e,t,r){return r?"inert":typeof t=="string"&&O.test(t)?e?[t]:"inert":e?"inert":"framed"}var Ye="frame_ldx_runtime",Oe="frame_ldx_build",Ge="script#an-form";function Ce(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function Me(){return{post:()=>{},on:()=>()=>{}}}var F="__frame_scroll",je=150,Ne=310,De=160,Be=3e4;function Ie(){let e=0,t=!1,r=!1,n=!1,a=0,o=null;const c=u=>{try{sessionStorage.setItem(F,JSON.stringify({y:u}))}catch{}},i=()=>{if(clearTimeout(e),o===null)return;const u=o;o=null,c(u)},m=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(i,je)};try{addEventListener("scroll",m,{passive:!0}),addEventListener("pagehide",i)}catch{}const f=()=>{let u;try{u=sessionStorage.getItem(F)}catch{return null}if(u===null)return null;let g;try{g=JSON.parse(u)}catch{g=null}const w=g?.y;if(!(typeof w=="number"&&Number.isFinite(w)&&w>=0)){try{sessionStorage.removeItem(F)}catch{}return null}return w};let y=!1;const d=u=>{try{const g=scrollY;scrollTo({top:u,left:0,behavior:"instant"}),a=u,n=!0,clearTimeout(e),o=null,c(u);const w=scrollY;w!==g&&(t=!0),w!==u&&!y&&(y=!0,addEventListener("load",()=>{try{if(scrollY===w){const M=f();d(M!==null?M:a)}}catch{}},{once:!0}))}catch{}},E=()=>{try{return!!location.hash}catch{return!0}};let b=!1;const v=()=>{try{if(b||innerWidth>Ne||innerHeight>De)return;b=!0;const u=Date.now(),g=()=>{try{removeEventListener("resize",g)}catch{}if(Date.now()-u>Be||r||E())return;const w=f();d(w!==null?w:a)};addEventListener("resize",g)}catch{}};let A=!1,k=!1;return{restore(){if(A||(A=!0,E()))return;const u=f();u!==null&&(d(u),v())},promoted(){if(k||(k=!0,E()))return;const u=f();u!==null?(d(u),v()):n&&d(a)}}}function Ue(e,t,r,n){let a=null;try{a=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:m=>m})??null}catch{}const o=window.Worker,c=o?.prototype,i=Object.freeze({Worker:o,workerOn:c?.addEventListener,workerPost:c?.postMessage,workerTerminate:c?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:a,origins:t});r(e).then(m=>m?.bootTopLevel?m.bootTopLevel(i,n):n.settle()).catch(()=>n.settle())}var Ve="modulepreload",Ze=function(e){return"/"+e},Je={},xe=function(t,r,n){let a=Promise.resolve();function o(c){const i=new Event("vite:preloadError",{cancelable:!0});if(i.payload=c,window.dispatchEvent(i),!i.defaultPrevented)throw c}return a.then(c=>{for(const i of c||[])i.status==="rejected"&&o(i.reason);return t().catch(o)})},Fe=window===top,re=Object.getOwnPropertyDescriptor(window,"claude"),j=Pe(Fe,window.__FRAME_PREAMBLE?.topLevel,re?.writable===!1),H=typeof j=="object"&&j[0],_=H?Me():Ce();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let a=0;a<r.length;a++){const o=r[a];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&j==="framed")try{_.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var He=1e4,ze=2e3,We=2e3,ne=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function oe(e){for(const t of ne)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var N=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),z=window.__FRAME_PREAMBLE?.transforms,W=window.__FRAME_PREAMBLE?.comments,q=window.__FRAME_PREAMBLE?.translate,K=window.__FRAME_PREAMBLE?.ldx;function C(e){return xe(()=>import("/_runtime/"+e),void 0)}function se(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:Y,hooks:B,pipe:()=>({wrap:(r,n)=>(...a)=>{try{return n(...a)}catch(o){return Promise.reject(o)}}})}}var D=null,S=null;function ae(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var X=!1,B={editBefore:null,edit:null};function qe(e,t,r=!1){const n=[];let a;if(r)try{B.editBefore?.(e)}catch{}for(const o of e.elements){const c=document.querySelector(`[data-id="${o.target}"]`);if(!c){a=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(i=>!me(i))){a=o.target;break}if(o.text!==void 0&&(!ye(c)||ge(c))){a=o.target;break}for(const[i,m]of Object.entries(o.attrsSet??{}))if(!ce(c,i)){try{c.setAttribute(i,m)}catch{}ie(c,i,m)}for(const i of o.attrsRemoved??[])ce(c,i)||(c.removeAttribute(i),ie(c,i,null));typeof o.text=="string"&&Ee(c,o.text),n.push(o.target)}if(r)try{B.edit?.(e.seq,n,a)}catch{}if(a!==void 0){_.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function ie(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function ce(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function le(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,X=!0):X&&(delete t.dataset.theme,t.style.colorScheme="",X=!1)}var I=new Map;function Ke(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function $(){for(const e of I.values())e.done||(e.nulled=!0,e.r(null))}var Xe=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),Y=(e,t)=>{const r=I.get(e);if(!r||r.done){r?.nulled&&S&&_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},S);return}const n=typeof t=="function"?Object.setPrototypeOf(t,Xe):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ue(){const e=re?.value??{};ae(window,"claude",e);for(const t of Object.keys(N)){if(e[t]!==void 0){ae(e,t,e[t]);continue}I.set(t,Ke())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(N,r))return Promise.resolve(null);const n=I.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(j==="framed"){const e=z&&O.test(z)?C(z).catch(()=>{}):Promise.resolve(void 0),t=s=>{if(s.type==="auxclick"&&s.button!==1)return;const h=s.target,p=h&&h.closest?h.closest("a[href],area[href]"):null;if(!p)return;const P=p.getAttribute("href");if(!P)return;let L;try{L=new URL(P,document.baseURI)}catch{return}if((L.protocol==="http:"||L.protocol==="https:")&&L.origin!==location.origin){s.preventDefault();const R=(p.getAttribute("target")??"").toLowerCase(),T=s.type==="auxclick"||s.metaKey||s.ctrlKey||s.shiftKey||s.altKey||!["","_self","_top","_parent"].includes(R);_.post({__frame_nav:!0,url:L.href,newTab:T},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=s=>{s.isTrusted&&(r.pointer=!0)},a=s=>{s.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",a,{capture:!0,passive:!0});const o={cb:null};addEventListener("keydown",s=>o.cb?.(s),!0),e.then(s=>s?.installEscapeForward?.(o,h=>{S&&_.post(h,S)})),e.then(s=>{s?.wireNav&&(s.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",a,!0),s.wireEngagement?.(r))});let c=null;try{c=Ie()}catch{}ue();let i=null,m=null,f=0;const y=_.on((s,h)=>{oe(h)&&Se(s)&&(i=s.__frame_init,S=h,y(),clearTimeout(f),m?.())});_.post({__frame_connect:!0},"*");const d=setTimeout,E=clearTimeout;let b=0;const v=()=>{try{_.post({__frame_alive:!0},"*")}catch{}b=d(v,ze)},A=()=>E(b);v(),addEventListener("load",A,{once:!0});const k=new Promise(s=>{m=s,f=setTimeout(()=>{y(),s()},He)}),u=document.readyState==="loading"?new Promise(s=>document.addEventListener("DOMContentLoaded",()=>s(),{once:!0})):Promise.resolve(),g=new WeakSet;addEventListener("error",s=>{s.target&&g.add(s.target)},!0);const w=()=>{let s=[];try{s=[...document.querySelectorAll("link[rel~=stylesheet]:not([rel~=alternate])")].filter(p=>!p.sheet&&!p.disabled&&!g.has(p)&&p.getAttribute("href")&&URL.canParse(p.href)&&(!p.media||matchMedia(p.media).matches))}catch{}let h=s.length;return h===0?Promise.resolve():new Promise(p=>{try{const P=d(p,We),L=()=>{--h===0&&(E(P),p())};for(const R of s)R.addEventListener("load",L,{once:!0}),R.addEventListener("error",L,{once:!0})}catch{p()}})};u.then(()=>{try{c?.restore()}catch{}});const M={cb:null};_.on((s,h)=>{if(oe(h)&&Re(s)){try{c?.promoted()}catch{}M.cb?.()}}),k.then(async()=>{if(!i||!S){$();return}le(i.theme);const s=S;let h=!1,p=!1;_.on((l,Z,U)=>{if(Z!==s)return;ke(l)&&le(l.__frame_theme.theme),Te(l)&&qe(l.__frame_patch,s,U);const J=l?.__fc_mode;J&&typeof J=="object"&&!h&&W&&O.test(W)&&(h=!0,C(W).then(ee=>ee.install?.(s,J.on===!0)).catch(()=>{}));const Q=l?.__ft_cmd;Q&&typeof Q=="object"&&!p&&q&&O.test(q)&&(p=!0,C(q).then(ee=>ee.install?.(s,Q)).catch(()=>{}))});const P=Object.keys(i.capabilities??{}).filter(l=>Object.hasOwn(N,l)).map(l=>[l,N[l]]).filter(l=>typeof l[1]=="string"&&O.test(l[1])),L=await Promise.allSettled(P.map(([,l])=>C(l))),R=await e,T=S;if(R?.buildBoot||_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},T),R?.buildBoot)try{D=R.buildBoot(i,R.TRANSFORMS??{},{shellOrigin:T,mount:Y,hooks:B},l=>_.post({__frame_cap_telemetry:l},T))}catch{_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},T),D=se(i,T)}else D=se(i,T);const G=l=>_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:l}},T),V=D;L.forEach((l,Z)=>{const U=P[Z][0];if(l.status!=="fulfilled"){G(U);return}try{l.value?.install?.(V)}catch{G(U)}}),$(),await u,await w(),A(),_.post({__frame_ready:!0},S),e.then(l=>l?.installSizeReporter?.(T,M)),V.flags.has("frame_ldx_runtime")&&K&&O.test(K)&&document.querySelector("script#an-form")&&C(K).then(l=>l?.boot?.({shellOrigin:s,build:V.flags.has(Oe)})).catch(()=>!1).then(l=>{l!==!0&&G("_ldx")})})}else H&&(ue(),Ue(H,ne,C,{settle:$,mount:Y}))})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>π₀ 学习指南</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --bg-card: #ffffff;
+    --bg-code: #eceae6;
+    --bg-highlight: #e4ecf2;
+    --bg-chain: #eee9e2;
+    --text: #2a2826;
+    --text-secondary: #65605a;
+    --text-tertiary: #948e88;
+    --accent: #2d5f8a;
+    --accent-light: #d6e4f0;
+    --accent-dark: #1a4060;
+    --border: #d8d4ce;
+    --border-light: #e6e2dc;
+    --chain-line: #c0bab2;
+    --tag-bg: #e4e0da;
+    --tag-text: #5a554e;
+    --warning-bg: #fef3e2;
+    --warning-border: #e8b94a;
+    --warning-text: #7a5d1a;
+    --serif: 'Noto Serif SC', 'Songti SC', serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', 'Menlo', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #191816;
+      --bg-card: #22201e;
+      --bg-code: #28261e;
+      --bg-highlight: #1a2530;
+      --bg-chain: #24221c;
+      --text: #e0dcd6;
+      --text-secondary: #9c9690;
+      --text-tertiary: #6c6660;
+      --accent: #5ba3d9;
+      --accent-light: #1a2e40;
+      --accent-dark: #8cc4ee;
+      --border: #383630;
+      --border-light: #2e2c26;
+      --chain-line: #484440;
+      --tag-bg: #32302a;
+      --tag-text: #aca6a0;
+      --warning-bg: #2e2818;
+      --warning-border: #8a7030;
+      --warning-text: #d4b86a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #191816;
+    --bg-card: #22201e;
+    --bg-code: #28261e;
+    --bg-highlight: #1a2530;
+    --bg-chain: #24221c;
+    --text: #e0dcd6;
+    --text-secondary: #9c9690;
+    --text-tertiary: #6c6660;
+    --accent: #5ba3d9;
+    --accent-light: #1a2e40;
+    --accent-dark: #8cc4ee;
+    --border: #383630;
+    --border-light: #2e2c26;
+    --chain-line: #484440;
+    --tag-bg: #32302a;
+    --tag-text: #aca6a0;
+    --warning-bg: #2e2818;
+    --warning-border: #8a7030;
+    --warning-text: #d4b86a;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--text);
+  }
+  .header .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 620px;
+  }
+
+  .nav {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 48px;
+  }
+  .nav-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+  .nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: nav-counter;
+  }
+  .nav li {
+    counter-increment: nav-counter;
+    margin-bottom: 6px;
+  }
+  .nav li a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 0;
+    transition: color 0.15s;
+  }
+  .nav li a:hover { color: var(--accent); }
+  .nav li a::before {
+    content: counter(nav-counter, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    width: 20px;
+  }
+
+  .chain {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 48px 0;
+    padding: 14px 20px;
+    background: var(--bg-chain);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
+  }
+  .chain-arrow {
+    font-size: 16px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .chain-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .section {
+    margin-bottom: 16px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 6px;
+    text-wrap: balance;
+    color: var(--text);
+  }
+  .section .section-lead {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    color: var(--text);
+  }
+  .section p {
+    margin: 0 0 14px;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--bg-code);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--text);
+  }
+  pre {
+    background: var(--bg-code);
+    border: 1px solid var(--border-light);
+    border-radius: 5px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 16px 0;
+    line-height: 1.6;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 13px;
+  }
+
+  .highlight {
+    background: var(--bg-highlight);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .highlight p {
+    margin: 0;
+    font-size: 14px;
+  }
+  .highlight strong {
+    color: var(--accent-dark);
+  }
+
+  .note {
+    background: var(--warning-bg);
+    border-left: 3px solid var(--warning-border);
+    padding: 14px 18px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .note p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--warning-text);
+  }
+  .note-label {
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .diagram {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 24px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  .diagram-caption {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    text-align: center;
+    margin-top: 12px;
+    font-family: var(--mono);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+
+  .mask-grid {
+    display: grid;
+    gap: 2px;
+    margin: 16px auto;
+    width: fit-content;
+  }
+  .mask-cell {
+    width: 28px;
+    height: 28px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+  }
+  .mask-cell.on {
+    background: var(--accent);
+    color: #fff;
+  }
+  .mask-cell.off {
+    background: var(--bg-code);
+    color: var(--text-tertiary);
+  }
+  .mask-label {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .series-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 12px;
+  }
+  .series-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; font-size: 14px; }
+    .header h1 { font-size: 24px; }
+    .section h2 { font-size: 19px; }
+    pre { padding: 12px 14px; }
+    .mask-cell { width: 22px; height: 22px; font-size: 9px; }
+  }
+</style>
+
+<div class="header">
+  <div class="header-tag">Sequential Learning Guide</div>
+  <h1>从零理解 π₀：一个通用机器人基础模型的完整设计</h1>
+  <div class="subtitle">Physical Intelligence 的 π₀ 模型，用 PaliGemma + Flow Matching + 动作专家的组合，在 7 种机器人构型上实现了灵巧操作。本指南逐层拆解其设计逻辑。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第二篇（第一篇：HyVLA）</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">逻辑链路</div>
+  <ol>
+    <li><a href="#s1">为什么从 VLM 出发——π₀ 的核心直觉</a></li>
+    <li><a href="#s2">PaliGemma 骨干——继承互联网级视觉语言能力</a></li>
+    <li><a href="#s3">动作专家——用更小的参数专门处理机器人模态</a></li>
+    <li><a href="#s4">块间因果注意力掩码——保护 VLM 不受动作污染</a></li>
+    <li><a href="#s5">噪声动作嵌入与时间步编码——Flow Matching 的输入准备</a></li>
+    <li><a href="#s6">Flow Matching 动作生成——从噪声到连续动作</a></li>
+    <li><a href="#s7">跨构型训练——一个模型控制七种机器人</a></li>
+    <li><a href="#s8">预训练与后训练——类比 LLM 的训练范式</a></li>
+    <li><a href="#s9">推理与部署——KV Cache 加速与动作块执行</a></li>
+  </ol>
+</nav>
+
+<!-- ========== SECTION 1 ========== -->
+<div class="section" id="s1">
+  <div class="section-num">01</div>
+  <h2>为什么从 VLM 出发——π₀ 的核心直觉</h2>
+  <p class="section-lead">π₀ 的出发点不是"从头训练一个机器人模型"，而是"把已有的视觉语言能力借过来"。</p>
+
+  <p>π₀ 的核心直觉来自一个类比：大语言模型（LLM）的成功经验告诉我们，先在海量互联网数据上预训练一个通用模型，再在高质量数据上微调，比从头在小数据上训练效果好得多。π₀ 把这个范式搬到了机器人领域。</p>
+
+  <h3>为什么不从头训练？</h3>
+  <p>机器人数据很贵——需要真实硬件采集，每小时数据都要人操作。π₀ 的全部训练数据约 10,000 小时，听起来很多，但对比 LLM 动辄几万亿 token 的预训练规模，这只是沧海一粟。如果只用这些数据从头训练一个模型，它永远学不会"红色杯子""放到旁边"这些语义概念。</p>
+
+  <p>解决方案：<strong>站在 VLM 的肩膀上</strong>。用一个已经在互联网规模图文数据上预训练好的视觉语言模型（PaliGemma）作为骨干，它已经理解了图像内容和语言指令的对应关系。π₀ 只需要教它一件新事情：<strong>输出连续的机器人动作</strong>。</p>
+
+  <h3>π₀ 的整体架构一句话总结</h3>
+  <div class="highlight">
+    <p><strong>π₀ = PaliGemma (3B VLM) + 动作专家 (300M) + Flow Matching</strong><br>VLM 负责"看懂图、理解指令"，动作专家负责"生成精细动作"，Flow Matching 负责"让动作输出是连续的、多模态的分布"。</p>
+  </div>
+
+  <pre><code># π₀ 的工作流程伪代码
+def pi0_inference(images, language_cmd, robot_state):
+    # 1. VLM 骨干处理视觉和语言
+    img_tokens = SigLIP_encoder(images)          # 图像 → token
+    lang_tokens = Gemma_tokenizer(language_cmd)   # 文字 → token
+    state_token = linear_proj(robot_state)        # 状态 → token
+
+    # 2. 动作专家处理噪声动作
+    noise = sample_gaussian(action_dim * H)       # 随机噪声
+    action_tokens = action_embed(noise, tau=0)    # 嵌入噪声 + 时间步
+
+    # 3. 两个专家在同一个 Transformer 里交互
+    output = transformer(img_tokens, lang_tokens,
+                         state_token, action_tokens)
+
+    # 4. 迭代去噪 10 步，得到最终动作
+    for step in range(10):
+        velocity = action_expert_head(output)
+        actions = actions + 0.1 * velocity        # 欧拉积分
+        # 重新前向（只需重算动作部分，KV cache 加速）
+
+    return actions  # H=50 步的连续动作块</code></pre>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>我们说要"站在 VLM 的肩膀上"，那 π₀ 选了哪个 VLM？它有什么特点？下一节介绍 PaliGemma 骨干。</span>
+</div>
+
+<!-- ========== SECTION 2 ========== -->
+<div class="section" id="s2">
+  <div class="section-num">02</div>
+  <h2>PaliGemma 骨干——继承互联网级视觉语言能力</h2>
+  <p class="section-lead">选择 PaliGemma 不是随意的——它在体积和能力之间取得了最佳平衡。</p>
+
+  <p>π₀ 选用 <strong>PaliGemma</strong> 作为 VLM 骨干。PaliGemma 是 Google 开源的 3B 参数视觉语言模型，采用经典的 <strong>Late Fusion（晚融合）</strong>架构：先用独立的图像编码器把图片变成 token，再和语言 token 一起送进语言模型的 decoder。</p>
+
+  <h3>PaliGemma 的两个核心组件</h3>
+
+  <p><strong>SigLIP 图像编码器（400M 参数）</strong>——这是一个 ViT（Vision Transformer），在互联网规模的图文对上用对比学习（Sigmoid Loss）预训练。它把每张图片切成 patch，编码成一系列 token，每个 token 代表图片的一个局部区域。π₀ 用 2-3 个相机拍摄，所以每个观测有 2-3 张图片，各自独立通过 SigLIP 编码。</p>
+
+  <p><strong>Gemma 2B 语言模型</strong>——这是一个 decoder-only Transformer，是 PaliGemma 的"大脑"。图像 token 经过线性投影层映射到和语言 token 相同的维度后，和语言 token 拼接在一起，送进这个 decoder。Gemma 2B 的具体配置：</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>参数</th><th>值</th><th>含义</th></tr>
+      <tr><td>width</td><td>2048</td><td>每个 token 的特征维度</td></tr>
+      <tr><td>depth</td><td>18 层</td><td>Transformer 层数</td></tr>
+      <tr><td>mlp_dim</td><td>16,384</td><td>FFN 的中间维度（4× width）</td></tr>
+      <tr><td>num_heads</td><td>18</td><td>注意力头数</td></tr>
+      <tr><td>num_kv_heads</td><td>1</td><td>KV 头数（Multi-Query Attention）</td></tr>
+      <tr><td>head_dim</td><td>256</td><td>每个注意力头的维度</td></tr>
+    </table>
+  </div>
+
+  <h3>Late Fusion 的工作方式</h3>
+  <pre><code># PaliGemma 的 Late Fusion 流程
+def paligemma_forward(images, text):
+    # 图像编码（独立的 ViT，不和文字交互）
+    for img in images:
+        patches = split_into_patches(img, patch_size=14)
+        img_tokens = SigLIP_ViT(patches)  # 每张图 → 一串 token
+
+    # 语言编码
+    lang_tokens = token_embedding(tokenize(text))
+
+    # Late Fusion：图像 token 投影到语言空间，然后拼接
+    img_projected = linear_projection(img_tokens)  # 映射维度
+    all_tokens = concat(img_projected, lang_tokens) # 拼在一起
+
+    # 送进 Gemma decoder（因果注意力）
+    output = gemma_decoder(all_tokens)
+    return output</code></pre>
+
+  <div class="note">
+    <p class="note-label">为什么是 Multi-Query Attention？</p>
+    <p><code>num_kv_heads=1</code> 意味着所有 18 个注意力头共享同一组 K 和 V，只有 Q 是各自独立的。这大幅减少了 KV Cache 的显存占用（只需缓存 1 组而不是 18 组 K/V），对推理速度至关重要——后面会看到 π₀ 在推理时要做 10 次去噪前向传播。</p>
+  </div>
+
+  <h3>为什么选 PaliGemma 而不是更大的模型？</h3>
+  <p>π₀ 论文明确说了：选 PaliGemma "for convenience and because of its comparatively small size (which is useful for real-time control)"。机器人控制需要 <strong>实时推理</strong>，50Hz 控制频率意味着每 20ms 就要出一次动作。3B 参数是一个在"足够聪明"和"足够快"之间的甜蜜点。当然，论文也说框架兼容任何 VLM——换成更大的模型理论上效果更好，只是推理更慢。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>PaliGemma 已经能看懂图和理解指令了，但它不会输出机器人动作。我们不能直接用 PaliGemma 的 decoder 来生成动作吗？答案是可以但效果不好。下一节解释为什么需要一个独立的"动作专家"。</span>
+</div>
+
+<!-- ========== SECTION 3 ========== -->
+<div class="section" id="s3">
+  <div class="section-num">03</div>
+  <h2>动作专家——用更小的参数专门处理机器人模态</h2>
+  <p class="section-lead">π₀ 的关键创新之一：在同一个 Transformer 内部，运行两套独立的权重。</p>
+
+  <p>π₀ 的做法灵感来自 <strong>Transfusion</strong>（一个同时生成文本和图像的模型）：在同一个 Transformer 里，不同类型的 token 走不同的权重。具体来说：</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Token 类型</th><th>走哪套权重</th><th>参数量</th><th>维度</th></tr>
+      <tr><td>图像 token（SigLIP 输出）</td><td>VLM 专家（PaliGemma）</td><td>~2.6B</td><td>width=2048</td></tr>
+      <tr><td>语言 token</td><td>VLM 专家（PaliGemma）</td><td>（同上）</td><td>width=2048</td></tr>
+      <tr><td>机器人状态 token</td><td>动作专家（新增）</td><td>~300M</td><td>width=1024</td></tr>
+      <tr><td>噪声动作 token</td><td>动作专家（新增）</td><td>（同上）</td><td>width=1024</td></tr>
+    </table>
+  </div>
+
+  <h3>"两个专家"怎么在一个 Transformer 里共存？</h3>
+  <p>理解这个设计，关键是理解 <strong>Gemma 用的是 Multi-Query Attention</strong>（只有 1 个 KV head）。在自注意力层，两套权重只通过注意力机制交互：</p>
+
+  <pre><code># 伪代码：π₀ 一个 Transformer 层的运算
+def pi0_layer(img_lang_tokens, state_action_tokens, layer_idx):
+    # ========== 自注意力（唯一的交互点）==========
+    # VLM 专家算自己的 Q/K/V
+    Q_vlm = W_q_vlm[layer_idx](img_lang_tokens)   # [n_vlm, 18, 256]
+    K_vlm = W_k_vlm[layer_idx](img_lang_tokens)   # [n_vlm,  1, 256]
+    V_vlm = W_v_vlm[layer_idx](img_lang_tokens)   # [n_vlm,  1, 256]
+
+    # 动作专家算自己的 Q/K/V（注意维度更小）
+    Q_act = W_q_act[layer_idx](state_action_tokens) # [n_act, 18, 256]
+    K_act = W_k_act[layer_idx](state_action_tokens) # [n_act,  1, 256]
+    V_act = W_v_act[layer_idx](state_action_tokens) # [n_act,  1, 256]
+
+    # 拼在一起做联合注意力（应用块间因果掩码）
+    Q = concat(Q_vlm, Q_act)
+    K = concat(K_vlm, K_act)
+    V = concat(V_vlm, V_act)
+    attn_out = masked_attention(Q, K, V, mask=block_causal)
+
+    # ========== FFN（完全独立，不交互）==========
+    vlm_out  = FFN_vlm[layer_idx](attn_out[:n_vlm])    # mlp_dim=16384
+    act_out  = FFN_act[layer_idx](attn_out[n_vlm:])     # mlp_dim=4096
+
+    return vlm_out, act_out</code></pre>
+
+  <h3>为什么动作专家比 VLM 专家小那么多？</h3>
+  <p>VLM 专家（width=2048, mlp_dim=16384）需要处理图像和语言这两个<strong>语义丰富</strong>的模态——它需要理解数十亿概念和它们之间的关系。而动作专家（width=1024, mlp_dim=4096）只需要学会一件事：在给定视觉和语言理解的前提下，生成正确的连续动作。这是一个相对"窄"的任务，不需要那么大的容量。</p>
+
+  <div class="highlight">
+    <p><strong>与 HyVLA 的 MoT 对比：</strong>π₀ 的"两个专家"本质上就是 MoT（Mixture-of-Transformers）的一种实现。HyVLA 把三个模态（视觉、语言、动作）各自分开了 QKV+FFN，而 π₀ 把视觉和语言合为一组（因为它们共用 PaliGemma 的预训练权重），只把动作分出去。核心思想完全一致：<strong>注意力共享，参数独立</strong>。</p>
+  </div>
+
+  <h3>好处：直接加载 PaliGemma 预训练权重</h3>
+  <p>因为 VLM 专家的 QKV 和 FFN 维度与原版 PaliGemma 完全一致，可以直接加载预训练好的 3B 权重，一个参数都不浪费。动作专家是从头随机初始化的——它不需要预训练，因为互联网上没有机器人动作数据，预训练也学不到有用的东西。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>两个专家通过联合注意力交互，但这个注意力不能让所有 token 随意互相看——否则动作 token 会"污染"VLM 的前向结果。下一节看 π₀ 怎么用块间因果掩码来精确控制信息流。</span>
+</div>
+
+<!-- ========== SECTION 4 ========== -->
+<div class="section" id="s4">
+  <div class="section-num">04</div>
+  <h2>块间因果注意力掩码——保护 VLM 不受动作污染</h2>
+  <p class="section-lead">在 HyVLA 指南中我们详细讲过这个机制，π₀ 用的是完全相同的三块设计。</p>
+
+  <p>π₀ 将所有 token 分成 <strong>三个块</strong>，每个块内部双向注意力，块间单向因果：</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>块</th><th>包含的 Token</th><th>走哪个专家</th><th>能看到哪些块</th></tr>
+      <tr><td>块 1：感知</td><td>图像 token + 语言 token</td><td>VLM 专家</td><td>只能看自己（块 1）</td></tr>
+      <tr><td>块 2：状态</td><td>机器人本体状态 q<sub>t</sub></td><td>动作专家</td><td>块 1 + 块 2</td></tr>
+      <tr><td>块 3：动作</td><td>噪声动作 A<sub>t</sub><sup>τ</sup></td><td>动作专家</td><td>块 1 + 块 2 + 块 3</td></tr>
+    </table>
+  </div>
+
+  <h3>注意力掩码矩阵</h3>
+  <div class="diagram">
+    <div class="mask-grid" style="grid-template-columns: 60px repeat(4, 28px) repeat(1, 28px) repeat(3, 28px); grid-template-rows: 20px repeat(4, 28px) repeat(1, 28px) repeat(3, 28px);">
+      <div class="mask-label"></div>
+      <div class="mask-label" style="grid-column: span 4; font-size:10px;">I,ℓ</div>
+      <div class="mask-label">q</div>
+      <div class="mask-label" style="grid-column: span 3; font-size:10px;">A<sup>τ</sup></div>
+
+      <div class="mask-label" style="font-size:10px;">img₁</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div>
+      <div class="mask-label" style="font-size:10px;">img₂</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div>
+      <div class="mask-label" style="font-size:10px;">lang₁</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div>
+      <div class="mask-label" style="font-size:10px;">lang₂</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div>
+
+      <div class="mask-label" style="font-size:10px;">state</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div><div class="mask-cell off">✗</div>
+
+      <div class="mask-label" style="font-size:10px;">act₁</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div>
+      <div class="mask-label" style="font-size:10px;">act₂</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div>
+      <div class="mask-label" style="font-size:10px;">act₃</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div><div class="mask-cell on">✓</div>
+    </div>
+    <div class="diagram-caption">π₀ 的块间因果注意力掩码（✓ = 可以看到，✗ = 看不到）</div>
+  </div>
+
+  <h3>三个设计决策的原因</h3>
+
+  <p><strong>为什么块 1（感知）看不到块 2、3？</strong> 这是为了<strong>保护 VLM 预训练</strong>。PaliGemma 预训练时，从来没见过机器人状态或动作 token。如果让感知块看到这些"新模态"的 token，它的前向计算结果会和预训练时不同——相当于预训练权重被"污染"了。把感知块隔离开，它的输出和原版 PaliGemma 完全一致，预训练投资得到最大化利用。</p>
+
+  <p><strong>为什么状态 q<sub>t</sub> 单独成块？</strong> 因为机器人状态在 flow matching 的 10 步去噪过程中<strong>不会改变</strong>——当前时刻的关节角度是固定的。把它单独放一块，它的 KV 可以在 10 步去噪中全部缓存，不用重算。</p>
+
+  <p><strong>为什么动作块内部是双向注意力？</strong> 因为 flow matching 不是自回归生成——所有 H=50 个动作 token 是<strong>同时去噪</strong>的，每个动作 token 都需要看到其他动作 token 才能协调一致。如果是因果掩码（act₁ 看不到 act₂），前面的动作就无法考虑后面的动作，轨迹的全局一致性会变差。</p>
+
+  <pre><code># 块间因果掩码的构造
+def build_block_causal_mask(n_perception, n_state, n_action):
+    N = n_perception + n_state + n_action
+    mask = zeros(N, N)  # 全 False
+
+    p = n_perception
+    s = n_state
+    a = n_action
+
+    # 块 1（感知）：只看块 1 内部（双向）
+    mask[0:p, 0:p] = True
+
+    # 块 2（状态）：看块 1 + 块 2（双向）
+    mask[p:p+s, 0:p+s] = True
+
+    # 块 3（动作）：看所有块（双向）
+    mask[p+s:, 0:] = True
+
+    return mask</code></pre>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>我们知道了动作 token 可以看到所有信息，但动作 token 一开始是什么？它是纯噪声，需要经过 flow matching 的去噪才能变成真实动作。下一节看这些噪声动作 token 是怎么嵌入到 Transformer 中的。</span>
+</div>
+
+<!-- ========== SECTION 5 ========== -->
+<div class="section" id="s5">
+  <div class="section-num">05</div>
+  <h2>噪声动作嵌入与时间步编码——Flow Matching 的输入准备</h2>
+  <p class="section-lead">动作 token 不是词表里的离散符号，而是连续向量。怎么把"噪声动作 + 去噪进度"编码成 Transformer 能理解的 token？</p>
+
+  <h3>什么是"噪声动作"？</h3>
+  <p>在 flow matching 中，我们不是直接预测最终动作，而是从<strong>纯噪声出发</strong>，一步步"去噪"得到真实动作。训练时，给定真实动作 A<sub>t</sub>，我们加噪得到：</p>
+
+  <pre><code># 噪声动作的构造
+A_t_noisy = tau * A_t + (1 - tau) * epsilon
+# tau ∈ [0, 1] 是去噪进度
+# epsilon ~ N(0, I) 是标准高斯噪声
+# tau = 0 → 纯噪声
+# tau = 1 → 纯真实动作</code></pre>
+
+  <p>对于 H=50 步的动作块，真实动作 A<sub>t</sub> = [a<sub>t</sub>, a<sub>t+1</sub>, ..., a<sub>t+49</sub>]，每个 a 是一个连续向量（比如 14 维：6 个关节 + 夹爪 + ...）。加噪后得到 50 个噪声动作向量。</p>
+
+  <h3>把噪声动作嵌入成 Transformer token</h3>
+  <p>每个噪声动作 a<sup>τ</sup><sub>i</sub> 需要和去噪时间步 τ 一起编码成一个 token。π₀ 用一个 <strong>MLP</strong> 来做这件事：</p>
+
+  <pre><code># 噪声动作嵌入（Appendix B 的细节）
+def embed_noisy_action(a_noisy_i, tau, action_dim, expert_width=1024):
+    # 1. 时间步 τ 用正弦位置编码展开成高维向量
+    tau_encoding = sinusoidal_encoding(tau)  # 标量 → 向量
+
+    # 2. 把噪声动作和时间步编码拼在一起
+    combined = concat(a_noisy_i, tau_encoding)  # [action_dim + tau_dim]
+
+    # 3. 通过带 swish 激活的 MLP 映射到动作专家的维度
+    #    公式：W3 · swish(W2 · concat(W1 · a_noisy_i, phi(tau)))
+    h1 = W1 @ a_noisy_i         # [action_dim] → [2*width]
+    h2 = phi(tau)                # 正弦编码
+    h = swish(W2 @ concat(h1, h2))  # → [width]
+    token = W3 @ h               # → [expert_width=1024]
+
+    return token  # 这就是一个动作 token，可以送进 Transformer
+
+# 每个时间步有 H=50 个动作 token
+action_tokens = [embed_noisy_action(a_noisy[i], tau)
+                 for i in range(H)]</code></pre>
+
+  <h3>为什么时间步 τ 这么重要？</h3>
+  <p>Transformer 需要知道"当前去噪到了什么程度"，才能输出正确的速度场。如果 τ ≈ 0（几乎全是噪声），模型应该输出一个粗略的方向；如果 τ ≈ 1（接近真实动作），模型应该输出精细的微调。没有 τ 信息，模型就不知道自己该做粗调还是细调。</p>
+
+  <div class="highlight">
+    <p><strong>类比理解：</strong>想象你在画一幅画。τ = 0 时相当于一张白纸，你应该先画大轮廓（粗调）；τ = 0.9 时画面已经基本成型，你应该只画细节（细调）。如果不告诉画家"你现在画到什么程度了"，画家就会一直画粗笔触或一直画细节，无法配合。</p>
+  </div>
+
+  <h3>状态 token 的嵌入</h3>
+  <p>机器人本体状态 q<sub>t</sub>（一个连续向量，如 14 维关节角度）的嵌入更简单——不涉及时间步，只需要一个线性投影层把它从原始维度映射到动作专家的维度（1024）：</p>
+  <pre><code>state_token = linear_projection(q_t)  # [14] → [1024]</code></pre>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>噪声动作 token 已经准备好了，送进 Transformer 和视觉语言 token 一起计算注意力后，怎么从输出中提取"速度场"来去噪？下一节看 Flow Matching 的完整生成过程。</span>
+</div>
+
+<!-- ========== SECTION 6 ========== -->
+<div class="section" id="s6">
+  <div class="section-num">06</div>
+  <h2>Flow Matching 动作生成——从噪声到连续动作</h2>
+  <p class="section-lead">Flow Matching 是 π₀ 输出动作的核心机制。它不预测"最终答案"，而是预测"当前应该往哪个方向走一步"。</p>
+
+  <h3>为什么不用 MSE 直接回归动作？</h3>
+  <p>在 HyVLA 指南里我们讲过这个问题：如果用 MSE loss 直接回归动作，当同一个场景有多种合理动作时（比如"左手抓"和"右手抓"），模型会预测两者的平均值——一个既不是左手也不是右手的"幽灵动作"。</p>
+
+  <p>Flow matching 避免了这个问题：它学习的是一个<strong>速度场 v(x, τ)</strong>，从噪声出发，沿着这个速度场"流动"到真实动作分布的一个采样点。不同的噪声起点会流向不同的模式（左手或右手），自然避免了模式平均。</p>
+
+  <h3>训练：学习速度场</h3>
+  <pre><code># Flow Matching 训练损失
+def flow_matching_loss(model, images, lang, state, A_true):
+    """
+    A_true: 真实动作块 [H, action_dim]，H=50
+    """
+    # 1. 采样噪声
+    epsilon = randn_like(A_true)  # [H, action_dim]
+
+    # 2. 采样时间步 τ ~ Beta 分布（偏向低 τ）
+    tau = sample_beta(alpha=(s-tau)/s, beta=1.5, s=0.999)
+    # Beta 分布偏向低 τ（高噪声），因为低噪声时速度场接近恒等映射，
+    # 模型只需要学"不动"，不需要额外训练
+
+    # 3. 构造噪声动作
+    A_noisy = tau * A_true + (1 - tau) * epsilon
+
+    # 4. 模型预测速度场
+    v_pred = model(images, lang, state, A_noisy, tau)
+
+    # 5. 真实速度场 = 真实动作 - 噪声
+    #    （线性插值路径的导数恒为 A_true - epsilon）
+    v_target = A_true - epsilon
+
+    # 6. 损失 = 预测速度场和真实速度场的 MSE
+    loss = MSE(v_pred, v_target)
+    return loss</code></pre>
+
+  <h3>为什么用 Beta 分布采样 τ 而不是均匀分布？</h3>
+  <p>π₀ 发现，对于机器人动作预测任务，τ 的采样分布很重要。和图像生成不同（那里用均匀或 logit-normal 分布），机器人动作有一个特殊性质：给定观测 o<sub>t</sub>，动作分布的约束比给定文本标签的图像分布<strong>强得多</strong>。也就是说，在高 τ（低噪声）时，模型几乎不需要做什么——观测已经把动作锁定了。</p>
+
+  <p>所以 π₀ 用一个偏向低 τ 的 Beta 分布（论文中 s=0.999），让模型把训练资源集中在"高噪声→需要做大动作修正"的困难情况上。而且，超过阈值 s 的 τ 直接不采样——因为这些时间步太接近 τ=1，速度场几乎为零，训练它们是浪费。</p>
+
+  <div class="diagram">
+    <div style="text-align:center; padding: 8px 0;">
+      <svg width="320" height="140" viewBox="0 0 320 140" style="max-width:100%;">
+        <line x1="40" y1="110" x2="290" y2="110" stroke="var(--border)" stroke-width="1.5"/>
+        <line x1="40" y1="110" x2="40" y2="15" stroke="var(--border)" stroke-width="1.5"/>
+        <text x="165" y="135" text-anchor="middle" font-size="12" fill="var(--text-secondary)" font-family="var(--mono)">τ</text>
+        <text x="18" y="65" text-anchor="middle" font-size="12" fill="var(--text-secondary)" font-family="var(--mono)" transform="rotate(-90,18,65)">p(τ)</text>
+        <text x="50" y="125" font-size="10" fill="var(--text-tertiary)" font-family="var(--mono)">0</text>
+        <text x="270" y="125" font-size="10" fill="var(--text-tertiary)" font-family="var(--mono)">s=0.999</text>
+        <path d="M50,25 Q80,28 110,40 Q150,60 190,80 Q230,95 260,105 L260,110 L50,110 Z" fill="var(--accent-light)" stroke="var(--accent)" stroke-width="1.5" fill-opacity="0.6"/>
+        <text x="100" y="75" font-size="10" fill="var(--accent)" font-family="var(--sans)" font-weight="600">密集采样区域</text>
+        <text x="100" y="88" font-size="9" fill="var(--text-tertiary)" font-family="var(--sans)">（高噪声，模型需要努力学）</text>
+      </svg>
+    </div>
+    <div class="diagram-caption">Beta 分布偏向低 τ，让模型集中学习高噪声时的速度场</div>
+  </div>
+
+  <h3>推理：10 步欧拉积分</h3>
+  <pre><code># Flow Matching 推理（动作生成）
+def generate_actions(model, images, lang, state):
+    # 从纯噪声出发
+    A = randn(H, action_dim)  # τ=0 时的初始噪声
+    delta = 0.1               # 步长 = 1/10
+
+    for step in range(10):    # 10 步积分
+        tau = step * delta    # τ: 0.0, 0.1, 0.2, ..., 0.9
+
+        # 模型预测当前位置的速度场
+        v = model(images, lang, state, A, tau)
+
+        # 欧拉积分：沿速度场走一步
+        A = A + delta * v     # A^{τ+δ} = A^τ + δ · v_θ(A^τ, o_t)
+
+    return A  # 10 步后 τ=1.0，得到去噪后的真实动作</code></pre>
+
+  <div class="note">
+    <p class="note-label">为什么是 10 步？</p>
+    <p>这是精度和速度的权衡。每一步都需要一次完整的 Transformer 前向传播（虽然有 KV cache 加速，但动作 token 仍需重算）。10 步在 RTX 4090 上总共约 27ms，加上图像编码和其他开销，总推理时间约 73ms——满足 50Hz 控制频率的要求（20ms 一步 × 50步 = 1 秒的动作块，73ms 远小于 1 秒）。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>现在我们知道了单个机器人的完整推理流程。但 π₀ 的目标是一个<strong>通用</strong>模型——它要同时控制七种不同构型的机器人。不同机器人的动作维度都不一样，怎么办？</span>
+</div>
+
+<!-- ========== SECTION 7 ========== -->
+<div class="section" id="s7">
+  <div class="section-num">07</div>
+  <h2>跨构型训练——一个模型控制七种机器人</h2>
+  <p class="section-lead">π₀ 最雄心勃勃的目标：一个模型的权重，部署到从单臂到双臂、从固定到移动的各种机器人上。</p>
+
+  <h3>七种机器人构型</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>构型</th><th>描述</th><th>相机数</th><th>动作维度</th></tr>
+      <tr><td>UR5e</td><td>单臂 + 平行爪夹爪</td><td>2</td><td>7</td></tr>
+      <tr><td>Bimanual UR5e</td><td>两台 UR5e</td><td>3</td><td>14</td></tr>
+      <tr><td>Franka</td><td>单臂</td><td>2</td><td>8</td></tr>
+      <tr><td>Bimanual Trossen</td><td>ALOHA 双臂</td><td>3</td><td>14</td></tr>
+      <tr><td>Bimanual ARX / AgileX</td><td>双臂</td><td>3</td><td>14</td></tr>
+      <tr><td>Mobile Trossen / ARX</td><td>双臂 + 移动底盘</td><td>3</td><td>16</td></tr>
+      <tr><td>Mobile Fibocom</td><td>双臂 + 全向底盘</td><td>3</td><td>17</td></tr>
+    </table>
+  </div>
+
+  <h3>问题：动作维度不一样怎么办？</h3>
+  <p>最大的构型（Mobile Fibocom）有 17 维动作（两只 6-DoF 手臂 + 2 个夹爪 + 底盘 3 维），而最小的（UR5e）只有 7 维。π₀ 的做法简单粗暴但有效：</p>
+
+  <pre><code># 跨构型的动作维度统一
+def unify_action_dim(action, robot_type, max_dim=18):
+    """
+    所有机器人的动作都填充到 max_dim=18 维
+    （18 = 最大构型的维度：2×6-DoF手臂 + 2夹爪 + 移动底盘 + 竖直扭矩）
+    """
+    # 原始动作（各构型维度不同）
+    original_dim = len(action)  # 7, 8, 14, 16, 或 17
+
+    # 零填充到最大维度
+    padded_action = zeros(max_dim)
+    padded_action[:original_dim] = action
+
+    return padded_action
+
+# 同样，配置向量（关节角度）也零填充到 18 维
+def unify_config_dim(config, robot_type, max_dim=18):
+    padded_config = zeros(max_dim)
+    padded_config[:len(config)] = config
+    return padded_config</code></pre>
+
+  <p>类似地，不同构型的相机数量也不同（2 或 3 个）。如果某构型只有 2 个相机，第 3 个相机的 image slot 在注意力掩码中被<strong>mask 掉</strong>——对应位置的 token 不参与注意力计算。</p>
+
+  <h3>数据不平衡怎么处理？</h3>
+  <p>不同构型的数据量差异很大（Mobile Fibocom 的数据远多于 UR5e）。π₀ 用一个 <strong>n<sup>0.43</sup> 加权</strong>来平衡：</p>
+
+  <pre><code># 数据加权策略
+def compute_sampling_weight(n_samples):
+    """
+    n: 某个 (task, robot) 组合的样本数
+    权重 ∝ n^0.43
+    比线性加权（n^1.0）大幅降权大数据集
+    比均匀加权（n^0.0）仍然让大数据集多出现
+    """
+    return n_samples ** 0.43</code></pre>
+
+  <p>这是一个常见的数据平衡策略：指数 0.43 是经验值，介于"完全均匀"（0.0）和"按比例"（1.0）之间。直觉上，大数据集已经足够多样了，不需要让它按原始比例出现；但也不能完全均匀，否则小数据集会被过拟合。</p>
+
+  <div class="highlight">
+    <p><strong>跨构型训练的好处：</strong>不同构型的数据可以<strong>互相帮助</strong>。比如"抓取杯子"这个技能，在 UR5e 上的抓取数据可以帮助 Franka 更快学会抓取——因为 VLM 专家学到的"杯子在哪里、该从哪个角度接近"这些语义知识是<strong>与构型无关</strong>的，它们通过共享的注意力机制传递给动作专家。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>我们有了统一的架构和跨构型的数据处理方式。但怎么训练这个模型？π₀ 借鉴了 LLM 的"预训练 + 后训练"范式。下一节看具体的训练策略。</span>
+</div>
+
+<!-- ========== SECTION 8 ========== -->
+<div class="section" id="s8">
+  <div class="section-num">08</div>
+  <h2>预训练与后训练——类比 LLM 的训练范式</h2>
+  <p class="section-lead">π₀ 的训练范式和 LLM 惊人地相似：先在大规模杂数据上预训练，再在高质量数据上后训练。</p>
+
+  <h3>类比 LLM 的训练流程</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>阶段</th><th>LLM</th><th>π₀</th></tr>
+      <tr><td>预训练</td><td>几万亿 token 互联网文本</td><td>903M 时间步 π 数据集 + OXE 开源数据</td></tr>
+      <tr><td>目标</td><td>学习广泛的语言知识</td><td>学习广泛的机器人操作知识</td></tr>
+      <tr><td>后训练</td><td>RLHF / SFT（高质量指令数据）</td><td>在特定任务的高质量数据上微调</td></tr>
+      <tr><td>目标</td><td>对齐到人类偏好</td><td>精通特定灵巧任务</td></tr>
+    </table>
+  </div>
+
+  <h3>预训练阶段</h3>
+  <p>预训练数据混合了两部分：</p>
+
+  <p><strong>π 数据集（90.9%）</strong>——π₀ 团队自己采集的 903M 时间步灵巧操作数据，来自 7 种构型 × 68 种任务，共 22 台机器人。这些数据包含高频（高达 50Hz）的复杂灵巧操作，如叠衣服、收拾桌子、装袋子等。数据还附带了丰富的语言标注：任务名称（如 "fold shirt"）和细粒度的分段标注（如 "pick up sleeve", "fold left"），每段约 2 秒。</p>
+
+  <p><strong>OXE 子集（9.1%）</strong>——Open X-Embodiment 的开源数据，包括 BridgeData v2 和 DROID。这些数据覆盖更广泛的场景和物体，但大多是低频（2-10Hz）、简单任务的数据。它的作用是增加<strong>多样性和鲁棒性</strong>。</p>
+
+  <pre><code># 预训练配置
+pretrain_config = {
+    "total_steps": 700_000,
+    "batch_size": ...,           # 论文未公开
+    "data_mixture": {
+        "pi_dataset": 0.909,     # 903M timesteps, 10000+ hours
+        "oxe_subset": 0.091,     # BridgeData v2, DROID 等
+    },
+    "loss": "conditional_flow_matching",
+    "action_chunk_size": 50,     # H=50
+    "tau_distribution": "Beta(shifted, 1.5, s=0.999)",
+    "vlm_backbone": "PaliGemma (frozen? → No, fine-tuned)",
+}
+# 注意：预训练时 VLM 骨干的权重也会被更新
+# 但由于块间因果掩码，VLM 的更新来自 VLM 自身的辅助任务，
+# 不受动作 loss 的直接梯度影响</code></pre>
+
+  <h3>后训练阶段</h3>
+  <p>预训练出来的是一个"粗通百艺"的基础模型——它能跟随语言指令做很多任务，但在任何一个特定任务上都不算精通。后训练就是在特定任务的<strong>高质量数据</strong>上微调。</p>
+
+  <p><strong>为什么两阶段比只用高质量数据好？</strong> 论文的实验给出了清晰的答案：</p>
+  <p><strong>只用高质量数据（scratch）</strong>——模型没见过多样化的场景和错误恢复，变得"脆弱"：一旦偏离训练分布就不知道怎么办。<br>
+  <strong>只用预训练数据（out-of-box）</strong>——模型能力广泛但不精通，复杂任务（如叠衣服）成功率不够高。<br>
+  <strong>预训练 + 后训练</strong>——两全其美：预训练提供了广泛的操作知识和错误恢复能力，后训练教会了流畅高效地完成特定任务。</p>
+
+  <div class="highlight">
+    <p><strong>一个直觉：</strong>预训练就像医学生的住院实习——大量接触各种病例，学会基本功和临场应变。后训练就像专科培训——集中训练特定手术的标准流程，追求精准和流畅。只做专科培训的医生遇到意外状况会慌，只做住院实习的医生做手术不够熟练。</p>
+  </div>
+
+  <h3>High-Level VLM 策略</h3>
+  <p>对于需要多步推理的复杂任务（如"收拾桌子"需要判断什么是垃圾、什么是碗筷），π₀ 还可以配合一个 <strong>High-Level VLM 策略</strong>：</p>
+
+  <pre><code># High-Level VLM 策略（用于多阶段任务）
+def high_level_policy(images, task_description):
+    """
+    一个独立的大 VLM（不是 π₀ 自己），
+    把高层任务分解成一系列子指令
+    """
+    # 类似 SayCan 的方法
+    sub_commands = VLM.generate(
+        f"Task: {task_description}\n"
+        f"Given the current scene, what is the next step?\n"
+        f"Be specific: mention the object and target location."
+    )
+    # 例如 "bus the table" →
+    #   ["pick up the cup", "place it in the bin",
+    #    "pick up the plate", "place it in the dish rack", ...]
+    return sub_commands
+
+# 执行：依次把每个子指令作为 π₀ 的语言输入
+for cmd in sub_commands:
+    while not is_done(cmd):
+        actions = pi0.generate_actions(images, cmd, state)
+        robot.execute(actions)</code></pre>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>模型训好了，怎么部署到真实机器人上？10 步去噪的推理延迟够低吗？KV Cache 在哪些地方发挥了作用？最后一节看部署细节。</span>
+</div>
+
+<!-- ========== SECTION 9 ========== -->
+<div class="section" id="s9">
+  <div class="section-num">09</div>
+  <h2>推理与部署——KV Cache 加速与动作块执行</h2>
+  <p class="section-lead">10 步去噪 × 18 层 Transformer 的计算量不小，但 KV Cache 让推理时间压缩到了 73ms。</p>
+
+  <h3>KV Cache 在 π₀ 推理中的作用</h3>
+  <p>回忆 flow matching 推理：需要做 10 步去噪，每一步都是一次 Transformer 前向传播。但关键观察是：<strong>在这 10 步中，只有动作 token 在变化</strong>——图像、语言、状态都没有变。</p>
+
+  <pre><code># KV Cache 加速推理的原理
+def pi0_inference_with_cache(images, lang, state):
+    # ======= 第一步：只做一次的计算 =======
+    # 编码图像（14ms）
+    img_tokens = SigLIP(images)
+
+    # VLM 前向 + 状态前向（32ms）
+    # 计算感知块和状态块的 KV，并缓存
+    K_perception, V_perception = vlm_expert.compute_KV(img_tokens, lang_tokens)
+    K_state, V_state = action_expert.compute_KV(state_token)
+    # 这些 KV 在接下来 10 步中不变，直接复用
+
+    # ======= 10 步去噪：只重算动作 token =======
+    A = randn(H, action_dim)  # 初始噪声
+
+    for step in range(10):    # 总共 ~27ms（每步约 2.7ms）
+        tau = step * 0.1
+
+        # 嵌入当前噪声动作
+        act_tokens = embed_noisy_actions(A, tau)
+
+        # 只计算动作 token 的 Q，然后用缓存的 K/V 做注意力
+        Q_act = action_expert.compute_Q(act_tokens)
+        K_act, V_act = action_expert.compute_KV(act_tokens)
+
+        # 动作的 Q 查询所有 K/V（包括缓存的感知和状态）
+        K_all = concat(K_perception, K_state, K_act)  # 缓存 + 新算
+        V_all = concat(V_perception, V_state, V_act)  # 缓存 + 新算
+        attn_out = attention(Q_act, K_all, V_all)
+
+        # FFN + 输出投影
+        velocity = action_expert.ffn_and_head(attn_out)
+        A = A + 0.1 * velocity
+
+    return A  # 最终动作块</code></pre>
+
+  <h3>推理时间分解</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>计算步骤</th><th>时间（RTX 4090）</th><th>说明</th></tr>
+      <tr><td>图像编码（SigLIP）</td><td>14 ms</td><td>3 张图片通过 ViT，只做一次</td></tr>
+      <tr><td>观测前向（VLM + 状态）</td><td>32 ms</td><td>感知块 + 状态块的完整前向，只做一次</td></tr>
+      <tr><td>10× 动作前向（flow）</td><td>27 ms</td><td>每步约 2.7ms，只涉及动作 token</td></tr>
+      <tr><td>网络延迟（off-board）</td><td>13 ms</td><td>仅限 GPU 不在机器人上的情况</td></tr>
+      <tr><td><strong>总计（on-board）</strong></td><td><strong>73 ms</strong></td><td></td></tr>
+      <tr><td><strong>总计（off-board）</strong></td><td><strong>86 ms</strong></td><td></td></tr>
+    </table>
+  </div>
+
+  <h3>动作块的执行策略</h3>
+  <p>每次推理生成 H=50 步的动作块，但不会等全部执行完才推理下一次。π₀ 采用了类似 HyVLA 的 <strong>Receding-Horizon（滚动时域）</strong>策略：</p>
+
+  <pre><code># 动作块执行策略
+def receding_horizon_execution(pi0_model, robot):
+    """
+    不同频率的机器人，执行不同数量的动作后重新推理
+    """
+    while task_not_done:
+        # 生成 H=50 步动作
+        action_chunk = pi0_model.generate_actions(
+            robot.get_images(),
+            language_command,
+            robot.get_state()
+        )
+
+        if robot.control_freq == 20:   # 20Hz: UR5e, Franka
+            # 执行 16 个动作后重新推理（约 0.8 秒）
+            for i in range(16):
+                robot.execute(action_chunk[i])
+                wait(1/20)  # 50ms
+
+        elif robot.control_freq == 50:  # 50Hz: 双臂, 移动
+            # 执行 25 个动作后重新推理（约 0.5 秒）
+            for i in range(25):
+                robot.execute(action_chunk[i])
+                wait(1/50)  # 20ms
+
+        # 丢弃剩余动作，用最新观测重新推理
+        # → 形成闭环反馈，能纠正执行偏差</code></pre>
+
+  <div class="note">
+    <p class="note-label">为什么不拼接动作块？</p>
+    <p>π₀ 论文提到他们尝试过 temporal ensembling（把相邻动作块重叠部分做加权平均），但发现效果不如简单的 open-loop 执行。原因可能是 flow matching 生成的动作块本身已经足够平滑连贯，额外的拼接平滑反而引入了延迟和模糊。这和 HyVLA 用 Bézier 曲线拼接形成了有趣的对比——不同的团队在这个问题上做了不同的选择。</p>
+  </div>
+
+  <h3>π₀ 的完整推理管线总结</h3>
+  <pre><code># π₀ 完整推理管线（从传感器数据到电机指令）
+def pi0_full_pipeline():
+    """
+    一次完整的推理循环
+    """
+    # 1. 采集传感器数据
+    images = [cam.capture() for cam in cameras]  # 2-3 张 RGB 图
+    q_t = robot.get_joint_angles()               # 关节角度
+    language = "fold the shirt"                   # 自然语言指令
+
+    # 2. 图像编码（14ms，SigLIP ViT）
+    img_tokens = []
+    for img in images:
+        tokens = SigLIP_encoder(img)              # 每张图 → ~256 tokens
+        img_projected = linear_proj(tokens)       # 投影到 VLM 维度
+        img_tokens.append(img_projected)
+
+    # 3. 语言编码
+    lang_tokens = gemma_tokenizer(language)
+
+    # 4. 状态编码
+    state_token = linear_proj_action(q_t)         # 投影到动作专家维度
+
+    # 5. 感知+状态的 KV Cache（32ms，只做一次）
+    kv_cache = transformer_forward_prefix(
+        concat(img_tokens, lang_tokens, state_token)
+    )
+
+    # 6. Flow Matching 去噪（27ms，10 步）
+    A = randn(50, action_dim)
+    for step in range(10):
+        tau = step * 0.1
+        act_tokens = action_embedding_mlp(A, tau)
+        velocity = transformer_forward_actions(act_tokens, kv_cache)
+        A = A + 0.1 * velocity
+
+    # 7. 输出投影（动作 token → 真实动作值）
+    actions = output_projection(A)  # [50, action_dim]
+
+    # 8. 执行前 16-25 步，然后重新推理
+    return actions</code></pre>
+
+  <div class="highlight">
+    <p><strong>π₀ 与 HyVLA 的整体对比：</strong>两者的核心思想高度一致——都是 VLM + 动作专家 + Flow Matching + 块间因果掩码。主要差异在于：π₀ 用 PaliGemma（3B），HyVLA 用 Hy-Embodied-0.5；π₀ 把视觉语言合成一个专家，HyVLA 用 MoT 三路分开；π₀ 强调跨构型训练和预训练/后训练范式，HyVLA 强调紧凑记忆编码器和异步推理拼接。它们是同一个 VLA 设计哲学的两种实现。</p>
+  </div>
+</div>
+
+<div style="margin-top:64px; padding-top:32px; border-top:1px solid var(--border);">
+  <p style="font-size:13px; color:var(--text-tertiary); text-align:center; font-family:var(--mono);">
+    π₀ 学习指南 · VLA 学习系列第二篇<br>
+    基于论文：π₀: A Vision-Language-Action Flow Model for General Robot Control<br>
+    Physical Intelligence, 2024
+  </p>
+</div>
+</body></html>

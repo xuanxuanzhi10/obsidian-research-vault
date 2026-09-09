@@ -41,7 +41,7 @@ noisy action + flow time τ ─────┘
 | 论文 | 当前知识库记录 | 核实状态 |
 |---|---|---|
 | [[Hy-Embodied-0.5-VLA]] | 370M action tower，输出 Flow Matching velocity | 已核对全文 |
-| [[π₀]] | VLM 与连续动作 expert 双路建模 | 待原文 PDF 复核细节 |
+| [[π₀]] | state/action 走约 300M、width 1024 的 expert；与 PaliGemma 只在每层 self-attention 交流 | 已核对全文与 Appendix B |
 | [[π₀.5]] | 后训练阶段使用连续动作 expert | 待原文 PDF 复核细节 |
 
 ## 与相近概念的边界
@@ -57,4 +57,3 @@ noisy action + flow time τ ─────┘
 
 > [!warning] 常见误读
 > “独立参数路径”不等于“动作损失不会更新 VLM”。是否冻结、梯度如何传播，必须看论文训练配置。
-

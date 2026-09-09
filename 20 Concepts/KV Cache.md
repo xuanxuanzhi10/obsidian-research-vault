@@ -47,7 +47,8 @@ Transformer 每层都会从 hidden state 计算 K/V。如果图像、语言和�
 ## 在论文生态中的位置
 
 - [[Hy-Embodied-0.5-VLA]]：P/S 作为稳定条件前缀，配合 [[Block-wise Causal Attention]]；已核对机制。
-- [[π₀]]、[[π₀.5]]：当前知识库记录了相似条件生成结构，具体缓存实现待原文/代码复核。
+- [[π₀]]：P/S prefix KV 缓存，十次只重算 action suffix；三路相机在 RTX 4090 上 image 14 ms、observation 32 ms、十次 action 27 ms，已核对 Appendix D。
+- [[π₀.5]]：相似条件生成结构仍以其自身原文/代码为准，不能直接继承 π₀ 的时间表。
 
 ## 优势、代价与失败边界
 
@@ -57,4 +58,3 @@ Transformer 每层都会从 hidden state 计算 K/V。如果图像、语言和�
 
 > [!question] KV Cache 会让模型更聪明吗？
 > 不会。它改变的是计算复用和延迟，不会增加训练权重中不存在的能力。
-
