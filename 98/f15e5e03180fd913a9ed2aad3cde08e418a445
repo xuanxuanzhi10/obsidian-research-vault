@@ -1,0 +1,29 @@
+"20 Concepts/01 架构与条件/状态条件注入.md"
+  s_a3320701e75207::t_4e918e696136b0 3,7,9
+"00 Maps/VLA 概念索引.md"
+  s_a3320701e75207::t_4e918e696136b0 44
+AGENTS.md
+  s_a3320701e75207::t_4e918e696136b0 16-17,19,21
+.obsidian/snippets/vault-clean-sidebar.css
+  s_a3320701e75207::t_ab923e04a12ecb 1-6
+.obsidian/appearance.json
+  s_a3320701e75207::t_ab923e04a12ecb 5-6,12
+"00 Maps/论文知识库.md"
+  s_a3320701e75207::t_4e918e696136b0 40-47,49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "98f15e5e03180fd913a9ed2aad3cde08e418a445",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
