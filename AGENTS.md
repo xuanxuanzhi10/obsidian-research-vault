@@ -13,10 +13,11 @@ Use the Git repository root as the Vault root. Resolve all note and attachment l
 Preserve the established structure:
 
 - `00 Maps/`: navigation and indexes
-- `10 Papers/<field>/`: paper notes grouped by research field
-- `20 Concepts/`: reusable mechanisms and concepts
+- `10 Papers/<field>/<subtopic>/`: paper notes grouped by research field and subtopic
+- `20 Concepts/<category>/`: reusable mechanisms grouped by architecture, action generation, training, deployment, tactile, or fundamentals
 - `30 Comparisons/`: cross-paper comparisons
-- `40 Topics/`: research-topic synthesis
+- `40 Topics/<category>/`: research-topic synthesis grouped by survey, method/engineering, or tactile robotics
 - `90 Attachments/<paper>/`: PDFs, original figures, teaching diagrams, and source HTML
+- `.archive/`: inactive starter or temporary files that should stay out of the Obsidian sidebar
 
 Before editing, inspect existing notes and Git status. Preserve unrelated user changes. Only commit or push when the user asks for synchronization or the active task explicitly includes it. Never store credentials or device-specific Obsidian workspace state.

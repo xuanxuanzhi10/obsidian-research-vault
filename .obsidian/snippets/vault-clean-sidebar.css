@@ -1,0 +1,6 @@
+/* Keep cross-device AI instructions at the repository root, but out of the
+   everyday Obsidian file explorer. They remain searchable and Git-tracked. */
+.nav-file:has(> .nav-file-title[data-path="AGENTS.md"]),
+.nav-file:has(> .nav-file-title[data-path="CLAUDE.md"]) {
+  display: none;
+}

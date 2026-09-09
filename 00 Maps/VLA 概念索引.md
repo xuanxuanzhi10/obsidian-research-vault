@@ -41,6 +41,7 @@ created: 2026-09-07
 - [[Transformer 参数量估算]]：从 Q/K/V/O、MQA/GQA 与 gated FFN 的矩阵 shape 估算模型规模
 - [[Block-wise Causal Attention]]：怎样控制条件到动作的信息方向
 - [[Adaptive RMSNorm]]：怎样用 scale、shift、gate 把 timestep 与本体状态直接注入每层
+- [[状态条件注入]]：先看 robot state 进入模型的 token 路径与调制路径
 - [[状态条件注入方式比较]]：HyVLA、π0、π0.5、FTP-1 怎样分别处理 robot state 与 flow timestep
 - [[Compact Memory Encoder]]：怎样保留历史而不让 VLM token 暴涨
 - [[双视觉编码器融合]]：怎样在同一 patch 上融合 SigLIP 语义与 DINOv2 空间 feature
