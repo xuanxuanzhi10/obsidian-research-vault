@@ -221,24 +221,24 @@ toy 三块 `P=图像/语言，S=状态，A=带噪动作`：A 允许读 P、S 和
 
 人名用于导航，不作人员职称的长期保证；联合论文归属多个组，勿把合作关系写成独占成果。这里的“港三”按港大、港中文、港科大理解，港科广另列。
 
-| 地区 / 研究者 | 最相关的追踪主线 | 第一手入口与建议 |
-|---|---|---|
-| 清华交叉信息院 · 许华哲 | 3D policy、触觉硬件/闭环、RDP、DP3 | [实验室主页](https://hxu.rocks/index.html)；优先 DP3 → RDP → ImplicitRDP |
-| 清华交叉信息院 · 高阳 | 通用机器人学习、视频先验、Tactile-VLA、FTP-1 合作 | [院系主页](https://iiis.tsinghua.edu.cn/en/People/Faculty/GaoYang.htm)、[Tactile-VLA](https://arxiv.org/abs/2507.09160)；不要混同其他高校同名研究者 |
-| 清华交叉信息院 · 赵行 | 多模态理解与具身学习 | [院系主页](https://iiis.tsinghua.edu.cn/rydw1/qzjs/zhaohang.htm)；跟踪组内机器人基础模型合作，具体成果以署名为准 |
-| 清华 · 易立 | 3D 感知、人—物交互与具身学习 | [个人主页](https://ericyi.github.io/)；把 3D 几何先验与机器人控制问题连接起来 |
-| 清华 · 朱军 / 苏航团队 | 大模型学习与双臂 diffusion policy | [RDT 官方代码](https://github.com/thu-ml/RoboticsDiffusionTransformer)；RDT 不应误归到赵行或卢策吾组 |
-| 北大 · 王鹤 / EPIC | 灵巧抓取、仿真、3D 感知与操作 | [EPIC](https://pku-epic.github.io/)；DexGraspNet / UniDexGrasp → DexGraspNet 2.0、ScissorBot 等，先看形态与数据问题 |
-| 上交 · 卢策吾 / MVIG | 操作数据、遥操作、具身策略、触觉闭环 | [MVIG](https://www.mvig.org/)、[RDP](https://reactive-diffusion-policy.github.io/)；RH20T、AirExo、RDP、FTP-1、ImplicitRDP 是值得串联的线 |
-| 港科广 · 李昊昂 / IRPN | 3D 空间表征、视觉—动作对齐、VLA | [本人主页](https://sites.google.com/view/haoangli/homepage)、[学校页](https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/LI-Haoang/haoangli)；ReconVLA、Spatial Forcing；FlowVLA 的 TRO 2026 状态此处仅按作者主页记录，未独立核验出版元数据 |
-| 港大 · 罗平 / 李弘扬及 OpenDriveLab 合作 | latent action、通用策略与评测 | [UniVLA RSS 论文](https://www.roboticsproceedings.org/rss21/p014.html)、[OpenDriveLab](https://github.com/OpenDriveLab)；UniVLA 与 RoboDojo 分别看方法和评测 |
-| 港大 · 潘佳 | 操作、规划和触觉闭环 | [港大研究项目入口](https://ai.hku.hk/index.php/research/research-projects)；适合找“学习策略如何与物理控制结合” |
-| 港科大 · 陈启峰及合作组 | 视觉学习、灵巧操作、触觉 sim-to-real | [Rotating without Seeing](https://touchdexterity.github.io/)；与 UCSD 王小龙合作，观察触觉覆盖度和 RL |
-| 港中文 · 刘云辉 / 窦琪等 | 机器人感知、操作、空间智能、遥操作 | [DIH-Tele 学校论文页](https://research.cuhk.edu.hk/en/publications/dih-tele-dexterous-in-hand-teleoperation-framework-for-learning-m/)、[工程学院研究新闻](https://www3.erg.cuhk.edu.hk/erg/node/3042)；具体论文逐一核对署名，不把学校成果混成一个组 |
-| Stanford / Berkeley 合作网络 | Finn、Sadigh、Song、Levine、Abbeel、Malik 等；VLA、数据、模仿学习、灵巧触觉 | 从 [OpenVLA](https://github.com/openvla/openvla)、[UMI](https://umi-gripper.github.io/)、[T-Rex](https://tactile-rex.github.io/) 作者页反查；论文发表时与现职可能不同 |
-| MIT / CMU / UW / UCSD 相关团队 | Adelson 的触觉传感，Sparsh 的表征学习，Wang / Su 的仿真与灵巧操作 | [T3](https://proceedings.mlr.press/v270/zhao25c.html)、[Sparsh](https://proceedings.mlr.press/v270/higuera25a.html)、[TRO 触觉 sim-to-real](https://callmeray.github.io/tactile_sim2real_page/) |
-| NYU / Lerrel Pinto 及合作 | 低成本数据、触觉硬件、真实机器人学习 | [AnySkin](https://any-skin.github.io/)；硬件可替换性也是学习泛化问题 |
-| NVIDIA / Google / PI / Microsoft | 基础策略、世界模型、数据与部署生态 | 跟踪第 6 节官方研究页、model card、仓库 release；不要以发布会视频代替实验协议 |
+| 地区 / 研究者                         | 最相关的追踪主线                                                | 第一手入口与建议                                                                                                                                                                                                            |
+| -------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 清华交叉信息院 · 许华哲                    | 3D policy、触觉硬件/闭环、RDP、DP3                               | [实验室主页](https://hxu.rocks/index.html)；优先 DP3 → RDP → ImplicitRDP                                                                                                                                                    |
+| 清华交叉信息院 · 高阳                     | 通用机器人学习、视频先验、Tactile-VLA、FTP-1 合作                       | [院系主页](https://iiis.tsinghua.edu.cn/en/People/Faculty/GaoYang.htm)、[Tactile-VLA](https://arxiv.org/abs/2507.09160)；不要混同其他高校同名研究者                                                                                    |
+| 清华交叉信息院 · 赵行                     | 多模态理解与具身学习                                              | [院系主页](https://iiis.tsinghua.edu.cn/rydw1/qzjs/zhaohang.htm)；跟踪组内机器人基础模型合作，具体成果以署名为准                                                                                                                                |
+| 清华 · 易立                          | 3D 感知、人—物交互与具身学习                                        | [个人主页](https://ericyi.github.io/)；把 3D 几何先验与机器人控制问题连接起来                                                                                                                                                             |
+| 清华 · 朱军 / 苏航团队                   | 大模型学习与双臂 diffusion policy                               | [RDT 官方代码](https://github.com/thu-ml/RoboticsDiffusionTransformer)；RDT 不应误归到赵行或卢策吾组                                                                                                                                 |
+| 北大 · 王鹤 / EPIC                   | 灵巧抓取、仿真、3D 感知与操作                                        | [EPIC](https://pku-epic.github.io/)；DexGraspNet / UniDexGrasp → DexGraspNet 2.0、ScissorBot 等，先看形态与数据问题                                                                                                              |
+| 上交 · 卢策吾 / MVIG                  | 操作数据、遥操作、具身策略、触觉闭环                                      | [MVIG](https://www.mvig.org/)、[RDP](https://reactive-diffusion-policy.github.io/)；RH20T、AirExo、RDP、FTP-1、ImplicitRDP 是值得串联的线                                                                                        |
+| 港科广 · 李昊昂 / IRPN                 | 3D 空间表征、视觉—动作对齐、VLA                                     | [本人主页](https://sites.google.com/view/haoangli/homepage)、[学校页](https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/LI-Haoang/haoangli)；ReconVLA、Spatial Forcing；FlowVLA 的 TRO 2026 状态此处仅按作者主页记录，未独立核验出版元数据 |
+| 港大 · 罗平 / 李弘扬及 OpenDriveLab 合作   | latent action、通用策略与评测                                   | [UniVLA RSS 论文](https://www.roboticsproceedings.org/rss21/p014.html)、[OpenDriveLab](https://github.com/OpenDriveLab)；UniVLA 与 RoboDojo 分别看方法和评测                                                                     |
+| 港大 · 潘佳                          | 操作、规划和触觉闭环                                              | [港大研究项目入口](https://ai.hku.hk/index.php/research/research-projects)；适合找“学习策略如何与物理控制结合”                                                                                                                               |
+| 港科大 · 陈启峰及合作组                    | 视觉学习、灵巧操作、触觉 sim-to-real                                | [Rotating without Seeing](https://touchdexterity.github.io/)；与 UCSD 王小龙合作，观察触觉覆盖度和 RL                                                                                                                               |
+| 港中文 · 刘云辉 / 窦琪等                  | 机器人感知、操作、空间智能、遥操作                                       | [DIH-Tele 学校论文页](https://research.cuhk.edu.hk/en/publications/dih-tele-dexterous-in-hand-teleoperation-framework-for-learning-m/)、[工程学院研究新闻](https://www3.erg.cuhk.edu.hk/erg/node/3042)；具体论文逐一核对署名，不把学校成果混成一个组     |
+| Stanford / Berkeley 合作网络         | Finn、Sadigh、Song、Levine、Abbeel、Malik 等；VLA、数据、模仿学习、灵巧触觉 | 从 [OpenVLA](https://github.com/openvla/openvla)、[UMI](https://umi-gripper.github.io/)、[T-Rex](https://tactile-rex.github.io/) 作者页反查；论文发表时与现职可能不同                                                                    |
+| MIT / CMU / UW / UCSD 相关团队       | Adelson 的触觉传感，Sparsh 的表征学习，Wang / Su 的仿真与灵巧操作           | [T3](https://proceedings.mlr.press/v270/zhao25c.html)、[Sparsh](https://proceedings.mlr.press/v270/higuera25a.html)、[TRO 触觉 sim-to-real](https://callmeray.github.io/tactile_sim2real_page/)                         |
+| NYU / Lerrel Pinto 及合作           | 低成本数据、触觉硬件、真实机器人学习                                      | [AnySkin](https://any-skin.github.io/)；硬件可替换性也是学习泛化问题                                                                                                                                                               |
+| NVIDIA / Google / PI / Microsoft | 基础策略、世界模型、数据与部署生态                                       | 跟踪第 6 节官方研究页、model card、仓库 release；不要以发布会视频代替实验协议                                                                                                                                                                   |
 
 **建议的跟踪方法**：每个组只订阅一位主要研究者的 Scholar + 一个官方仓库/主页；看到新论文，先把它放进“数据、表征、动作、反馈、评测”之一，再决定是否精读。不是每个你关注的老师都持续做 VLA 或触觉，邻近方向同样有价值。
 
@@ -246,21 +246,21 @@ toy 三块 `P=图像/语言，S=状态，A=带噪动作`：A 允许读 P、S 和
 
 星数为 **2026-09-09 检索到的 GitHub 页面近似显示值**，可能含索引缓存，不是同步 API 快照；不适合做精确排名。未采集到的用“—”，不等于没有 star。下表的“可得”按 README/下载入口判断，未实际下载所有模型、训练或完成许可证审计。
 
-| 项目 | 约 star | 适合做什么 | 开放内容与注意事项 |
-|---|---:|---|---|
-| [LeRobot](https://github.com/huggingface/lerobot) | 27.3k | 采集、数据格式、训练、低成本硬件工作流 | 框架 + 模型/数据生态；先锁版本，再按自身硬件选择策略 |
-| [openpi](https://github.com/Physical-Intelligence/openpi) | 13.7k | π 系列微调与部署，改 action expert | 代码及部分 checkpoint；不意味着所有商业训练数据开放 |
-| [Isaac-GR00T](https://github.com/NVIDIA/Isaac-GR00T) | 8.0k | NVIDIA 策略生态、适配新机器人 | 代码、权重入口、示例；N1 / N1.6 / N1.7 与依赖配置须对应 |
-| [Diffusion Policy](https://github.com/real-stanford/diffusion_policy) | 4.5k | 建立可信 visuomotor 基线 | 训练/评测代码及任务数据入口；简单基线特别适合做触觉消融 |
-| [RoboTwin](https://github.com/RoboTwin-Platform/RoboTwin) | 2.4k | 双臂仿真、数据生成与统一任务评测 | 环境、采集/评测脚本；Clean / Randomized 配置分开比较 |
-| [RDT](https://github.com/thu-ml/RoboticsDiffusionTransformer) | 1.7k | 双臂连续动作和跨数据集适配 | 代码、预训练模型入口；重新检查动作映射和硬件接口 |
-| [DP3](https://github.com/YanjieZe/3D-Diffusion-Policy) | 1.4k | 3D 视觉到机器人操作的起步项目 | 代码、任务环境与数据说明；深度裁剪、点云坐标会改变结果 |
-| [OpenVLA](https://github.com/openvla/openvla) | — | 可读的经典 VLA 与微调基线 | 代码、权重与数据说明；比较时同时考虑 OFT 配方 |
-| [Hy-Embodied-0.5-VLA](https://github.com/Tencent-Hunyuan/Hy-Embodied-0.5-VLA) | — | 接续你的 HyVLA 阅读，研究历史与部署接口 | 官方提供 UMI / RoboTwin 权重和 2K+ 小时数据子集入口，并有 RoboDojo 适配；不是全量 10K 小时数据开放 |
-| [RDP](https://github.com/xiaoxiaoxh/reactive_diffusion_policy) | — | 低频规划 + 高频触觉闭环 | 代码/采集部署说明；硬件依赖比纯仿真 VLA 更强 |
-| [Sparsh](https://github.com/facebookresearch/sparsh) | 219 | 光学触觉 encoder 与 TacBench | 表征代码、权重/数据入口；不是完整通用动作策略 |
-| [TACTO](https://github.com/facebookresearch/tacto) | 469 | 学习触觉图像渲染接口 | **已归档**，偏历史工具；渲染器不是完整可信接触动力学 |
-| [ManiSkill-ViTac2025](https://github.com/chuanyune/ManiSkill-ViTac2025) | 57 | 触觉仿真、融合与传感器设计基准 | 小众但相关性强；低星不代表研究价值低 |
+| 项目                                                                            | 约 star | 适合做什么                     | 开放内容与注意事项                                                           |
+| ----------------------------------------------------------------------------- | -----: | ------------------------- | ------------------------------------------------------------------- |
+| [LeRobot](https://github.com/huggingface/lerobot)                             |  27.3k | 采集、数据格式、训练、低成本硬件工作流       | 框架 + 模型/数据生态；先锁版本，再按自身硬件选择策略                                        |
+| [openpi](https://github.com/Physical-Intelligence/openpi)                     |  13.7k | π 系列微调与部署，改 action expert | 代码及部分 checkpoint；不意味着所有商业训练数据开放                                     |
+| [Isaac-GR00T](https://github.com/NVIDIA/Isaac-GR00T)                          |   8.0k | NVIDIA 策略生态、适配新机器人        | 代码、权重入口、示例；N1 / N1.6 / N1.7 与依赖配置须对应                                |
+| [Diffusion Policy](https://github.com/real-stanford/diffusion_policy)         |   4.5k | 建立可信 visuomotor 基线        | 训练/评测代码及任务数据入口；简单基线特别适合做触觉消融                                        |
+| [RoboTwin](https://github.com/RoboTwin-Platform/RoboTwin)                     |   2.4k | 双臂仿真、数据生成与统一任务评测          | 环境、采集/评测脚本；Clean / Randomized 配置分开比较                                |
+| [RDT](https://github.com/thu-ml/RoboticsDiffusionTransformer)                 |   1.7k | 双臂连续动作和跨数据集适配             | 代码、预训练模型入口；重新检查动作映射和硬件接口                                            |
+| [DP3](https://github.com/YanjieZe/3D-Diffusion-Policy)                        |   1.4k | 3D 视觉到机器人操作的起步项目          | 代码、任务环境与数据说明；深度裁剪、点云坐标会改变结果                                         |
+| [OpenVLA](https://github.com/openvla/openvla)                                 |      — | 可读的经典 VLA 与微调基线           | 代码、权重与数据说明；比较时同时考虑 OFT 配方                                           |
+| [Hy-Embodied-0.5-VLA](https://github.com/Tencent-Hunyuan/Hy-Embodied-0.5-VLA) |      — | 接续你的 HyVLA 阅读，研究历史与部署接口   | 官方提供 UMI / RoboTwin 权重和 2K+ 小时数据子集入口，并有 RoboDojo 适配；不是全量 10K 小时数据开放 |
+| [RDP](https://github.com/xiaoxiaoxh/reactive_diffusion_policy)                |      — | 低频规划 + 高频触觉闭环             | 代码/采集部署说明；硬件依赖比纯仿真 VLA 更强                                           |
+| [Sparsh](https://github.com/facebookresearch/sparsh)                          |    219 | 光学触觉 encoder 与 TacBench   | 表征代码、权重/数据入口；不是完整通用动作策略                                             |
+| [TACTO](https://github.com/facebookresearch/tacto)                            |    469 | 学习触觉图像渲染接口                | **已归档**，偏历史工具；渲染器不是完整可信接触动力学                                        |
+| [ManiSkill-ViTac2025](https://github.com/chuanyune/ManiSkill-ViTac2025)       |     57 | 触觉仿真、融合与传感器设计基准           | 小众但相关性强；低星不代表研究价值低                                                  |
 
 选择原则：若想验证“新模态真的有用”，先选你能控制数据、执行频率和训练预算的 DP / RDP；若想验证“大模型迁移”，再用 openpi / OpenVLA-OFT / GR00T。不要在尚未确认硬件、标定与驱动兼容前，仅按 star 买传感器或机械臂。
 
@@ -296,17 +296,17 @@ toy 三块 `P=图像/语言，S=状态，A=带噪动作`：A 允许读 P、S 和
 
 若论文 A 在 LIBERO 得分高，论文 B 在自建触觉任务成功率高，不能判断 A 比 B 强。先填下面这张实验身份证。
 
-| 必填项 | 为什么会改变结论 |
-|---|---|
-| benchmark 版本、split、随机种子、是否剔除失败样本 | 避免训练测试污染和选择性统计 |
-| 最终 success / progress / mean chain length 的定义 | “拿起但未放下”可能有进度分，却不是成功 |
-| 每任务 trial 数、置信区间、独立任务数 | 小样本单列差距可能只是波动 |
-| 相机数量、深度、触觉、本体状态、历史长度 | 多一种信息源本身就可能增益 |
-| 预训练/微调数据、环境/物体重叠、人类干预预算 | 不能把额外数据贡献全部算给架构 |
-| 参数量、训练算力、总推理预算与重规划率 | 强模型也可能只是每次看得更多、算得更久 |
-| action normalization、坐标系、控制模式、IK / 规划器 | 策略不独立于机器人执行栈 |
-| inference latency、感知到动作的 age、servo rate | 50 Hz 电机跟踪不等于 50 Hz 接收新环境证据 |
-| 失败类型、碰撞/超力次数、人工复位和恢复能力 | 成功率以外才看得到部署成本 |
+| 必填项                                           | 为什么会改变结论                    |
+| --------------------------------------------- | --------------------------- |
+| benchmark 版本、split、随机种子、是否剔除失败样本              | 避免训练测试污染和选择性统计              |
+| 最终 success / progress / mean chain length 的定义 | “拿起但未放下”可能有进度分，却不是成功        |
+| 每任务 trial 数、置信区间、独立任务数                        | 小样本单列差距可能只是波动               |
+| 相机数量、深度、触觉、本体状态、历史长度                          | 多一种信息源本身就可能增益               |
+| 预训练/微调数据、环境/物体重叠、人类干预预算                       | 不能把额外数据贡献全部算给架构             |
+| 参数量、训练算力、总推理预算与重规划率                           | 强模型也可能只是每次看得更多、算得更久         |
+| action normalization、坐标系、控制模式、IK / 规划器        | 策略不独立于机器人执行栈                |
+| inference latency、感知到动作的 age、servo rate       | 50 Hz 电机跟踪不等于 50 Hz 接收新环境证据 |
+| 失败类型、碰撞/超力次数、人工复位和恢复能力                        | 成功率以外才看得到部署成本               |
 
 **例子**：若 T-Rex 的 RDP baseline 是各任务单独训练，而 T-Rex 有额外 mid-training 数据，比较支持的是完整训练系统效果；不能仅凭总分说“MoT 比 GRU 更好”。若 π₀ 的评分是按整理物品数量给部分分，不能将 0.8 解释成 80% 的 episode 完整成功。
 
