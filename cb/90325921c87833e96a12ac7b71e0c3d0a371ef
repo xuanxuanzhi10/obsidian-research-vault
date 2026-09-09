@@ -1,0 +1,33 @@
+"00 Maps/论文知识库.md"
+  s_a3320701e75207::t_2541e6cf3c20f1 26-27,48-50
+"00 Maps/VLA 学习地图.md"
+  s_a3320701e75207::t_2541e6cf3c20f1 60-62
+"40 Topics/VLA 前沿论文粗读雷达（2025-2026）.md"
+  s_a3320701e75207::t_353f7d61d6b642 208-212
+  s_a3320701e75207::t_f643ff19c3ec99 1-207,213-265
+"90 Attachments/VLA-Paper-Atlas/failurespot-teaching-pipeline.svg"
+  s_a3320701e75207::t_1e309c1d82407b 4,13,19,24,30
+  s_a3320701e75207::t_353f7d61d6b642 1-3,5-12,14-18,20-23,25-29,31-37
+"90 Attachments/README.md"
+  s_a3320701e75207::t_2cd2e78efb4c84 17-21
+"40 Topics/VLA 经典论文粗读图鉴.md"
+  s_a3320701e75207::t_f84ac232f37b70 1-282
+"40 Topics/VLA 全景综述：技术脉络、前沿与研究地图.md"
+  s_a3320701e75207::t_2cd2e78efb4c84 15-16,22,78-80,202-204,210,220
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "cb90325921c87833e96a12ac7b71e0c3d0a371ef",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
