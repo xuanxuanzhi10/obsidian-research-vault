@@ -1,0 +1,25 @@
+"00 Maps/论文知识库.md"
+  s_3ffe6a8f27c784::t_01f0f473f6a404 23-27
+"40 Topics/VLA 全景综述：技术脉络、前沿与研究地图.md"
+  s_3ffe6a8f27c784::t_5fb836a7b3357c 1-342
+"40 Topics/触觉机器人学习全景：感知、表征、闭环与 VLA.md"
+  s_3ffe6a8f27c784::t_800f95a1873d8e 1-440
+"90 Attachments/VLA-Tactile-Survey-2026/README.md"
+  s_3ffe6a8f27c784::t_3f06597d970d60 1-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "22169f80ee29d101bbd5bfe15f36d7008d79316f",
+  "prompts": {},
+  "sessions": {
+    "s_3ffe6a8f27c784": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a084c0-ee25-7591-a44a-4059c882b958",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
