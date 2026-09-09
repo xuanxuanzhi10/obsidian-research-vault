@@ -1,0 +1,51 @@
+"30 Comparisons/触觉 VLA 方法比较.md"
+  s_a3320701e75207::t_6ee5b72e24a01a 14-25,34-35,51-59
+  s_18521df84bc18b::t_ec38689a6a4d82 60
+"90 Attachments/N0-VTLA/n0-vtla-teaching-latent.svg"
+  s_a3320701e75207::t_7d4a63d6bf8cea 1-14
+"40 Topics/触觉机器人学习.md"
+  s_a3320701e75207::t_6ee5b72e24a01a 20,27,32-33,66,158
+"20 Concepts/Latent Tactile Token.md"
+  s_a3320701e75207::t_b4987b95f3fa19 1-66
+"20 Concepts/预测触觉与观测触觉.md"
+  s_a3320701e75207::t_6ee5b72e24a01a 24-31,40
+"00 Maps/VLA 学习地图.md"
+  s_a3320701e75207::t_6ee5b72e24a01a 30,50-51
+"00 Maps/VLA 概念索引.md"
+  s_a3320701e75207::t_6ee5b72e24a01a 51,65,68
+"20 Concepts/ALTER.md"
+  s_a3320701e75207::t_b4987b95f3fa19 1-64
+"90 Attachments/N0-VTLA/n0-vtla-teaching-alter.svg"
+  s_a3320701e75207::t_7d4a63d6bf8cea 1-14
+"90 Attachments/N0-VTLA/n0-vtla-teaching-stages.svg"
+  s_a3320701e75207::t_7d4a63d6bf8cea 1-9
+"10 Papers/VLA/触觉/N0-VTLA.md"
+  s_a3320701e75207::t_1b5ad04bb24bf0 1-194,198-304
+  s_a3320701e75207::t_3777b335c2843b 195-197
+"90 Attachments/N0-VTLA/n0-vtla-guide.html"
+  s_a3320701e75207::t_cf32bf08a66586 1-1074
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "4cf2d893c4777a32ce89acf71e5c846d0fa71f5a",
+  "prompts": {},
+  "sessions": {
+    "s_18521df84bc18b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff8e4-6fa9-72e3-84eb-90a005c89c8c",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    },
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
