@@ -63,4 +63,3 @@ latent tactile token 与“tactile token”只差一个词，却可能有根本�
 - 预测不等于实测，若接触发展偏离预测，仍需要高频观测通路纠偏。
 
 N0-VTLA 的 32-candidate top-1 检索为 92.3%，当前 g 为 57%；扰动触觉比扰动 RGB+语言更显著。这支持 z 确实携带预测性触觉信息。论文没有完整报告 current-only / predicted-only / both 的公平消融，所以不能据此断言 latent prediction 必然优于所有实时触觉接口。
-

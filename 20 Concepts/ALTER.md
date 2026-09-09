@@ -6,7 +6,8 @@ topics: [offline-RL, advantage-conditioning, progress-model, tactile]
 
 # ALTER
 
-全称：Advantage Labeling from Trajectory Events and Relative Progress  
+全称：Advantage Labeling from Trajectory Events and Relative Progress
+
 来源：[[N0-VTLA]] · 相关：[[FlowPRO]]
 
 > [!abstract] 一句话定义
@@ -61,4 +62,3 @@ N0-VTLA 报告 ALTER 在 Towel/Bag/Cardboard 上把 π0.5 提到 `90/75/60%`，�
 - 触觉事件参与造标签，却不进入 progress model，纯视觉无法辨认的失败可能仍被漏判；
 - 标签质量依赖边界检测、VLM 区间映射与 recovery offset，误差会级联；
 - 三个任务上的成功不能证明其对任意长任务或跨任务 reward 泛化。
-

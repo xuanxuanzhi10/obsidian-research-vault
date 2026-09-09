@@ -11,8 +11,9 @@ code: https://github.com/neoteai/N0-VTLA
 
 # N0-VTLA：不等碰撞发生，先预测这段动作将带来什么接触
 
-上级地图：[[VLA 学习地图]] · 主题：[[触觉机器人学习]]  
-核心概念：[[Latent Tactile Token]] · [[预测触觉与观测触觉]] · [[ALTER]]  
+上级地图：[[VLA 学习地图]] · 主题：[[触觉机器人学习]]
+
+核心概念：[[Latent Tactile Token]] · [[预测触觉与观测触觉]] · [[ALTER]]
 横向对比：[[触觉 VLA 方法比较]]
 
 原文：[[N0-VTLA.pdf|论文 PDF]] · [[n0-vtla-guide.html|HTML 原版讲解（系统浏览器打开）]] · [代码仓库](https://github.com/neoteai/N0-VTLA)
