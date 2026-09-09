@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="550" viewBox="0 0 1200 550">
+  <style>.h{font:bold 28px sans-serif;fill:#252321}.t{font:22px sans-serif;fill:#2e2b28}.s{font:18px sans-serif;fill:#5d5953}.box{stroke:#968e83;stroke-width:2;rx:18}.a{stroke:#716a62;stroke-width:3;fill:none;marker-end:url(#m)}</style><defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#716a62"/></marker></defs>
+  <text x="45" y="48" class="h">三阶段不是三个任务，而是依次解决“含义—接口—协同”</text>
+  <rect x="45" y="95" width="320" height="350" class="box" fill="#e9e0f0"/><text x="90" y="145" class="h">Stage 1：定义 z</text><text x="82" y="205" class="t">训练：触觉预测器</text><text x="82" y="245" class="t">监督：未来触觉 z*</text><text x="82" y="300" class="s">Action Expert 不参与</text><text x="82" y="335" class="s">避免 z 变成无意义接口</text><text x="82" y="400" class="t">回答：z 代表什么？</text>
+  <rect x="440" y="95" width="320" height="350" class="box" fill="#f4ded8"/><text x="482" y="145" class="h">Stage 2：教会读取</text><text x="478" y="205" class="t">冻结：触觉感知栈</text><text x="478" y="245" class="t">训练：投影 + Expert</text><text x="478" y="300" class="s">屏蔽 VL→Action 捷径</text><text x="478" y="335" class="s">动作只能通过 z 降损失</text><text x="478" y="400" class="t">回答：怎样使用 z？</text>
+  <rect x="835" y="95" width="320" height="350" class="box" fill="#e8edd6"/><text x="875" y="145" class="h">Stage 3：联合适配</text><text x="873" y="205" class="t">恢复 VL→Action</text><text x="873" y="245" class="t">端到端 action loss</text><text x="873" y="300" class="s">仅 DINOv2 backbone 冻结</text><text x="873" y="335" class="s">不再使用 z* 的辅助损失</text><text x="873" y="400" class="t">回答：整体怎样协同？</text>
+  <path d="M365 270 H440" class="a"/><path d="M760 270 H835" class="a"/>
+  <text x="45" y="510" class="s">证据边界：论文给出表示探针，但未报告完整的三阶段下游消融；“更稳定”仍缺直接量化对照。</text>
+</svg>

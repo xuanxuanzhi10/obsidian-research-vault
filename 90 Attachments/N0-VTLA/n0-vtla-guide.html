@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N₀-VTLA 学习指南 - VLA 学习系列第5篇</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #faf9f7;
+  --bg-card: #ffffff;
+  --bg-code: #f3f0f8;
+  --bg-highlight: #f0ecf5;
+  --bg-chain: #ede8f4;
+  --text: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-tertiary: #7a7a9a;
+  --accent: #6b3fa0;
+  --accent-light: #e8ddf5;
+  --accent-dark: #4a2a73;
+  --border: #d8d0e4;
+  --border-light: #e8e2f0;
+  --chain-line: #b8a8d4;
+  --tag-bg: #ede8f5;
+  --tag-text: #5a3a8a;
+  --warning-bg: #fef3e2;
+  --warning-border: #e8b94a;
+  --warning-text: #7a5d1a;
+  --strength-bg: #e6f4ea;
+  --strength-border: #4a9a5a;
+  --strength-text: #2a6a3a;
+  --weakness-bg: #fde8e8;
+  --weakness-border: #c44a4a;
+  --weakness-text: #8a2a2a;
+  --serif: 'Noto Serif SC', 'Songti SC', serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'Menlo', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121018;
+    --bg-card: #1e1a28;
+    --bg-code: #241e32;
+    --bg-highlight: #2a2240;
+    --bg-chain: #221c30;
+    --text: #e8e4f0;
+    --text-secondary: #b0a8c8;
+    --text-tertiary: #8078a0;
+    --accent: #a87cdb;
+    --accent-light: #2e2244;
+    --accent-dark: #c9a8f0;
+    --border: #3a3050;
+    --border-light: #2e2640;
+    --chain-line: #5a4880;
+    --tag-bg: #2e2444;
+    --tag-text: #c0a8e0;
+    --warning-bg: #2e2818;
+    --warning-border: #b89030;
+    --warning-text: #e8c870;
+    --strength-bg: #1a2e1e;
+    --strength-border: #4a8a50;
+    --strength-text: #80c888;
+    --weakness-bg: #2e1a1a;
+    --weakness-border: #a84040;
+    --weakness-text: #e08080;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #121018;
+  --bg-card: #1e1a28;
+  --bg-code: #241e32;
+  --bg-highlight: #2a2240;
+  --bg-chain: #221c30;
+  --text: #e8e4f0;
+  --text-secondary: #b0a8c8;
+  --text-tertiary: #8078a0;
+  --accent: #a87cdb;
+  --accent-light: #2e2244;
+  --accent-dark: #c9a8f0;
+  --border: #3a3050;
+  --border-light: #2e2640;
+  --chain-line: #5a4880;
+  --tag-bg: #2e2444;
+  --tag-text: #c0a8e0;
+  --warning-bg: #2e2818;
+  --warning-border: #b89030;
+  --warning-text: #e8c870;
+  --strength-bg: #1a2e1e;
+  --strength-border: #4a8a50;
+  --strength-text: #80c888;
+  --weakness-bg: #2e1a1a;
+  --weakness-border: #a84040;
+  --weakness-text: #e08080;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 36px;
+  border-bottom: 2px solid var(--border);
+}
+
+.header-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--tag-text);
+  background: var(--tag-bg);
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.header h1 {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 16px;
+}
+
+.series-badge {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.series-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Nav */
+nav.nav {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+}
+
+.nav-title {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+nav.nav ol {
+  list-style: none;
+  counter-reset: nav-counter;
+}
+
+nav.nav ol li {
+  counter-increment: nav-counter;
+  margin-bottom: 6px;
+}
+
+nav.nav ol li a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  transition: color 0.2s;
+}
+
+nav.nav ol li a:hover { color: var(--accent); }
+
+nav.nav ol li a::before {
+  content: counter(nav-counter, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 22px;
+}
+
+/* Sections */
+section {
+  margin-bottom: 52px;
+}
+
+.section-number {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+section h2 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+section h3 {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  margin: 28px 0 10px;
+  color: var(--text);
+}
+
+.section-lead {
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
+p { margin-bottom: 14px; font-size: 15px; }
+
+/* Boxes */
+.recap {
+  border: 2px dashed var(--chain-line);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+  background: var(--bg-highlight);
+}
+
+.recap-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.recap p, .recap ul { font-size: 14px; color: var(--text-secondary); }
+.recap ul { padding-left: 18px; margin-bottom: 8px; }
+.recap ul li { margin-bottom: 4px; }
+
+.chain {
+  background: var(--bg-chain);
+  border-left: 3px solid var(--chain-line);
+  padding: 12px 18px;
+  margin: 32px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  border-radius: 0 6px 6px 0;
+}
+
+.chain strong { color: var(--accent); }
+
+.highlight {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-highlight);
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.highlight p { font-size: 14.5px; margin-bottom: 6px; }
+
+.note {
+  border-left: 4px solid var(--warning-border);
+  background: var(--warning-bg);
+  padding: 14px 18px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.note-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--warning-text);
+  margin-bottom: 6px;
+}
+
+.note p { font-size: 14px; color: var(--warning-text); margin-bottom: 4px; }
+
+.strength {
+  border-left: 4px solid var(--strength-border);
+  background: var(--strength-bg);
+  padding: 14px 18px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.strength-label, .weakness-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.strength-label { color: var(--strength-text); }
+.strength p { font-size: 14px; color: var(--strength-text); margin-bottom: 4px; }
+
+.weakness {
+  border-left: 4px solid var(--weakness-border);
+  background: var(--weakness-bg);
+  padding: 14px 18px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.weakness-label { color: var(--weakness-text); }
+.weakness p { font-size: 14px; color: var(--weakness-text); margin-bottom: 4px; }
+
+/* Code */
+pre {
+  background: var(--bg-code);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+pre code {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: var(--bg-code);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  margin: 18px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+thead th {
+  background: var(--bg-highlight);
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  font-size: 13px;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  body { font-size: 15px; }
+  .container { padding: 24px 16px 60px; }
+  .header h1 { font-size: 22px; }
+  section h2 { font-size: 19px; }
+  pre { padding: 14px; }
+  pre code { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="header-tag">Sequential Learning Guide</div>
+  <h1>从零理解 N₀-VTLA：用预测性触觉潜变量驱动接触丰富的操作</h1>
+  <div class="subtitle">首个在大规模触觉数据上预训练的 Vision-Tactile-Language-Action 模型。核心思路：触觉不是额外的观测输入，而是一个预测目标——用 latent tactile tokens 预测即将发生的接触变化，让 Action Expert 提前感知而非被动反应。再加上 ALTER 离线 RL，从部署数据中自我改进。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第5篇（前序：HyVLA → π₀ → π₀.₅ → OpenVLA）</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">逻辑链路</div>
+  <ol>
+    <li><a href="#s1">定位与背景：为什么 VLA 需要触觉？</a></li>
+    <li><a href="#s2">架构拆解：从输入到输出的完整数据流</a></li>
+    <li><a href="#s3">核心机制：Latent Tactile Tokens 的预测式设计</a></li>
+    <li><a href="#s4">训练数据：NeoData 与跨平台规范化</a></li>
+    <li><a href="#s5">训练范式：三阶段触觉路径上线 + ALTER 离线 RL</a></li>
+    <li><a href="#s6">设计决策与消融：为什么预测而非反应？</a></li>
+    <li><a href="#s7">实验评估：真机与仿真的全面对比</a></li>
+    <li><a href="#s8">部署细节：Action Chunk 执行与触觉基线重置</a></li>
+    <li><a href="#s9">局限与反思：开放问题与未来方向</a></li>
+  </ol>
+</nav>
+
+<!-- Section 1 -->
+<section id="s1">
+  <div class="section-number">01</div>
+  <h2>定位与背景：为什么 VLA 需要触觉？</h2>
+  <p class="section-lead">现有的 VLA 模型全都围绕视觉和语言构建——它们看得清楚、听得明白，但"摸不着"。这在接触密集的操作任务中暴露了系统性弱点。</p>
+
+  <p>从 π₀ 到 π₀.₅，再到 OpenVLA，VLA 模型已经展示了跨任务、跨场景、跨机器人的泛化能力。但它们的观测空间始终以摄像头、语言指令和机器人状态为中心。当任务的成败取决于<strong>接触力度、滑移感知、形变反馈</strong>时——比如插拔插头、折叠毛巾、立瓶子——纯视觉策略就显得力不从心了。</p>
+
+  <p>N₀-VTLA（读作 NeoVTLA）的核心命题：<strong>触觉不该被当成"再来一路摄像头"塞进 VLA，而应被重新定位为一个预测目标</strong>。模型不是被动地读取当前触觉帧，而是主动预测接下来 50 步（一个 action chunk）的接触变化，然后让 Action Expert 基于这个预测来生成动作。</p>
+
+  <div class="highlight">
+    <p><strong>一句话定位：</strong>N₀-VTLA = π₀.₅ backbone + 冻结 DINOv2 触觉编码器 + Latent Tactile Predictor + ALTER 离线 RL。它是首个在大规模触觉数据上预训练的 VTLA 模型。</p>
+  </div>
+
+  <h3>现有触觉集成路径的问题</h3>
+  <p>论文梳理了两条已有的触觉集成路线，并指出各自的缺陷：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>路径</th><th>做法</th><th>问题</th><th>代表工作</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>路径 A：前缀拼接</td>
+          <td>触觉 token 拼入 vision–language context</td>
+          <td>触觉信号稀疏且大部分时间静默，浪费了为信息密集视觉设计的前缀容量</td>
+          <td>OmniVTLA, Tactile-VLA</td>
+        </tr>
+        <tr>
+          <td>路径 B：动作注入</td>
+          <td>当前触觉读数注入 action pathway 引导去噪</td>
+          <td>当前触觉帧记录的是<em>已经发生的</em>接触，对即将到来的接触没有前瞻性；策略始终"慢一拍"</td>
+          <td>Reactive Diffusion Policy, TouchGuide</td>
+        </tr>
+        <tr>
+          <td><strong>路径 C（本文）</strong></td>
+          <td>触觉不进前缀，而是<strong>预测</strong>未来触觉变化的潜变量 z 直接 condition Action Expert</td>
+          <td>——</td>
+          <td><strong>N₀-VTLA</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">回顾：π₀.₅ 的架构基础</div>
+    <p>N₀-VTLA 直接继承了 π₀.₅ 的完整架构：PaliGemma VLM backbone + Flow Matching Action Expert，32 维 canonical action space，H=50 的 action chunk horizon。如果你记得 π₀.₅ 指南中的 Action Expert 如何从 vision-language prefix 中做 cross-attention，这里的结构完全一样——唯一的区别是现在 Action Expert 多了一组 latent tactile tokens z 作为额外的 conditioning。</p>
+  </div>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>我们知道了"为什么需要触觉"以及"现有方案的缺陷"。下一节拆解完整架构——触觉信号如何从传感器一路流到动作生成。
+</div>
+
+<!-- Section 2 -->
+<section id="s2">
+  <div class="section-number">02</div>
+  <h2>架构拆解：从输入到输出的完整数据流</h2>
+  <p class="section-lead">N₀-VTLA 的架构可以拆成两大部分：继承自 π₀.₅ 的 base policy，和新增的 latent tactile pathway。我们从全局视角走一遍数据流。</p>
+
+  <h3>输入端</h3>
+  <p>每个时刻，模型接收四类输入：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>输入</th><th>来源</th><th>去向</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>RGB 图像（3 视角）</td><td>第三方+两个手腕摄像头</td><td>→ Vision-Language Prefix</td></tr>
+        <tr><td>语言指令</td><td>自然语言任务描述</td><td>→ Vision-Language Prefix</td></tr>
+        <tr><td>机器人状态</td><td>关节/末端执行器</td><td>→ 离散化后进入 Prefix</td></tr>
+        <tr><td><strong>触觉差分图像</strong></td><td>每根夹爪手指的自研 visuo-tactile 传感器</td><td>→ <strong>Tactile Encoder → Latent Tactile Predictor</strong>（不进 Prefix!）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <div class="note-label">注意</div>
+    <p>触觉信号<strong>永远不进入</strong> vision-language prefix。这是本文最核心的架构决策之一。触觉 tokens 只通过 predictor 蒸馏成 latent z，z 直接 condition Action Expert。</p>
+  </div>
+
+  <h3>完整数据流伪代码</h3>
+
+  <pre><code># ===== N₀-VTLA 前向推理 =====
+
+# 1. Vision-Language Prefix (继承自 π₀.₅)
+prefix = PaliGemma.encode(rgb_views, instruction, robot_state)
+#   prefix: [B, L_prefix, d]  —— 场景+指令+状态的上下文表示
+
+# 2. Tactile Encoding (冻结 DINOv2 + 可训练 projection)
+for k in range(n_views):  # n 个触觉视角 (单臂=2, 双臂=4)
+    tac_diff_k = tac_current_k - tac_baseline_k   # 像素空间差分，去除静态凝胶外观
+    g_k = Linear_proj(frozen_DINOv2(tac_diff_k))   # [B, 10, d]  (1 cls + 9 spatial)
+g = concat(g_1, ..., g_n)                          # [B, 10n, d]
+
+# 3. Latent Tactile Predictor
+z = Predictor(g, prefix)                           # [B, 10, d]
+#   输入: 当前触觉 tokens g + 视觉语言上下文
+#   输出: latent tactile tokens z —— 预测未来 H=50 步的接触变化
+
+# 4. Action Expert (Flow Matching, 继承自 π₀.₅)
+z_proj = project_to_expert_width(z)                # 投影到 action expert 维度
+action_tokens = [z_proj; noised_actions]           # z 前置于 noisy action tokens
+#   action tokens attend to z AND prefix (Step 3之后)
+#   z positions 在输出前被切掉，不产生 action
+predicted_chunk = FlowMatching.denoise(action_tokens, prefix)
+#   predicted_chunk: [B, H=50, 32]  —— 32维 canonical action space</code></pre>
+
+  <h3>关键架构特点</h3>
+
+  <p><strong>触觉编码器为何冻结？</strong>论文使用冻结的 DINOv2 作为触觉编码器，只训练一个轻量级线性投影层。三个理由：（1）保留自监督表示的完整性；（2）让新传感器只需训练投影层即可接入；（3）节省训练显存——编码器的激活和优化器状态不占训练预算。</p>
+
+  <p><strong>10 个 tokens 的来源：</strong>DINOv2 产出 16×16 的 patch grid，经过 3×3 adaptive average pooling 得到 9 个 spatial tokens，加上 1 个 class token，共 10 tokens per tactile view。</p>
+
+  <p><strong>差分编码而非绝对编码：</strong>每集开头 0.5 秒静止期录制"零接触基线帧"，后续所有触觉帧在像素空间减去该基线。这移除了静态凝胶外观和传感器安装差异，使表示对传感器放置位置具有鲁棒性。</p>
+
+  <div class="strength">
+    <div class="strength-label">亮点</div>
+    <p>架构上的"触觉不进 prefix"决策非常优雅。Vision-language prefix 为信息密集的视觉信号设计，而触觉信号大部分时间是空的——只在接触形成或变化的短暂窗口才有信息。把稀疏信号硬塞进信息密集通道是一种结构性浪费。</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">回顾：与 π₀.₅ 的架构对比</div>
+    <p>π₀.₅ 的数据流：RGB + 指令 + 状态 → PaliGemma prefix → Flow Matching Action Expert → action chunk。N₀-VTLA 在此基础上新增了一条<strong>旁路</strong>：触觉差分图像 → 冻结 DINOv2 → Predictor → latent z → condition Action Expert。关键是这条旁路<strong>与 prefix 平行而非串行</strong>——z 直接进入 Action Expert 的 attention，prefix 不会 attend back to z。</p>
+  </div>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>我们理解了整体数据流。下一节深入 latent tactile tokens 的核心机制——为什么"预测"比"反应"更好，以及 z 到底在预测什么。
+</div>
+
+<!-- Section 3 -->
+<section id="s3">
+  <div class="section-number">03</div>
+  <h2>核心机制：Latent Tactile Tokens 的预测式设计</h2>
+  <p class="section-lead">N₀-VTLA 的核心创新不在于加了触觉，而在于触觉的使用方式——让模型预测即将到来的接触，而不是对已发生的接触做出反应。</p>
+
+  <h3>为什么预测而非反应？</h3>
+  <p>论文提出了一个关键洞察：<strong>触觉最重要的场景恰恰是"前接触盲区"</strong>。比如：</p>
+  <p>夹爪关闭前的毫米级预加载（pre-load）、物体即将滑移前的细微力调整——这些行为是<strong>预期性的（anticipatory）</strong>。当纯反应式的触觉信号到达时，引发接触的动作已经执行完了。策略永远慢一拍。</p>
+
+  <div class="highlight">
+    <p><strong>核心哲学：</strong>决定一个 50 步 action chunk 的，是这个 chunk <em>即将产生的</em>接触，而不是当前帧中<em>已经存在的</em>接触。当前帧的任何编码都不包含未来接触信息。</p>
+  </div>
+
+  <h3>z 在预测什么？</h3>
+  <p>Latent tactile tokens z 的训练目标 z*（在 Stage 1 中使用）定义为：</p>
+
+  <pre><code># z* = 未来 H=50 步的净触觉变化的编码
+# 对每个触觉视角 k:
+future_tac_diff_k = tac_{τ+H}_k - tac_{τ}_k   # 未来 H 步的触觉变化
+z_star_k = frozen_DINOv2(future_tac_diff_k)     # 编码后的未来触觉
+z_star = mean(z_star_1, ..., z_star_n)           # 跨视角平均
+# z_star: [B, 10, d]  —— 这就是 predictor 要去匹配的目标
+
+# Predictor 的输出 z ∈ R^{10×d} 被训练去匹配 z*
+# 用 symmetric InfoNCE + L1 reconstruction loss</code></pre>
+
+  <p>注意关键的区分：<code>tac_{τ+H} - tac_{τ}</code> 是<strong>未来</strong>触觉变化（τ到τ+H），而编码器的输入 <code>tac_{τ} - tac_0</code> 是<strong>当前</strong>触觉状态（相对于episode开头）。z* 编码的是<em>接下来50步会发生什么样的接触变化</em>。</p>
+
+  <h3>Predictor 能预测多准？</h3>
+  <p>Stage 1 训练完成后，在 378 个 held-out query 上，z 检索其匹配的 z*（在约32个候选中）的 top-1 准确率达到 <strong>92.3%</strong>，而随机基线仅 3.2%。</p>
+  <p>作为对照，仅用当前触觉编码 g（不经过 predictor）检索未来触觉目标只有 57% top-1。这证明 predictor 确实学到了超越当前输入的前瞻性信息。当候选池增大到 128 个时，predictor 仍有 81%，而 g 降到 40%——差距随难度增长而加大。</p>
+
+  <h3>与 JEPA 系列的关系</h3>
+  <p>这种"在学到的 latent space 中预测，而不是重建原始信号"的思路，直接沿袭了 Joint-Embedding Predictive Architecture (JEPA) 的理念：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>方法</th><th>预测目标</th><th>预测空间</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>I-JEPA</td><td>图像的 masked patches</td><td>learned latent space</td></tr>
+        <tr><td>V-JEPA</td><td>视频帧的未来 patch</td><td>learned latent space</td></tr>
+        <tr><td>LeWorldModel</td><td>未来像素的 latent</td><td>learned latent space</td></tr>
+        <tr><td><strong>N₀-VTLA</strong></td><td><strong>未来触觉变化的 latent</strong></td><td><strong>DINOv2 feature space</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>区别在于 N₀-VTLA 的 latent space 不是学出来的，而是冻结 DINOv2 的 feature space——这让目标更稳定，也避免了 representation collapse。</p>
+
+  <div class="strength">
+    <div class="strength-label">亮点</div>
+    <p>预测式触觉设计有明确的实验支撑。Figure 10 的 counterfactual probe 直接证明了：在同一观测、同一采样噪声下，有触觉和无触觉的动作轨迹在接触关键时刻分叉，在自由空间中重合。触觉路径在该"沉默"时沉默，在该"发言"时发言。</p>
+  </div>
+
+  <div class="note">
+    <div class="note-label">注意</div>
+    <p><strong>Free-latent 变体：</strong>论文定义了一个简化版本，完全跳过 Stage 1 的监督，z 仅通过 action gradient 塑造。这不需要未来触觉帧。虽然论文认为它是设计空间中的有效点，但实验表明全监督版本更好。</p>
+  </div>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>理解了核心的 latent tactile prediction 机制后，下一节看数据——NeoData 语料库的规模和跨平台规范化方案。
+</div>
+
+<!-- Section 4 -->
+<section id="s4">
+  <div class="section-number">04</div>
+  <h2>训练数据：NeoData 与跨平台规范化</h2>
+  <p class="section-lead">大规模触觉预训练的前提是大规模触觉数据。NeoData 是论文构建的多平台视觉-触觉机器人数据集。</p>
+
+  <h3>NeoData 语料库</h3>
+  <p>NeoData 覆盖单臂和双臂机器人操作平台（ARX X5、UR5e、Flexiv、Franka、Piper），以及 UMI 风格的手持采集夹爪（Neo TacUMI）。每根参与操作的夹爪手指都安装了自研的 visuo-tactile 传感器，触觉以图像流的形式读出。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>字段</th><th>规格</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>模态</td><td>3 RGB 视角 + 语言指令 + 本体感受 + 2/4 触觉流</td></tr>
+        <tr><td>帧率</td><td>30 fps，所有模态统一</td></tr>
+        <tr><td>RGB 分辨率</td><td>原始 640×480，训练时 resize 到 224×224</td></tr>
+        <tr><td>格式</td><td>LeRobot dataset format</td></tr>
+        <tr><td>语言标注</td><td>每任务多个 paraphrase 变体</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Canonical Action and State Schema</h3>
+  <p>这是从 π₀.₅ 直接继承的 32 维 canonical container：</p>
+
+  <pre><code># 32维 canonical action/state container
+# 前 20 维: 2个 arm slot × 10维/slot
+#   每个 slot: [position_3d, rot6d_6d, gripper_1d] = 10 维
+# 后 12 维: 始终为零（未使用）
+
+# 单臂 episodes: 只填第一个 slot，第二个 slot 全零
+# 双臂 episodes: 两个 slot 都填
+# 模型学会对零填充维度输出零 —— 单臂和双臂数据共存于一个模型</code></pre>
+
+  <div class="recap">
+    <div class="recap-title">回顾：π₀.₅ 的跨机器人统一</div>
+    <p>如果你记得 π₀.₅ 指南，这个 32 维 container 设计是 π₀.₅ 的关键创新之一——它让不同形态的机器人数据可以在同一个 flow matching objective 下共同训练。N₀-VTLA 完全继承了这一设计，意味着触觉数据也通过同一个 container 接入。actions 存储为绝对末端执行器 poses，训练时转为 chunk-relative（相对于每个 chunk 的第一帧）。</p>
+  </div>
+
+  <h3>触觉采集规范</h3>
+  <p>每个 episode 开头至少 0.5 秒的夹爪打开静止期，录制零接触基线帧。后续所有触觉帧<strong>相对于这个基线</strong>解释。这保证了差分编码 <code>tac_τ - tac_0</code> 的一致性。</p>
+
+  <h3>数据质量验证</h3>
+  <p>论文在 Appendix C 列出了 9 条"红线"（不变量），每条都配了违反时的症状。例如：</p>
+  <p>— 动作没存为绝对末端执行器 poses → 训练 loss 正常下降，但策略在真机上无法使用<br>
+  — 视频 GOP（group of pictures）超过 30 帧 → 训练吞吐量因周期性卡顿崩溃<br>
+  — 缓存数据集未随数据更新而清除 → 训练静默读取过期缓存，loss 异常高且不收敛</p>
+
+  <div class="strength">
+    <div class="strength-label">亮点</div>
+    <p>数据工程的"红线-症状"对照表极其实用。这是很多大规模机器人学习项目踩过的坑，论文把它们系统整理出来，对社区有很大参考价值。</p>
+  </div>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>数据就绪后，下一节进入训练流程——三阶段触觉路径上线方案和 ALTER 离线 RL。
+</div>
+
+<!-- Section 5 -->
+<section id="s5">
+  <div class="section-number">05</div>
+  <h2>训练范式：三阶段触觉路径上线 + ALTER 离线 RL</h2>
+  <p class="section-lead">把一个新初始化的触觉路径安全地嫁接到预训练好的 VLA 上，而不破坏已有能力——这需要精心设计的阶段式训练。</p>
+
+  <h3>总体训练流程</h3>
+  <pre><code># N₀-VTLA 的训练阶段全景
+# ================================
+# Phase A: Base Pre-training (在 NeoData 上，cluster scale)
+#   → 得到 π₀.₅-style 的 VLA checkpoint
+
+# Phase B: Three-Stage Latent-Tactile Training
+#   Stage 1: Ground the predictor (冻结 base policy)
+#   Stage 2: Align latents with action expert (冻结 predictor + VLM, mask prefix)
+#   Stage 3: End-to-end joint training (解冻除触觉编码器外的一切)
+#   → 得到 N₀-VTLA pretrained checkpoint
+
+# Phase C: Supervised Task Adaptation (SFT)
+#   几百条示范 → 微调到具体任务
+
+# Phase D (可选): ALTER 离线 RL
+#   从部署数据中学习 → 进一步提升</code></pre>
+
+  <h3>Stage 1：Grounding the Predictor</h3>
+  <p><strong>冻结什么：</strong>整个 base policy（VLM + Action Expert）。<br>
+  <strong>训练什么：</strong>只训练 Predictor、触觉线性投影和重建头。<br>
+  <strong>目标：</strong>让 z 编码有意义的未来触觉信息。</p>
+
+  <pre><code># Stage 1 Loss
+s_ij = cosine_sim(mean_pool_l2norm(z_i), mean_pool_l2norm(z*_j))
+
+L_NCE = -(1/2B) * Σ_i [
+    log(exp(s_ii) / Σ_j exp(s_ij)) +   # z_i 检索 z*_i (正方向)
+    log(exp(s_ii) / Σ_j exp(s_ji))      # z*_i 检索 z_i (反方向)
+]
+
+L_rec = || r_ψ(z) - D̄_{τ→τ+H} ||₁    # 重建粗糙的未来触觉差分场
+
+L_1 = L_NCE + λ_rec * L_rec
+
+# 为什么两个 loss？
+# InfoNCE: 让 z 能检索到正确的未来触觉目标 (判别性)
+# L1 重建: 锚定 z 到接触的空间布局 (防止捷径 latent)</code></pre>
+
+  <p>因为梯度只流过浅层 predictor stack，这个阶段计算廉价、收敛快速。</p>
+
+  <h3>Stage 2：Aligning Latents with Action Expert</h3>
+  <p><strong>冻结什么：</strong>Predictor（Stage 1 checkpoint）+ VLM backbone。<br>
+  <strong>训练什么：</strong>latent-to-expert projection + Action Expert。<br>
+  <strong>关键操作：</strong>Vision-language prefix 的 keys/values 对 action queries 被 <strong>mask 掉</strong>。</p>
+
+  <pre><code># Stage 2: Action Expert 只能通过 z 获取信息
+# prefix → ✗ (masked, action queries 看不到)
+# z → ✓ (action queries 只能 attend to z 和 noised actions)
+#
+# 效果: action loss 的唯一下降路径是学会从 z 中读取触觉信息
+#       Expert 被迫学会与 z 的接口</code></pre>
+
+  <p>这个 masking 策略借鉴了 staged alignment 的思路——先在隔离环境中建立新接口，再放到完整系统中联合训练。</p>
+
+  <h3>Stage 3：End-to-End Joint Training</h3>
+  <p><strong>解冻什么：</strong>除了始终冻结的 DINOv2 触觉编码器骨干，其他全部解冻。<br>
+  <strong>移除 mask：</strong>prefix-to-expert 的直接路径恢复，Expert 同时看到 scene + instruction + z。<br>
+  <strong>只用 action objective：</strong>Stage 1 的 contrastive + reconstruction loss 不再使用，predictor 仅通过 action gradient 保持 grounding。</p>
+
+  <div class="note">
+    <div class="note-label">注意</div>
+    <p><strong>为什么三阶段而不是一步到位？</strong>Stage 1 固定"z 代表什么"，Stage 2 固定"Expert 怎么用 z"，Stage 3 在两者都已建立的基础上联合优化。Free-latent 变体把三个阶段折叠成一个，但 z 会退化成 prefix 的副本或被绕过——因为没有任何东西阻止 bottleneck 走捷径。</p>
+  </div>
+
+  <h3>ALTER：从部署数据中离线学习</h3>
+  <p>ALTER（Advantage Labeling from Trajectory Events and Relative Progress）是一套离线 RL 方法，不需要额外的环境交互：</p>
+
+  <pre><code># ALTER 的工作流程
+# ================================
+
+# 1. 构建部署语料库
+corpus = {
+    clean_demos,           # 干净的遥操作示范
+    autonomous_rollouts,   # 自主执行（可能有失败）
+    HIL_rollouts           # 人在环干预（含恢复轨迹）
+}
+
+# 2. 标注 stage progress
+#   干净示范 → 触觉接触变化 + 末端运动 + 夹爪状态 + 视觉GEBD
+#             → 分段 → VLM 将分段映射到任务模板 → 密集 progress 标签
+#   自主/HIL → 触觉检测 object-drop → 稀疏偏好对
+#              HIL 日志 → correction intervals → 稀疏偏好对
+
+# 3. 训练 pairwise progress model A_θ(x_a, x_b) ∈ [-1, 1]
+#   L = MSE(A_θ, φ(x_a)-φ(x_b))          # 示范对的回归
+#     + λ * hinge(m - y*A_θ(x_a, x_b))²  # 事件对的排序
+
+# 4. 冻结 A_θ, 为每条轨迹的每帧打标签
+φ̂_t = A_θ(x_t, x_0)    # global progress (vs episode start)
+r̂_t = A_θ(x_{t+H}, x_t) # local change (one chunk later)
+# → 分配 stage → 在 stage 内按 r̂_t 排序
+# → top ρ=30% → "Advantage: positive"
+# → bottom 70% → "Advantage: negative"
+
+# 5. 将标签拼接到 task prompt, 继续 flow matching training
+#   部署时永远使用 "Advantage: positive"</code></pre>
+
+  <h3>Duration-Calibrated Stage Progress</h3>
+  <p>一个巧妙的细节：stage progress 按各阶段的<strong>平均持续时间</strong>加权，而不是等分 [0,1] 区间。这避免了一个短暂的过渡阶段和一个长时间的操作阶段在 progress 空间中占同样大小。</p>
+
+  <div class="recap">
+    <div class="recap-title">回顾：与 π₀.₅ + RECAP 的对比</div>
+    <p>在 π₀.₅ 的后续工作 π*₀.₆ (RECAP) 中，Physical Intelligence 同样做了 advantage-conditioned offline RL。ALTER 的主要区别在于：（1）用触觉信号检测 object-drop 事件来提供稀疏偏好对；（2）progress model 的目标按 stage duration 加权；（3）事件对使用 hinge loss 而非简单回归。两者都属于 advantage-conditioned offline RL 的范畴，但 ALTER 更强调利用触觉信号来构建训练信号。</p>
+  </div>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>训练流程理清了。下一节分析关键的设计决策和消融实验——三阶段真的比一步到位好吗？预测式真的比反应式好吗？
+</div>
+
+<!-- Section 6 -->
+<section id="s6">
+  <div class="section-number">06</div>
+  <h2>设计决策与消融：为什么预测而非反应？</h2>
+  <p class="section-lead">论文中几个关键决策都有定量支撑。我们逐一拆解最重要的实验证据。</p>
+
+  <h3>Perturbation Probe：z 编码的是触觉还是视觉？</h3>
+  <p>通过交换输入来测量 z 的敏感性：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>操作</th><th>z 的 centered-cosine 位移</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>交换触觉输入</td><td>~0.9</td></tr>
+        <tr><td>交换 RGB + prompt</td><td>~0.2</td></tr>
+        <tr><td>触觉/视觉 敏感度比</td><td>Stage 1 后: 4.3× / 联合训练后: 1.4×</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>联合训练后比值降低是预期的——因为 Stage 3 中 action gradient 也让 z 部分编码视觉信息。但 z 仍然"触觉倾向"（tactile-leaning），没有退化成 prefix 的副本。</p>
+
+  <h3>Counterfactual Probe：触觉在何时起作用？</h3>
+  <p>Figure 10 是论文中最有说服力的分析之一。在<strong>完全相同的观测和采样噪声</strong>下，比较有触觉 vs 移除触觉的预测动作轨迹：</p>
+  <p>— <strong>Firm contact（紧密接触）</strong>时刻：轨迹分叉，有触觉的路径成功<br>
+  — <strong>Grasp（抓取）</strong>时刻：轨迹分叉，有触觉的路径成功<br>
+  — <strong>Free space（自由空间）</strong>：两条轨迹完全重合</p>
+
+  <p>这直接证明了触觉路径的贡献是<strong>选择性的</strong>——它只在接触决定结果的时候介入。</p>
+
+  <h3>预测 vs 反应 vs 仅当前编码</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>方法</th><th>Top-1 检索准确率（32候选）</th><th>Top-1 检索准确率（128候选）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>随机基线</td><td>3.2%</td><td>~0.8%</td></tr>
+        <tr><td>当前触觉编码 g</td><td>57%</td><td>40%</td></tr>
+        <tr><td><strong>Predictor 输出 z</strong></td><td><strong>92.3%</strong></td><td><strong>81%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>z 大幅超越 g，而且差距随候选池增大而扩大。这说明 predictor 真正学到了超越"自相关"（当前触觉和未来触觉的自然相似性）的前瞻性信息。</p>
+
+  <h3>ALTER vs 其他离线 RL 方法</h3>
+  <p>论文在三个真机任务上对比了 ALTER 与 χ₀（一种基于均匀 stage spacing + elapsed time 的 progress 方法）：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>方法</th><th>Towel Folding</th><th>Bag Packing</th><th>Cardboard Box Folding</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>π₀.₅-SFT</td><td>40%</td><td>20%</td><td>5%</td></tr>
+        <tr><td>π₀.₅+χ₀</td><td>80%</td><td>65%</td><td>55%</td></tr>
+        <tr><td>π₀.₅+ALTER</td><td>90%</td><td>75%</td><td>60%</td></tr>
+        <tr><td>N₀-VTLA-SFT</td><td>50%</td><td>35%</td><td>20%</td></tr>
+        <tr><td><strong>N₀-VTLA+ALTER</strong></td><td><strong>95%</strong></td><td><strong>80%</strong></td><td><strong>75%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="strength">
+    <div class="strength-label">亮点</div>
+    <p>两个关键发现：（1）ALTER 在两个 backbone 上都优于 χ₀，表明 duration-calibrated progress + event-based preferences 是更好的离线 RL 信号；（2）N₀-VTLA backbone 在 ALTER 下仍保持一致的优势（+5% across all tasks），说明更强的触觉预训练和更好的离线 RL 是互补的。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="weakness-label">不足</div>
+    <p>论文没有提供 free-latent 变体 vs 完整三阶段训练在下游任务上的定量消融对比。虽然提到 free-latent "collapse this recipe into a single joint stage"，但没有给出它在 NeoReal 或 NeoSim 上的成功率数字。这个消融对于验证三阶段训练的必要性至关重要。</p>
+  </div>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>设计决策有了定量支撑。下一节进入完整实验结果——N₀-VTLA 在 9 个真机任务和 20 个仿真任务上的表现。
+</div>
+
+<!-- Section 7 -->
+<section id="s7">
+  <div class="section-number">07</div>
+  <h2>实验评估：真机与仿真的全面对比</h2>
+  <p class="section-lead">N₀-VTLA 在两个 benchmark 上全面领先：9 任务真机 NeoReal 和 20 任务仿真 NeoSim+UniVTAC。</p>
+
+  <h3>NeoReal 真机结果（9 个任务）</h3>
+  <p>对比基线：ACT 和 π₀.₅（均在统一协议下内部复现）。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>指标</th><th>ACT</th><th>π₀.₅</th><th>N₀-VTLA</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>平均成功率</td><td>0%</td><td>29.4%</td><td><strong>47.2%</strong></td></tr>
+        <tr><td>平均 Progress Score (100分制)</td><td>10.2</td><td>42.3</td><td><strong>56.8</strong></td></tr>
+        <tr><td>赢的任务数</td><td>0/9</td><td>0/9</td><td><strong>9/9</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>ACT 没有完成任何一个任务，平均只拿到 10.2 分 progress score（停在最早的 checkpoint）。N₀-VTLA 在所有 9 个任务上都超过最强基线。</p>
+
+  <h3>最有说服力的任务案例</h3>
+
+  <p><strong>Socket Plugging（插拔插头）：N₀-VTLA 85% vs π₀.₅ 60%</strong><br>
+  这是最明显的触觉收益。π₀.₅ 一旦视觉对齐认为插入可行就执行向下运动，如果插头碰到边缘而没进入插槽，它会继续强行推入，最终失败。N₀-VTLA 感知到意外接触后<strong>抬臂、重新对齐、重试</strong>——把插入从"一次性视觉承诺"变成了"闭环接触感知重试"。</p>
+
+  <p><strong>Bottle Standing（立瓶子）：N₀-VTLA 30% vs π₀.₅/ACT 均 0%</strong><br>
+  操作对象是空的软塑料瓶。π₀.₅ 夹爪关闭过度，将瓶子整个夹起。N₀-VTLA 对夹爪开合做<strong>细微连续调整</strong>，保持足够接触力控制瓶子但不至于夹起——触觉传感器的形变信号虽然不直接测量力，但与接触力强耦合，成为调节夹持力的实用反馈。</p>
+
+  <p><strong>Board Insertion（插板）：N₀-VTLA 25% vs π₀.₅/ACT 均 0%</strong><br>
+  这个任务两个基线都完全失败，N₀-VTLA 是唯一能完成的模型。</p>
+
+  <h3>NeoSim + UniVTAC 仿真结果（20 个任务）</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Benchmark</th><th>π₀.₅</th><th>StarVLA-α</th><th>InternVLA-A1</th><th>Xiaomi-R-0</th><th>N₀-VTLA</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>UniVTAC (8 tasks) 平均</td><td>41.4%</td><td>56.1%</td><td>67.1%</td><td>54.3%</td><td><strong>83.1%</strong></td></tr>
+        <tr><td>NeoSim 单臂 (4 tasks)</td><td>68.8%</td><td>49.3%</td><td>23.8%</td><td>42.0%</td><td><strong>73.8%</strong></td></tr>
+        <tr><td>NeoSim 双臂 (8 tasks)</td><td>34.3%</td><td>10.1%</td><td>1.0%</td><td>14.1%</td><td><strong>39.4%</strong></td></tr>
+        <tr><td><strong>全 20 任务均值</strong></td><td>44.0%</td><td>23.2%</td><td>8.6%</td><td>23.4%</td><td><strong>63.8%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>几个值得注意的点：</p>
+  <p>— N₀-VTLA 在 UniVTAC 上的 83.1% 比最强外部基线 InternVLA-A1 的 67.1% 高出 16 个百分点<br>
+  — 双臂任务是所有方法的滑铁卢：专家基线跌到个位数（InternVLA-A1 仅 1.0%），N₀-VTLA 和 π₀.₅ 是仅有的保持合理性能的模型<br>
+  — 全 20 任务均值 63.8% vs π₀.₅ 的 44.0%——优势近 20 个百分点，完全来自触觉路径（因为禁用触觉 flag 后 N₀-VTLA 等价于 base policy）</p>
+
+  <div class="note">
+    <div class="note-label">注意</div>
+    <p><strong>公平性声明：</strong>所有外部基线（StarVLA-α、InternVLA-A1、Xiaomi-Robotics-0、GigaWorld-Policy）都在统一协议下评测（100 条示范训练，固定 prompt），但这些模型的原始训练数据和预训练规模各不相同。N₀-VTLA 的优势不完全来自触觉——它继承了 π₀.₅ 的强 backbone 和跨机器人预训练。</p>
+  </div>
+
+  <h3>论文的四个核心发现</h3>
+  <p>论文在 Section 6 "Findings" 中总结了四个发现，值得逐一记住：</p>
+  <p><strong>1.</strong> 触觉把插入从"一次性视觉承诺"变成"接触感知重试循环"（Socket Plugging, Board Insertion）</p>
+  <p><strong>2.</strong> 触觉通过夹爪开合调节实现了细粒度力控（Bottle Standing）</p>
+  <p><strong>3.</strong> 触觉精确在"接触决定结果"的时刻改变动作（counterfactual probe）</p>
+  <p><strong>4.</strong> 更强的触觉预训练在 ALTER 下仍保持优势（VTLA+ALTER > VLA+ALTER）</p>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>实验结果确认了触觉的价值。下一节看部署时的具体细节——action chunk 的执行方式和触觉基线重置。
+</div>
+
+<!-- Section 8 -->
+<section id="s8">
+  <div class="section-number">08</div>
+  <h2>部署细节：Action Chunk 执行与触觉基线重置</h2>
+  <p class="section-lead">从训练到部署有几个容易踩的坑。论文在 Appendix D 中明确指出了执行合约。</p>
+
+  <h3>Full Action-Chunk Execution</h3>
+  <p>论文强调了一个<strong>必须遵守的部署合约</strong>：必须执行完整个 H=50 步的 action chunk，才能请求下一个 chunk。</p>
+
+  <div class="note">
+    <div class="note-label">注意</div>
+    <p><strong>为什么不能提前 re-plan？</strong>如果只执行 chunk 的前 N 步（N &lt; 50）就重新规划，夹爪关闭命令集中在 chunk 尾部——提前截断会导致机械臂到达目标位置但夹爪永远不闭合。这不是模型的 bug，而是执行时序的问题。模型在完整 chunk 执行下正确关闭夹爪。</p>
+  </div>
+
+  <h3>触觉基线重置</h3>
+  <p>部署时，每个 episode 开始时发送 reset 消息，清除之前存储的触觉基线。第一帧观测自动成为新的零接触参考。之后该 episode 内所有触觉帧都相对于这个基线做差分。如果某个视角的触觉流不可用，系统 fallback 到"无接触"而不是报错。</p>
+
+  <h3>推理流程</h3>
+  <pre><code># 单次推理请求
+# 输入: RGB images + tactile views + robot state + language instruction
+# 计算: 
+#   1. PaliGemma 编码 → prefix
+#   2. DINOv2(tac_diff) → g → Predictor → z
+#   3. Flow Matching: 10 Euler steps 去噪 → action chunk [50, 32]
+# 输出: 50步 action chunk + timing info
+
+# 部署执行:
+#   执行完整 50 步 → 请求下一个 chunk → 循环</code></pre>
+
+  <div class="recap">
+    <div class="recap-title">回顾：与 π₀.₅ 的部署对比</div>
+    <p>π₀.₅ 同样使用 H=50 的 action chunk 和 10 步 Euler 去噪。N₀-VTLA 在此基础上增加了触觉编码和 predictor 的计算开销，但论文没有给出具体的推理延迟数字。考虑到 DINOv2 是冻结的且 predictor 是轻量级的，额外开销应该相对可控。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="weakness-label">不足</div>
+    <p>论文完全没有报告推理延迟、GPU 显存占用、或具体的硬件型号和设备数量。对于声称"foundation model"的工作，这些部署关键指标的缺失让实际复现困难。Appendix B 也只说了"cluster scale"和"modern accelerators"这样模糊的描述。</p>
+  </div>
+</section>
+
+<div class="chain">
+  <strong>→ 衔接：</strong>最后一节，退后一步看全局——N₀-VTLA 没解决什么，以及未来的可能方向。
+</div>
+
+<!-- Section 9 -->
+<section id="s9">
+  <div class="section-number">09</div>
+  <h2>局限与反思：开放问题与未来方向</h2>
+  <p class="section-lead">N₀-VTLA 在触觉集成的设计空间中占据了一个有效位置，但距离"通用触觉操作"仍有距离。</p>
+
+  <h3>论文承认的局限</h3>
+  <p>论文在 Future Work 中提到两个方向：</p>
+  <p><strong>1.</strong> Free-latent 和 supervised 是设计空间中的两个点，中间有更多可能。predictive-latent 的框架值得在当前 predictor 架构之外继续探索。</p>
+  <p><strong>2.</strong> ALTER 需要扩展到更广泛的任务类型来验证其通用性。</p>
+
+  <h3>更深层的开放问题</h3>
+
+  <div class="weakness">
+    <div class="weakness-label">不足</div>
+    <p><strong>触觉传感器的依赖性：</strong>N₀-VTLA 使用自研的 visuo-tactile 传感器。虽然冻结 DINOv2 + 可训练投影层理论上支持新传感器接入，但论文没有实际展示跨传感器迁移的效果。如果换成市面上的 DIGIT、GelSight 等传感器，性能是否保持？</p>
+  </div>
+
+  <div class="weakness">
+    <div class="weakness-label">不足</div>
+    <p><strong>数据规模的模糊性：</strong>NeoData 的具体规模（episode 数、总时长）没有在本报告中给出，而是推迟到 companion data report [51]。对于"首个大规模触觉预训练"的声明，不给出数据量级让读者难以评估"大规模"到底多大。</p>
+  </div>
+
+  <div class="weakness">
+    <div class="weakness-label">不足</div>
+    <p><strong>灵巧手的缺失：</strong>所有实验都在平行夹爪上完成。触觉对灵巧手操作（多指抓取、旋转、滚动）的价值可能更大，但论文完全没有涉及灵巧手场景。</p>
+  </div>
+
+  <h3>与已读论文的对比总结</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>维度</th><th>OpenVLA</th><th>π₀ / π₀.₅</th><th>N₀-VTLA</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>VLM backbone</td><td>Llama-2 7B</td><td>PaliGemma 3B</td><td>PaliGemma 3B（继承 π₀.₅）</td></tr>
+        <tr><td>动作生成</td><td>自回归离散 token</td><td>Flow Matching</td><td>Flow Matching（继承 π₀.₅）</td></tr>
+        <tr><td>触觉</td><td>✗</td><td>✗</td><td>✓ Latent Tactile Tokens</td></tr>
+        <tr><td>离线 RL</td><td>✗</td><td>π*₀.₆ RECAP</td><td>ALTER</td></tr>
+        <tr><td>跨机器人</td><td>OXE 数据</td><td>π₀.₅ 跨平台</td><td>NeoData 跨平台（含触觉）</td></tr>
+        <tr><td>开源</td><td>✓ 完整</td><td>✗ / 部分权重</td><td>代码开源，数据另报</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>站在更大图景中</h3>
+
+  <p>N₀-VTLA 的核心贡献不仅是"加了触觉"，而是提出了一种<strong>触觉作为预测目标而非观测输入</strong>的设计哲学。这种 predictive latent 的思路可以推广：不仅仅是触觉，任何稀疏、事件性的传感信号（力/力矩传感器、声音、温度）都可以用这种"预测而非拼接"的方式集成到 VLA 中。</p>
+
+  <p>另一个值得关注的方向是 ALTER 与更通用的 offline RL 方法（如 RECAP）的融合。ALTER 的触觉 event detection 和 duration-calibrated progress 是领域特定的好设计，但它的适用范围目前只验证了三个任务。能否将这些信号自动化、泛化到更广泛的任务集，是一个有趣的研究问题。</p>
+
+  <div class="highlight">
+    <p><strong>总结一句话：</strong>N₀-VTLA 证明了"触觉应该被预测而非被感知"这一设计哲学在接触密集操作中的有效性，并通过精心设计的三阶段训练将新的触觉路径安全嫁接到强大的 π₀.₅ backbone 上。ALTER 进一步展示了触觉信号不仅用于在线控制，还能为离线 RL 提供结构化的训练信号。</p>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

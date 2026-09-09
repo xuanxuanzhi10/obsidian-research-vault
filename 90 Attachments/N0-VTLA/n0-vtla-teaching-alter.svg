@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <style>.h{font:bold 28px sans-serif;fill:#252321}.t{font:21px sans-serif;fill:#2e2b28}.s{font:17px sans-serif;fill:#5d5953}.box{stroke:#968e83;stroke-width:2;rx:18}.a{stroke:#716a62;stroke-width:3;fill:none;marker-end:url(#m)}</style><defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#716a62"/></marker></defs>
+  <text x="45" y="48" class="h">ALTER：不估计奖励值，而是把“这一段做得好不好”变成文字条件</text>
+  <rect x="35" y="95" width="220" height="130" class="box" fill="#dcebf0"/><text x="70" y="140" class="t">干净示范</text><text x="57" y="178" class="s">阶段内稠密进度对</text>
+  <rect x="35" y="280" width="220" height="130" class="box" fill="#efdcea"/><text x="58" y="325" class="t">失败 / HIL</text><text x="55" y="363" class="s">掉落、纠正事件偏好对</text>
+  <rect x="335" y="160" width="225" height="185" class="box" fill="#f4ded8"/><text x="368" y="215" class="t">成对进度模型</text><text x="370" y="258" class="s">Aθ(xa, xb)</text><text x="360" y="305" class="s">训练后冻结</text>
+  <path d="M255 160 H335" class="a"/><path d="M255 345 H335" class="a"/>
+  <rect x="640" y="95" width="230" height="130" class="box" fill="#e8edd6"/><text x="671" y="140" class="t">全局任务阶段</text><text x="659" y="178" class="s">当前帧 vs episode 起点</text>
+  <rect x="640" y="280" width="230" height="130" class="box" fill="#e8edd6"/><text x="671" y="325" class="t">局部执行变化</text><text x="662" y="363" class="s">t+H vs 当前帧</text>
+  <path d="M560 230 L640 160" class="a"/><path d="M560 275 L640 345" class="a"/>
+  <rect x="950" y="145" width="215" height="215" class="box" fill="#eee4cd"/><text x="988" y="198" class="t">阶段内排名</text><text x="978" y="242" class="s">top 30% → positive</text><text x="976" y="278" class="s">其余 → negative</text><text x="982" y="324" class="t">追加到 prompt</text>
+  <path d="M870 160 H950" class="a"/><path d="M870 345 H950" class="a"/>
+  <text x="45" y="475" class="s">部署时始终输入 “Advantage: positive”；策略架构和 flow-matching 目标不变，也不再与环境交互。</text>
+</svg>

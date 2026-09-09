@@ -27,6 +27,7 @@ created: 2026-09-07
 - [[T-Rex]] — 慢速视觉规划 + 高频触觉细化的灵巧操作 VLA
 - [[FTP-1]] — MTTS 统一异构触觉并跨传感器预训练
 - [[N0-TWAM]] — 联合预测未来视频/触觉，并用当前触觉闭环纠错
+- [[N0-VTLA]] — 用 10 个预测性触觉 latent 条件化 π0.5，并以 ALTER 利用部署数据
 
 ## 核心概念
 
@@ -46,6 +47,8 @@ created: 2026-09-07
 - [[Morphology-Aware Tactile Token Space]]
 - [[预测触觉与观测触觉]]
 - [[触觉标点]]
+- [[Latent Tactile Token]]
+- [[ALTER]]
 
 ## 横向入口
 
