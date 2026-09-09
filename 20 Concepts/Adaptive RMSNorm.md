@@ -2,7 +2,7 @@
 type: concept
 topic: conditioning
 status: deep-explained
-verification: FTP-1-appendix-B3-checked
+verification: FTP-1-appendix-B3-and-pi05-appendix-E-checked
 aliases: [自适应 RMSNorm, AdaRMSNorm]
 source_guide: "[[tactile-vla-qa2.html]]"
 ---
@@ -88,7 +88,7 @@ def ftp1_condition(proprio, flow_timestep):
 | 模型 | Adaptive norm 接收什么 | State 走什么路径 | 已核对结论 |
 |---|---|---|---|
 | π0 | 不使用 AdaRMSNorm | continuous state 作为 suffix state token | 官方 OpenPI 代码 |
-| π0.5 | Flow Matching timestep | state 离散化后进入 tokenized prompt | 官方 OpenPI 代码与配置 |
+| π0.5 | Flow Matching timestep | state 离散化后进入 tokenized prompt | π₀.5 Appendix E + 官方 OpenPI 代码 |
 | HyVLA | 论文未报告使用 AdaRMS/AdaLN | projected state 是独立 `[s_t]` block | HyVLA Sec. 2.3 |
 | FTP-1 | timestep + proprioception | final design 用二者共同调制 Action Expert | FTP-1 Appendix B.3 + 官方代码 |
 

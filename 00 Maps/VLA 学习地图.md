@@ -49,6 +49,8 @@ created: 2026-09-07
 - [[触觉标点]]
 - [[Latent Tactile Token]]
 - [[ALTER]]
+- [[异构协同训练]]
+- [[层级 VLA 推理]]
 
 ## 横向入口
 

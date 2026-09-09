@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="540" viewBox="0 0 1200 540">
+  <rect width="1200" height="540" fill="#faf8f3"/>
+  <style>.title{font:700 29px sans-serif;fill:#292622}.h{font:700 18px sans-serif;fill:#292622}.t{font:15px sans-serif;fill:#514b44}.box{fill:#fff;stroke:#c9bca9;stroke-width:2}.arrow{stroke:#8f6946;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#8f6946"/></marker></defs>
+  <text x="60" y="55" class="title">同一模型的两次推理：先决定局部目标，再生成动作</text>
+  <rect x="55" y="110" width="245" height="145" rx="16" class="box"/>
+  <text x="177" y="145" text-anchor="middle" class="h">观察 + 总任务</text>
+  <text x="177" y="180" text-anchor="middle" class="t">4 路相机 + tokenized state</text>
+  <text x="177" y="210" text-anchor="middle" class="t">“clean the bedroom”</text>
+  <path d="M300 182 H390" class="arrow"/>
+  <rect x="390" y="110" width="260" height="145" rx="16" fill="#e8f1ef" stroke="#8bb1a8" stroke-width="2"/>
+  <text x="520" y="145" text-anchor="middle" class="h">① 自回归生成子任务</text>
+  <text x="520" y="180" text-anchor="middle" class="t">VLM text head</text>
+  <text x="520" y="210" text-anchor="middle" class="t">“pick up the pillow”</text>
+  <path d="M650 182 H740" class="arrow"/>
+  <rect x="740" y="110" width="405" height="145" rx="16" fill="#ece6f5" stroke="#a58bc2" stroke-width="2"/>
+  <text x="942" y="145" text-anchor="middle" class="h">② 条件化 Flow Action Expert</text>
+  <text x="942" y="180" text-anchor="middle" class="t">noise → 10 次 flow 积分 → 50 个动作位置</text>
+  <text x="942" y="210" text-anchor="middle" class="t">低层条件用预测子任务 ℓ̂，而不是只用总任务 ℓ</text>
+  <path d="M1035 255 C1100 340 965 405 860 388" class="arrow"/>
+  <rect x="365" y="335" width="495" height="110" rx="16" fill="#f1ece4" stroke="#b79f83" stroke-width="2"/>
+  <text x="612" y="375" text-anchor="middle" class="h">执行 action chunk 的一部分 → 获得新观察 → 重复</text>
+  <text x="612" y="407" text-anchor="middle" class="t">高层子任务把长时程问题改写成一串短时程可执行条件</text>
+  <path d="M365 388 C200 395 155 320 177 255" class="arrow"/>
+  <text x="600" y="510" text-anchor="middle" class="t">教学图：强调条件依赖与闭环时序；论文未给出独立规划器或显式符号状态机。</text>
+</svg>

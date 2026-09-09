@@ -75,7 +75,11 @@ Sec. 2.3 Eq. (3) 写 `ε-A`，但它给出的插值式从噪声 `τ=0` 到数据
 |---|---|---|
 | [[Hy-Embodied-0.5-VLA]] | 370M Action Expert，10-step Euler，生成 relative-EEF chunk | 已核对全文 |
 | [[π₀]] | H=50、10-step Euler、shifted-beta τ；速度目标 `A-ε` | 已核对全文与 Appendix B/D |
-| [[π₀.5]] | 与 FAST 离散动作表示组成分阶段训练 | 待用原文 PDF 复核配置 |
+| [[π₀.5]] | FAST 离散预训练；后训练加入 300M Flow Expert；50-action chunk、10 次积分 | PDF Sec. IV + Appendix E 已核对 |
+
+## π₀.5 的符号警报
+
+π₀.5 写出的插值是 `a_τ=τa+(1-τ)ω`，按求导应得到 `a-ω`；但正文与 Eq. (1) 排版写成预测 `ω-a`。它与 π₀ 及“从噪声积分到数据”的常见方向不一致。复现时应核对官方代码的 integration direction，当前不把论文排版直接改写成无争议结论。
 
 ## 优势、代价与失败边界
 

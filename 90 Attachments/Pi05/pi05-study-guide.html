@@ -1,0 +1,1262 @@
+<!doctype html><html><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.B_zN8nKT.js","assets":"assets.8Gk803W0.js","comments":"comments.hEoja5zd.js","db":"db.DoKNwgX8.js","downloads":"downloads.th1YuAIk.js","embed":"embed.eqL6deQM.js","endpoints":"endpoints.CooJFPzL.js","mcp":"mcp.Ch3NPscy.js","network":"network.B5UA9Su4.js","permissions":"permissions.BNySkLV5.js","room":"room.Dc3WDo3b.js","sample":"sample.C2869FGz.js","self":"artifact.B_zN8nKT.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.Cil6ankx.js","comments":"_comments.e5-ml_Nr.js","translate":"_translate.5HCW4BJh.js","ldx":"_ldx.DycbNc-Q.js"}</script><script>(function(){"use strict";var fe=["light","dark","system"],de=/^[A-Za-z0-9_-]{1,64}$/,te=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,pe=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function me(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||pe.has(t)}var $e="http://www.w3.org/1999/xhtml",he="http://www.w3.org/2000/svg",_e=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ve=new Set(["script","style"]);function ye(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!_e.has(t):e.namespaceURI===he?!ve.has(t):!1}function x(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function we(e,t){const r=e.length,n=t.length;let a=0;for(;a<r&&a<n&&x(e.charCodeAt(a),t.charCodeAt(a));)a++;let o=0;for(;o<r-a&&o<n-a&&x(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:a,s:o}}function Ee(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,a=n.length,o=t.length,{p:c,s:i}=we(n,t);c===a&&i===0&&a===o||r.replaceData(c,a-c-i,t.slice(c,o-i));const m=r.data,f=e.ownerDocument.getSelection?.()??null,y=f!==null&&f.rangeCount>0&&(f.anchorNode===r||f.focusNode===r)?{anchor:f.anchorNode,anchorOffset:f.anchorOffset,focus:f.focusNode,focusOffset:f.focusOffset}:null;let d=-1,E=-1;for(let v=0;v<m.length&&v<t.length;v++){const A=m.charCodeAt(v),k=t.charCodeAt(v);A!==k&&x(A,k)&&(d<0&&(d=v),E=v)}const b=d>=0;if(b&&r.replaceData(d,E-d+1,t.slice(d,E+1)),b&&y!==null&&y.anchor!==null&&y.focus!==null)try{f.setBaseAndExtent(y.anchor,y.anchorOffset,y.focus,y.focusOffset)}catch{}}var be=new Set(["html","head","body","frameset"]);function ge(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&be.has(e.localName)}function Ae(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!de.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!te.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!te.test(r))return!1}return!0}function Le(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let a=0;a<n.length;a++)if(!t(n[a]))return!1;return!0}function Te(e){return e===null||typeof e!="object"?!1:Le(e.__frame_patch,Ae)}function Se(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function Re(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ke(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&fe.includes(r)}var O=/^[\w.-]+\.js$/;function Pe(e,t,r){return r?"inert":typeof t=="string"&&O.test(t)?e?[t]:"inert":e?"inert":"framed"}var Ye="frame_ldx_runtime",Oe="frame_ldx_build",Ge="script#an-form";function Ce(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function Me(){return{post:()=>{},on:()=>()=>{}}}var F="__frame_scroll",je=150,Ne=310,De=160,Be=3e4;function Ie(){let e=0,t=!1,r=!1,n=!1,a=0,o=null;const c=u=>{try{sessionStorage.setItem(F,JSON.stringify({y:u}))}catch{}},i=()=>{if(clearTimeout(e),o===null)return;const u=o;o=null,c(u)},m=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(i,je)};try{addEventListener("scroll",m,{passive:!0}),addEventListener("pagehide",i)}catch{}const f=()=>{let u;try{u=sessionStorage.getItem(F)}catch{return null}if(u===null)return null;let g;try{g=JSON.parse(u)}catch{g=null}const w=g?.y;if(!(typeof w=="number"&&Number.isFinite(w)&&w>=0)){try{sessionStorage.removeItem(F)}catch{}return null}return w};let y=!1;const d=u=>{try{const g=scrollY;scrollTo({top:u,left:0,behavior:"instant"}),a=u,n=!0,clearTimeout(e),o=null,c(u);const w=scrollY;w!==g&&(t=!0),w!==u&&!y&&(y=!0,addEventListener("load",()=>{try{if(scrollY===w){const M=f();d(M!==null?M:a)}}catch{}},{once:!0}))}catch{}},E=()=>{try{return!!location.hash}catch{return!0}};let b=!1;const v=()=>{try{if(b||innerWidth>Ne||innerHeight>De)return;b=!0;const u=Date.now(),g=()=>{try{removeEventListener("resize",g)}catch{}if(Date.now()-u>Be||r||E())return;const w=f();d(w!==null?w:a)};addEventListener("resize",g)}catch{}};let A=!1,k=!1;return{restore(){if(A||(A=!0,E()))return;const u=f();u!==null&&(d(u),v())},promoted(){if(k||(k=!0,E()))return;const u=f();u!==null?(d(u),v()):n&&d(a)}}}function Ue(e,t,r,n){let a=null;try{a=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:m=>m})??null}catch{}const o=window.Worker,c=o?.prototype,i=Object.freeze({Worker:o,workerOn:c?.addEventListener,workerPost:c?.postMessage,workerTerminate:c?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:a,origins:t});r(e).then(m=>m?.bootTopLevel?m.bootTopLevel(i,n):n.settle()).catch(()=>n.settle())}var Ve="modulepreload",Ze=function(e){return"/"+e},Je={},xe=function(t,r,n){let a=Promise.resolve();function o(c){const i=new Event("vite:preloadError",{cancelable:!0});if(i.payload=c,window.dispatchEvent(i),!i.defaultPrevented)throw c}return a.then(c=>{for(const i of c||[])i.status==="rejected"&&o(i.reason);return t().catch(o)})},Fe=window===top,re=Object.getOwnPropertyDescriptor(window,"claude"),j=Pe(Fe,window.__FRAME_PREAMBLE?.topLevel,re?.writable===!1),H=typeof j=="object"&&j[0],_=H?Me():Ce();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let a=0;a<r.length;a++){const o=r[a];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&j==="framed")try{_.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var He=1e4,ze=2e3,We=2e3,ne=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function oe(e){for(const t of ne)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var N=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),z=window.__FRAME_PREAMBLE?.transforms,W=window.__FRAME_PREAMBLE?.comments,q=window.__FRAME_PREAMBLE?.translate,K=window.__FRAME_PREAMBLE?.ldx;function C(e){return xe(()=>import("/_runtime/"+e),void 0)}function se(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:Y,hooks:B,pipe:()=>({wrap:(r,n)=>(...a)=>{try{return n(...a)}catch(o){return Promise.reject(o)}}})}}var D=null,S=null;function ae(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var X=!1,B={editBefore:null,edit:null};function qe(e,t,r=!1){const n=[];let a;if(r)try{B.editBefore?.(e)}catch{}for(const o of e.elements){const c=document.querySelector(`[data-id="${o.target}"]`);if(!c){a=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(i=>!me(i))){a=o.target;break}if(o.text!==void 0&&(!ye(c)||ge(c))){a=o.target;break}for(const[i,m]of Object.entries(o.attrsSet??{}))if(!ce(c,i)){try{c.setAttribute(i,m)}catch{}ie(c,i,m)}for(const i of o.attrsRemoved??[])ce(c,i)||(c.removeAttribute(i),ie(c,i,null));typeof o.text=="string"&&Ee(c,o.text),n.push(o.target)}if(r)try{B.edit?.(e.seq,n,a)}catch{}if(a!==void 0){_.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function ie(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function ce(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function le(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,X=!0):X&&(delete t.dataset.theme,t.style.colorScheme="",X=!1)}var I=new Map;function Ke(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function $(){for(const e of I.values())e.done||(e.nulled=!0,e.r(null))}var Xe=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),Y=(e,t)=>{const r=I.get(e);if(!r||r.done){r?.nulled&&S&&_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},S);return}const n=typeof t=="function"?Object.setPrototypeOf(t,Xe):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ue(){const e=re?.value??{};ae(window,"claude",e);for(const t of Object.keys(N)){if(e[t]!==void 0){ae(e,t,e[t]);continue}I.set(t,Ke())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(N,r))return Promise.resolve(null);const n=I.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(j==="framed"){const e=z&&O.test(z)?C(z).catch(()=>{}):Promise.resolve(void 0),t=s=>{if(s.type==="auxclick"&&s.button!==1)return;const h=s.target,p=h&&h.closest?h.closest("a[href],area[href]"):null;if(!p)return;const P=p.getAttribute("href");if(!P)return;let L;try{L=new URL(P,document.baseURI)}catch{return}if((L.protocol==="http:"||L.protocol==="https:")&&L.origin!==location.origin){s.preventDefault();const R=(p.getAttribute("target")??"").toLowerCase(),T=s.type==="auxclick"||s.metaKey||s.ctrlKey||s.shiftKey||s.altKey||!["","_self","_top","_parent"].includes(R);_.post({__frame_nav:!0,url:L.href,newTab:T},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=s=>{s.isTrusted&&(r.pointer=!0)},a=s=>{s.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",a,{capture:!0,passive:!0});const o={cb:null};addEventListener("keydown",s=>o.cb?.(s),!0),e.then(s=>s?.installEscapeForward?.(o,h=>{S&&_.post(h,S)})),e.then(s=>{s?.wireNav&&(s.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",a,!0),s.wireEngagement?.(r))});let c=null;try{c=Ie()}catch{}ue();let i=null,m=null,f=0;const y=_.on((s,h)=>{oe(h)&&Se(s)&&(i=s.__frame_init,S=h,y(),clearTimeout(f),m?.())});_.post({__frame_connect:!0},"*");const d=setTimeout,E=clearTimeout;let b=0;const v=()=>{try{_.post({__frame_alive:!0},"*")}catch{}b=d(v,ze)},A=()=>E(b);v(),addEventListener("load",A,{once:!0});const k=new Promise(s=>{m=s,f=setTimeout(()=>{y(),s()},He)}),u=document.readyState==="loading"?new Promise(s=>document.addEventListener("DOMContentLoaded",()=>s(),{once:!0})):Promise.resolve(),g=new WeakSet;addEventListener("error",s=>{s.target&&g.add(s.target)},!0);const w=()=>{let s=[];try{s=[...document.querySelectorAll("link[rel~=stylesheet]:not([rel~=alternate])")].filter(p=>!p.sheet&&!p.disabled&&!g.has(p)&&p.getAttribute("href")&&URL.canParse(p.href)&&(!p.media||matchMedia(p.media).matches))}catch{}let h=s.length;return h===0?Promise.resolve():new Promise(p=>{try{const P=d(p,We),L=()=>{--h===0&&(E(P),p())};for(const R of s)R.addEventListener("load",L,{once:!0}),R.addEventListener("error",L,{once:!0})}catch{p()}})};u.then(()=>{try{c?.restore()}catch{}});const M={cb:null};_.on((s,h)=>{if(oe(h)&&Re(s)){try{c?.promoted()}catch{}M.cb?.()}}),k.then(async()=>{if(!i||!S){$();return}le(i.theme);const s=S;let h=!1,p=!1;_.on((l,Z,U)=>{if(Z!==s)return;ke(l)&&le(l.__frame_theme.theme),Te(l)&&qe(l.__frame_patch,s,U);const J=l?.__fc_mode;J&&typeof J=="object"&&!h&&W&&O.test(W)&&(h=!0,C(W).then(ee=>ee.install?.(s,J.on===!0)).catch(()=>{}));const Q=l?.__ft_cmd;Q&&typeof Q=="object"&&!p&&q&&O.test(q)&&(p=!0,C(q).then(ee=>ee.install?.(s,Q)).catch(()=>{}))});const P=Object.keys(i.capabilities??{}).filter(l=>Object.hasOwn(N,l)).map(l=>[l,N[l]]).filter(l=>typeof l[1]=="string"&&O.test(l[1])),L=await Promise.allSettled(P.map(([,l])=>C(l))),R=await e,T=S;if(R?.buildBoot||_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},T),R?.buildBoot)try{D=R.buildBoot(i,R.TRANSFORMS??{},{shellOrigin:T,mount:Y,hooks:B},l=>_.post({__frame_cap_telemetry:l},T))}catch{_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},T),D=se(i,T)}else D=se(i,T);const G=l=>_.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:l}},T),V=D;L.forEach((l,Z)=>{const U=P[Z][0];if(l.status!=="fulfilled"){G(U);return}try{l.value?.install?.(V)}catch{G(U)}}),$(),await u,await w(),A(),_.post({__frame_ready:!0},S),e.then(l=>l?.installSizeReporter?.(T,M)),V.flags.has("frame_ldx_runtime")&&K&&O.test(K)&&document.querySelector("script#an-form")&&C(K).then(l=>l?.boot?.({shellOrigin:s,build:V.flags.has(Oe)})).catch(()=>!1).then(l=>{l!==!0&&G("_ldx")})})}else H&&(ue(),Ue(H,ne,C,{settle:$,mount:Y}))})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>π₀.5 学习指南</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --bg-card: #ffffff;
+    --bg-code: #eceae6;
+    --bg-highlight: #f0e6d4;
+    --bg-chain: #eee9e2;
+    --text: #2a2826;
+    --text-secondary: #65605a;
+    --text-tertiary: #948e88;
+    --accent: #9a6324;
+    --accent-light: #f0e6d4;
+    --accent-dark: #6d4518;
+    --border: #d8d4ce;
+    --border-light: #e6e2dc;
+    --chain-line: #c0bab2;
+    --tag-bg: #e4e0da;
+    --tag-text: #5a554e;
+    --warning-bg: #fef3e2;
+    --warning-border: #e8b94a;
+    --warning-text: #7a5d1a;
+    --serif: 'Noto Serif SC', 'Songti SC', serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', 'Menlo', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #191816;
+      --bg-card: #22201e;
+      --bg-code: #28261e;
+      --bg-highlight: #2e2518;
+      --bg-chain: #24221c;
+      --text: #e0dcd6;
+      --text-secondary: #9c9690;
+      --text-tertiary: #6c6660;
+      --accent: #d9a35b;
+      --accent-light: #2e2518;
+      --accent-dark: #eec88a;
+      --border: #383630;
+      --border-light: #2e2c26;
+      --chain-line: #484440;
+      --tag-bg: #32302a;
+      --tag-text: #aca6a0;
+      --warning-bg: #2e2818;
+      --warning-border: #8a7030;
+      --warning-text: #d4b86a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #191816;
+    --bg-card: #22201e;
+    --bg-code: #28261e;
+    --bg-highlight: #2e2518;
+    --bg-chain: #24221c;
+    --text: #e0dcd6;
+    --text-secondary: #9c9690;
+    --text-tertiary: #6c6660;
+    --accent: #d9a35b;
+    --accent-light: #2e2518;
+    --accent-dark: #eec88a;
+    --border: #383630;
+    --border-light: #2e2c26;
+    --chain-line: #484440;
+    --tag-bg: #32302a;
+    --tag-text: #aca6a0;
+    --warning-bg: #2e2818;
+    --warning-border: #8a7030;
+    --warning-text: #d4b86a;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--text);
+  }
+  .header .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 620px;
+  }
+
+  .nav {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 48px;
+  }
+  .nav-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+  .nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: nav-counter;
+  }
+  .nav li {
+    counter-increment: nav-counter;
+    margin-bottom: 6px;
+  }
+  .nav li a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 0;
+    transition: color 0.15s;
+  }
+  .nav li a:hover { color: var(--accent); }
+  .nav li a::before {
+    content: counter(nav-counter, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    width: 20px;
+  }
+
+  .chain {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 48px 0;
+    padding: 14px 20px;
+    background: var(--bg-chain);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
+  }
+  .chain-arrow {
+    font-size: 16px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .chain-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .section {
+    margin-bottom: 16px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 6px;
+    text-wrap: balance;
+    color: var(--text);
+  }
+  .section .section-lead {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    color: var(--text);
+  }
+  .section p {
+    margin: 0 0 14px;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--bg-code);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--text);
+  }
+  pre {
+    background: var(--bg-code);
+    border: 1px solid var(--border-light);
+    border-radius: 5px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 16px 0;
+    line-height: 1.6;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 13px;
+  }
+
+  .highlight {
+    background: var(--bg-highlight);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .highlight p {
+    margin: 0;
+    font-size: 14px;
+  }
+  .highlight strong {
+    color: var(--accent-dark);
+  }
+
+  .note {
+    background: var(--warning-bg);
+    border-left: 3px solid var(--warning-border);
+    padding: 14px 18px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+  }
+  .note p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--warning-text);
+  }
+  .note-label {
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .diagram {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 24px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  .diagram-caption {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    text-align: center;
+    margin-top: 12px;
+    font-family: var(--mono);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+
+  .mask-grid {
+    display: grid;
+    gap: 2px;
+    margin: 16px auto;
+    width: fit-content;
+  }
+  .mask-cell {
+    width: 28px;
+    height: 28px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+  }
+  .mask-cell.on {
+    background: var(--accent);
+    color: #fff;
+  }
+  .mask-cell.off {
+    background: var(--bg-code);
+    color: var(--text-tertiary);
+  }
+  .mask-cell.on2 {
+    background: #5a8a5a;
+    color: #fff;
+  }
+  .mask-label {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .series-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 12px;
+  }
+  .series-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; font-size: 14px; }
+    .header h1 { font-size: 24px; }
+    .section h2 { font-size: 19px; }
+    pre { padding: 12px 14px; }
+    .mask-cell { width: 22px; height: 22px; font-size: 9px; }
+  }
+</style>
+
+<div class="header">
+  <div class="header-tag">Sequential Learning Guide</div>
+  <h1>从零理解 π₀.5：开放世界中的通用机器人</h1>
+  <div class="subtitle">Physical Intelligence 的 π₀.5 模型，通过多源异构数据协同训练与分层推理，让机器人首次在从未见过的真实家庭中完成 10-15 分钟的长程操作任务。本指南逐层拆解其设计逻辑。</div>
+  <div class="series-badge"><span class="series-dot"></span>VLA 学习系列 · 第三篇（第一篇：HyVLA · 第二篇：π₀）</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-title">逻辑链路</div>
+  <ol>
+    <li><a href="#s1">从实验室到真实世界——π₀.5 要解决什么问题</a></li>
+    <li><a href="#s2">多源异构数据——"一生经验"的类比</a></li>
+    <li><a href="#s3">六种数据源详解——每种数据教会模型什么</a></li>
+    <li><a href="#s4">预训练阶段——全离散化的统一自回归建模</a></li>
+    <li><a href="#s5">后训练阶段——引入动作专家与 Flow Matching</a></li>
+    <li><a href="#s6">注意力掩码——隔离两种动作表示</a></li>
+    <li><a href="#s7">时间步编码的改进——Adaptive RMSNorm</a></li>
+    <li><a href="#s8">分层推理——同一模型的两种工作模式</a></li>
+    <li><a href="#s9">开放世界部署与消融实验</a></li>
+  </ol>
+</nav>
+
+<!-- ========== SECTION 1 ========== -->
+<div class="section" id="s1">
+  <div class="section-num">01</div>
+  <h2>从实验室到真实世界——π₀.5 要解决什么问题</h2>
+  <p class="section-lead">现有的 VLA 模型在实验室里表现很好，但搬到新环境就不行了。π₀.5 要解决的是"开放世界泛化"。</p>
+
+  <p>在 π₀ 学习指南中，我们看到 π₀ 已经能在 7 种机器人构型上实现灵巧操作。但 π₀ 有一个根本局限：<strong>它是在实验室环境中训练和评估的</strong>。当机器人走出实验室——进入一个从未见过的真实家庭厨房——它面对的是完全不同的桌面布局、未见过的碗碟样式、不同的抽屉把手和陌生的灯光条件。</p>
+
+  <p>π₀.5 要回答一个关键问题：<strong>一个学习系统能否让机器人在完全陌生的真实家庭中，执行 10-15 分钟的复杂长程任务？</strong></p>
+
+  <h3>为什么"开放世界泛化"这么难？</h3>
+  <p>考虑一个看似简单的指令——"把厨房收拾干净"。机器人需要：识别哪些东西该放进水槽（碗、盘子、杯子——包括从未见过的样式）；判断哪些东西该放进抽屉（餐具——但这个抽屉的位置和把手样式都是新的）；规划子任务顺序（先收盘子还是先擦桌子？）；持续执行 5-10 分钟不出错。</p>
+
+  <p>每一步都涉及不同层次的泛化能力：视觉识别（新物体）、语义理解（什么算"干净"）、运动控制（新的抽屉位阻力不同）、长程规划（子任务排序）。单纯靠增加机器人操作数据无法解决所有问题——因为<strong>你不可能在所有家庭中采集数据</strong>。</p>
+
+  <h3>π₀.5 的答案：两个核心思路</h3>
+  <div class="highlight">
+    <p><strong>思路一：多源异构数据协同训练</strong>——不只用机器人操作数据，还要用其他机器人的数据、互联网图文数据、语义标注数据和人类口头指令数据。不同数据源教会模型不同层次的能力。</p>
+  </div>
+  <div class="highlight">
+    <p><strong>思路二：分层推理（Hierarchical Inference）</strong>——模型先预测一个高层子任务（如"拿起盘子"），再基于这个子任务生成低层连续动作。同一个模型扮演两个角色：高层规划者和低层执行者。</p>
+  </div>
+
+  <pre><code># π₀.5 的整体工作流程
+def pi05_clean_kitchen(images, high_level_cmd="clean the kitchen"):
+    while task_not_done:
+        # 第一步：高层推理——预测下一个子任务
+        subtask = model.predict_subtask(images, high_level_cmd)
+        # 输出示例："pick up the plate"
+
+        # 第二步：低层推理——生成连续动作
+        actions = model.predict_actions(images, subtask)
+        # 输出：H=49 步的连续动作块
+
+        # 执行动作，获取新观测
+        images = robot.execute_and_observe(actions)
+
+# 关键：高层和低层推理用的是 **同一个模型**
+# 高层 = 自回归文本生成（和 LLM 一样）
+# 低层 = Flow Matching 连续动作生成（和 π₀ 一样）</code></pre>
+
+  <h3>与 π₀ 的关键区别</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>特性</th><th>π₀</th><th>π₀.5</th></tr>
+      <tr><td>目标场景</td><td>实验室环境，多构型</td><td>开放世界，从未见过的家庭</td></tr>
+      <tr><td>任务时长</td><td>30 秒~1 分钟</td><td>10~15 分钟</td></tr>
+      <tr><td>推理方式</td><td>只有低层动作生成</td><td>高层子任务预测 + 低层动作生成</td></tr>
+      <tr><td>训练数据</td><td>机器人操作数据为主</td><td>6 种异构数据源协同训练</td></tr>
+      <tr><td>预训练阶段</td><td>只用 FAST 离散化动作</td><td>全部离散化（包括文本子任务）</td></tr>
+      <tr><td>动作维度</td><td>H=50, 多种机器人</td><td>H=49, 专注移动操作平台</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>π₀.5 说要用"多源异构数据"来实现泛化，但为什么不同来源的数据能帮助机器人学会在新环境中操作？下一节用一个类比来理解这个训练哲学。</span>
+</div>
+
+<!-- ========== SECTION 2 ========== -->
+<div class="section" id="s2">
+  <div class="section-num">02</div>
+  <h2>多源异构数据——"一生经验"的类比</h2>
+  <p class="section-lead">人类泛化能力的来源不是"做过所有事情"，而是"融合了多种层次的经验"。</p>
+
+  <p>π₀.5 论文用了一个非常好的类比：一个人能在新厨房里做饭，不是因为他在世界上所有厨房都练习过，而是因为他积累了<strong>一生多种层次的经验</strong>——</p>
+
+  <p>有些能力来自<strong>直接实践</strong>（自己在家做过饭），有些来自<strong>观察他人</strong>（看别人怎么操作），有些来自<strong>书本知识</strong>（知道什么是碗、什么是抽屉），有些来自<strong>口头教导</strong>（别人告诉你"先洗碗再擦桌子"比较高效）。这些不同层次的知识共同构成了泛化能力。</p>
+
+  <h3>π₀.5 的数据哲学</h3>
+  <p>π₀.5 把这个类比直接搬到了模型训练中：</p>
+
+  <div class="highlight">
+    <p><strong>核心洞察：</strong>训练数据中 97.6% 不是来自目标平台（移动操作机器人），而是来自其他机器人、互联网数据和语义标注。但正是这些"非直接经验"的数据，教会了模型开放世界泛化所需的各种能力。</p>
+  </div>
+
+  <pre><code># π₀.5 的数据混合配方（Training Recipe）
+training_recipe = {
+    # ===== 机器人操作数据（"直接实践"）=====
+    "MM": "移动操作机器人在真实家庭中的数据 ~400小时",
+    "ME": "非移动机械臂在多种家庭环境中的数据",
+    "CE": "实验室环境下各种构型机器人的数据",
+
+    # ===== 非机器人数据（"间接经验"）=====
+    "HL": "高层子任务预测标注",
+    "WD": "互联网图文数据（看图说话、VQA、物体检测）",
+    "VI": "人类口头指令示教（后训练专用）",
+}
+
+# 为什么这个混合配方有效？
+# MM 教会：在家庭环境中移动和操作
+# ME 教会：不同环境中的操作技能（更多样化的场景）
+# CE 教会：更广泛的操作原语（抓取、折叠、擦拭...）
+# HL 教会：把高层指令分解成子任务（规划能力）
+# WD 教会：识别各种物体和场景（视觉泛化）
+# VI 教会：什么样的子任务序列是合理的（高层推理质量）</code></pre>
+
+  <h3>VLA 框架使异构数据训练成为可能</h3>
+  <p>关键技术前提是 VLA（Vision-Language-Action）框架的灵活性。通过把所有模态——图像、文本、动作——都编码成 token 序列，不同来源的数据可以用<strong>同一套 Transformer 架构</strong>处理。论文怎么处理不同数据类型的输出？</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>数据源</th><th>输入</th><th>输出</th><th>训练方式</th></tr>
+      <tr><td>MM/ME/CE</td><td>图像 + 指令 + 状态</td><td>FAST 离散化动作 token</td><td>自回归 next-token</td></tr>
+      <tr><td>HL</td><td>图像 + 高层指令</td><td>子任务文本 + 边界框</td><td>自回归 next-token</td></tr>
+      <tr><td>WD (captioning)</td><td>图像</td><td>描述文本</td><td>自回归 next-token</td></tr>
+      <tr><td>WD (VQA)</td><td>图像 + 问题</td><td>答案文本</td><td>自回归 next-token</td></tr>
+      <tr><td>WD (detection)</td><td>图像 + 类别名</td><td>边界框坐标</td><td>自回归 next-token</td></tr>
+      <tr><td>VI</td><td>图像 + 口头子任务指令</td><td>动作</td><td>Flow Matching（后训练）</td></tr>
+    </table>
+  </div>
+
+  <p>注意一个巧妙之处：在预训练阶段，<strong>所有输出都是离散 token</strong>（包括动作，通过 FAST 编码器离散化）。这意味着预训练就是一个标准的自回归语言模型训练——和训练 GPT 没有本质区别。这让训练非常高效和稳定。</p>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>我们知道了"混合训练"的哲学，但每种数据到底长什么样？它怎么被组织成 Transformer 的输入序列？下一节逐一拆解六种数据源。</span>
+</div>
+
+<!-- ========== SECTION 3 ========== -->
+<div class="section" id="s3">
+  <div class="section-num">03</div>
+  <h2>六种数据源详解——每种数据教会模型什么</h2>
+  <p class="section-lead">π₀.5 训练数据的每一种来源都有独特的贡献，缺一不可。</p>
+
+  <h3>MM: Diverse Mobile Manipulator Data（核心机器人数据）</h3>
+  <p>约 <strong>400 小时</strong>的移动操作机器人数据，采集自约 <strong>100 个不同的真实家庭环境</strong>。这是与最终部署场景最直接相关的数据——机器人在真实厨房、卧室中执行清理和整理任务。</p>
+
+  <pre><code># MM 数据的一条训练样本
+mm_example = {
+    "images": [wrist_cam_L, wrist_cam_R, forward_cam, backward_cam],
+    "prompt": "&lt;control_mode&gt; joint/end effector &lt;control_mode&gt;\n"
+              "clean the kitchen",
+    "proprioceptive_state": [joint_angles_L, joint_angles_R,  # 2×6 DoF
+                             gripper_L, gripper_R,             # 夹爪
+                             base_vel_linear, base_vel_angular, # 底盘
+                             torso_lift],                       # 躯干升降
+    "actions": "FAST encoded discrete tokens",  # 预训练
+    # 或 continuous action chunk [H=49, 18-19 dim]  # 后训练
+    "subtask_label": "pick up the plate",  # HL 标注（如果有多子任务）
+}</code></pre>
+
+  <div class="note">
+    <p class="note-label">关于 100 个环境</p>
+    <p>100 个家庭环境听起来不多，但每个环境的物品摆放、灯光、背景都不同。论文的消融实验（Figure 8）显示：从 3 个环境增加到 104 个环境，模型性能稳步提升，且 104 个环境的模型接近在测试环境中训练的上界。这说明环境多样性比数据量更重要。</p>
+  </div>
+
+  <h3>ME: Diverse Multi-Environment Non-Mobile Data</h3>
+  <p>非移动机械臂（固定在桌面或支架上的单臂/双臂系统）在各种家庭环境中采集的数据。这些机械臂比移动操作机器人更轻便、更容易部署，所以能覆盖<strong>更多样化的家庭场景</strong>。</p>
+
+  <p>ME 数据的关键价值：虽然机器人构型不同（没有移动底盘），但操作技能（抓取、放置、开关抽屉）是可迁移的。消融实验显示，<strong>去掉 ME 数据后性能显著下降</strong>（p&lt;0.001），说明跨构型的操作技能确实能迁移。</p>
+
+  <h3>CE: Cross-Embodiment Laboratory Data</h3>
+  <p>来自实验室环境的多种机器人数据，包括开源的 OXE（Open X-Embodiment）数据集的扩展版本。覆盖了非常广泛的任务类型：整理桌面、折叠衣服、擦拭表面等。</p>
+
+  <p>CE 数据的特殊之处：环境是标准化实验室（不是真实家庭），但<strong>任务种类极其丰富</strong>。它教会模型更广泛的操作原语——有些任务在 MM 数据中很少见（比如折叠衣服），但通过 CE 数据学会后，模型可以在新家庭中完成类似任务。</p>
+
+  <h3>HL: High-Level Subtask Prediction</h3>
+  <p>这是 π₀.5 相比 π₀ 的关键新增数据类型。对于 MM、ME、CE 中涉及多个子任务的数据，人工标注每个子步骤的<strong>语义描述</strong>和<strong>相关物体的边界框</strong>。</p>
+
+  <pre><code># HL 数据的标注示例
+hl_annotation = {
+    "high_level_cmd": "clean the bedroom",
+    "observation": current_image,
+    # 模型需要输出：
+    "bounding_boxes": [
+        "&lt;loc0485&gt;&lt;loc0871&gt;&lt;loc0911&gt;&lt;loc8197&gt;=closet",  # 标注关键物体
+    ],
+    "subtask": "move to closet",  # 下一个子任务
+}
+
+# 训练时，模型学会：
+# 1. 看到当前场景 → 定位相关物体（输出边界框坐标）
+# 2. 理解高层指令 → 分解出下一步子任务
+# 这个能力让模型在推理时能"自动规划"</code></pre>
+
+  <div class="highlight">
+    <p><strong>类比 Chain-of-Thought：</strong>HL 数据让模型学会的能力，类似于 LLM 中的 Chain-of-Thought prompting。模型不是直接从"打扫卧室"跳到底层动作，而是先"思考"下一步该做什么（"先去衣柜那边"），再基于这个思考结果生成动作。这种分步推理显著提升了长程任务的成功率。</p>
+  </div>
+
+  <h3>WD: Multi-Modal Web Data</h3>
+  <p>来自互联网的多模态数据，包含四种任务：</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>任务</th><th>数据源</th><th>贡献的能力</th></tr>
+      <tr><td>Image Captioning</td><td>CapsFusion, COCO</td><td>理解图像内容、场景描述</td></tr>
+      <tr><td>Visual QA</td><td>Cambrian-7M, PixMo, VQAv2</td><td>回答关于图像的问题</td></tr>
+      <tr><td>Object Localization</td><td>多个检测数据集</td><td>定位物体边界框坐标</td></tr>
+      <tr><td>Indoor Scene Data</td><td>室内场景 + 家居物品标注</td><td>理解家庭场景布局</td></tr>
+    </table>
+  </div>
+
+  <p>WD 数据是模型<strong>开放词汇泛化</strong>的关键。消融实验显示，去掉 WD 后，模型在<strong>分布外（OOD）物体</strong>上的语言跟随率和成功率显著下降。原因很直观：训练数据中的机器人只见过有限种类的物体，但互联网图文数据覆盖了几乎所有常见家居物品。当模型在新家庭遇到从未操作过的 "漏斗" 或 "药瓶" 时，WD 数据提供的视觉-语义知识让它能识别并理解该物体。</p>
+
+  <h3>VI: Verbal Instruction（仅后训练阶段使用）</h3>
+  <p>一种独特的数据收集方式：专家用户用<strong>实时语言指令"遥操作"机器人</strong>。每一步，专家看着机器人的视角画面，说出应该执行的子任务指令（如"pick up the blue shirt"），机器人用已训练好的低层策略执行。</p>
+
+  <pre><code># VI 数据的收集过程
+def collect_verbal_instruction_data():
+    """专家相当于一个"人类高层策略"——只负责决策，不操作"""
+    while task_not_done:
+        # 1. 专家看到当前画面
+        images = robot.get_observations()
+
+        # 2. 专家说出下一个子任务
+        subtask = expert_says("put the plate on the rack")
+
+        # 3. 机器人的低层策略执行这个子任务
+        actions = trained_low_level_policy(images, subtask)
+        robot.execute(actions)
+
+        # 记录 (images, subtask, actions) 三元组
+        # → 提供了"好的子任务序列"的示范
+
+# VI 数据只在后训练阶段使用（约占移动操作数据的 11%）
+# 消融实验：去掉 VI 后高层推理质量显著下降</code></pre>
+
+  <div class="note">
+    <p class="note-label">VI 数据的独特价值</p>
+    <p>VI 数据只有约 11% 的移动操作数据量，但它对高层推理质量的影响巨大（消融中 no VI 的性能显著下降）。原因是：常规的遥操作数据只有"动作"，没有对应的"语言子任务标签"。即使 HL 标注为这些数据补充了子任务标签，标注质量也不如 VI——因为 VI 中的语言指令是<strong>真正驱动行为的信号</strong>，标注的时序和内容更精确。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>六种数据准备好了，但它们格式完全不同——机器人动作是连续向量，子任务是文本，边界框是坐标。怎么把它们统一成一种训练方式？下一节看预训练阶段的"全离散化"策略。</span>
+</div>
+
+<!-- ========== SECTION 4 ========== -->
+<div class="section" id="s4">
+  <div class="section-num">04</div>
+  <h2>预训练阶段——全离散化的统一自回归建模</h2>
+  <p class="section-lead">把所有东西都变成离散 token，预训练就退化成标准的 next-token prediction——和训练 GPT 一模一样。</p>
+
+  <h3>为什么要先"全离散化"？</h3>
+  <p>π₀.5 训练分两个阶段。在第一阶段（预训练），π₀.5 做了一个大胆的选择：<strong>把机器人动作也离散化成 token</strong>，用 FAST 编码器把连续的动作块压缩成一串离散 token。这样，所有训练数据——图像描述、问答、子任务预测、动作预测——都变成了"给定输入 token 序列，预测输出 token 序列"的统一形式。</p>
+
+  <pre><code># FAST 编码器的工作方式（回顾 π₀ 指南）
+def fast_encode(action_chunk):
+    """把连续动作块压缩成离散 token 序列"""
+    # action_chunk: [H, action_dim] 的连续向量
+    # 1. 量化为整数序列
+    # 2. 用类似 BPE 的压缩算法，把高频模式合并
+    # 3. 输出一串离散 token（比原始长度短很多）
+    return discrete_tokens  # 例如 [+22, 13, -34, 102, +18, ...]
+
+# 解码时反向操作
+def fast_decode(discrete_tokens):
+    return action_chunk  # 恢复为 [H, action_dim] 连续向量</code></pre>
+
+  <p>这样做的好处是巨大的：</p>
+
+  <div class="highlight">
+    <p><strong>"两个世界的最好"（Best of Both Worlds）：</strong>预训练用离散 token → 训练稳定、高效、可以利用标准语言模型训练基础设施；后训练加入 Flow Matching → 动作精度更高、支持多模态分布。离散化负责"大规模统一预训练"，Flow Matching 负责"精细动作生成"。</p>
+  </div>
+
+  <h3>预训练的具体实现</h3>
+  <pre><code># 预训练阶段配置
+pretrain_config = {
+    "backbone": "PaliGemma (SigLIP 400M + Gemma 2B)",
+    "total_params": "~3B（VLM部分）",
+    "steps": 280_000,  # 280k 梯度步
+    "alpha": 0.0,       # 不使用 Flow Matching（α=0）
+    "data_sources": ["MM", "ME", "CE", "HL", "WD"],
+    # 注意：不包含 VI（VI 仅在后训练使用）
+    "action_representation": "FAST discrete tokens",
+    "training_objective": "standard next-token prediction",
+}
+
+# 预训练时，不同数据源的 prompt 格式
+prompts = {
+    "robot_data": "&lt;control_mode&gt; joint &lt;control_mode&gt;\n{task_instruction}",
+    "captioning": "caption the image",
+    "vqa":        "{question}",
+    "detection":  "localize the {object_name}",
+    "subtask":    "how would you {high_level_cmd}?",
+}</code></pre>
+
+  <h3>预训练时的输入输出序列</h3>
+  <p>每条训练样本被组织成一个统一的序列，送进标准自回归 Transformer：</p>
+
+  <pre><code># 不同数据类型的序列格式
+
+# === 机器人操作数据（MM/ME/CE）===
+# 输入: [图像tokens] [状态tokens] [指令tokens]
+# 输出: [FAST动作tokens]  ← 自回归预测
+
+# === 带子任务标注的数据（HL）===
+# 输入: [图像tokens] ["how would you clean the bedroom?"]
+# 输出: [边界框坐标tokens] [子任务文本tokens]
+#       例如: "&lt;loc0485&gt;...=closet, move to closet"
+
+# === 看图说话（WD-captioning）===
+# 输入: [图像tokens] ["caption the image"]
+# 输出: [描述文本tokens]
+#       例如: "A kitchen counter with plates and utensils"
+
+# === VQA（WD-vqa）===
+# 输入: [图像tokens] ["How many desks are in the image?"]
+# 输出: ["12"]
+
+# 所有输出都是离散 token → 统一的交叉熵损失
+loss = cross_entropy(predicted_tokens, target_tokens)</code></pre>
+
+  <h3>动作数据的归一化和零填充</h3>
+  <p>不同机器人的动作维度不同（移动操作平台 18-19 DoF，单臂 6-7 DoF）。π₀.5 沿用 π₀ 的做法：</p>
+  <pre><code># 跨构型动作处理
+def normalize_actions(actions, robot_type):
+    # 1. 归一化到 [-1, 1]：用每个数据集各维度的 1% 和 99% 分位数
+    actions_norm = (actions - p1) / (p99 - p1) * 2 - 1
+
+    # 2. 零填充到固定维度 a
+    #    （用最大构型的维度，小构型的多余维度填0）
+    actions_padded = zero_pad(actions_norm, target_dim=a)
+
+    # 3. 文本 prompt 中标注控制模式
+    #    "&lt;control_mode&gt; joint &lt;control_mode&gt;" 或
+    #    "&lt;control_mode&gt; end effector &lt;control_mode&gt;"
+    return actions_padded</code></pre>
+
+  <div class="note">
+    <p class="note-label">预训练 280k 步的意义</p>
+    <p>280k 步是一个很大的训练量。π₀.5 在预训练阶段同时学到了：(1) 在各种环境中操作机器人的基础技能；(2) 识别和理解各种物体的视觉-语义知识；(3) 把高层任务分解为子步骤的规划能力。所有这些能力都以离散 token 预测的形式统一学习，稳定高效。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>预训练得到了一个强大的多任务自回归模型，但它输出的是离散动作 token——精度有限、推理时需要自回归解码（慢）。怎么让它输出高精度的连续动作？下一节看后训练阶段如何加入 Flow Matching。</span>
+</div>
+
+<!-- ========== SECTION 5 ========== -->
+<div class="section" id="s5">
+  <div class="section-num">05</div>
+  <h2>后训练阶段——引入动作专家与 Flow Matching</h2>
+  <p class="section-lead">在预训练基础上，加入一个随机初始化的"动作专家"，用 Flow Matching 学习生成高精度连续动作。</p>
+
+  <h3>为什么需要后训练？</h3>
+  <p>预训练阶段用 FAST 离散化动作有一个根本问题：<strong>离散化精度有限</strong>，且推理时需要<strong>自回归逐 token 解码</strong>（慢）。对于实时控制（50Hz），我们需要快速生成高精度连续动作。这正是 Flow Matching + 动作专家的优势——在 π₀ 指南中我们已经详细讨论过。</p>
+
+  <p>π₀.5 的后训练在预训练的 VLM 上<strong>嫁接</strong>一个全新的动作专家：</p>
+
+  <pre><code># 后训练阶段的模型结构
+post_training_model = {
+    # === 继承自预训练（已有权重）===
+    "VLM_backbone": "PaliGemma 3B（从预训练加载）",
+    #   width=2048, depth=18, mlp_dim=16384
+    #   num_heads=18, num_kv_heads=1, head_dim=256
+
+    # === 新增（随机初始化）===
+    "action_expert": {
+        "width": 1024,
+        "depth": 18,          # 和 VLM 同样的层数
+        "mlp_dim": 4096,      # VLM 的 1/4
+        "params": "~300M",
+        "initialized": "random",  # 从头学
+    },
+}
+
+# 后训练配置
+post_train_config = {
+    "steps": 80_000,           # 80k 步（比预训练短很多）
+    "alpha": 10.0,             # Flow Matching 损失权重
+    "data_sources": ["MM", "ME_filtered", "WD", "HL", "VI"],
+    # 注意：不包含 CE（实验室数据），因为后训练专注移动操作
+    # ME 只保留成功且长度合适的 episode
+    "action_representation": "continuous via flow matching",
+    "text_representation": "discrete tokens (same as pretrain)",
+}</code></pre>
+
+  <h3>后训练的组合损失函数</h3>
+  <p>后训练阶段，模型同时学习两件事：(1) 文本预测（子任务、描述等）用交叉熵损失；(2) 连续动作生成用 Flow Matching 损失。两者的组合：</p>
+
+  <pre><code># 组合损失函数（论文 Equation 1）
+def combined_loss(model, batch):
+    """
+    L = H(text_cross_entropy) + α · ||flow_matching||²
+    """
+    images, prompt, state = batch["obs"]
+
+    # === 文本部分：标准自回归交叉熵 ===
+    text_logits = model.vlm_forward(images, prompt)
+    H_text = cross_entropy(text_logits, batch["text_targets"])
+    # text_targets 包括：FAST 动作 token、子任务文本、
+    # 看图说话输出、VQA 答案等
+
+    # === 动作部分：Flow Matching ===
+    A_true = batch["continuous_actions"]   # [H=49, action_dim]
+    epsilon = randn_like(A_true)           # 噪声
+    tau = sample_beta_distribution()       # 时间步
+
+    A_noisy = tau * A_true + (1 - tau) * epsilon
+    v_pred = model.action_expert_forward(images, prompt, state, A_noisy, tau)
+    v_target = A_true - epsilon
+
+    flow_loss = MSE(v_pred, v_target)
+
+    # === 组合 ===
+    alpha = 10.0  # Flow Matching 权重
+    total_loss = H_text + alpha * flow_loss
+    return total_loss</code></pre>
+
+  <div class="highlight">
+    <p><strong>α = 10.0 的含义：</strong>Flow Matching 损失的权重是文本损失的 10 倍。这说明后训练的主要目标是学好连续动作生成，文本预测（子任务等）在预训练阶段已经学得不错了，后训练只需要"维持"这个能力。α 太小，动作专家学不好；α 太大，文本能力会退化。</p>
+  </div>
+
+  <h3>后训练数据的精心筛选</h3>
+  <p>后训练的数据配方和预训练不同：</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>数据源</th><th>预训练</th><th>后训练</th><th>原因</th></tr>
+      <tr><td>MM</td><td>&#10003;</td><td>&#10003;</td><td>核心目标平台数据</td></tr>
+      <tr><td>ME</td><td>&#10003;</td><td>&#10003; (筛选)</td><td>只保留成功且长度合适的 episode</td></tr>
+      <tr><td>CE</td><td>&#10003;</td><td>&#10007;</td><td>后训练专注移动操作，不需要实验室数据</td></tr>
+      <tr><td>HL</td><td>&#10003;</td><td>&#10003;</td><td>维持子任务预测能力</td></tr>
+      <tr><td>WD</td><td>&#10003;</td><td>&#10003;</td><td>维持视觉语义能力</td></tr>
+      <tr><td>VI</td><td>&#10007;</td><td>&#10003;</td><td>提升高层推理的子任务质量</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <p class="note-label">为什么后训练去掉了 CE？</p>
+    <p>预训练阶段 CE 数据帮助模型学习广泛的操作原语，但后训练的目标是<strong>专门化</strong>——让动作专家精通移动操作平台的控制。CE 中的实验室数据此时反而是噪声，可能干扰动作专家学习目标平台的精细控制。这体现了"先泛化再专精"的训练哲学。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>后训练阶段，模型里同时存在两种动作表示——VLM 中的 FAST 离散 token 和动作专家中的连续嵌入。这两者怎么在一个 Transformer 里共存而不互相干扰？下一节看 π₀.5 独特的注意力掩码设计。</span>
+</div>
+
+<!-- ========== SECTION 6 ========== -->
+<div class="section" id="s6">
+  <div class="section-num">06</div>
+  <h2>注意力掩码——隔离两种动作表示</h2>
+  <p class="section-lead">π₀.5 的掩码比 π₀ 更复杂，因为它需要防止 FAST 离散 token 和动作专家连续嵌入之间的信息泄露。</p>
+
+  <h3>回顾 π₀ 的三块掩码</h3>
+  <p>在 π₀ 中，我们有三个块：感知（图像+语言）、状态、动作。感知块看不到后两者，状态能看到感知，动作能看到所有——这是经典的块间因果设计。</p>
+
+  <p>但 π₀.5 多了一个新问题：它的 VLM 输出中<strong>同时包含 FAST 动作 token</strong>（用于预训练阶段的离散化动作预测），和<strong>动作专家的连续嵌入</strong>（用于后训练阶段的 Flow Matching）。这两种动作表示<strong>不能互相看到</strong>——否则一种表示会从另一种中"作弊"获取信息。</p>
+
+  <h3>π₀.5 的五类 token</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>类别</th><th>内容</th><th>走哪个专家</th><th>注意力行为</th></tr>
+      <tr><td>Image</td><td>多相机图像 token</td><td>VLM 专家</td><td>前缀掩码（双向）</td></tr>
+      <tr><td>Prompt + State</td><td>文本指令 + 本体状态</td><td>VLM 专家</td><td>前缀掩码（看到 Image + 自身）</td></tr>
+      <tr><td>FAST Action Tokens</td><td>离散化动作 token</td><td>VLM 专家</td><td>看到前缀 + 自回归看前序 FAST token</td></tr>
+      <tr><td>Action Expert Emb.</td><td>噪声动作连续嵌入</td><td>动作专家</td><td>看到前缀 + 自身（双向），<strong>看不到 FAST token</strong></td></tr>
+    </table>
+  </div>
+
+  <h3>注意力掩码矩阵</h3>
+  <div class="diagram">
+    <div class="mask-grid" style="grid-template-columns: 70px repeat(2, 28px) repeat(2, 28px) repeat(2, 28px) repeat(2, 28px); grid-template-rows: 20px repeat(2, 28px) repeat(2, 28px) repeat(2, 28px) repeat(2, 28px);">
+      <div class="mask-label"></div>
+      <div class="mask-label" style="grid-column: span 2; font-size:9px;">Img</div>
+      <div class="mask-label" style="grid-column: span 2; font-size:9px;">P,S</div>
+      <div class="mask-label" style="grid-column: span 2; font-size:9px;">FAST</div>
+      <div class="mask-label" style="grid-column: span 2; font-size:9px;">AE</div>
+
+      <div class="mask-label" style="font-size:9px;">img₁</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div>
+      <div class="mask-label" style="font-size:9px;">img₂</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div>
+
+      <div class="mask-label" style="font-size:9px;">prompt</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div>
+      <div class="mask-label" style="font-size:9px;">state</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div>
+
+      <div class="mask-label" style="font-size:9px;">fast₁</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on2">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div>
+      <div class="mask-label" style="font-size:9px;">fast₂</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on2">&#10003;</div><div class="mask-cell on2">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div>
+
+      <div class="mask-label" style="font-size:9px;">ae₁</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div>
+      <div class="mask-label" style="font-size:9px;">ae₂</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell off">&#10007;</div><div class="mask-cell on">&#10003;</div><div class="mask-cell on">&#10003;</div>
+    </div>
+    <div class="diagram-caption">π₀.5 注意力掩码（<span style="color:var(--accent);">&#9632; 琥珀</span>=前缀/双向 &nbsp;<span style="color:#5a8a5a;">&#9632; 绿</span>=自回归 &nbsp;&#10007;=屏蔽）<br>P,S = Prompt+State &nbsp; FAST = FAST离散token &nbsp; AE = 动作专家嵌入</div>
+  </div>
+
+  <h3>掩码设计的三个关键决策</h3>
+
+  <p><strong>决策 1：FAST token 和动作专家嵌入互不可见。</strong>这是最重要的设计。论文原文说得很清楚："to avoid information leakage between the two representations of actions"。如果 FAST token 能看到动作专家嵌入（或反过来），模型可能学会"偷看"另一种表示来走捷径，而不是真正独立地学好两种生成方式。</p>
+
+  <p><strong>决策 2：FAST token 之间是自回归的。</strong>因为 FAST 是离散 token，必须一个接一个地生成（和语言模型生成文本一样）。所以 fast₂ 能看到 fast₁，但 fast₁ 看不到 fast₂。</p>
+
+  <p><strong>决策 3：动作专家嵌入之间是双向的。</strong>和 π₀ 一样，Flow Matching 的 H=49 个动作 token 需要同时去噪，所以它们之间必须双向可见，才能协调一致的轨迹。</p>
+
+  <pre><code># π₀.5 注意力掩码构造
+def build_pi05_mask(n_img, n_prompt_state, n_fast, n_action_expert):
+    N = n_img + n_prompt_state + n_fast + n_action_expert
+    mask = zeros(N, N)  # 全 False
+
+    i = n_img
+    ps = n_prompt_state
+    f = n_fast
+    ae = n_action_expert
+
+    # Image tokens: 看到 Image（双向，前缀）
+    mask[0:i, 0:i] = True
+
+    # Prompt+State: 看到 Image + Prompt+State（前缀）
+    mask[i:i+ps, 0:i+ps] = True
+
+    # FAST tokens: 看到前缀(Img+P+S) + 自回归看前序FAST
+    for j in range(f):
+        mask[i+ps+j, 0:i+ps] = True          # 看到前缀
+        mask[i+ps+j, i+ps:i+ps+j+1] = True   # 自回归
+
+    # Action Expert: 看到前缀(Img+P+S) + AE之间双向
+    # 但看不到 FAST tokens！
+    ae_start = i + ps + f
+    mask[ae_start:, 0:i+ps] = True           # 看到前缀
+    mask[ae_start:, ae_start:] = True         # AE 之间双向
+    # mask[ae_start:, i+ps:ae_start] 保持 False  ← 看不到 FAST
+
+    return mask</code></pre>
+
+  <div class="highlight">
+    <p><strong>与 π₀ 掩码的关键区别：</strong>π₀ 只有三块（感知、状态、动作），动作块只有一种表示（Flow Matching 连续嵌入）。π₀.5 多了一个 FAST 离散 token 块，且这两种动作表示必须互相隔离。这使得信息流变成了单向的：VLM 的信息（图像、语言、状态）流向两种动作表示，但两种动作表示之间不交流。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>动作专家接收噪声动作和时间步 τ，但 π₀.5 注入 τ 的方式和 π₀ 不同——它用了 Adaptive RMSNorm 逐层注入。下一节看这个改进。</span>
+</div>
+
+<!-- ========== SECTION 7 ========== -->
+<div class="section" id="s7">
+  <div class="section-num">07</div>
+  <h2>时间步编码的改进——Adaptive RMSNorm</h2>
+  <p class="section-lead">π₀ 把时间步 τ 和噪声动作混合后送入 Transformer；π₀.5 用更细腻的方式——在每一层独立注入时间步信息。</p>
+
+  <h3>回顾 π₀ 的做法</h3>
+  <p>在 π₀ 中，时间步 τ 和噪声动作在<strong>输入阶段就融合</strong>了：<code>token = MLP(concat(a_noisy, φ(τ)))</code>。τ 信息只在输入时注入一次，之后 Transformer 的 18 层都在用同一个混合后的表示。</p>
+
+  <h3>π₀.5 的改进：逐层注入</h3>
+  <p>π₀.5 把 τ 的处理分成两部分：</p>
+
+  <pre><code># π₀.5 的时间步编码方案
+
+# 第一部分：噪声动作的嵌入（不再混合 τ）
+def embed_noisy_action_pi05(a_noisy, action_dim, expert_width=1024):
+    """只做线性投影，不包含时间步"""
+    return linear_projection(a_noisy)  # [action_dim] → [1024]
+
+# 第二部分：时间步用独立的 MLP 编码
+def encode_timestep(tau, width=1024):
+    """
+    公式: swish(W2 · swish(W1 · φ(τ)))
+    φ: R → R^w 是正弦位置编码
+    """
+    phi_tau = sinusoidal_encoding(tau)     # 标量 → [width]
+    h = swish(W1 @ phi_tau)               # [width] → [width]
+    timestep_emb = swish(W2 @ h)          # [width] → [width]
+    return timestep_emb                    # 这个嵌入会被用在每一层
+
+# 第三部分：在动作专家的每一层，用 Adaptive RMSNorm 注入 τ
+def action_expert_layer(x, timestep_emb, layer_idx):
+    """
+    Adaptive RMSNorm: 用时间步嵌入调制归一化的 scale
+    类似于 StyleGAN 中的 Adaptive Instance Norm
+    """
+    # 标准 RMSNorm
+    x_norm = rms_normalize(x)
+
+    # Adaptive: scale 参数由 timestep_emb 生成
+    gamma = linear_layer(timestep_emb)  # τ → 每一层独特的 scale
+    x_scaled = gamma * x_norm
+
+    # 后续正常做注意力和 FFN
+    x = attention(x_scaled, ...)
+    x = ffn(x)
+    return x</code></pre>
+
+  <h3>为什么 Adaptive RMSNorm 更好？</h3>
+
+  <p><strong>逐层调制 vs 一次性混合：</strong>π₀ 的做法相当于在输入时告诉模型"你现在在去噪阶段 τ=0.3"，然后整个 Transformer 用同一个混合信号处理。但 Transformer 的不同层可能在做不同层次的事——浅层处理局部特征，深层处理全局语义。Adaptive RMSNorm 让<strong>每一层都根据 τ 独立调整自己的行为</strong>——浅层在 τ=0.3 时强调粗略方向，深层在 τ=0.3 时关注中等精度的协调。</p>
+
+  <div class="highlight">
+    <p><strong>直觉类比：</strong>想象你在指导一个团队画画。π₀ 的方式是开会时说一句"我们现在画到 30% 了"，然后每个人自己理解该做什么。π₀.5 的方式是走到每个人旁边，根据他们的具体工作（轮廓、色彩、细节）分别调整指导——对画轮廓的人说"大胆一些"，对上色的人说"色块先到位"。</p>
+  </div>
+
+  <h3>动作输出头</h3>
+  <p>经过 18 层处理后，动作专家输出的 token 通过一个线性层映射回动作空间，得到预测的速度场：</p>
+  <pre><code># 动作专家输出
+def action_expert_output(expert_output_tokens):
+    # expert_output_tokens: [H=49, expert_width=1024]
+    velocity_field = final_linear(expert_output_tokens)
+    # velocity_field: [H=49, action_dim]
+    return velocity_field  # 用于欧拉积分去噪</code></pre>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>现在我们有了完整的模型架构。但推理时，同一个模型怎么既预测子任务文本又生成连续动作？下一节看分层推理的工作流程。</span>
+</div>
+
+<!-- ========== SECTION 8 ========== -->
+<div class="section" id="s8">
+  <div class="section-num">08</div>
+  <h2>分层推理——同一模型的两种工作模式</h2>
+  <p class="section-lead">π₀.5 的分层推理是它最强大的特性：用同一个模型，先"思考"下一步做什么，再"执行"具体动作。</p>
+
+  <h3>两种推理模式</h3>
+  <p>π₀.5 在推理时交替使用两种模式，都由<strong>同一个训练好的模型</strong>执行：</p>
+
+  <pre><code># 模式一：高层推理（子任务预测）
+def high_level_inference(model, images, high_level_cmd):
+    """
+    工作方式：标准自回归文本生成（和 ChatGPT 一样）
+    输入：4 张相机图像 + 高层指令（如 "clean the bedroom"）
+    输出：下一个子任务文本（如 "pick up the pillow"）
+
+    使用哪个专家：仅 VLM 专家
+    不使用动作专家（不需要连续动作）
+    """
+    prompt = f"how would you {high_level_cmd}?"
+    # 自回归逐 token 生成
+    subtask_tokens = []
+    for _ in range(max_tokens):
+        next_token = model.vlm_next_token(images, prompt, subtask_tokens)
+        if next_token == EOS:
+            break
+        subtask_tokens.append(next_token)
+
+    subtask_text = detokenize(subtask_tokens)
+    return subtask_text  # 例如 "pick up the pillow"
+
+
+# 模式二：低层推理（连续动作生成）
+def low_level_inference(model, images, subtask):
+    """
+    工作方式：Flow Matching 10 步去噪（和 π₀ 一样）
+    输入：4 张相机图像 + 子任务文本 + 机器人状态
+    输出：H=49 步的连续动作块
+
+    使用哪个专家：VLM + 动作专家联合
+    VLM 处理图像和文本，动作专家处理动作
+    """
+    state = robot.get_proprioception()
+    A = randn(49, action_dim)  # 从纯噪声开始
+
+    # 10 步欧拉积分
+    for step in range(10):
+        tau = step * 0.1
+        v = model.forward(images, subtask, state, A, tau)
+        A = A + 0.1 * v
+
+    return A  # 49 步的连续动作</code></pre>
+
+  <h3>完整的推理循环</h3>
+  <pre><code># π₀.5 的完整推理循环（以 "清理厨房" 为例）
+def pi05_full_inference(high_level_cmd="clean the kitchen"):
+    """
+    整个循环可能持续 10-15 分钟
+    高层推理频率远低于低层推理
+    """
+    step = 0
+    while not done:
+        images = robot.capture_all_cameras()  # 4 张图
+
+        # ===== 高层推理：决定下一步做什么 =====
+        # 使用所有 4 个相机（前/后/左右手腕）
+        subtask = high_level_inference(model, images, high_level_cmd)
+        print(f"Step {step}: {subtask}")
+        # 可能输出：
+        #   Step 0: "pull out the drawer"
+        #   Step 1: "pick up tong"
+        #   Step 2: "put tong into drawer"
+        #   Step 3: "push the top drawer"
+        #   ...
+
+        # ===== 低层推理：执行这个子任务 =====
+        # 只使用前向 + 手腕相机（不用后向相机）
+        while subtask_not_completed:
+            images_low = robot.capture_low_level_cameras()
+            actions = low_level_inference(model, images_low, subtask)
+            robot.execute(actions)  # 执行 49 步动作
+
+            # 动作块执行完，检查是否需要新的子任务
+            if need_new_subtask():
+                break
+
+        step += 1</code></pre>
+
+  <h3>高层和低层推理使用不同的相机</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>推理模式</th><th>使用的相机</th><th>原因</th></tr>
+      <tr><td>高层推理</td><td>全部 4 个（前向 + 后向 + 2 个手腕）</td><td>需要全方位了解场景，规划下一步</td></tr>
+      <tr><td>低层推理</td><td>前向 + 2 个手腕（不用后向）</td><td>只需看操作区域，后向相机对精细控制无用</td></tr>
+    </table>
+  </div>
+
+  <h3>为什么同一模型能做两件事？</h3>
+  <p>这个设计的精巧之处在于训练数据的组织方式。在训练时：</p>
+
+  <div class="highlight">
+    <p><strong>HL 数据教会了高层推理：</strong>模型看到 (图像, "how would you clean the bedroom?") → 学会输出 "pick up the pillow"。这和 LLM 学会回答问题的方式完全一样——自回归生成文本。</p>
+  </div>
+  <div class="highlight">
+    <p><strong>MM/ME 数据教会了低层推理：</strong>模型看到 (图像, "pick up the pillow", 状态, 噪声) → 学会输出速度场 → 去噪得到动作。这和 π₀ 的 Flow Matching 完全一样。</p>
+  </div>
+
+  <p>推理时，只需要切换 prompt 格式和推理方式，模型就能在两种角色之间切换。这比用两个独立模型（一个规划器 + 一个控制器）更简洁，因为高层和低层共享了视觉理解能力——两者对"枕头在哪里""抽屉怎么打开"的理解是一致的。</p>
+
+  <div class="note">
+    <p class="note-label">超越 GPT-4 的高层策略</p>
+    <p>消融实验中，π₀.5 的高层推理甚至超过了用 GPT-4 做高层策略的性能（Figure 13）。原因：GPT-4 虽然很聪明，但它没有<strong>操作经验</strong>——它可能知道应该"把盘子放进水槽"，但不知道对于这个特定的机器人和场景，从哪个角度操作最高效。π₀.5 的高层推理融合了互联网语义知识和实际操作经验，所以更实用。</p>
+  </div>
+</div>
+
+<div class="chain">
+  <span class="chain-arrow">→</span>
+  <span class="chain-text"><strong>衔接问题：</strong>最后，这个系统在真实世界中表现如何？哪些数据源的贡献最大？下一节看部署结果和消融实验的关键发现。</span>
+</div>
+
+<!-- ========== SECTION 9 ========== -->
+<div class="section" id="s9">
+  <div class="section-num">09</div>
+  <h2>开放世界部署与消融实验</h2>
+  <p class="section-lead">π₀.5 在从未见过的真实家庭中部署，执行 10-15 分钟的长程操作任务——这是 VLA 模型首次做到这一点。</p>
+
+  <h3>机器人系统概览</h3>
+  <pre><code># π₀.5 使用的移动操作平台
+robot_system = {
+    "arms": "2 × 6-DoF 机械臂",
+    "grippers": "平行夹爪（每个手 1 DoF）",
+    "base": "全向轮底盘（holonomic base）",
+    #   底盘状态/动作: 线速度 + 角速度（2D 或 1D+1D）
+    "torso": "升降机构（1-2 DoF，上下 或 上下+前后）",
+    "cameras": {
+        "wrist_L": "左手腕相机",
+        "wrist_R": "右手腕相机",
+        "forward": "前向相机",
+        "backward": "后向相机",
+    },
+    "total_DoF": "18-19 维（取决于平台版本）",
+    "control_freq": "50 Hz（动作块 action chunking）",
+    "controller": "简单 PD 控制器（无轨迹规划、无碰撞检测）",
+}
+
+# 控制方式极其简单：
+# π₀.5 直接输出目标关节位、夹爪位、底盘速度和躯干位
+# 由 PD 控制器跟踪，没有任何额外的规划或安全层
+# 所有操作和导航都是端到端学习的</code></pre>
+
+  <h3>评估环境与任务</h3>
+  <p>π₀.5 的评估在两类环境中进行：(1) 可控的<strong>模拟家庭</strong>（mock homes）用于定量对比；(2) 从未见过的<strong>真实家庭</strong>（3 个）用于最终验证。</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>任务</th><th>描述</th><th>评估指标</th><th>典型时长</th></tr>
+      <tr><td>Dishes in Sink</td><td>把散落的碗碟收进水槽</td><td>每放入一个得分</td><td>2~5 分钟</td></tr>
+      <tr><td>Items in Drawer</td><td>把物品放进抽屉</td><td>拿起+放入各得分</td><td>3~5 分钟</td></tr>
+      <tr><td>Laundry Basket</td><td>把地上衣服放进洗衣篮</td><td>拿起+放入得分</td><td>2~4 分钟</td></tr>
+      <tr><td>Make Bed</td><td>整理床铺（铺毯子、放枕头）</td><td>铺平+放正各得分</td><td>3~5 分钟</td></tr>
+    </table>
+  </div>
+
+  <h3>真实家庭部署结果</h3>
+  <p>在 3 个从未见过的真实家庭中（每个家庭有厨房和卧室），π₀.5 的表现：</p>
+
+  <div class="highlight">
+    <p><strong>关键发现：</strong>模拟家庭和真实家庭的性能非常接近（Figure 7b），说明 π₀.5 的泛化不只是"在类似环境中做得好"，而是真正能迁移到完全陌生的场景。这是 VLA 领域<strong>首次</strong>在如此复杂的开放世界任务中实现这样的泛化水平。</p>
+  </div>
+
+  <h3>消融实验：每种数据的贡献</h3>
+  <p>论文做了系统的消融实验，逐一去掉各数据源，观察性能变化：</p>
+
+  <pre><code># 消融实验结果总结（Figure 10, 11, 13）
+
+# === 数据源消融 ===
+ablation_results = {
+    "full π₀.5":    "最佳性能 (baseline)",
+
+    "no WD":        "OOD 物体识别能力显著下降",
+    #  → Web 数据对视觉泛化至关重要
+
+    "no CE":        "整体性能显著下降 (p<0.001)",
+    #  → 实验室跨构型数据提供了基础操作技能
+
+    "no ME":        "整体性能显著下降 (p<0.001)",
+    #  → 多环境数据对泛化至关重要
+
+    "no CE or ME":  "性能大幅下降（最严重的消融）",
+    #  → 跨构型迁移是泛化的核心
+
+    # === 高层推理消融 ===
+    "implicit HL":  "第二好，说明即使不做显式高层推理，"
+                    "训练数据中包含 HL 也能隐式学到规划能力",
+
+    "no HL":        "显著变差，尤其在长程任务上",
+    #  → 高层规划对复杂任务必不可少
+
+    "no VI":        "高层推理质量下降",
+    #  → 口头指令数据提升了子任务预测的准确性
+
+    "no WD (HL)":   "高层推理质量下降（对 OOD 物体）",
+    #  → Web 数据帮助高层推理识别未见过的物体
+
+    "GPT-4 HL":     "最差的高层策略",
+    #  → 纯语言模型缺乏操作经验，不如联合训练的策略
+
+    "human HL":     "上界，但 π₀.5 已接近甚至超过",
+    #  → π₀.5 的高层推理已经非常强
+}</code></pre>
+
+  <h3>与 π₀ 的对比</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>模型</th><th>训练方式</th><th>性能</th></tr>
+      <tr><td>π₀ (80k)</td><td>只用 Flow Matching，80k 步</td><td>最低</td></tr>
+      <tr><td>π₀ (300k)</td><td>只用 Flow Matching，300k 步</td><td>较低</td></tr>
+      <tr><td>π₀-FAST+Flow</td><td>π₀ + FAST 预训练 + Flow 后训练（无 HL/WD）</td><td>中等</td></tr>
+      <tr><td>π₀.5</td><td>完整协同训练 + 分层推理</td><td><strong>最高</strong></td></tr>
+    </table>
+  </div>
+
+  <p>π₀.5 显著优于所有 π₀ 变体，且即使给 π₀ 更长的训练时间（300k 步 vs π₀.5 的 80k 步后训练），π₀.5 仍然更好。这证明了两件事：(1) FAST 预训练 + Flow Matching 后训练的"两阶段"设计比纯 Flow Matching 训练更高效；(2) 多源异构数据协同训练的价值无法被更多训练步数替代。</p>
+
+  <h3>局限性和未来方向</h3>
+  <p>论文坦诚地讨论了 π₀.5 的局限：</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>局限</th><th>具体表现</th><th>可能的解决方向</th></tr>
+      <tr><td>物理障碍</td><td>某些抽屉把手太难操作</td><td>更大的训练数据多样性</td></tr>
+      <tr><td>遮挡问题</td><td>机械臂挡住了要擦的污渍</td><td>更丰富的相机视角、触觉传感</td></tr>
+      <tr><td>高层推理偏差</td><td>反复开关抽屉等循环行为</td><td>更多 VI 数据、更长的上下文窗口</td></tr>
+      <tr><td>指令复杂度</td><td>只能处理简单的高层指令</td><td>更复杂的标注和训练数据</td></tr>
+      <tr><td>空间记忆</td><td>不记住物品在哪个房间</td><td>引入记忆模块、更大上下文</td></tr>
+    </table>
+  </div>
+
+  <div class="highlight">
+    <p><strong>总结——π₀.5 的核心贡献：</strong>(1) 证明了多源异构数据协同训练可以赋予 VLA 模型开放世界泛化能力；(2) 用同一个模型实现了高层规划和低层控制的统一；(3) 首次展示了端到端学习的机器人在完全陌生的真实家庭中完成长程复杂任务。这标志着 VLA 从"实验室演示"走向"真实世界部署"的重要一步。</p>
+  </div>
+</div>
+
+<div style="margin-top:64px; padding-top:32px; border-top:1px solid var(--border); text-align:center;">
+  <p style="font-size:13px; color:var(--text-tertiary);">VLA 学习系列 · 第三篇 · π₀.5<br>基于论文 "π₀.5: a Vision-Language-Action Model with Open-World Generalization" (Physical Intelligence, 2025)</p>
+</div>
+
+</body></html>

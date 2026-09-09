@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+  <rect width="1200" height="650" fill="#faf8f3"/>
+  <style>
+    .title{font:700 29px sans-serif;fill:#292622}.h{font:700 20px sans-serif;fill:#292622}.t{font:16px sans-serif;fill:#49443e}.small{font:14px sans-serif;fill:#615a52}.mono{font:15px monospace;fill:#38332e}.box{fill:#fff;stroke:#c9bca9;stroke-width:2;rx:16}.arrow{stroke:#8f6946;stroke-width:3;fill:none;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#8f6946"/></marker></defs>
+  <text x="60" y="55" class="title">π₀.5 的训练不是“一种 loss 从头训到底”</text>
+  <rect x="55" y="95" width="500" height="450" class="box"/>
+  <text x="85" y="135" class="h">阶段 1 · 异构预训练（280k steps）</text>
+  <text x="85" y="172" class="t">所有输出先统一成离散 token</text>
+  <rect x="85" y="195" width="200" height="76" fill="#e8f1ef" stroke="#8bb1a8" rx="10"/>
+  <text x="105" y="225" class="t">语言 / bbox</text><text x="105" y="250" class="small">next-token prediction</text>
+  <rect x="325" y="195" width="200" height="76" fill="#f5ead6" stroke="#caa66d" rx="10"/>
+  <text x="345" y="225" class="t">机器人动作</text><text x="345" y="250" class="small">FAST → action tokens</text>
+  <text x="85" y="315" class="mono">L = L_CE，α = 0</text>
+  <text x="85" y="350" class="t">为什么？</text>
+  <text x="85" y="382" class="small">离散 token 让机器人、网页与语义任务共用</text>
+  <text x="85" y="407" class="small">VLM 的 next-token 训练接口，预训练更省算力。</text>
+  <text x="85" y="452" class="t">此时学到：看懂场景 + 说出子任务 + 粗动作先验</text>
+
+  <path d="M555 320 H645" class="arrow"/>
+
+  <rect x="645" y="95" width="500" height="450" class="box"/>
+  <text x="675" y="135" class="h">阶段 2 · 专项后训练（80k steps）</text>
+  <text x="675" y="172" class="t">保留文本头，同时新初始化 Action Expert</text>
+  <rect x="675" y="195" width="200" height="76" fill="#e8f1ef" stroke="#8bb1a8" rx="10"/>
+  <text x="695" y="225" class="t">子任务文本</text><text x="695" y="250" class="small">交叉熵继续训练</text>
+  <rect x="915" y="195" width="200" height="76" fill="#ece6f5" stroke="#a58bc2" rx="10"/>
+  <text x="935" y="225" class="t">连续 action chunk</text><text x="935" y="250" class="small">Flow Matching</text>
+  <text x="675" y="315" class="mono">L = L_CE + 10 · L_flow</text>
+  <text x="675" y="350" class="t">为什么再换连续动作？</text>
+  <text x="675" y="382" class="small">FAST 适合大规模 token 预训练；Flow Expert</text>
+  <text x="675" y="407" class="small">更适合高频、细粒度、连续的真实机器人控制。</text>
+  <text x="675" y="452" class="t">此时学到：子任务落地 + 精细连续控制</text>
+
+  <rect x="165" y="570" width="870" height="50" fill="#efe7dc" stroke="#c9bca9" rx="12"/>
+  <text x="600" y="602" text-anchor="middle" class="h">因果链：统一离散接口扩大知识覆盖 → 连续专家恢复动作精度</text>
+</svg>
