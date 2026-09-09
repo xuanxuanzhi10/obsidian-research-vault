@@ -1,0 +1,21 @@
+"20 Concepts/ALTER.md"
+  s_a3320701e75207::t_916958715c1cb4 9-10
+"10 Papers/VLA/触觉/N0-VTLA.md"
+  s_a3320701e75207::t_916958715c1cb4 14-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "4fd7688a168cc085995276495bac2ab3396ab97a",
+  "prompts": {},
+  "sessions": {
+    "s_a3320701e75207": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a80-d58a-7301-81de-5a3b45e51fdd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
