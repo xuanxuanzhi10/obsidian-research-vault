@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="940" viewBox="0 0 1600 940">
+  <defs><style>.t{font-family:'Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#17212b}.w{font-family:'Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#fff}.h{font-size:36px;font-weight:700}.m{font-size:24px;font-weight:650}.s{font-size:18px}.n{font-size:42px;font-weight:800}.b{rx:22;stroke-width:2}</style></defs>
+  <rect width="1600" height="940" fill="#f8fafc"/>
+  <text x="70" y="68" class="t h">验证任务阶梯：先证明“读到了触觉”，再证明“能闭环获益”</text>
+  <text x="72" y="106" class="t s">平行夹爪 + 左右 3×3×3 taxel 阵列的优先顺序</text>
+
+  <g transform="translate(70,155)">
+    <rect x="0" y="0" width="455" height="270" class="b" fill="#eef6ff" stroke="#5b8fc9"/>
+    <text x="35" y="58" class="t n" fill="#5b8fc9">1</text><text x="95" y="57" class="t m">滑移恢复 / 隐藏负载</text>
+    <text x="35" y="104" class="t s">外观相同的盒/圆柱，随机重量与摩擦；</text>
+    <text x="35" y="137" class="t s">抓起后加扰动或追加砝码。</text>
+    <text x="35" y="187" class="t s">看：掉落、最小夹持力、恢复延迟、峰值力。</text>
+    <text x="35" y="228" class="t s" fill="#276749">最强因果性：视觉看不到变化，切向力先报警。</text>
+
+    <rect x="500" y="0" width="455" height="270" class="b" fill="#fff4e7" stroke="#db8136"/>
+    <text x="535" y="58" class="t n" fill="#db8136">2</text><text x="595" y="57" class="t m">易损 / 柔顺物体抓取</text>
+    <text x="535" y="104" class="t s">标准泡棉、薄壁杯、弹性测试件；</text>
+    <text x="535" y="137" class="t s">设置“够稳但不压坏”的窄力窗口。</text>
+    <text x="535" y="187" class="t s">看：损坏率、形变量、峰值力、抓取成功。</text>
+    <text x="535" y="228" class="t s" fill="#9c4221">气球只做后期演示，不做首个主 benchmark。</text>
+
+    <rect x="1000" y="0" width="455" height="270" class="b" fill="#f1edfa" stroke="#8c6bb1"/>
+    <text x="1035" y="58" class="t n" fill="#8c6bb1">3</text><text x="1095" y="57" class="t m">遮挡下精密插入</text>
+    <text x="1035" y="104" class="t s">1–2 mm 间隙；末端接触区域遮挡；</text>
+    <text x="1035" y="137" class="t s">随机小偏置，让切向分布指示卡住方向。</text>
+    <text x="1035" y="187" class="t s">看：成功率、卡死率、重试、峰值力、时间。</text>
+    <text x="1035" y="228" class="t s" fill="#5a3d86">检验 full taxel 是否优于左右总力。</text>
+
+    <rect x="250" y="340" width="455" height="270" class="b" fill="#eaf8f2" stroke="#36a06f"/>
+    <text x="285" y="398" class="t n" fill="#36a06f">4</text><text x="345" y="397" class="t m">曲面擦拭 / 恒力跟随</text>
+    <text x="285" y="444" class="t s">曲率或高度随机、可轻微移动；</text>
+    <text x="285" y="477" class="t s">要求不断触且不过载。</text>
+    <text x="285" y="527" class="t s">看：力误差 RMSE、接触丢失、覆盖率、过载。</text>
+    <text x="285" y="568" class="t s" fill="#276749">需要位置动作能真实响应力反馈。</text>
+
+    <rect x="750" y="340" width="455" height="270" class="b" fill="#fff8d9" stroke="#c5a32c"/>
+    <text x="785" y="398" class="t n" fill="#c5a32c">5</text><text x="845" y="397" class="t m">阈值按压 / 接触计数</text>
+    <text x="785" y="444" class="t s">按钮、卡扣、分段触发；需要记住力峰值和事件。</text>
+    <text x="785" y="494" class="t s">看：触发率、过按力、重复按压、阶段判断。</text>
+    <text x="785" y="535" class="t s" fill="#7c5b00">适合验证触觉历史与辅助预测任务。</text>
+  </g>
+  <rect x="90" y="825" width="1420" height="70" rx="18" fill="#253746"/>
+  <text x="800" y="870" text-anchor="middle" class="w m">鼠标抓取 = 数据链路冒烟测试；“同外观、不同物理状态”才是触觉论文的核心证据</text>
+</svg>

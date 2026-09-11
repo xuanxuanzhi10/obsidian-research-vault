@@ -6,6 +6,8 @@ topics: [tactile, VLA, comparison]
 
 # 触觉 VLA 方法比较
 
+专项落地与 2026 开源核对：[[HY-VLA 触觉数据接入与验证路线]]
+
 原版补充答疑：[[tactile-vla-qa2.html|触觉 VLA 深度答疑（二）HTML]]
 
 其中三个可复用问题已独立整理并校正：[[Transformer 参数量估算]] · [[Adaptive RMSNorm]] · [[异构多域分布式训练]]。
@@ -47,6 +49,18 @@ variants = {
   "V+O+P+cross_hw": with_MTTS_unseen_sensor,
 }
 ```
+
+## 面向当前三轴 taxel 数据的补充比较（2026-09-11）
+
+| 方法 | 最可复用的机制 | 官方实现状态 | 接到 HY‑VLA 时的注意事项 |
+|---|---|---|---|
+| RDP | latent 慢规划 + 高频触觉 decoder | 主仓库仍有 training/data/checkpoint TODO | 先用 ImplicitRDP 代码验证快循环，不把仓库存在误判为可复现 |
+| FoAR | 100 Hz history encoder、future-contact gate | train/data/eval 代码开放 | 腕部 6D F/T 要改成每指 taxel 时空 encoder；手工 6 mm 修正不是通用 VLA 机制 |
+| ImplicitRDP | causal force/action mask、缓存慢 token、VRR | 数据、checkpoint、训练和推理开放 | VRR 需要共同坐标与刚度；当前无外参时先做峰值/接触辅助任务 |
+| AT‑VLA | gate + action-expert adaptive attention + 3:1 快慢流 | 只开放 inference，缺完整训练/真机 harness | 最接近结构证据；训练模块需自行实现 |
+| FE‑VLA | LeRobot force key、异步滑窗、1D CNN prefix | 训练/记录/评测与 HF 资产开放 | 单点标量力窗不能直接替代 2×9×3 空间阵列；仓库指标按工程报告处理 |
+| UniTac‑NV | sensor-specific encoder + shared latent | 数据、CAD、预处理/对齐开放 | 与 3×3×3 同形，适合 encoder 预训练；不是动作策略 |
+| ForceVLA2 | force prompt + Cross-Scale MoE + hybrid force-position action | 本次未发现官方训练仓库 | 当前数据缺目标力、控制 mask 与底层力控，作为后续路线而非 MVP |
 
 ## N0-VTLA 与 N0-TWAM 最容易混淆在哪里？
 

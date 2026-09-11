@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .t{font-family:'Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#17212b}.h{font-size:36px;font-weight:700}.m{font-size:25px;font-weight:650}.s{font-size:20px}.xs{font-size:17px}.box{rx:22;stroke-width:2}.arrow{stroke:#34495e;stroke-width:4;fill:none;marker-end:url(#a)}
+    </style>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#34495e"/></marker>
+    <linearGradient id="bg" x1="0" x2="1"><stop stop-color="#f7fbff"/><stop offset="1" stop-color="#fff8ee"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="70" y="70" class="t h">HY‑VLA × 指尖触觉：最小可验证改造</text>
+  <text x="72" y="106" class="t s" fill="#51606f">目标：保留预训练视觉—语言能力，只让动作专家在接触时读取触觉证据</text>
+
+  <rect x="70" y="170" width="310" height="170" class="box" fill="#e7f1ff" stroke="#5b8fc9"/>
+  <text x="225" y="220" text-anchor="middle" class="t m">慢速语义流 P</text>
+  <text x="225" y="263" text-anchor="middle" class="t s">图像历史 + 指令</text>
+  <text x="225" y="300" text-anchor="middle" class="t xs">沿用 HY‑VLA VLM，可缓存</text>
+
+  <rect x="70" y="390" width="310" height="135" class="box" fill="#edf7ee" stroke="#55a868"/>
+  <text x="225" y="440" text-anchor="middle" class="t m">状态流 S</text>
+  <text x="225" y="480" text-anchor="middle" class="t s">EEF 位姿 + 夹爪</text>
+
+  <rect x="70" y="580" width="310" height="220" class="box" fill="#fff0e2" stroke="#e17c34"/>
+  <text x="225" y="630" text-anchor="middle" class="t m">触觉流 T</text>
+  <text x="225" y="671" text-anchor="middle" class="t s">左右指 9×3 taxel 历史</text>
+  <text x="225" y="708" text-anchor="middle" class="t xs">局部坐标 + validity + age + Δt</text>
+  <text x="225" y="744" text-anchor="middle" class="t xs">时空编码 → 2–4 个 token</text>
+  <text x="225" y="779" text-anchor="middle" class="t xs">原始 80 Hz 优先，30 Hz 可先做 MVP</text>
+
+  <rect x="500" y="215" width="350" height="235" class="box" fill="#f4effb" stroke="#8f71b4"/>
+  <text x="675" y="266" text-anchor="middle" class="t m">HY‑VLA 主干</text>
+  <text x="675" y="310" text-anchor="middle" class="t s">P → 视觉语言上下文</text>
+  <text x="675" y="350" text-anchor="middle" class="t s">S → 当前机器人状态</text>
+  <text x="675" y="390" text-anchor="middle" class="t xs">不让触觉改写 P，避免破坏预训练语义</text>
+
+  <rect x="500" y="555" width="350" height="190" class="box" fill="#fff6d8" stroke="#c9a52a"/>
+  <text x="675" y="605" text-anchor="middle" class="t m">接触门控 g</text>
+  <text x="675" y="647" text-anchor="middle" class="t s">阈值标签 + 小网络</text>
+  <text x="675" y="685" text-anchor="middle" class="t xs">非接触≈0；接触/临近接触≈1</text>
+  <text x="675" y="719" text-anchor="middle" class="t xs">显式区分“零载荷”与“缺失”</text>
+
+  <rect x="985" y="230" width="500" height="355" class="box" fill="#fcebef" stroke="#c94f70"/>
+  <text x="1235" y="285" text-anchor="middle" class="t m">Flow‑matching Action Expert</text>
+  <text x="1235" y="338" text-anchor="middle" class="t s">A 查询 P / S / T，预测动作块</text>
+  <rect x="1060" y="380" width="350" height="112" rx="18" fill="#fff" stroke="#c94f70" stroke-width="2"/>
+  <text x="1235" y="420" text-anchor="middle" class="t s">h<tspan baseline-shift="sub">A</tspan> ← h<tspan baseline-shift="sub">A</tspan> + g · γ · CrossAttn(h<tspan baseline-shift="sub">A</tspan>, T)</text>
+  <text x="1235" y="462" text-anchor="middle" class="t xs">γ 从 0 初始化：开始时严格等价于原 HY‑VLA</text>
+  <text x="1235" y="535" text-anchor="middle" class="t xs">P/S 可缓存；触觉更新时只刷新 T 与动作分支</text>
+
+  <rect x="985" y="650" width="500" height="150" class="box" fill="#eaf8f2" stroke="#2f9d78"/>
+  <text x="1235" y="697" text-anchor="middle" class="t m">训练信号</text>
+  <text x="1235" y="738" text-anchor="middle" class="t s">动作 flow loss + 接触 BCE + 未来力/峰值辅助损失</text>
+  <text x="1235" y="773" text-anchor="middle" class="t xs">辅助任务的作用：迫使触觉 token 保留可控的物理量</text>
+
+  <path d="M380 255 H500" class="arrow"/><path d="M380 457 H460 V380 H500" class="arrow"/>
+  <path d="M380 690 H500" class="arrow"/><path d="M850 332 H985" class="arrow"/>
+  <path d="M850 650 H920 V455 H985" class="arrow"/><path d="M1235 585 V650" class="arrow"/>
+  <text x="886" y="437" class="t xs" fill="#b64b29">门控残差注入</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820">
+  <defs>
+    <style>.t{font-family:'Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#18222d}.h{font-size:36px;font-weight:700}.m{font-size:24px;font-weight:650}.s{font-size:19px}.b{rx:20;stroke-width:2}.a{stroke:#40566b;stroke-width:4;fill:none;marker-end:url(#m)}</style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0L0 6L9 3z" fill="#40566b"/></marker>
+  </defs>
+  <rect width="1500" height="820" fill="#fbfcfe"/>
+  <text x="70" y="70" class="t h">触觉为什么可能有用：从信号到任务增益的因果链</text>
+  <g>
+    <rect x="60" y="160" width="265" height="185" class="b" fill="#e6f2ff" stroke="#4c8bc0"/>
+    <text x="193" y="207" text-anchor="middle" class="t m">不可见物理状态</text>
+    <text x="193" y="252" text-anchor="middle" class="t s">摩擦、刚度、接触位置</text>
+    <text x="193" y="287" text-anchor="middle" class="t s">微滑移、卡住方向</text>
+    <text x="193" y="322" text-anchor="middle" class="t s">是否真正接触</text>
+
+    <rect x="420" y="160" width="265" height="185" class="b" fill="#fff0dd" stroke="#dd7c2b"/>
+    <text x="553" y="207" text-anchor="middle" class="t m">指尖阵列证据</text>
+    <text x="553" y="252" text-anchor="middle" class="t s">法向力分布 Fz</text>
+    <text x="553" y="287" text-anchor="middle" class="t s">切向力 Fx/Fy</text>
+    <text x="553" y="322" text-anchor="middle" class="t s">时序变化 dF/dt</text>
+
+    <rect x="780" y="160" width="265" height="185" class="b" fill="#f0ebfa" stroke="#8c6bb1"/>
+    <text x="913" y="207" text-anchor="middle" class="t m">策略内部变量</text>
+    <text x="913" y="252" text-anchor="middle" class="t s">接触门控</text>
+    <text x="913" y="287" text-anchor="middle" class="t s">滑移/挤压风险</text>
+    <text x="913" y="322" text-anchor="middle" class="t s">插入误差方向</text>
+
+    <rect x="1140" y="160" width="290" height="185" class="b" fill="#e8f7ef" stroke="#36a06f"/>
+    <text x="1285" y="207" text-anchor="middle" class="t m">可测的行为增益</text>
+    <text x="1285" y="252" text-anchor="middle" class="t s">更少掉落 / 损坏</text>
+    <text x="1285" y="287" text-anchor="middle" class="t s">更低峰值力 / 更快恢复</text>
+    <text x="1285" y="322" text-anchor="middle" class="t s">更少卡死 / 更高成功率</text>
+  </g>
+  <path d="M325 252H420" class="a"/><path d="M685 252H780" class="a"/><path d="M1045 252H1140" class="a"/>
+  <text x="372" y="235" text-anchor="middle" class="t s">接触产生</text><text x="732" y="235" text-anchor="middle" class="t s">编码</text><text x="1092" y="235" text-anchor="middle" class="t s">闭环动作</text>
+
+  <rect x="80" y="455" width="1340" height="265" rx="25" fill="#fff" stroke="#8ea0b2" stroke-width="2"/>
+  <text x="120" y="505" class="t m">怎样证明“增益来自触觉”，而不是模型更大或数据更多？</text>
+  <text x="120" y="558" class="t s">① 配对随机化：相同模型、相同初始视觉、相同示范；只开/关触觉。</text>
+  <text x="120" y="603" class="t s">② 隐变量挑战：外观相同但重量、摩擦、刚度或孔偏置不同，视觉无法提前猜中。</text>
+  <text x="120" y="648" class="t s">③ 反事实对照：触觉时间错位 / 打乱 / 只给总力 / 给完整 taxel；如果真实同步触觉独有提升，才支持因果解释。</text>
+  <text x="120" y="693" class="t s">④ 过程指标：除成功率外，报告峰值力、接触丢失时长、滑移恢复延迟、重试次数与损坏率。</text>
+</svg>
