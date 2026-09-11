@@ -1,0 +1,31 @@
+"40 Topics/03 触觉机器人/HY-VLA 触觉数据接入与验证路线.md"
+  s_396fc1a654bbfd::t_9afe1d8a8da868 1-732
+"30 Comparisons/触觉 VLA 方法比较.md"
+  s_396fc1a654bbfd::t_13400b728c19de 9-10,53-63
+  s_396fc1a654bbfd::t_4d84dde48e7ff8 64
+"40 Topics/03 触觉机器人/触觉机器人学习.md"
+  s_396fc1a654bbfd::t_13400b728c19de 13-15,25
+  s_396fc1a654bbfd::t_a598d01f9e1205 26
+"90 Attachments/HyVLA-Tactile-Integration/hyvla-tactile-integration.svg"
+  s_396fc1a654bbfd::t_677b2f3bcaf3d4 1-58
+"90 Attachments/HyVLA-Tactile-Integration/tactile-benchmark-ladder.svg"
+  s_396fc1a654bbfd::t_dbffb77982209d 1-44
+"90 Attachments/HyVLA-Tactile-Integration/tactile-causal-chain.svg"
+  s_396fc1a654bbfd::t_5e304138e36f4a 1-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "57000da0b7aa407ffec2c18bceb5b195f953fdf9",
+  "prompts": {},
+  "sessions": {
+    "s_396fc1a654bbfd": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a08f8a-1c4b-79e1-8008-b5844b0ce6cc",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "xuanxuanzhi10 <xuanxuanzhi10@users.noreply.github.com>"
+    }
+  }
+}
